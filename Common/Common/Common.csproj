@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="BinarySerializeHelper.cs" />
     <Compile Include="JsonHelper.cs" />
+    <Compile Include="MD5Helper.cs" />
     <Compile Include="RandomExt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
