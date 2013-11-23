@@ -8,5 +8,8 @@ namespace System
 {
     public static partial class RandomExt
     {
+        static RandomExt()
+        {
+        }
     }
 }
