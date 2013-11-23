@@ -1,0 +1,48 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace System.Runtime.Serialization.Formatters.Binary
+{
+    public static partial class BinarySerializeHelper
+    {
+        private static readonly BinaryFormatter bf;
+
+        static BinarySerializeHelper()
+        {
+            bf = new BinaryFormatter();
+        }
+
+        /// <summary>
+        /// 将当前对象转换为字节数组。（需要对对象的类用 Serializable 进行标记）
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="input"></param>
+        /// <returns>序列化的字节数组。</returns>
+        public static byte[] SerializeToBytes<T>(this T input)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                bf.Serialize(ms, input);
+                return ms.ToArray();
+            }
+        }
+
+        /// <summary>
+        /// 将指定的字节数组转换为 T 类型的对象。
+        /// </summary>
+        /// <typeparam name="T">所生成对象的类型。</typeparam>
+        /// <param name="bytes">要进行反序列化的字节数组。</param>
+        /// <returns>反序列化的对象。</returns>
+        public static T Deserialize<T>(byte[] bytes)
+        {
+            using (MemoryStream ms = new MemoryStream(bytes))
+            {
+                return (T)bf.Deserialize(ms);
+            }
+        }
+    }
+}
