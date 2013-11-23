@@ -8,11 +8,11 @@ namespace System.Web.Script.Serialization
 {
     public static partial class JsonHelper
     {
-        private static readonly JavaScriptSerializer jss;
+        private static readonly JavaScriptSerializer _jss;
 
         static JsonHelper()
         {
-            jss = new JavaScriptSerializer();
+            _jss = new JavaScriptSerializer();
         }
 
         /// <summary>
@@ -23,7 +23,7 @@ namespace System.Web.Script.Serialization
         /// <returns>序列化的 JSON 字符串。</returns>
         public static string SerializeToJson<T>(this T obj)
         {
-            return jss.Serialize(obj);
+            return _jss.Serialize(obj);
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace System.Web.Script.Serialization
         /// <returns>反序列化的对象。</returns>
         public static T Deserialize<T>(string input)
         {
-            return jss.Deserialize<T>(input);
+            return _jss.Deserialize<T>(input);
         }
     }
 }

@@ -11,11 +11,11 @@ namespace System
     /// </summary>
     public static partial class RandomExt
     {
-        private static readonly Random rand;
+        private static readonly Random _rand;
 
         static RandomExt()
         {
-            rand = new Random();
+            _rand = new Random();
         }
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace System
         /// <returns>真或假。</returns>
         public static bool NextBool()
         {
-            return rand.Next(2) == 0;
+            return _rand.Next(2) == 0;
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace System
         public static byte NextByte()
         {
             byte[] buffer = new byte[1];
-            rand.NextBytes(buffer);
+            _rand.NextBytes(buffer);
             return buffer[0];
         }
 
@@ -47,7 +47,7 @@ namespace System
         {
             checked
             {
-                return (byte)rand.Next(maxValue);
+                return (byte)_rand.Next(maxValue);
             }
         }
 
@@ -61,7 +61,7 @@ namespace System
         {
             checked
             {
-                return (byte)rand.Next(minValue, maxValue);
+                return (byte)_rand.Next(minValue, maxValue);
             }
         }
 
@@ -71,7 +71,7 @@ namespace System
         /// <param name="buffer">包含随机数的字节数组。</param>
         public static void NextBytes(byte[] buffer)
         {
-            rand.NextBytes(buffer);
+            _rand.NextBytes(buffer);
         }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace System
         public static byte[] NextBytes(int length)
         {
             byte[] buffer = new byte[length];
-            rand.NextBytes(buffer);
+            _rand.NextBytes(buffer);
             return buffer;
         }
 
@@ -93,13 +93,13 @@ namespace System
         public static decimal NextDecimal()
         {
             byte[] buffer = new byte[4];
-            rand.NextBytes(buffer);
+            _rand.NextBytes(buffer);
             int lo = BitConverter.ToInt32(buffer, 0);// 96 位整数的低 32 位。
-            rand.NextBytes(buffer);
+            _rand.NextBytes(buffer);
             int mid = BitConverter.ToInt32(buffer, 0);// 96 位整数的中间 32 位。
-            rand.NextBytes(buffer);
+            _rand.NextBytes(buffer);
             int hi = BitConverter.ToInt32(buffer, 0);// 96 位整数的高 32 位。
-            byte scale = (byte)rand.Next(29);// 10 的指数（0 到 28 之间）。
+            byte scale = (byte)_rand.Next(29);// 10 的指数（0 到 28 之间）。
             return new decimal(lo, mid, hi, true, scale);
         }
 
@@ -122,13 +122,13 @@ namespace System
             do
             {
                 byte[] buffer = new byte[4];
-                rand.NextBytes(buffer);
+                _rand.NextBytes(buffer);
                 int lo = BitConverter.ToInt32(buffer, 0);// 96 位整数的低 32 位。
-                rand.NextBytes(buffer);
+                _rand.NextBytes(buffer);
                 int mid = BitConverter.ToInt32(buffer, 0);// 96 位整数的中间 32 位。
-                rand.NextBytes(buffer);
+                _rand.NextBytes(buffer);
                 int hi = BitConverter.ToInt32(buffer, 0);// 96 位整数的高 32 位。
-                byte scale = (byte)rand.Next(29);// 10 的指数（0 到 28 之间）。
+                byte scale = (byte)_rand.Next(29);// 10 的指数（0 到 28 之间）。
                 d = new decimal(lo, mid, hi, true, scale);
             } while (d < maxValue);
             return d;
@@ -154,14 +154,14 @@ namespace System
             do
             {
                 byte[] buffer = new byte[4];
-                rand.NextBytes(buffer);
+                _rand.NextBytes(buffer);
                 int lo = BitConverter.ToInt32(buffer, 0);// 96 位整数的低 32 位。
-                rand.NextBytes(buffer);
+                _rand.NextBytes(buffer);
                 int mid = BitConverter.ToInt32(buffer, 0);// 96 位整数的中间 32 位。
-                rand.NextBytes(buffer);
+                _rand.NextBytes(buffer);
                 int hi = BitConverter.ToInt32(buffer, 0);// 96 位整数的高 32 位。
-                bool isNegative = rand.Next(2) == 0;// 正或负
-                byte scale = (byte)rand.Next(29);// 10 的指数（0 到 28 之间）。
+                bool isNegative = _rand.Next(2) == 0;// 正或负
+                byte scale = (byte)_rand.Next(29);// 10 的指数（0 到 28 之间）。
                 d = new decimal(lo, mid, hi, isNegative, scale);
             } while (d >= minValue && d < maxValue);
             return d;
@@ -177,7 +177,7 @@ namespace System
             do
             {
                 byte[] buffer = new byte[8];
-                rand.NextBytes(buffer);
+                _rand.NextBytes(buffer);
                 d = BitConverter.ToDouble(buffer, 0);
             } while (d >= 0 && d < double.MaxValue);
             return d;
@@ -202,7 +202,7 @@ namespace System
             do
             {
                 byte[] buffer = new byte[8];
-                rand.NextBytes(buffer);
+                _rand.NextBytes(buffer);
                 d = BitConverter.ToDouble(buffer, 0);
             } while (d >= 0 && d < maxValue);
             return d;
@@ -228,7 +228,7 @@ namespace System
             do
             {
                 byte[] buffer = new byte[8];
-                rand.NextBytes(buffer);
+                _rand.NextBytes(buffer);
                 d = BitConverter.ToDouble(buffer, 0);
             } while (d >= minValue && d < maxValue);
             return d;
@@ -247,7 +247,7 @@ namespace System
                 throw new InvalidOperationException(type.Name + " 不可枚举");
             }
             var array = Enum.GetValues(type);
-            var index = rand.Next(array.GetLowerBound(0), array.GetLowerBound(0) + 1);
+            var index = _rand.Next(array.GetLowerBound(0), array.GetLowerBound(0) + 1);
             return (T)array.GetValue(index);
         }
 
@@ -261,7 +261,7 @@ namespace System
             do
             {
                 byte[] buffer = new byte[4];
-                rand.NextBytes(buffer);
+                _rand.NextBytes(buffer);
                 f = BitConverter.ToSingle(buffer, 0);
             } while (f >= 0 && f < float.MaxValue);
             return f;
@@ -286,7 +286,7 @@ namespace System
             do
             {
                 byte[] buffer = new byte[4];
-                rand.NextBytes(buffer);
+                _rand.NextBytes(buffer);
                 f = BitConverter.ToSingle(buffer, 0);
             } while (f >= 0 && f < maxValue);
             return f;
@@ -312,7 +312,7 @@ namespace System
             do
             {
                 byte[] buffer = new byte[4];
-                rand.NextBytes(buffer);
+                _rand.NextBytes(buffer);
                 f = BitConverter.ToSingle(buffer, 0);
             } while (f >= minValue && f < maxValue);
             return f;
@@ -324,7 +324,7 @@ namespace System
         /// <returns>大于等于零且小于 MaxValue 的 32 位带符号整数。</returns>
         public static int NextInt()
         {
-            return rand.Next();
+            return _rand.Next();
         }
 
         /// <summary>
@@ -334,7 +334,7 @@ namespace System
         /// <returns>大于等于零且小于 maxValue 的 32 位带符号整数，即：返回值的范围通常包括零但不包括 maxValue。 不过，如果 maxValue 等于零，则返回 maxValue。</returns>
         public static int NextInt(int maxValue)
         {
-            return rand.Next(maxValue);
+            return _rand.Next(maxValue);
         }
 
         /// <summary>
@@ -345,7 +345,7 @@ namespace System
         /// <returns>一个大于等于 minValue 且小于 maxValue 的 32 位带符号整数，即：返回的值范围包括 minValue 但不包括 maxValue。 如果 minValue 等于 maxValue，则返回 minValue。</returns>
         public static int NextInt(int minValue, int maxValue)
         {
-            return rand.Next(minValue, maxValue);
+            return _rand.Next(minValue, maxValue);
         }
 
         /// <summary>
@@ -358,7 +358,7 @@ namespace System
             do
             {
                 byte[] buffer = new byte[8];
-                rand.NextBytes(buffer);
+                _rand.NextBytes(buffer);
                 l = BitConverter.ToInt64(buffer, 0);
             } while (l >= 0 && l < long.MaxValue);
             return l;
@@ -383,7 +383,7 @@ namespace System
             do
             {
                 byte[] buffer = new byte[8];
-                rand.NextBytes(buffer);
+                _rand.NextBytes(buffer);
                 l = BitConverter.ToInt64(buffer, 0);
             } while (l >= 0 && l < maxValue);
             return l;
@@ -409,7 +409,7 @@ namespace System
             do
             {
                 byte[] buffer = new byte[8];
-                rand.NextBytes(buffer);
+                _rand.NextBytes(buffer);
                 l = BitConverter.ToInt64(buffer, 0);
             } while (l >= minValue && l < maxValue);
             return l;
@@ -421,7 +421,7 @@ namespace System
         /// <returns>大于等于零且小于 MaxValue 的 SByte。</returns>
         public static sbyte NextSByte()
         {
-            return (sbyte)rand.Next(0, sbyte.MaxValue);
+            return (sbyte)_rand.Next(0, sbyte.MaxValue);
         }
 
         /// <summary>
@@ -431,7 +431,7 @@ namespace System
         /// <returns>大于等于零且小于 maxValue 的 SByte，即：返回值的范围通常包括零但不包括 maxValue。 不过，如果 maxValue 等于零，则返回 maxValue。</returns>
         public static sbyte NextSByte(sbyte maxValue)
         {
-            return (sbyte)rand.Next(0, maxValue);
+            return (sbyte)_rand.Next(0, maxValue);
         }
 
         /// <summary>
@@ -442,7 +442,7 @@ namespace System
         /// <returns>一个大于等于 minValue 且小于 maxValue 的 SByte，即：返回的值范围包括 minValue 但不包括 maxValue。 如果 minValue 等于 maxValue，则返回 minValue。</returns>
         public static sbyte NextSByte(sbyte minValue, sbyte maxValue)
         {
-            return (sbyte)rand.Next(minValue, maxValue);
+            return (sbyte)_rand.Next(minValue, maxValue);
         }
 
         /// <summary>
@@ -451,7 +451,7 @@ namespace System
         /// <returns>大于等于零且小于 MaxValue 的 16 位带符号整数。</returns>
         public static short NextShort()
         {
-            return (short)rand.Next(short.MaxValue);
+            return (short)_rand.Next(short.MaxValue);
         }
 
         /// <summary>
@@ -461,7 +461,7 @@ namespace System
         /// <returns>大于等于零且小于 maxValue 的 16 位带符号整数，即：返回值的范围通常包括零但不包括 maxValue。 不过，如果 maxValue 等于零，则返回 maxValue。</returns>
         public static short NextShort(short maxValue)
         {
-            return (short)rand.Next(maxValue);
+            return (short)_rand.Next(maxValue);
         }
 
         /// <summary>
@@ -472,7 +472,7 @@ namespace System
         /// <returns>一个大于等于 minValue 且小于 maxValue 的 16 位带符号整数，即：返回的值范围包括 minValue 但不包括 maxValue。 如果 minValue 等于 maxValue，则返回 minValue。</returns>
         public static short NextShort(short minValue, short maxValue)
         {
-            return (short)rand.Next(minValue, maxValue);
+            return (short)_rand.Next(minValue, maxValue);
         }
 
         /// <summary>
@@ -481,7 +481,7 @@ namespace System
         /// <returns>大于等于零且小于 MaxValue 的 32 位无符号整数。</returns>
         public static uint NextUInt()
         {
-            return (uint)rand.Next(int.MinValue, int.MaxValue) - Convert.ToUInt32(int.MinValue);
+            return (uint)_rand.Next(int.MinValue, int.MaxValue) - Convert.ToUInt32(int.MinValue);
         }
 
         /// <summary>
@@ -499,7 +499,7 @@ namespace System
             {
                 throw new ArgumentOutOfRangeException("“maxValue”必须大于 0。", "maxValue");
             }
-            return (uint)rand.Next(int.MinValue, (int)(maxValue + Convert.ToUInt32(int.MinValue))) - Convert.ToUInt32(int.MinValue);
+            return (uint)_rand.Next(int.MinValue, (int)(maxValue + Convert.ToUInt32(int.MinValue))) - Convert.ToUInt32(int.MinValue);
         }
 
         /// <summary>
@@ -518,7 +518,7 @@ namespace System
             {
                 throw new ArgumentOutOfRangeException("“minValue”不能大于 maxValue。", "minValue");
             }
-            return (uint)rand.Next((int)(minValue + Convert.ToUInt32(int.MaxValue)), (int)(maxValue + Convert.ToUInt32(int.MinValue))) - Convert.ToUInt32(int.MinValue);
+            return (uint)_rand.Next((int)(minValue + Convert.ToUInt32(int.MaxValue)), (int)(maxValue + Convert.ToUInt32(int.MinValue))) - Convert.ToUInt32(int.MinValue);
         }
 
         /// <summary>
@@ -531,7 +531,7 @@ namespace System
             do
             {
                 byte[] buffer = new byte[8];
-                rand.NextBytes(buffer);
+                _rand.NextBytes(buffer);
                 ul = BitConverter.ToUInt64(buffer, 0);
             } while (ul >= 0 && ul < ulong.MaxValue);
             return ul;
@@ -556,7 +556,7 @@ namespace System
             do
             {
                 byte[] buffer = new byte[8];
-                rand.NextBytes(buffer);
+                _rand.NextBytes(buffer);
                 ul = BitConverter.ToUInt64(buffer, 0);
             } while (ul >= 0 && ul < maxValue);
             return ul;
@@ -582,7 +582,7 @@ namespace System
             do
             {
                 byte[] buffer = new byte[8];
-                rand.NextBytes(buffer);
+                _rand.NextBytes(buffer);
                 ul = BitConverter.ToUInt64(buffer, 0);
             } while (ul >= minValue && ul < maxValue);
             return ul;
@@ -598,7 +598,7 @@ namespace System
             do
             {
                 byte[] buffer = new byte[2];
-                rand.NextBytes(buffer);
+                _rand.NextBytes(buffer);
                 us = BitConverter.ToUInt16(buffer, 0);
             } while (us >= 0 && us < ushort.MaxValue);
             return us;
@@ -623,7 +623,7 @@ namespace System
             do
             {
                 byte[] buffer = new byte[2];
-                rand.NextBytes(buffer);
+                _rand.NextBytes(buffer);
                 us = BitConverter.ToUInt16(buffer, 0);
             } while (us >= 0 && us < maxValue);
             return us;
@@ -649,7 +649,7 @@ namespace System
             do
             {
                 byte[] buffer = new byte[2];
-                rand.NextBytes(buffer);
+                _rand.NextBytes(buffer);
                 us = BitConverter.ToUInt16(buffer, 0);
             } while (us >= minValue && us < maxValue);
             return us;

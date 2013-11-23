@@ -9,11 +9,11 @@ namespace System.Runtime.Serialization.Formatters.Binary
 {
     public static partial class BinarySerializeHelper
     {
-        private static readonly BinaryFormatter bf;
+        private static readonly BinaryFormatter _bf;
 
         static BinarySerializeHelper()
         {
-            bf = new BinaryFormatter();
+            _bf = new BinaryFormatter();
         }
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace System.Runtime.Serialization.Formatters.Binary
         {
             using (MemoryStream ms = new MemoryStream())
             {
-                bf.Serialize(ms, input);
+                _bf.Serialize(ms, input);
                 return ms.ToArray();
             }
         }
@@ -41,7 +41,7 @@ namespace System.Runtime.Serialization.Formatters.Binary
         {
             using (MemoryStream ms = new MemoryStream(bytes))
             {
-                return (T)bf.Deserialize(ms);
+                return (T)_bf.Deserialize(ms);
             }
         }
     }
