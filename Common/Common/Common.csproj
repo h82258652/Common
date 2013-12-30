@@ -40,12 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BinarySerializeHelper.cs" />
-    <Compile Include="JsonHelper.cs" />
-    <Compile Include="MD5Helper.cs" />
-    <Compile Include="RandomExt.cs" />
+    <Compile Include="Ini.cs" />
+    <Compile Include="System\Runtime\Serialization\Formatters\Binary\BinarySerializeHelper.cs" />
+    <Compile Include="System\Security\Cryptography\SHA1Helper.cs" />
+    <Compile Include="System\Web\Script\Serialization\JsonHelper.cs" />
+    <Compile Include="System\Security\Cryptography\MD5Helper.cs" />
+    <Compile Include="System\RandomExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="System\StringExtension.cs" />
+    <Compile Include="System\Xml\Serialization\XMLSerializerHelper.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

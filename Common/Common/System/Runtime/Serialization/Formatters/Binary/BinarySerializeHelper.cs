@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 
 namespace System.Runtime.Serialization.Formatters.Binary
 {
+    /// <summary>
+    /// 以二进制格式将对象或整个连接对象图形序列化和反序列化。
+    /// </summary>
     public static partial class BinarySerializeHelper
     {
         private static readonly BinaryFormatter _bf;

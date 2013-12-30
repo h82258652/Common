@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace System
 {
     /// <summary>
     /// 伪随机数扩展类
     /// </summary>
-    public static partial class RandomExt
+    public static partial class RandomExtension
     {
         private static readonly Random _rand;
 
-        static RandomExt()
+        static RandomExtension()
         {
             _rand = new Random();
         }
@@ -45,10 +40,7 @@ namespace System
         /// <returns>大于等于且小于 maxValue 的无符号 8 位整数，即：返回值的范围通常包括零但不包括 maxValue。 不过，如果 maxValue 等于零，则返回 maxValue。</returns>
         public static byte NextByte(byte maxValue)
         {
-            checked
-            {
-                return (byte)_rand.Next(maxValue);
-            }
+            return (byte)_rand.Next(maxValue);
         }
 
         /// <summary>
@@ -59,10 +51,7 @@ namespace System
         /// <returns>一个大于等于 minValue 且小于 maxValue 的无符号 8 位整数，即：返回的值范围包括 minValue 但不包括 maxValue。 如果 minValue 等于 maxValue，则返回 minValue。</returns>
         public static byte NextByte(byte minValue, byte maxValue)
         {
-            checked
-            {
-                return (byte)_rand.Next(minValue, maxValue);
-            }
+            return (byte)_rand.Next(minValue, maxValue);
         }
 
         /// <summary>
@@ -87,10 +76,11 @@ namespace System
         }
 
         /// <summary>
-        /// 返回非负随机数。
+        /// 返回随机数。
         /// </summary>
-        /// <returns>大于等于零且小于 MaxValue 的Decimal。</returns>
-        public static decimal NextDecimal()
+        /// <param name="containNegative">是否包含负数。</param>
+        /// <returns>返回一个随机的 Decimal。</returns>
+        public static decimal NextDecimal(bool containNegative = false)
         {
             byte[] buffer = new byte[4];
             _rand.NextBytes(buffer);
@@ -99,8 +89,9 @@ namespace System
             int mid = BitConverter.ToInt32(buffer, 0);// 96 位整数的中间 32 位。
             _rand.NextBytes(buffer);
             int hi = BitConverter.ToInt32(buffer, 0);// 96 位整数的高 32 位。
+            bool isNegative = containNegative == false ? false : _rand.Next(2) == 0;// 正或负
             byte scale = (byte)_rand.Next(29);// 10 的指数（0 到 28 之间）。
-            return new decimal(lo, mid, hi, true, scale);
+            return new decimal(lo, mid, hi, isNegative, scale);
         }
 
         /// <summary>
@@ -119,9 +110,9 @@ namespace System
                 throw new ArgumentOutOfRangeException("“maxValue”必须大于 0。", "maxValue");
             }
             decimal d;
+            byte[] buffer = new byte[4];
             do
             {
-                byte[] buffer = new byte[4];
                 _rand.NextBytes(buffer);
                 int lo = BitConverter.ToInt32(buffer, 0);// 96 位整数的低 32 位。
                 _rand.NextBytes(buffer);
@@ -129,8 +120,8 @@ namespace System
                 _rand.NextBytes(buffer);
                 int hi = BitConverter.ToInt32(buffer, 0);// 96 位整数的高 32 位。
                 byte scale = (byte)_rand.Next(29);// 10 的指数（0 到 28 之间）。
-                d = new decimal(lo, mid, hi, true, scale);
-            } while (d < maxValue);
+                d = new decimal(lo, mid, hi, false, scale);
+            } while ((d < maxValue) == false);
             return d;
         }
 
@@ -151,9 +142,9 @@ namespace System
                 throw new ArgumentOutOfRangeException("“minValue”不能大于 maxValue。", "minValue");
             }
             decimal d;
+            byte[] buffer = new byte[4];
             do
             {
-                byte[] buffer = new byte[4];
                 _rand.NextBytes(buffer);
                 int lo = BitConverter.ToInt32(buffer, 0);// 96 位整数的低 32 位。
                 _rand.NextBytes(buffer);
@@ -163,24 +154,37 @@ namespace System
                 bool isNegative = _rand.Next(2) == 0;// 正或负
                 byte scale = (byte)_rand.Next(29);// 10 的指数（0 到 28 之间）。
                 d = new decimal(lo, mid, hi, isNegative, scale);
-            } while (d >= minValue && d < maxValue);
+            } while ((d >= minValue && d < maxValue) == false);
             return d;
         }
 
         /// <summary>
-        /// 返回非负随机数。
+        /// 返回随机数。
         /// </summary>
-        /// <returns>大于等于零且小于 MaxValue 的 双精度浮点数。</returns>
-        public static double NextDouble()
+        /// <param name="containNegative">是否包含负数。</param>
+        /// <returns>返回一个随机的双精度浮点数。</returns>
+        public static double NextDouble(bool containNegative = false)
         {
             double d;
-            do
+            byte[] buffer = new byte[8];
+            if (containNegative == true)
             {
-                byte[] buffer = new byte[8];
-                _rand.NextBytes(buffer);
-                d = BitConverter.ToDouble(buffer, 0);
-            } while (d >= 0 && d < double.MaxValue);
-            return d;
+                do
+                {
+                    _rand.NextBytes(buffer);
+                    d = BitConverter.ToDouble(buffer, 0);
+                } while ((d >= double.MinValue && d < double.MaxValue) == false);
+                return d;
+            }
+            else
+            {
+                do
+                {
+                    _rand.NextBytes(buffer);
+                    d = BitConverter.ToDouble(buffer, 0);
+                } while ((d >= 0 && d < double.MaxValue) == false);
+                return d;
+            }
         }
 
         /// <summary>
@@ -199,12 +203,12 @@ namespace System
                 throw new ArgumentOutOfRangeException("“maxValue”必须大于 0。", "maxValue");
             }
             double d;
+            byte[] buffer = new byte[8];
             do
             {
-                byte[] buffer = new byte[8];
                 _rand.NextBytes(buffer);
                 d = BitConverter.ToDouble(buffer, 0);
-            } while (d >= 0 && d < maxValue);
+            } while ((d >= 0 && d < maxValue) == false);
             return d;
         }
 
@@ -225,12 +229,12 @@ namespace System
                 throw new ArgumentOutOfRangeException("“minValue”不能大于 maxValue。", "minValue");
             }
             double d;
+            byte[] buffer = new byte[8];
             do
             {
-                byte[] buffer = new byte[8];
                 _rand.NextBytes(buffer);
                 d = BitConverter.ToDouble(buffer, 0);
-            } while (d >= minValue && d < maxValue);
+            } while ((d >= minValue && d < maxValue) == false);
             return d;
         }
 
@@ -252,19 +256,32 @@ namespace System
         }
 
         /// <summary>
-        /// 返回非负随机数。
+        /// 返回随机数。
         /// </summary>
-        /// <returns>大于等于零且小于 MaxValue 的单精度浮点数。</returns>
-        public static float NextFloat()
+        /// <param name="containNegative">是否包含负数。</param>
+        /// <returns>返回一个随机的单精度浮点数。</returns>
+        public static float NextFloat(bool containNegative = false)
         {
             float f;
-            do
+            byte[] buffer = new byte[4];
+            if (containNegative == true)
             {
-                byte[] buffer = new byte[4];
-                _rand.NextBytes(buffer);
-                f = BitConverter.ToSingle(buffer, 0);
-            } while (f >= 0 && f < float.MaxValue);
-            return f;
+                do
+                {
+                    _rand.NextBytes(buffer);
+                    f = BitConverter.ToSingle(buffer, 0);
+                } while ((f >= float.MinValue && f < float.MaxValue) == false);
+                return f;
+            }
+            else
+            {
+                do
+                {
+                    _rand.NextBytes(buffer);
+                    f = BitConverter.ToSingle(buffer, 0);
+                } while ((f >= 0 && f < float.MaxValue) == false);
+                return f;
+            }
         }
 
         /// <summary>
@@ -283,12 +300,12 @@ namespace System
                 throw new ArgumentOutOfRangeException("“maxValue”必须大于 0。", "maxValue");
             }
             float f;
+            byte[] buffer = new byte[4];
             do
             {
-                byte[] buffer = new byte[4];
                 _rand.NextBytes(buffer);
                 f = BitConverter.ToSingle(buffer, 0);
-            } while (f >= 0 && f < maxValue);
+            } while ((f >= 0 && f < maxValue) == false);
             return f;
         }
 
@@ -309,22 +326,30 @@ namespace System
                 throw new ArgumentOutOfRangeException("“minValue”不能大于 maxValue。", "minValue");
             }
             float f;
+            byte[] buffer = new byte[4];
             do
             {
-                byte[] buffer = new byte[4];
                 _rand.NextBytes(buffer);
                 f = BitConverter.ToSingle(buffer, 0);
-            } while (f >= minValue && f < maxValue);
+            } while ((f >= minValue && f < maxValue) == false);
             return f;
         }
 
         /// <summary>
-        /// 返回非负随机数。
+        /// 返回随机数。
         /// </summary>
-        /// <returns>大于等于零且小于 MaxValue 的 32 位带符号整数。</returns>
-        public static int NextInt()
+        /// <param name="containNegative">是否包含负数。</param>
+        /// <returns>返回一个随机的 32 位带符号整数。</returns>
+        public static int NextInt(bool containNegative = false)
         {
-            return _rand.Next();
+            if (containNegative == true)
+            {
+                return _rand.Next(int.MinValue, int.MaxValue);
+            }
+            else
+            {
+                return _rand.Next();
+            }
         }
 
         /// <summary>
@@ -349,19 +374,29 @@ namespace System
         }
 
         /// <summary>
-        /// 返回非负随机数。
+        /// 返回随机数。
         /// </summary>
-        /// <returns>大于等于零且小于 MaxValue 的 64 位带符号整数。</returns>
-        public static long NextLong()
+        /// <param name="containNegative">是否包含负数。</param>
+        /// <returns>返回一个随机的 64 位带符号整数。</returns>
+        public static long NextLong(bool containNegative = false)
         {
-            long l;
-            do
+            if (containNegative == true)
             {
                 byte[] buffer = new byte[8];
                 _rand.NextBytes(buffer);
-                l = BitConverter.ToInt64(buffer, 0);
-            } while (l >= 0 && l < long.MaxValue);
-            return l;
+                return BitConverter.ToInt64(buffer, 0);
+            }
+            else
+            {
+                long l;
+                byte[] buffer = new byte[8];
+                do
+                {
+                    _rand.NextBytes(buffer);
+                    l = BitConverter.ToInt64(buffer, 0);
+                } while ((l >= 0 && l < long.MaxValue) == false);
+                return l;
+            }
         }
 
         /// <summary>
@@ -380,12 +415,12 @@ namespace System
                 throw new ArgumentOutOfRangeException("“maxValue”必须大于 0。", "maxValue");
             }
             long l;
+            byte[] buffer = new byte[8];
             do
             {
-                byte[] buffer = new byte[8];
                 _rand.NextBytes(buffer);
                 l = BitConverter.ToInt64(buffer, 0);
-            } while (l >= 0 && l < maxValue);
+            } while ((l >= 0 && l < maxValue) == false);
             return l;
         }
 
@@ -406,22 +441,30 @@ namespace System
                 throw new ArgumentOutOfRangeException("“minValue”不能大于 maxValue。", "minValue");
             }
             long l;
+            byte[] buffer = new byte[8];
             do
             {
-                byte[] buffer = new byte[8];
                 _rand.NextBytes(buffer);
                 l = BitConverter.ToInt64(buffer, 0);
-            } while (l >= minValue && l < maxValue);
+            } while ((l >= minValue && l < maxValue) == false);
             return l;
         }
 
         /// <summary>
-        /// 返回非负随机数。
+        /// 返回随机数。
         /// </summary>
-        /// <returns>大于等于零且小于 MaxValue 的 SByte。</returns>
-        public static sbyte NextSByte()
+        /// <param name="containNegative">是否包含负数。</param>
+        /// <returns>返回一个随机的 SByte。</returns>
+        public static sbyte NextSByte(bool containNegative = false)
         {
-            return (sbyte)_rand.Next(0, sbyte.MaxValue);
+            if (containNegative == true)
+            {
+                return (sbyte)_rand.Next(sbyte.MinValue, sbyte.MaxValue);
+            }
+            else
+            {
+                return (sbyte)_rand.Next(0, sbyte.MaxValue);
+            }
         }
 
         /// <summary>
@@ -446,12 +489,20 @@ namespace System
         }
 
         /// <summary>
-        /// 返回非负随机数。
+        /// 返回随机数。
         /// </summary>
-        /// <returns>大于等于零且小于 MaxValue 的 16 位带符号整数。</returns>
-        public static short NextShort()
+        /// <param name="containNegative">是否包含负数。</param>
+        /// <returns>返回一个随机的 16 位带符号整数。</returns>
+        public static short NextShort(bool containNegative = false)
         {
-            return (short)_rand.Next(short.MaxValue);
+            if (containNegative == true)
+            {
+                return (short)_rand.Next(short.MinValue, short.MaxValue);
+            }
+            else
+            {
+                return (short)_rand.Next(short.MaxValue);
+            }
         }
 
         /// <summary>
@@ -473,6 +524,16 @@ namespace System
         public static short NextShort(short minValue, short maxValue)
         {
             return (short)_rand.Next(minValue, maxValue);
+        }
+
+        /// <summary>
+        /// 从字符串数组中随机返回一个字符串。
+        /// </summary>
+        /// <param name="strs">字符串数组。</param>
+        /// <returns>字符串数组中随机一个字符串。</returns>
+        public static string NextString(params string[] strs)
+        {
+            return strs[_rand.Next(strs.Length)];
         }
 
         /// <summary>
@@ -528,12 +589,12 @@ namespace System
         public static ulong NextULong()
         {
             ulong ul;
+            byte[] buffer = new byte[8];
             do
             {
-                byte[] buffer = new byte[8];
                 _rand.NextBytes(buffer);
                 ul = BitConverter.ToUInt64(buffer, 0);
-            } while (ul >= 0 && ul < ulong.MaxValue);
+            } while ((ul >= 0 && ul < ulong.MaxValue) == false);
             return ul;
         }
 
@@ -553,12 +614,12 @@ namespace System
                 throw new ArgumentOutOfRangeException("“maxValue”必须大于 0。", "maxValue");
             }
             ulong ul;
+            byte[] buffer = new byte[8];
             do
             {
-                byte[] buffer = new byte[8];
                 _rand.NextBytes(buffer);
                 ul = BitConverter.ToUInt64(buffer, 0);
-            } while (ul >= 0 && ul < maxValue);
+            } while ((ul >= 0 && ul < maxValue) == false);
             return ul;
         }
 
@@ -579,12 +640,12 @@ namespace System
                 throw new ArgumentOutOfRangeException("“minValue”不能大于 maxValue。", "minValue");
             }
             ulong ul;
+            byte[] buffer = new byte[8];
             do
             {
-                byte[] buffer = new byte[8];
                 _rand.NextBytes(buffer);
                 ul = BitConverter.ToUInt64(buffer, 0);
-            } while (ul >= minValue && ul < maxValue);
+            } while ((ul >= minValue && ul < maxValue) == false);
             return ul;
         }
 
@@ -595,12 +656,12 @@ namespace System
         public static ushort NextUShort()
         {
             ushort us;
+            byte[] buffer = new byte[2];
             do
             {
-                byte[] buffer = new byte[2];
                 _rand.NextBytes(buffer);
                 us = BitConverter.ToUInt16(buffer, 0);
-            } while (us >= 0 && us < ushort.MaxValue);
+            } while ((us >= 0 && us < ushort.MaxValue) == false);
             return us;
         }
 
@@ -620,12 +681,12 @@ namespace System
                 throw new ArgumentOutOfRangeException("“maxValue”必须大于 0。", "maxValue");
             }
             ushort us;
+            byte[] buffer = new byte[2];
             do
             {
-                byte[] buffer = new byte[2];
                 _rand.NextBytes(buffer);
                 us = BitConverter.ToUInt16(buffer, 0);
-            } while (us >= 0 && us < maxValue);
+            } while ((us >= 0 && us < maxValue) == false);
             return us;
         }
 
@@ -646,12 +707,12 @@ namespace System
                 throw new ArgumentOutOfRangeException("“minValue”不能大于 maxValue。", "minValue");
             }
             ushort us;
+            byte[] buffer = new byte[2];
             do
             {
-                byte[] buffer = new byte[2];
                 _rand.NextBytes(buffer);
                 us = BitConverter.ToUInt16(buffer, 0);
-            } while (us >= minValue && us < maxValue);
+            } while ((us >= minValue && us < maxValue) == false);
             return us;
         }
     }

@@ -1,37 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Security.Cryptography;
-using System.Xml.Serialization;
-using System.IO;
 
-namespace Test
+namespace Common
 {
-    static class Program
+    public static partial class Ini
     {
-        static void Main(string[] args)
-        {
-
-
-            Console.ReadKey();
-        }
-
-        public static MemoryStream SerializeToXMLStream<T>(this T obj)
-        {
-            MemoryStream ms = new MemoryStream();
-            XmlSerializer xs = new XmlSerializer(typeof(T));
-            xs.Serialize(ms, obj);
-            return ms;
-        }
-
-
-
-    }
-
-    class Ini
-    {
+        /// <summary>
+        /// 获取指定的 ini 文件中是否存在指定节。
+        /// </summary>
+        /// <param name="filePath"> ini 文件路径。</param>
+        /// <param name="section">节名。</param>
+        /// <returns>若存在，则返回 true ，否则返回 false 。</returns>
         public static bool HasSection(string filePath, string section)
         {
             using (StreamReader sr = new StreamReader(filePath))
@@ -48,6 +31,13 @@ namespace Test
             }
         }
 
+        /// <summary>
+        /// 获取指定的 ini 文件中指定的节是否存在指定的键。
+        /// </summary>
+        /// <param name="filePath"> ini 文件路径。</param>
+        /// <param name="section">节名。</param>
+        /// <param name="key">键名。</param>
+        /// <returns>若存在，则返回 true ，否则返回 false 。</returns>
         public static bool HasKey(string filePath, string section, string key)
         {
             using (StreamReader sr = new StreamReader(filePath))
@@ -78,6 +68,13 @@ namespace Test
             }
         }
 
+        /// <summary>
+        /// 读取指定 ini 文件的指定键值。
+        /// </summary>
+        /// <param name="filePath"> ini 文件路径。</param>
+        /// <param name="section">键所在的节名。</param>
+        /// <param name="key">键名。</param>
+        /// <returns>若存在，则返回键值。不存在则抛出异常。</returns>
         public static string Read(string filePath, string section, string key)
         {
             using (StreamReader sr = new StreamReader(filePath))
@@ -112,6 +109,13 @@ namespace Test
             throw new Exception("指定的键不存在！");
         }
 
+        /// <summary>
+        /// 写入指定的键值到 ini 文件中。（若不存在该 ini 文件则会创建。）
+        /// </summary>
+        /// <param name="filePath"> ini 文件路径。</param>
+        /// <param name="section">节名。</param>
+        /// <param name="key">键名。</param>
+        /// <param name="value">键值。</param>
         public static void Write(string filePath, string section, string key, string value)
         {
             string[] lines = File.ReadAllLines(filePath);
