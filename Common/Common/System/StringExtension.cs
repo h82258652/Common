@@ -40,5 +40,16 @@ namespace System
         {
             return string.IsNullOrWhiteSpace(value);
         }
+
+        /// <summary>
+        /// 指示指定字符串是否为 E-mail 地址。
+        /// </summary>
+        /// <param name="value">要测试的字符串。</param>
+        /// <returns>若符合 E-mail 格式，则为 true，否则为 false。</returns>
+        public static bool IsEmail(this string value)
+        {
+            Regex r = new Regex(@"^\S+@\S+\.\S+$");
+            return r.IsMatch(value);
+        }
     }
 }

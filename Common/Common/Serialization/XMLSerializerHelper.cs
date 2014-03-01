@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
+using System.Xml.Serialization;
 
-namespace System.Xml.Serialization
+namespace Common.Serialization
 {
     public static partial class XMLSerializerHelper
     {

@@ -1,6 +1,7 @@
 ﻿using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
-namespace System.Runtime.Serialization.Formatters.Binary
+namespace Common.Serialization
 {
     /// <summary>
     /// 以二进制格式将对象或整个连接对象图形序列化和反序列化。

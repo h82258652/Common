@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace System.Security.Cryptography
+namespace Common.Security
 {
     public static partial class MD5Helper
     {

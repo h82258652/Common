@@ -1,19 +1,51 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
+using System.Web.Script.Serialization;
+using System.Xml.Linq;
 using System.Xml.Serialization;
 using System.IO;
 
 namespace Test
 {
+
+   public class MessageBase
+    {
+        public string ToUserName
+        {
+            get;
+            set;
+        }
+
+        public string FromUserName
+        {
+            get;
+            set;
+        }
+    }
+
+
     static class Program
     {
         static void Main(string[] args)
         {
+            string s = @"<xml>
+ <ToUserName><![CDATA[toUser]]></ToUserName>
+ <FromUserName><![CDATA[fromUser]]></FromUserName> 
+ <CreateTime>1348831860</CreateTime>
+ <MsgType><![CDATA[text]]></MsgType>
+ <Content><![CDATA[this is a test]]></Content>
+ <MsgId>1234567890123456</MsgId>
+ </xml>";
+            XDocument xd = 
+            XDocument.Parse(s);
 
+            var root = xd.Root;
+            var qqq = root.Element("MsgType").Value;
 
             Console.ReadKey();
         }
