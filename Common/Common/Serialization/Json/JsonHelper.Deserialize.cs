@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -54,11 +55,13 @@ namespace Common.Serialization
                 {
                     string item = input.Substring(startIndex, i - startIndex);
                     startIndex = i + 1;
+                    item = item.Trim();
                     yield return item;
                 }
             }
             {
                 string item = input.Substring(startIndex, input.Length - startIndex);
+                item = item.Trim();
                 yield return item;
             }
             yield break;
@@ -177,6 +180,10 @@ namespace Common.Serialization
             if (type == typeof(byte) || type == typeof(sbyte) || type == typeof(short) || type == typeof(int) || type == typeof(long) || type == typeof(float) || type == typeof(double) || type == typeof(ushort) || type == typeof(uint) || type == typeof(ulong) || type == typeof(decimal))
             {
                 return Convert.ChangeType(input, type);
+            }
+            if (type ==typeof(BigInteger))
+            {
+                return BigInteger.Parse(input);
             }
             #endregion
             #region DateTime
@@ -307,10 +314,18 @@ namespace Common.Serialization
                 {
                     string key = s.Substring(0, s.IndexOf(':'));
                     string valueString = s.Substring(s.IndexOf(':') + 1);
+                    key = key.Trim();
+                    key = key.Substring(1, key.Length - 2);// 去除开始结尾的双引号
+                    valueString = valueString.Trim();
                     keyValue.Add(key, valueString);
                 }
                 #region 字段
-                FieldInfo[] fields = type.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Instance);
+                FieldInfo[] fields;
+                if (typeFields.TryGetValue(type, out fields) == false)
+                {
+                    fields = type.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Instance);
+                    typeFields.Add(type, fields);
+                }
                 foreach (FieldInfo field in fields)
                 {
                     JsonAttribute attribute = field.GetCustomAttribute<JsonAttribute>(true);
@@ -367,7 +382,12 @@ namespace Common.Serialization
                 }
                 #endregion
                 #region 属性
-                PropertyInfo[] properties = type.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                PropertyInfo[] properties;
+                if (typeProperties.TryGetValue(type, out properties) == false)
+                {
+                    properties = type.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                    typeProperties.Add(type, properties);
+                }
                 foreach (PropertyInfo property in properties)
                 {
                     JsonAttribute attribute = property.GetCustomAttribute<JsonAttribute>(true);
@@ -435,7 +455,7 @@ namespace Common.Serialization
         /// <typeparam name="T">所生成对象的类型。</typeparam>
         /// <param name="input">要进行反序列化的 JSON 字符串。</param>
         /// <returns>反序列化的对象。</returns>
-		public static T Deserialize<T>(string input)
+        public static T Deserialize<T>(string input)
         {
             return (T)Deserialize(input, typeof(T));
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Reflection;
 using System.Text;
 
@@ -14,10 +15,22 @@ namespace Common.Serialization
         /// <summary>
         /// 将当前对象转换为 JSON 字符串。
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="obj"></param>
+        /// <param name="obj">需要进行 JSON 序列化的对象。</param>
         /// <returns>序列化的 JSON 字符串。</returns>
-        public static string SerializeToJson(object obj)
+        public static string SerializeToJson(this object obj)
+        {
+            string json;
+
+            // 序列化
+            json = SerializeObject(obj);
+
+            // 格式化
+            json = FormatJson(json);
+
+            return json;
+        }
+
+        internal static string SerializeObject(object obj)
         {
             #region null
             if (obj == null)
@@ -83,7 +96,7 @@ namespace Common.Serialization
             }
             #endregion
             #region number
-            else if (obj is byte || obj is sbyte || obj is short || obj is int || obj is long || obj is float || obj is double || obj is ushort || obj is uint || obj is ulong || obj is decimal)
+            else if (obj is byte || obj is sbyte || obj is short || obj is int || obj is long || obj is float || obj is double || obj is ushort || obj is uint || obj is ulong || obj is decimal || obj is BigInteger)
             {
                 return obj.ToString();
             }
@@ -118,7 +131,7 @@ namespace Common.Serialization
                 sb.Append('[');
                 for (int i = 0, length = arr.Length; i < length; i++)
                 {
-                    sb.Append(SerializeToJson(arr.GetValue(i)));
+                    sb.Append(SerializeObject(arr.GetValue(i)));
                     if (i != length - 1)
                     {
                         sb.Append(',');
@@ -136,7 +149,7 @@ namespace Common.Serialization
                 sb.Append("[");
                 for (int i = 0, count = list.Count; i < count; i++)
                 {
-                    sb.Append(SerializeToJson(list[i]));
+                    sb.Append(SerializeObject(list[i]));
                     if (i != count - 1)
                     {
                         sb.Append(",");
@@ -154,7 +167,7 @@ namespace Common.Serialization
                 var keys = dic.Keys;
                 foreach (var key in keys)
                 {
-                    values.Add("\"" + key + "\":" + SerializeToJson(dic[key]));
+                    values.Add("\"" + key + "\":" + SerializeObject(dic[key]));
                 }
                 return "{" + string.Join(",", values) + "}";
             }
@@ -165,7 +178,12 @@ namespace Common.Serialization
                 Type t = obj.GetType();
                 List<string> values = new List<string>();
                 #region 序列化字段
-                FieldInfo[] fields = t.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Instance);
+                FieldInfo[] fields;
+                if (typeFields.TryGetValue(t, out fields) == false)
+                {
+                    fields = t.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Instance);
+                    typeFields.Add(t, fields);
+                }
                 foreach (FieldInfo field in fields)
                 {
                     JsonAttribute attribute = field.GetCustomAttribute<JsonAttribute>(true);
@@ -212,7 +230,7 @@ namespace Common.Serialization
                         }
                         else
                         {
-                            valueString = SerializeToJson(value);
+                            valueString = SerializeObject(value);
                         }
                     }
                     else
@@ -223,13 +241,18 @@ namespace Common.Serialization
                         }
                         name = "\"" + field.Name + "\"";
                         value = field.GetValue(obj);
-                        valueString = SerializeToJson(value);
+                        valueString = SerializeObject(value);
                     }
                     values.Add(name + ":" + valueString);
                 }
                 #endregion
                 #region 序列化属性
-                PropertyInfo[] properties = t.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                PropertyInfo[] properties;
+                if (typeProperties.TryGetValue(t, out properties) == false)
+                {
+                    properties = t.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                    typeProperties.Add(t, properties);
+                }
                 foreach (PropertyInfo property in properties)
                 {
                     if (property.GetIndexParameters().Length == 0)// 非索引器属性
@@ -278,7 +301,7 @@ namespace Common.Serialization
                             }
                             else
                             {
-                                valueString = SerializeToJson(value);
+                                valueString = SerializeObject(value);
                             }
                         }
                         else
@@ -289,7 +312,7 @@ namespace Common.Serialization
                             }
                             name = "\"" + property.Name + "\"";
                             value = property.GetValue(obj);
-                            valueString = SerializeToJson(value);
+                            valueString = SerializeObject(value);
                         }
                         values.Add(name + ":" + valueString);
                     }
