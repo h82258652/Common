@@ -76,6 +76,7 @@
     <Compile Include="Threading\Func\ThreadHelper.Func.cs" />
     <Compile Include="Threading\Action\ThreadHelperPackage.Action.cs" />
     <Compile Include="Threading\Action\ThreadHelperProcess.Action.cs" />
+    <Compile Include="Threading\Func\ThreadHelperFinishedEventArgs.Func.cs" />
     <Compile Include="Threading\Func\ThreadHelperProcess.Func.cs" />
     <Compile Include="Threading\Func\ThreadHelperPackage.Func.cs" />
     <Compile Include="Threading\Action\ThreadHelperResult.Action.cs" />

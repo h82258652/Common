@@ -1,21 +1,41 @@
-﻿
+﻿using System;
+
 namespace Common.Threading
 {
     public class ThreadHelperResult<TResult>
     {
+        private bool hasFinish;
+
         internal ThreadHelperResult()
         {
             HasFinish = false;
             Value = default(TResult);
         }
 
+        public event ThreadHelperFinishedHandler Finished;
+
+        public delegate void ThreadHelperFinishedHandler(object sender, ThreadHelperFinishedEventArgs<TResult> e);
+
         /// <summary>
         /// 指示方法是否结束
         /// </summary>
         public bool HasFinish
         {
-            get;
-            internal set;
+            get
+            {
+                return hasFinish;
+            }
+            internal set
+            {
+                if (value == true)
+                {
+                    if (Finished != null)
+                    {
+                        Finished(this, new ThreadHelperFinishedEventArgs<TResult>(Value));
+                    }
+                }
+                hasFinish = value;
+            }
         }
 
         /// <summary>
