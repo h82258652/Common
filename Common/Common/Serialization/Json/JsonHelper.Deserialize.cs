@@ -181,7 +181,7 @@ namespace Common.Serialization
             {
                 return Convert.ChangeType(input, type);
             }
-            if (type ==typeof(BigInteger))
+            if (type == typeof(BigInteger))
             {
                 return BigInteger.Parse(input);
             }
@@ -324,7 +324,16 @@ namespace Common.Serialization
                 if (typeFields.TryGetValue(type, out fields) == false)
                 {
                     fields = type.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Instance);
-                    typeFields.Add(type, fields);
+                    if (typeFields.ContainsKey(type) == false)
+                    {
+                        lock (typeFields)
+                        {
+                            if (typeFields.ContainsKey(type) == false)
+                            {
+                                typeFields.Add(type, fields);
+                            }
+                        }
+                    }
                 }
                 foreach (FieldInfo field in fields)
                 {
@@ -386,7 +395,16 @@ namespace Common.Serialization
                 if (typeProperties.TryGetValue(type, out properties) == false)
                 {
                     properties = type.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-                    typeProperties.Add(type, properties);
+                    if (typeProperties.ContainsKey(type) == false)
+                    {
+                        lock (typeProperties)
+                        {
+                            if (typeProperties.ContainsKey(type) == false)
+                            {
+                                typeProperties.Add(type, properties);
+                            }
+                        }
+                    }
                 }
                 foreach (PropertyInfo property in properties)
                 {

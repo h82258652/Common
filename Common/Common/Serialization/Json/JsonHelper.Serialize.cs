@@ -182,7 +182,16 @@ namespace Common.Serialization
                 if (typeFields.TryGetValue(t, out fields) == false)
                 {
                     fields = t.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Instance);
-                    typeFields.Add(t, fields);
+                    if (typeFields.ContainsKey(t) == false)
+                    {
+                        lock (typeFields)
+                        {
+                            if (typeFields.ContainsKey(t) == false)
+                            {
+                                typeFields.Add(t, fields);
+                            }
+                        }
+                    }
                 }
                 foreach (FieldInfo field in fields)
                 {
@@ -251,7 +260,16 @@ namespace Common.Serialization
                 if (typeProperties.TryGetValue(t, out properties) == false)
                 {
                     properties = t.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-                    typeProperties.Add(t, properties);
+                    if (typeProperties.ContainsKey(t) == false)
+                    {
+                        lock (typeProperties)
+                        {
+                            if (typeProperties.ContainsKey(t) == false)
+                            {
+                                typeProperties.Add(t, properties);
+                            }
+                        }
+                    }
                 }
                 foreach (PropertyInfo property in properties)
                 {
