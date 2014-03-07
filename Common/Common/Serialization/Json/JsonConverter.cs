@@ -3,7 +3,7 @@
 namespace Common.Serialization
 {
     /// <summary>
-    /// 自定义 JSON 序列化与反序列化的抽象基类
+    /// 自定义字段或属性 JSON 序列化与反序列化的抽象基类
     /// </summary>
     public abstract class JsonConverter
     {

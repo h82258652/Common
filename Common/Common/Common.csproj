@@ -42,6 +42,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config\Ini\IniComment.cs" />
+    <Compile Include="Config\Ini\IniConfigHelper.cs" />
+    <Compile Include="Config\Ini\IniKey.cs" />
+    <Compile Include="Config\Ini\IniUnknownLine.cs" />
+    <Compile Include="Config\Ini\IniNode.cs" />
+    <Compile Include="Config\Ini\IniSection.cs" />
+    <Compile Include="Config\Ini\IniTree.cs" />
     <Compile Include="Config\XmlConfigHelper.cs" />
     <Compile Include="Ini.cs" />
     <Compile Include="Reflection\ReflectionHelper.Constructor.cs" />
