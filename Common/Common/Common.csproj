@@ -50,7 +50,6 @@
     <Compile Include="Config\Ini\IniSection.cs" />
     <Compile Include="Config\Ini\IniTree.cs" />
     <Compile Include="Config\XmlConfigHelper.cs" />
-    <Compile Include="Ini.cs" />
     <Compile Include="Reflection\ReflectionHelper.Constructor.cs" />
     <Compile Include="Reflection\ReflectionHelper.DynamicCompile.cs" />
     <Compile Include="Reflection\ReflectionHelper.Field.cs" />
