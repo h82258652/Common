@@ -72,6 +72,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="System\StringExtension.cs" />
     <Compile Include="Serialization\XMLSerializerHelper.cs" />
+    <Compile Include="Threading\Action\ThreadHelper.Action.cs" />
+    <Compile Include="Threading\Func\ThreadHelper.Func.cs" />
+    <Compile Include="Threading\Action\ThreadHelperPackage.Action.cs" />
+    <Compile Include="Threading\Action\ThreadHelperProcess.Action.cs" />
+    <Compile Include="Threading\Func\ThreadHelperProcess.Func.cs" />
+    <Compile Include="Threading\Func\ThreadHelperPackage.Func.cs" />
+    <Compile Include="Threading\Action\ThreadHelperResult.Action.cs" />
+    <Compile Include="Threading\Func\ThreadHelperResult.Func.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
