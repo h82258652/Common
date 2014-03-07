@@ -23,6 +23,7 @@ namespace Test
     {
         public static void Main(string[] args)
         {
+            Console.WriteLine("branch test");
             Console.ReadKey();
         }
     }
