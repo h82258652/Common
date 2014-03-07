@@ -4,19 +4,19 @@ namespace Common.Threading
 {
     internal class ThreadHelperPackage
     {
-        public ThreadHelperResult Result
+        internal ThreadHelperResult Result
         {
             get;
             set;
         }
 
-        public MethodInfo Method
+        internal MethodInfo Method
         {
             get;
             set;
         }
 
-        public object[] Args
+        internal object[] Args
         {
             get;
             set;
