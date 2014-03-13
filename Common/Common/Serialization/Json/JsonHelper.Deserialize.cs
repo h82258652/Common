@@ -73,6 +73,7 @@ namespace Common.Serialization
         /// <param name="input">要进行反序列化的 JSON 字符串。</param>
         /// <param name="type">所生成对象的类型。</param>
         /// <returns>反序列化的对象。</returns>
+        /// <exception cref="Common.Serialization.JsonFormatException"></exception>
         public static object Deserialize(string input, Type type)
         {
             input = input.Trim();
@@ -99,7 +100,7 @@ namespace Common.Serialization
                 else
                 {
                     // char 长度不为1
-                    throw new Exception("JSON格式错误");
+                    throw new JsonFormatException("无法将“" + s + "”转换为 " + type.Name + " 类型。");
                 }
             }
             #endregion char
@@ -158,7 +159,7 @@ namespace Common.Serialization
                             else
                             {
                                 // 转义符错误
-                                throw new Exception("JSON格式错误");
+                                throw new JsonFormatException("转义符错误。");
                             }
                             i++;
                         }
@@ -172,7 +173,7 @@ namespace Common.Serialization
                 else
                 {
                     // 缺少前后的双引号
-                    throw new Exception("JSON格式错误");
+                    throw new JsonFormatException("字符串缺失双引号。");
                 }
             }
             #endregion
@@ -240,7 +241,7 @@ namespace Common.Serialization
                         return dt.AddMilliseconds(double.Parse(msString));
                     }
                 }
-                throw new Exception("JSON格式错误");
+                throw new JsonFormatException("无法将“" + input + "”转换为 " + type.Name + " 类型。");
             }
             #endregion
             #region Array
@@ -259,7 +260,7 @@ namespace Common.Serialization
                 }
                 else
                 {
-                    throw new Exception("JSON格式错误");
+                    throw new JsonFormatException(" " + input + " 缺失中括号。");
                 }
             }
             #endregion
@@ -279,7 +280,7 @@ namespace Common.Serialization
                 }
                 else
                 {
-                    throw new Exception("JSON格式错误");
+                    throw new JsonFormatException(" " + input + " 缺失中括号。");
                 }
             }
             #endregion
@@ -300,7 +301,7 @@ namespace Common.Serialization
                 }
                 else
                 {
-                    throw new Exception("JSON格式错误");
+                    throw new JsonFormatException(" " + input + " 缺失大括号。");
                 }
             }
             #endregion
@@ -464,7 +465,7 @@ namespace Common.Serialization
                 return instance;
             }
             #endregion
-            throw new Exception("JSON格式错误");
+            throw new JsonFormatException("无法将“" + input + "”转换为 " + type.Name + " 类型。");
         }
 
         /// <summary>
@@ -473,6 +474,7 @@ namespace Common.Serialization
         /// <typeparam name="T">所生成对象的类型。</typeparam>
         /// <param name="input">要进行反序列化的 JSON 字符串。</param>
         /// <returns>反序列化的对象。</returns>
+        /// <exception cref="Common.Serialization.JsonFormatException"></exception>
         public static T Deserialize<T>(string input)
         {
             return (T)Deserialize(input, typeof(T));

@@ -4,26 +4,20 @@ namespace Common.Threading
 {
     public class ThreadHelperResult<TResult>
     {
-        private bool hasFinish;
-
-        internal ThreadHelperResult()
-        {
-            HasFinish = false;
-            Value = default(TResult);
-        }
-
+        private bool _hasFinish;
+        
         public event ThreadHelperFinishedHandler Finished;
 
         public delegate void ThreadHelperFinishedHandler(object sender, ThreadHelperFinishedEventArgs<TResult> e);
-
+        
         /// <summary>
-        /// 指示方法是否结束
+        /// 指示方法是否结束。
         /// </summary>
         public bool HasFinish
         {
             get
             {
-                return hasFinish;
+                return _hasFinish;
             }
             internal set
             {
@@ -34,12 +28,12 @@ namespace Common.Threading
                         Finished(this, new ThreadHelperFinishedEventArgs<TResult>(Value));
                     }
                 }
-                hasFinish = value;
+                _hasFinish = value;
             }
         }
 
         /// <summary>
-        /// 获取方法的返回值
+        /// 获取方法的返回值。
         /// </summary>
         public TResult Value
         {
@@ -48,7 +42,7 @@ namespace Common.Threading
         }
 
         /// <summary>
-        /// 等待并获取方法的返回值
+        /// 等待并获取方法的返回值。
         /// </summary>
         public TResult WaitForValue
         {
@@ -62,6 +56,12 @@ namespace Common.Threading
                     }
                 }
             }
+        }
+        
+        internal ThreadHelperResult()
+        {
+            HasFinish = false;
+            Value = default(TResult);
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Common.Threading
         internal static void Process(object obj)
         {
             ThreadHelperPackage package = (ThreadHelperPackage)obj;
-            package.Method.Invoke(null, package.Args);
+            package.Method.DynamicInvoke(package.Args);
             package.Result.HasFinish = true;
         }
     }

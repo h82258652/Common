@@ -3,7 +3,7 @@ using System.Text;
 
 namespace Common.Serialization
 {
-    public partial class JsonHelper
+    public static partial class JsonHelper
     {
         private static string BuildIndentation(int level)
         {

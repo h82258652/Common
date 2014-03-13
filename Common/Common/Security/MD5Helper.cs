@@ -13,11 +13,16 @@ namespace Common.Security
         /// <param name="input">需计算 MD5 的字符串</param>
         /// <param name="prefix">需添加的字符串前缀</param>
         /// <returns> 32 位 MD5 大写</returns>
+        /// <exception cref="System.ArgumentNullException"></exception>
         public static string GetStringMD5(string input, string prefix = "")
         {
-            using (MD5CryptoServiceProvider md5csp = new MD5CryptoServiceProvider())
+            if (input == null)
             {
-                byte[] bytes = md5csp.ComputeHash(Encoding.UTF8.GetBytes(prefix + input));
+                throw new ArgumentNullException("input不能为空。");
+            }
+            using (MD5CryptoServiceProvider md5Csp = new MD5CryptoServiceProvider())
+            {
+                byte[] bytes = md5Csp.ComputeHash(Encoding.UTF8.GetBytes(prefix + input));
                 return BitConverter.ToString(bytes).Replace("-", string.Empty);
             }
         }
@@ -29,11 +34,11 @@ namespace Common.Security
         /// <returns> 32 位 MD5 大写</returns>
         public static string GetFileMD5(string filePath)
         {
-            using (MD5CryptoServiceProvider md5csp = new MD5CryptoServiceProvider())
+            using (MD5CryptoServiceProvider md5Csp = new MD5CryptoServiceProvider())
             {
                 using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
-                    byte[] bytes = md5csp.ComputeHash(fs);
+                    byte[] bytes = md5Csp.ComputeHash(fs);
                     return BitConverter.ToString(bytes).Replace("-", string.Empty);
                 }
             }

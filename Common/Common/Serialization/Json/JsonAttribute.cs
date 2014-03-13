@@ -3,7 +3,7 @@
 namespace Common.Serialization
 {
     /// <summary>
-    /// 标记字段或属性以自定义 JSON 序列化
+    /// 标记字段或属性以自定义 JSON 序列化。
     /// </summary>
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false)]
     public sealed partial class JsonAttribute : Attribute
@@ -12,16 +12,29 @@ namespace Common.Serialization
         {
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name">指定该字段或属性在序列化和反序列化时映射的名字。</param>
         public JsonAttribute(string name)
         {
             Name = name;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="converter">指定该字段或属性在序列化和反序列化时使用的自定义转换器的类型。</param>
         public JsonAttribute(Type converter)
         {
             Converter = converter;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name">指定该字段或属性在序列化和反序列化时映射的名字。</param>
+        /// <param name="converter">指定该字段或属性在序列化和反序列化时使用的自定义转换器的类型。</param>
         public JsonAttribute(string name, Type converter)
         {
             Name = name;

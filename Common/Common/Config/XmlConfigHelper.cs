@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 namespace Common.Config
 {
-    public partial class XmlConfigHelper
+    public static partial class XmlConfigHelper
     {
         public static string Get(string xmlPath, string xpath)
         {

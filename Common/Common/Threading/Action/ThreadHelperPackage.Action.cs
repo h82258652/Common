@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 
 namespace Common.Threading
 {
@@ -10,7 +11,7 @@ namespace Common.Threading
             set;
         }
 
-        internal MethodInfo Method
+        internal Delegate Method
         {
             get;
             set;

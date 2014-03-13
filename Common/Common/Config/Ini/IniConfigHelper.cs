@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Common.Config
 {
-    public class IniConfigHelper
+    public static partial class IniConfigHelper
     {
         internal static IniTree BuildIniTree(string iniPath)
         {
