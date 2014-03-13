@@ -37,8 +37,15 @@ namespace Common.Web
             }
         }
 
+        /// <summary>
+        /// 发出一个异步 GET 请求。
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="param"></param>
+        /// <param name="success"></param>
+        /// <param name="failure"></param>
         public static void GetAsync(string url, object param = null, Action<string> success = null,
-            Action<Exception> failure = null)
+            Action<WebException> failure = null)
         {
             try
             {
@@ -68,7 +75,7 @@ namespace Common.Web
                     }
                 }, request);
             }
-            catch (Exception ex)
+            catch (WebException ex)
             {
                 if (failure != null)
                 {

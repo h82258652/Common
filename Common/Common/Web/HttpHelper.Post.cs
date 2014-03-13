@@ -40,7 +40,14 @@ namespace Common.Web
             }
         }
 
-        public static void PostAsync(string url, object param = null, Action<string> success = null, Action<Exception> failure = null)
+        /// <summary>
+        /// 发出一个异步 POST 请求。
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="param"></param>
+        /// <param name="success"></param>
+        /// <param name="failure"></param>
+        public static void PostAsync(string url, object param = null, Action<string> success = null, Action<WebException> failure = null)
         {
             try
             {
@@ -75,7 +82,7 @@ namespace Common.Web
                     }, request);
                 }, request);
             }
-            catch (Exception ex)
+            catch (WebException ex)
             {
                 if (failure != null)
                 {
