@@ -3,7 +3,7 @@
 namespace System
 {
     /// <summary>
-    /// 伪随机数扩展类
+    /// 伪随机数扩展类。
     /// </summary>
     public static partial class RandomExtension
     {

@@ -70,7 +70,9 @@
     <Compile Include="Serialization\Json\JsonHelper.FormatJson.cs" />
     <Compile Include="Serialization\Json\JsonHelper.Serialize.cs" />
     <Compile Include="Serialization\Json\JsonHelper.Setting.cs" />
-    <Compile Include="System\CharExtension.cs" />
+    <Compile Include="System\CharExtension.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="System\RandomExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="System\StringExtension.cs" />
