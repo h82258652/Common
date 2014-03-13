@@ -55,14 +55,6 @@ namespace Common.Serialization
                     {
                         sb.Append("\\\\");
                     }
-                    else if (s[i] == '\0')
-                    {
-                        sb.Append("\\0");
-                    }
-                    else if (s[i] == '\a')
-                    {
-                        sb.Append("\\a");
-                    }
                     else if (s[i] == '\b')
                     {
                         sb.Append("\\b");
@@ -82,10 +74,6 @@ namespace Common.Serialization
                     else if (s[i] == '\t')
                     {
                         sb.Append("\\t");
-                    }
-                    else if (s[i] == '\v')
-                    {
-                        sb.Append("\\v");
                     }
                     else
                     {

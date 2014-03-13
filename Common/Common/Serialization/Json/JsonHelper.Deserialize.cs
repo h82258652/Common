@@ -124,14 +124,6 @@ namespace Common.Serialization
                             {
                                 sb.Append("\\");
                             }
-                            else if (input[i + 1] == '0')
-                            {
-                                sb.Append("\0");
-                            }
-                            else if (input[i + 1] == 'a')
-                            {
-                                sb.Append("\a");
-                            }
                             else if (input[i + 1] == 'b')
                             {
                                 sb.Append("\b");
@@ -152,9 +144,40 @@ namespace Common.Serialization
                             {
                                 sb.Append("\t");
                             }
-                            else if (input[i + 1] == 'v')
+                            else if (input[i + 1] == 'u' && i + 5 < input.Length)
                             {
-                                sb.Append("\v");
+                                char c0 = input[i + 2];
+                                char c1 = input[i + 3];
+                                char c2 = input[i + 4];
+                                char c3 = input[i + 5];
+                                Func<char, bool> isHex = (temp) =>
+                                {
+                                    if (temp >= '0' && temp <= '9')
+                                    {
+                                        return true;
+                                    }
+                                    if (temp >= 'a' && temp <= 'f')
+                                    {
+                                        return true;
+                                    }
+                                    if (temp >= 'A' && temp <= 'F')
+                                    {
+                                        return true;
+                                    }
+                                    return false;
+                                };
+                                if (isHex(c0) && isHex(c1) && isHex(c2) && isHex(c3))
+                                {
+                                    byte b0 = Convert.ToByte(c2.ToString() + c3.ToString(), 16);
+                                    byte b1 = Convert.ToByte(c0.ToString() + c1.ToString(), 16);
+                                    sb.Append(Encoding.Unicode.GetChars(new byte[] { b0, b1 })[0]);
+                                    i += 4;
+                                }
+                                // \u转义符错误
+                                else
+                                {
+                                    throw new JsonFormatException(@"\u转义符错误。");
+                                }
                             }
                             else
                             {
