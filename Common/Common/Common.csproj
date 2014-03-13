@@ -58,6 +58,7 @@
     <Compile Include="Reflection\ReflectionHelper.Method.cs" />
     <Compile Include="Reflection\ReflectionHelper.Property.cs" />
     <Compile Include="Reflection\ReflectionHelper.SearchOption.cs" />
+    <Compile Include="Security\RSAHelper.cs" />
     <Compile Include="Serialization\BinarySerializeHelper.cs" />
     <Compile Include="Security\SHA1Helper.cs" />
     <Compile Include="Security\MD5Helper.cs" />

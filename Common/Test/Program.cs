@@ -1,4 +1,5 @@
-﻿using Common.Threading;
+﻿using System.Globalization;
+using Common.Threading;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -23,7 +24,6 @@ namespace Test
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("branch test");
             Console.ReadKey();
         }
     }

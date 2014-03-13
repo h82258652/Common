@@ -182,5 +182,35 @@ namespace System
             }
             return false;
         }
+
+        /// <summary>
+        /// 返回一个值，该值指示当前字符串是否包含指定字符串对象中的全部。
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="values">要搜寻的字符串列表。</param>
+        /// <returns></returns>
+        public static bool ContainsAll(this string value, params string[] values)
+        {
+            return ContainsAll(value, StringComparison.CurrentCulture, values);
+        }
+
+        /// <summary>
+        /// 返回一个值，该值指示当前字符串是否包含指定字符串对象中的全部。
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="comparisonType">指定搜索规则的枚举值。</param>
+        /// <param name="values">要搜寻的字符串列表。</param>
+        /// <returns></returns>
+        public static bool ContainsAll(this string value, StringComparison comparisonType, params string[] values)
+        {
+            foreach (string temp in values)
+            {
+                if (value.IndexOf(temp, comparisonType) == -1)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }
