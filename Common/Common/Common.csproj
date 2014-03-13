@@ -74,6 +74,7 @@
     <Compile Include="System\CharExtension.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="System\Collections\Generic\DictionaryExtension.cs" />
     <Compile Include="System\RandomExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="System\StringExtension.cs" />
