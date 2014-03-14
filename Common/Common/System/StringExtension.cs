@@ -212,5 +212,27 @@ namespace System
             }
             return true;
         }
+
+        /// <summary>
+        /// 将当前字符串进行 Base64 编码。
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException"></exception>
+        public static string Base64Encode(this string value)
+        {
+            return Convert.ToBase64String(Encoding.Default.GetBytes(value));
+        }
+
+        /// <summary>
+        /// 将当前字符串进行 Base64 解码。
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException"></exception>
+        public static string Base64Decode(this string value)
+        {
+            return Encoding.Default.GetString(Convert.FromBase64String(value));
+        }
     }
 }
