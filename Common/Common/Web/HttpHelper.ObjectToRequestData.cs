@@ -22,7 +22,7 @@ namespace Common.Web
             {
                 if (property.GetIndexParameters().Length == 0)
                 {
-                    list.Add(property.Name + '=' + property.GetValue(obj));
+                    list.Add(property.Name + '=' + property.GetValue(obj, null));
                 }
             }
             return string.Join("&", list);

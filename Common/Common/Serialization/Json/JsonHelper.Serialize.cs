@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 using System.Reflection;
 using System.Text;
@@ -183,7 +184,7 @@ namespace Common.Serialization
                 }
                 foreach (FieldInfo field in fields)
                 {
-                    JsonAttribute attribute = field.GetCustomAttribute<JsonAttribute>(true);
+                    JsonAttribute attribute = field.GetCustomAttributes(typeof(JsonAttribute), true).FirstOrDefault() as JsonAttribute;
                     string name;
                     object value;
                     string valueString;
@@ -263,7 +264,8 @@ namespace Common.Serialization
                 {
                     if (property.GetIndexParameters().Length == 0)// 非索引器属性
                     {
-                        JsonAttribute attribute = property.GetCustomAttribute<JsonAttribute>(true);
+                        JsonAttribute attribute =
+                            property.GetCustomAttributes(typeof(JsonAttribute), true).FirstOrDefault() as JsonAttribute;
                         string name;
                         object value;
                         string valueString;
@@ -317,7 +319,7 @@ namespace Common.Serialization
                                 continue;
                             }
                             name = "\"" + property.Name + "\"";
-                            value = property.GetValue(obj);
+                            value = property.GetValue(obj, null);
                             valueString = SerializeObject(value);
                         }
                         values.Add(name + ":" + valueString);

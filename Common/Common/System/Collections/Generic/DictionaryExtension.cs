@@ -33,5 +33,40 @@ namespace Common.System.Collections.Generic
                 return false;
             }
         }
+
+        /// <summary>
+        /// 添加或更新字典中指定的键的值。
+        /// </summary>
+        /// <typeparam name="TKey"></typeparam>
+        /// <typeparam name="TValue"></typeparam>
+        /// <param name="dict"></param>
+        /// <param name="key">要添加或更新的元素的键。</param>
+        /// <param name="value">要添加或更新的值。</param>
+        /// <exception cref="System.ArgumentNullException"></exception>
+        public static void AddOrUpdate<TKey, TValue>(this Dictionary<TKey, TValue> dict, TKey key, TValue value)
+        {
+            if (key == null)
+            {
+                throw new ArgumentNullException("key 不能为空。");
+            }
+            if (dict.ContainsKey(key) == true)
+            {
+                lock (dict)
+                {
+                    if (dict.ContainsKey(key) == true)
+                    {
+                        dict[key] = value;
+                    }
+                    else
+                    {
+                        dict.Add(key, value);
+                    }
+                }
+            }
+            else
+            {
+                dict[key] = value;
+            }
+        }
     }
 }

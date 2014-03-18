@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 using System.Reflection;
 using System.Text;
@@ -313,7 +314,7 @@ namespace Common.Serialization
                 if (input.StartsWith("{") && input.EndsWith("}"))
                 {
                     IDictionary dic = Activator.CreateInstance(type) as IDictionary;
-                    Type valueType = dic.Values.GetType().GenericTypeArguments[1];
+                    Type valueType = dic.Values.GetType().GetGenericArguments()[1];
                     foreach (var s in JsonItemReader(input))
                     {
                         string key = s.Substring(0, s.IndexOf(':'));
@@ -332,7 +333,7 @@ namespace Common.Serialization
             if (input.StartsWith("{") && input.EndsWith("}"))
             {
                 input = input.Substring(1, input.Length - 2);
-                object instance = Activator.CreateInstance(type);
+                object instance = Activator.CreateInstance(type, true);
                 Dictionary<string, string> keyValue = new Dictionary<string, string>();
                 foreach (var s in JsonItemReader(input))
                 {
@@ -361,7 +362,8 @@ namespace Common.Serialization
                 }
                 foreach (FieldInfo field in fields)
                 {
-                    JsonAttribute attribute = field.GetCustomAttribute<JsonAttribute>(true);
+                    JsonAttribute attribute =
+                        field.GetCustomAttributes(typeof(JsonAttribute), true).FirstOrDefault() as JsonAttribute;
                     if (attribute != null)
                     {
                         if (attribute.ProcessNonPublic == false && field.IsPublic == false)
@@ -432,7 +434,8 @@ namespace Common.Serialization
                 }
                 foreach (PropertyInfo property in properties)
                 {
-                    JsonAttribute attribute = property.GetCustomAttribute<JsonAttribute>(true);
+                    JsonAttribute attribute =
+                        property.GetCustomAttributes(typeof(JsonAttribute), true).FirstOrDefault() as JsonAttribute;
                     if (attribute != null)
                     {
                         if (attribute.ProcessNonPublic == false && property.CanWrite == false)
@@ -479,7 +482,7 @@ namespace Common.Serialization
                             string propertyName = property.Name;
                             if (keyValue.ContainsKey(propertyName))
                             {
-                                property.SetValue(instance, Deserialize(keyValue[propertyName], property.PropertyType));
+                                property.SetValue(instance, Deserialize(keyValue[propertyName], property.PropertyType), null);
                             }
                         }
                     }
