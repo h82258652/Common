@@ -5,6 +5,8 @@ using System.IO.Compression;
 using System.Runtime.Remoting.Messaging;
 using System.Web.UI.WebControls;
 using Common.Config;
+using Common.Reflection;
+using Common.Security;
 using Common.Serialization;
 using Common.Threading;
 using System;
@@ -215,17 +217,18 @@ namespace Test
     {
         public static void Main(string[] args)
         {
-            P p = new P()
+            var x = new
             {
-                Age = 18,
-                SS = new string[]
-                {
-                    "s1","s2","s3"
-                }
+                name = "haha",
+                age = 18
             };
+            string s;
+            Console.WriteLine(s=JsonHelper.SerializeToJson(x));
+            Type t = x.GetType();
+            //var q = JsonHelper.Deserialize(s, t);
+            //Console.WriteLine(ReflectionHelper.GetField(q, "name"));
 
-            string json = JsonHelper.SerializeToJson(p);
-            Console.WriteLine(json);
+var xxx=            ReflectionHelper.Create(t);
 
             Console.ReadKey();
         }

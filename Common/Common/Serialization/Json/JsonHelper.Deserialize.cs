@@ -333,7 +333,18 @@ namespace Common.Serialization
             if (input.StartsWith("{") && input.EndsWith("}"))
             {
                 input = input.Substring(1, input.Length - 2);
-                object instance = Activator.CreateInstance(type, true);
+                object instance;
+                try
+                {
+                    instance = Activator.CreateInstance(type, true);
+                }
+                catch
+                {
+                    var constructors =
+                        type.GetConstructors(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).OrderBy(temp => temp.IsPublic == false).ThenBy(temp => temp.GetParameters().Length);
+                    var constructor = constructors.ElementAt(0);
+                    instance = constructor.Invoke(new object[constructor.GetParameters().Length]);
+                }
                 Dictionary<string, string> keyValue = new Dictionary<string, string>();
                 foreach (var s in JsonItemReader(input))
                 {

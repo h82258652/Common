@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Linq;
 using System.Reflection;
 
 namespace Common.Reflection
@@ -13,7 +15,17 @@ namespace Common.Reflection
         /// <returns>类的实例</returns>
         public static object Create(Type t, params object[] args)
         {
-            return Activator.CreateInstance(t, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance, null, args, null);
+            try
+            {
+                return Activator.CreateInstance(t, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance, null, args, null);
+            }
+            catch
+            {
+                var constructors =
+                    t.GetConstructors(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).OrderBy(temp => temp.IsPublic == false).ThenBy(temp => temp.GetParameters().Length);
+                var constructor = constructors.ElementAt(0);
+                return constructor.Invoke(new object[constructor.GetParameters().Length]);
+            }
         }
 
         /// <summary>
