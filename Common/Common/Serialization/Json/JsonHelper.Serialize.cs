@@ -215,6 +215,21 @@ namespace Common.Serialization
                         {
                             name = "\"" + field.Name + "\"";
                         }
+                        // 检查数量约束
+                        if (value is ICollection)
+                        {
+                            ICollection collection = value as ICollection;
+                            if (attribute.CollectionCountLessThan > -1 &&
+                                collection.Count >= attribute.CollectionCountLessThan)
+                            {
+                                throw new Exception(field.Name + "的数量必须小于约束。");
+                            }
+                            if (attribute.CollectionCountGreaterThan > -1 &&
+                                collection.Count <= attribute.CollectionCountGreaterThan)
+                            {
+                                throw new Exception(field.Name + "的数量必须大于约束。");
+                            }
+                        }
                         // 使用自定义序列化
                         if (attribute.Converter != null)
                         {
@@ -295,6 +310,21 @@ namespace Common.Serialization
                             else
                             {
                                 name = "\"" + property.Name + "\"";
+                            }
+                            // 检查数量约束
+                            if (value is ICollection)
+                            {
+                                ICollection collection = value as ICollection;
+                                if (attribute.CollectionCountLessThan > -1 &&
+                                    collection.Count >= attribute.CollectionCountLessThan)
+                                {
+                                    throw new Exception(property.Name + "的数量必须小于约束。");
+                                }
+                                if (attribute.CollectionCountGreaterThan > -1 &&
+                                    collection.Count <= attribute.CollectionCountGreaterThan)
+                                {
+                                    throw new Exception(property.Name + "的数量必须大于约束。");
+                                }
                             }
                             // 使用自定义序列化
                             if (attribute.Converter != null)

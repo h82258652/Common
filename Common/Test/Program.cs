@@ -1,6 +1,11 @@
-﻿using System.Globalization;
+﻿using System.Collections;
+using System.Collections.Concurrent;
+using System.Globalization;
 using System.IO.Compression;
 using System.Runtime.Remoting.Messaging;
+using System.Web.UI.WebControls;
+using Common.Config;
+using Common.Serialization;
 using Common.Threading;
 using System;
 using System.Collections.Generic;
@@ -186,11 +191,43 @@ namespace Test
         }
     }
 
+    internal class P
+    {
+        [Json(CollectionCountGreaterThan = 2, CollectionCountLessThan = 5)]
+        public string[] SS
+        {
+            get;
+            set;
+        }
+
+        public int Age
+        {
+            get;
+            set;
+        }
+
+        public P()
+        {
+        }
+    }
+
     class Program
     {
         public static void Main(string[] args)
         {
+            P p = new P()
+            {
+                Age = 18,
+                SS = new string[]
+                {
+                    "s1","s2","s3"
+                }
+            };
 
+            string json = JsonHelper.SerializeToJson(p);
+            Console.WriteLine(json);
+
+            Console.ReadKey();
         }
     }
 }
