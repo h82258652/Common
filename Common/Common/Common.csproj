@@ -66,6 +66,7 @@
     <Compile Include="Serialization\BinarySerializeHelper.cs" />
     <Compile Include="Security\SHA1Helper.cs" />
     <Compile Include="Security\MD5Helper.cs" />
+    <Compile Include="Serialization\Json\JsonCollectionCountException.cs" />
     <Compile Include="Serialization\Json\JsonFormatException.cs" />
     <Compile Include="Serialization\Json\JsonHelper.Cache.cs" />
     <Compile Include="Serialization\Json\JsonHelper.DateTimeFormat.cs" />
