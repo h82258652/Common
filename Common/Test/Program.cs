@@ -225,8 +225,8 @@ namespace Test
             string s;
             Console.WriteLine(s=JsonHelper.SerializeToJson(x));
             Type t = x.GetType();
-            //var q = JsonHelper.Deserialize(s, t);
-            //Console.WriteLine(ReflectionHelper.GetField(q, "name"));
+            var q = JsonHelper.Deserialize(s, t);
+            Console.WriteLine(ReflectionHelper.GetField(q, "name"));
 
 var xxx=            ReflectionHelper.Create(t);
 

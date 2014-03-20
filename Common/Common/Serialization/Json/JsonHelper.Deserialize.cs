@@ -333,27 +333,45 @@ namespace Common.Serialization
             if (input.StartsWith("{") && input.EndsWith("}"))
             {
                 input = input.Substring(1, input.Length - 2);
-                object instance;
-                try
-                {
-                    instance = Activator.CreateInstance(type, true);
-                }
-                catch
-                {
-                    var constructors =
-                        type.GetConstructors(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).OrderBy(temp => temp.IsPublic == false).ThenBy(temp => temp.GetParameters().Length);
-                    var constructor = constructors.ElementAt(0);
-                    instance = constructor.Invoke(new object[constructor.GetParameters().Length]);
-                }
                 Dictionary<string, string> keyValue = new Dictionary<string, string>();
                 foreach (var s in JsonItemReader(input))
                 {
                     string key = s.Substring(0, s.IndexOf(':'));
                     string valueString = s.Substring(s.IndexOf(':') + 1);
                     key = key.Trim();
-                    key = key.Substring(1, key.Length - 2);// 去除开始结尾的双引号
+                    key = key.Substring(1, key.Length - 2);// 去除开始结尾的双引号。
                     valueString = valueString.Trim();
                     keyValue.Add(key, valueString);
+                }
+                object instance;
+                // 匿名类。
+                if (type.Name.Contains("AnonymousType") == true && type.Namespace == null)
+                {
+                    var constructors = type.GetConstructors(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).OrderBy(temp => temp.IsPublic == false).ThenBy(temp => temp.GetParameters().Length);
+                    var constructor = constructors.ElementAt(0);
+                    List<string> param = new List<string>();
+                    foreach (KeyValuePair<string, string> keyValuePair in keyValue)
+                    {
+                        param.Add(keyValuePair.Value);
+                    }
+                    List<object> list = new List<object>();
+                    var parameters = constructor.GetParameters();
+                    for (int i = 0; i < parameters.Length; i++)
+                    {
+                        list.Add(Deserialize(param[i], parameters[i].ParameterType));
+                    }
+                    return constructor.Invoke(list.ToArray());
+                }
+                try
+                {
+                    // 尝试使用无参构造函数。
+                    instance = Activator.CreateInstance(type, true);
+                }
+                catch
+                {
+                    var constructors = type.GetConstructors(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).OrderBy(temp => temp.IsPublic == false).ThenBy(temp => temp.GetParameters().Length);
+                    var constructor = constructors.ElementAt(0);
+                    instance = constructor.Invoke(new object[constructor.GetParameters().Length]);
                 }
                 #region 字段
                 FieldInfo[] fields;
