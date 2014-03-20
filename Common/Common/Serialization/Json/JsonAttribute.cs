@@ -8,13 +8,16 @@ namespace Common.Serialization
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false)]
     public sealed partial class JsonAttribute : Attribute
     {
+        /// <summary>
+        /// 构造函数。
+        /// </summary>
         public JsonAttribute()
             : this(null, null)
         {
         }
 
         /// <summary>
-        /// 
+        /// 构造函数。
         /// </summary>
         /// <param name="name">指定该字段或属性在序列化和反序列化时映射的名字。</param>
         public JsonAttribute(string name)
@@ -23,7 +26,7 @@ namespace Common.Serialization
         }
 
         /// <summary>
-        /// 
+        /// 构造函数。
         /// </summary>
         /// <param name="converter">指定该字段或属性在序列化和反序列化时使用的自定义转换器的类型。</param>
         public JsonAttribute(Type converter)
@@ -32,7 +35,7 @@ namespace Common.Serialization
         }
 
         /// <summary>
-        /// 
+        /// 构造函数。
         /// </summary>
         /// <param name="name">指定该字段或属性在序列化和反序列化时映射的名字。</param>
         /// <param name="converter">指定该字段或属性在序列化和反序列化时使用的自定义转换器的类型。</param>

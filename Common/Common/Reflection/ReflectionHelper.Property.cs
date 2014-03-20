@@ -3,9 +3,6 @@ using System.Reflection;
 
 namespace Common.Reflection
 {
-    /// <summary>
-    /// 反射帮助类。
-    /// </summary>
     public static partial class ReflectionHelper
     {
         /// <summary>
@@ -13,8 +10,8 @@ namespace Common.Reflection
         /// </summary>
         /// <param name="obj">检查的对象。</param>
         /// <param name="propertyName">属性的名字。</param>
-        /// <param name="option"></param>
-        /// <returns></returns>
+        /// <param name="option">属性名称的匹配方式。</param>
+        /// <returns>是否具有属性。</returns>
         public static bool HasProperty(object obj, string propertyName, SearchOption option = SearchOption.Default)
         {
             PropertyInfo property;
@@ -27,8 +24,8 @@ namespace Common.Reflection
         /// <param name="obj">检查的对象。</param>
         /// <param name="propertyName">属性的名字。</param>
         /// <param name="property">属性。</param>
-        /// <param name="option"></param>
-        /// <returns></returns>
+        /// <param name="option">属性名称的匹配方式。</param>
+        /// <returns>是否具有属性。</returns>
         public static bool HasProperty(object obj, string propertyName, out PropertyInfo property, SearchOption option = SearchOption.Default)
         {
             Type t = obj.GetType();
@@ -46,7 +43,7 @@ namespace Common.Reflection
         /// </summary>
         /// <param name="obj">对象。</param>
         /// <param name="propertyName">属性的名字。</param>
-        /// <param name="option"></param>
+        /// <param name="option">属性名称的匹配方式。</param>
         /// <returns>属性的值。</returns>
         public static object GetProperty(object obj, string propertyName, SearchOption option = SearchOption.Default)
         {
@@ -64,10 +61,10 @@ namespace Common.Reflection
         /// <summary>
         /// 获取指定对象的属性的值。
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">属性的类型。</typeparam>
         /// <param name="obj">对象。</param>
         /// <param name="propertyName">属性的名字。</param>
-        /// <param name="option"></param>
+        /// <param name="option">属性名称的匹配方式。</param>
         /// <returns>属性的值。</returns>
         public static T GetProperty<T>(object obj, string propertyName, SearchOption option = SearchOption.Default)
         {
@@ -80,7 +77,7 @@ namespace Common.Reflection
         /// <param name="obj">对象。</param>
         /// <param name="propertyName">属性的名字。</param>
         /// <param name="value">属性的值。</param>
-        /// <param name="option"></param>
+        /// <param name="option">属性名称的匹配方式。</param>
         public static void SetProperty(object obj, string propertyName, object value, SearchOption option = SearchOption.Default)
         {
             PropertyInfo property;

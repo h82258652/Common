@@ -2,10 +2,16 @@
 
 namespace Common.Threading
 {
+    /// <summary>
+    /// 线程帮助类返回的结果。
+    /// </summary>
     public class ThreadHelperResult
     {
         private bool _hasFinish;
 
+        /// <summary>
+        /// 异步方法执行完成时触发该事件。
+        /// </summary>
         public event EventHandler Finished;
 
         /// <summary>
@@ -33,7 +39,7 @@ namespace Common.Threading
         /// <summary>
         /// 等待方法结束。
         /// </summary>
-        /// <returns></returns>
+        /// <returns>当前实例。</returns>
         public ThreadHelperResult WaitForFinish()
         {
             while (true)

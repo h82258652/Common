@@ -7,8 +7,17 @@ using System.Xml.Linq;
 
 namespace Common.Config
 {
+    /// <summary>
+    /// XML 设置帮助类。
+    /// </summary>
     public static partial class XmlConfigHelper
     {
+        /// <summary>
+        /// 获取。
+        /// </summary>
+        /// <param name="xmlPath"></param>
+        /// <param name="xpath"></param>
+        /// <returns></returns>
         public static string Get(string xmlPath, string xpath)
         {
             if (File.Exists(xmlPath) == false)
@@ -70,6 +79,12 @@ namespace Common.Config
             return node;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="xmlPath"></param>
+        /// <param name="xpath"></param>
+        /// <param name="value"></param>
         public static void Set(string xmlPath, string xpath, object value)
         {
             // 检查参数

@@ -14,12 +14,12 @@ namespace Common.Threading
         /// </summary>
         /// <param name="method"></param>
         /// <returns></returns>
-        /// <exception cref="System.ArgumentNullException"></exception>
+        /// <exception cref="System.ArgumentNullException"><c>method</c> 为 null。</exception>
         public static ThreadHelperResult StartAction(Action method)
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method不能为空。");
+                throw new ArgumentNullException("method 不能为空。");
             }
             ThreadHelperResult result = new ThreadHelperResult()
             {
@@ -40,17 +40,18 @@ namespace Common.Threading
         }
 
         /// <summary>
-        /// 异步执行一个没有返回值的方法
+        /// 异步执行一个没有返回值的方法。
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <param name="method"></param>
         /// <param name="arg1"></param>
         /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException"><c>method</c> 为 null。</exception>
         public static ThreadHelperResult StartAction<T1>(Action<T1> method, T1 arg1)
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method不能为空。");
+                throw new ArgumentNullException("method 不能为空。");
             }
             ThreadHelperResult result = new ThreadHelperResult()
             {
@@ -72,7 +73,7 @@ namespace Common.Threading
         }
 
         /// <summary>
-        /// 异步执行一个没有返回值的方法
+        /// 异步执行一个没有返回值的方法。
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
@@ -80,11 +81,12 @@ namespace Common.Threading
         /// <param name="arg1"></param>
         /// <param name="arg2"></param>
         /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException"><c>method</c> 为 null。</exception>
         public static ThreadHelperResult StartAction<T1, T2>(Action<T1, T2> method, T1 arg1, T2 arg2)
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method不能为空。");
+                throw new ArgumentNullException("method 不能为空。");
             }
             ThreadHelperResult result = new ThreadHelperResult()
             {
@@ -107,7 +109,7 @@ namespace Common.Threading
         }
 
         /// <summary>
-        /// 异步执行一个没有返回值的方法
+        /// 异步执行一个没有返回值的方法。
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
@@ -117,11 +119,12 @@ namespace Common.Threading
         /// <param name="arg2"></param>
         /// <param name="arg3"></param>
         /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException"><c>method</c> 为 null。</exception>
         public static ThreadHelperResult StartAction<T1, T2, T3>(Action<T1, T2, T3> method, T1 arg1, T2 arg2, T3 arg3)
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method不能为空。");
+                throw new ArgumentNullException("method 不能为空。");
             }
             ThreadHelperResult result = new ThreadHelperResult()
             {
@@ -145,7 +148,7 @@ namespace Common.Threading
         }
 
         /// <summary>
-        /// 异步执行一个没有返回值的方法
+        /// 异步执行一个没有返回值的方法。
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
@@ -157,11 +160,12 @@ namespace Common.Threading
         /// <param name="arg3"></param>
         /// <param name="arg4"></param>
         /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException"><c>method</c> 为 null。</exception>
         public static ThreadHelperResult StartAction<T1, T2, T3, T4>(Action<T1, T2, T3, T4> method, T1 arg1, T2 arg2, T3 arg3, T4 arg4)
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method不能为空。");
+                throw new ArgumentNullException("method 不能为空。");
             }
             ThreadHelperResult result = new ThreadHelperResult()
             {
@@ -186,7 +190,7 @@ namespace Common.Threading
         }
 
         /// <summary>
-        /// 异步执行一个没有返回值的方法
+        /// 异步执行一个没有返回值的方法。
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
@@ -200,11 +204,12 @@ namespace Common.Threading
         /// <param name="arg4"></param>
         /// <param name="arg5"></param>
         /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException"><c>method</c> 为 null。</exception>
         public static ThreadHelperResult StartAction<T1, T2, T3, T4, T5>(Action<T1, T2, T3, T4, T5> method, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5)
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method不能为空。");
+                throw new ArgumentNullException("method 不能为空。");
             }
             ThreadHelperResult result = new ThreadHelperResult()
             {
@@ -230,7 +235,7 @@ namespace Common.Threading
         }
 
         /// <summary>
-        /// 异步执行一个没有返回值的方法
+        /// 异步执行一个没有返回值的方法。
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
@@ -246,11 +251,12 @@ namespace Common.Threading
         /// <param name="arg5"></param>
         /// <param name="arg6"></param>
         /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException"><c>method</c> 为 null。</exception>
         public static ThreadHelperResult StartAction<T1, T2, T3, T4, T5, T6>(Action<T1, T2, T3, T4, T5, T6> method, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6)
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method不能为空。");
+                throw new ArgumentNullException("method 不能为空。");
             }
             ThreadHelperResult result = new ThreadHelperResult()
             {
@@ -277,7 +283,7 @@ namespace Common.Threading
         }
 
         /// <summary>
-        /// 异步执行一个没有返回值的方法
+        /// 异步执行一个没有返回值的方法。
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
@@ -295,11 +301,12 @@ namespace Common.Threading
         /// <param name="arg6"></param>
         /// <param name="arg7"></param>
         /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException"><c>method</c> 为 null。</exception>
         public static ThreadHelperResult StartAction<T1, T2, T3, T4, T5, T6, T7>(Action<T1, T2, T3, T4, T5, T6, T7> method, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7)
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method不能为空。");
+                throw new ArgumentNullException("method 不能为空。");
             }
             ThreadHelperResult result = new ThreadHelperResult()
             {
@@ -327,7 +334,7 @@ namespace Common.Threading
         }
 
         /// <summary>
-        /// 异步执行一个没有返回值的方法
+        /// 异步执行一个没有返回值的方法。
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
@@ -347,11 +354,12 @@ namespace Common.Threading
         /// <param name="arg7"></param>
         /// <param name="arg8"></param>
         /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException"><c>method</c> 为 null。</exception>
         public static ThreadHelperResult StartAction<T1, T2, T3, T4, T5, T6, T7, T8>(Action<T1, T2, T3, T4, T5, T6, T7, T8> method, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8)
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method不能为空。");
+                throw new ArgumentNullException("method 不能为空。");
             }
             ThreadHelperResult result = new ThreadHelperResult()
             {
@@ -380,7 +388,7 @@ namespace Common.Threading
         }
 
         /// <summary>
-        /// 异步执行一个没有返回值的方法
+        /// 异步执行一个没有返回值的方法。
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
@@ -402,11 +410,12 @@ namespace Common.Threading
         /// <param name="arg8"></param>
         /// <param name="arg9"></param>
         /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException"><c>method</c> 为 null。</exception>
         public static ThreadHelperResult StartAction<T1, T2, T3, T4, T5, T6, T7, T8, T9>(Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> method, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8, T9 arg9)
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method不能为空。");
+                throw new ArgumentNullException("method 不能为空。");
             }
             ThreadHelperResult result = new ThreadHelperResult()
             {
@@ -436,7 +445,7 @@ namespace Common.Threading
         }
 
         /// <summary>
-        /// 异步执行一个没有返回值的方法
+        /// 异步执行一个没有返回值的方法。
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
@@ -460,11 +469,12 @@ namespace Common.Threading
         /// <param name="arg9"></param>
         /// <param name="arg10"></param>
         /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException"><c>method</c> 为 null。</exception>
         public static ThreadHelperResult StartAction<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10> method, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8, T9 arg9, T10 arg10)
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method不能为空。");
+                throw new ArgumentNullException("method 不能为空。");
             }
             ThreadHelperResult result = new ThreadHelperResult()
             {
@@ -495,7 +505,7 @@ namespace Common.Threading
         }
 
         /// <summary>
-        /// 异步执行一个没有返回值的方法
+        /// 异步执行一个没有返回值的方法。
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
@@ -521,11 +531,12 @@ namespace Common.Threading
         /// <param name="arg10"></param>
         /// <param name="arg11"></param>
         /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException"><c>method</c> 为 null。</exception>
         public static ThreadHelperResult StartAction<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11> method, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8, T9 arg9, T10 arg10, T11 arg11)
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method不能为空。");
+                throw new ArgumentNullException("method 不能为空。");
             }
             ThreadHelperResult result = new ThreadHelperResult()
             {
@@ -557,7 +568,7 @@ namespace Common.Threading
         }
 
         /// <summary>
-        /// 异步执行一个没有返回值的方法
+        /// 异步执行一个没有返回值的方法。
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
@@ -585,11 +596,12 @@ namespace Common.Threading
         /// <param name="arg11"></param>
         /// <param name="arg12"></param>
         /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException"><c>method</c> 为 null。</exception>
         public static ThreadHelperResult StartAction<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12> method, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8, T9 arg9, T10 arg10, T11 arg11, T12 arg12)
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method不能为空。");
+                throw new ArgumentNullException("method 不能为空。");
             }
             ThreadHelperResult result = new ThreadHelperResult()
             {
@@ -622,7 +634,7 @@ namespace Common.Threading
         }
 
         /// <summary>
-        /// 异步执行一个没有返回值的方法
+        /// 异步执行一个没有返回值的方法。
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
@@ -652,11 +664,12 @@ namespace Common.Threading
         /// <param name="arg12"></param>
         /// <param name="arg13"></param>
         /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException"><c>method</c> 为 null。</exception>
         public static ThreadHelperResult StartAction<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13> method, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8, T9 arg9, T10 arg10, T11 arg11, T12 arg12, T13 arg13)
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method不能为空。");
+                throw new ArgumentNullException("method 不能为空。");
             }
             ThreadHelperResult result = new ThreadHelperResult()
             {
@@ -690,7 +703,7 @@ namespace Common.Threading
         }
 
         /// <summary>
-        /// 异步执行一个没有返回值的方法
+        /// 异步执行一个没有返回值的方法。
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
@@ -722,11 +735,12 @@ namespace Common.Threading
         /// <param name="arg13"></param>
         /// <param name="arg14"></param>
         /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException"><c>method</c> 为 null。</exception>
         public static ThreadHelperResult StartAction<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14> method, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8, T9 arg9, T10 arg10, T11 arg11, T12 arg12, T13 arg13, T14 arg14)
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method不能为空。");
+                throw new ArgumentNullException("method 不能为空。");
             }
             ThreadHelperResult result = new ThreadHelperResult()
             {
@@ -761,7 +775,7 @@ namespace Common.Threading
         }
 
         /// <summary>
-        /// 异步执行一个没有返回值的方法
+        /// 异步执行一个没有返回值的方法。
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
@@ -795,11 +809,12 @@ namespace Common.Threading
         /// <param name="arg14"></param>
         /// <param name="arg15"></param>
         /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException"><c>method</c> 为 null。</exception>
         public static ThreadHelperResult StartAction<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>(Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15> method, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8, T9 arg9, T10 arg10, T11 arg11, T12 arg12, T13 arg13, T14 arg14, T15 arg15)
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method不能为空。");
+                throw new ArgumentNullException("method 不能为空。");
             }
             ThreadHelperResult result = new ThreadHelperResult()
             {
@@ -835,7 +850,7 @@ namespace Common.Threading
         }
 
         /// <summary>
-        /// 异步执行一个没有返回值的方法
+        /// 异步执行一个没有返回值的方法。
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
@@ -871,11 +886,12 @@ namespace Common.Threading
         /// <param name="arg15"></param>
         /// <param name="arg16"></param>
         /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException"><c>method</c> 为 null。</exception>
         public static ThreadHelperResult StartAction<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>(Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16> method, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7, T8 arg8, T9 arg9, T10 arg10, T11 arg11, T12 arg12, T13 arg13, T14 arg14, T15 arg15, T16 arg16)
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method不能为空。");
+                throw new ArgumentNullException("method 不能为空。");
             }
             ThreadHelperResult result = new ThreadHelperResult()
             {

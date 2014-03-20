@@ -217,6 +217,13 @@ namespace Test
     {
         public static void Main(string[] args)
         {
+           var c = (char)(0x4e00+0);
+            var c2 = (char)(0x9fa5);
+            Console.WriteLine(c);
+            Console.WriteLine(c2);
+            Console.ReadKey();
+            return;
+            
             var x = new
             {
                 name = "haha",

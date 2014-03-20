@@ -11,10 +11,10 @@ namespace Common.Reflection
     public static partial class ReflectionHelper
     {
         /// <summary>
-        /// 执行一段 C# 代码并返回结果
+        /// 执行一段 C# 代码并返回结果。
         /// </summary>
-        /// <param name="codeBody">方法体</param>
-        /// <returns></returns>
+        /// <param name="codeBody">方法体。</param>
+        /// <returns>方法的返回值。</returns>
         public static object RunCode(string codeBody)
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>();
@@ -22,11 +22,11 @@ namespace Common.Reflection
         }
 
         /// <summary>
-        /// 执行一段 C# 代码并返回结果
+        /// 执行一段 C# 代码并返回结果。
         /// </summary>
-        /// <param name="codeBody">方法体</param>
-        /// <param name="parameters">参数（名称，值）</param>
-        /// <returns></returns>
+        /// <param name="codeBody">方法体。</param>
+        /// <param name="parameters">参数（名称，值）。</param>
+        /// <returns>方法的返回值。</returns>
         public static object RunCode(string codeBody, Dictionary<string, object> parameters)
         {
             CSharpCodeProvider provider = new CSharpCodeProvider();

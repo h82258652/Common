@@ -3,6 +3,9 @@ using System.Linq;
 
 namespace Common.Config
 {
+    /// <summary>
+    /// ini 文件帮助类。
+    /// </summary>
     public static partial class IniConfigHelper
     {
         internal static IniTree BuildIniTree(string iniPath)
@@ -67,6 +70,13 @@ namespace Common.Config
             }
         }
 
+        /// <summary>
+        /// 获取指定 ini 文件中指定节，指定键的值。
+        /// </summary>
+        /// <param name="iniPath">ini 文件的路径。</param>
+        /// <param name="section">节名。</param>
+        /// <param name="key">键名。</param>
+        /// <returns>若成功，则返回指定节，指定键的值。否则返回空字符串。</returns>
         public static string Get(string iniPath, string section, string key)
         {
             if (File.Exists(iniPath) == false)
@@ -100,6 +110,13 @@ namespace Common.Config
             }
         }
 
+        /// <summary>
+        /// 设置指定 ini 文件中指定节，指定键的值。
+        /// </summary>
+        /// <param name="iniPath">ini 文件的路径。</param>
+        /// <param name="section">节名。</param>
+        /// <param name="key">键名。</param>
+        /// <param name="value">值。</param>
         public static void Set(string iniPath, string section, string key, object value)
         {
             if (File.Exists(iniPath) == false)

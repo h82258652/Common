@@ -1,6 +1,9 @@
 ﻿
 namespace Common.Serialization
 {
+    /// <summary>
+    /// JSON 序列化时 DateTime 类型的转换格式。
+    /// </summary>
     public enum DateTimeFormat
     {
         /// <summary>

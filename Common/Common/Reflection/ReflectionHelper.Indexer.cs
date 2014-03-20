@@ -8,30 +8,30 @@ namespace Common.Reflection
     public static partial class ReflectionHelper
     {
         /// <summary>
-        /// 指示对象是否存在索引器
+        /// 指示对象是否存在索引器。
         /// </summary>
-        /// <param name="obj">测试的对象</param>
-        /// <returns></returns>
+        /// <param name="obj">测试的对象。</param>
+        /// <returns>是否存在索引器。</returns>
         public static bool HasIndexer(object obj)
         {
             return GetIndexerCount(obj) > 0;
         }
 
         /// <summary>
-        /// 指示对象具有的索引器的数量
+        /// 指示对象具有的索引器的数量。
         /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
+        /// <param name="obj">测试的对象。</param>
+        /// <returns>索引器的数量。</returns>
         public static int GetIndexerCount(object obj)
         {
             return GetAllIndexer(obj).Length;
         }
 
         /// <summary>
-        /// 获取对象的所有索引器
+        /// 获取对象的所有索引器。
         /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
+        /// <param name="obj">对象。</param>
+        /// <returns>所有索引器。</returns>
         public static PropertyInfo[] GetAllIndexer(object obj)
         {
             Type t = obj.GetType();
@@ -39,11 +39,11 @@ namespace Common.Reflection
         }
 
         /// <summary>
-        /// 获取索引器的值
+        /// 获取索引器的值。
         /// </summary>
-        /// <param name="obj">对象</param>
-        /// <param name="args">索引器参数</param>
-        /// <returns></returns>
+        /// <param name="obj">对象。</param>
+        /// <param name="args">索引器参数。</param>
+        /// <returns>索引器的值。</returns>
         public static object GetIndexer(object obj, params object[] args)
         {
             foreach (var indexer in GetAllIndexer(obj).Where(temp => temp.GetIndexParameters().Length == args.Length))
@@ -61,17 +61,24 @@ namespace Common.Reflection
             return null;
         }
 
+        /// <summary>
+        /// 获取索引器的值。
+        /// </summary>
+        /// <typeparam name="T">索引器的类型。</typeparam>
+        /// <param name="obj">对象。</param>
+        /// <param name="args">索引器参数。</param>
+        /// <returns>索引器的值。</returns>
         public static T GetIndexer<T>(object obj, params object[] args)
         {
             return (T)GetIndexer(obj, args);
         }
 
         /// <summary>
-        /// 设置索引器的值
+        /// 设置索引器的值。
         /// </summary>
-        /// <param name="obj">对象</param>
-        /// <param name="value">值</param>
-        /// <param name="args">索引器参数</param>
+        /// <param name="obj">对象。</param>
+        /// <param name="value">值。</param>
+        /// <param name="args">索引器参数。</param>
         public static void SetIndexer(object obj, object value, params object[] args)
         {
             foreach (var indexer in GetAllIndexer(obj).Where(temp => temp.GetIndexParameters().Length == args.Length))

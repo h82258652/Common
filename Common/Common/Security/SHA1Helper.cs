@@ -5,20 +5,23 @@ using System.Text;
 
 namespace Common.Security
 {
+    /// <summary>
+    /// SHA1 帮助类。
+    /// </summary>
     public static partial class SHA1Helper
     {
         /// <summary>
-        /// 获取字符串的 40 位 SHA1 大写
+        /// 获取字符串的 40 位 SHA1 大写。
         /// </summary>
-        /// <param name="input">需计算 SHA1 的字符串</param>
-        /// <param name="prefix">需添加的字符串前缀</param>
-        /// <returns> 40 位 SHA1 大写</returns>
-        /// <exception cref="System.ArgumentNullException"></exception>
+        /// <param name="input">需计算 SHA1 的字符串。</param>
+        /// <param name="prefix">需添加的字符串前缀。</param>
+        /// <returns> 40 位 SHA1 大写。</returns>
+        /// <exception cref="ArgumentNullException"><c>input</c> 为 null。</exception>
         public static string GetStringSHA1(string input, string prefix = "")
         {
             if (input == null)
             {
-                throw new ArgumentNullException("input不能为空。");
+                throw new ArgumentNullException("input 不能为空。");
             }
             using (SHA1CryptoServiceProvider sha1Csp = new SHA1CryptoServiceProvider())
             {

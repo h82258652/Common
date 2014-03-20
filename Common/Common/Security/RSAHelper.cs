@@ -5,14 +5,17 @@ using System.Text;
 
 namespace Common.Security
 {
+    /// <summary>
+    /// RSA 帮助类。
+    /// </summary>
     public static partial class RSAHelper
     {
         /// <summary>
         /// 使用 RSA 算法对字符串进行加密。
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="value">需加密的字符串。</param>
         /// <param name="key">密钥。</param>
-        /// <returns></returns>
+        /// <returns>加密后的字符串。</returns>
         public static string EncryptRSA(this string value, string key)
         {
             CspParameters cspp = new CspParameters()
@@ -30,9 +33,9 @@ namespace Common.Security
         /// <summary>
         /// 使用 RSA 算法对字符串进行解密。
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="value">需解密的字符串。</param>
         /// <param name="key">密钥。</param>
-        /// <returns></returns>
+        /// <returns>解密后的字符串。</returns>
         public static string DecryptRSA(this string value, string key)
         {
             CspParameters cspp = new CspParameters()

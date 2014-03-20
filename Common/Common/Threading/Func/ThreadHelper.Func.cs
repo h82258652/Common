@@ -4,23 +4,20 @@ using System.Threading;
 
 namespace Common.Threading
 {
-    /// <summary>
-    /// 线程帮助类。用于异步执行方法。
-    /// </summary>
     public static partial class ThreadHelper
     {
         /// <summary>
-        /// 异步执行一个带有返回值的方法
+        /// 异步执行一个带有返回值的方法。
         /// </summary>
-        /// <typeparam name="TResult">返回值类型</typeparam>
-        /// <param name="method">一个不带参数的方法</param>
-        /// <returns></returns>
-        /// <exception cref="System.ArgumentNullException"></exception>
+        /// <typeparam name="TResult">返回值类型。</typeparam>
+        /// <param name="method">一个不带参数的方法。</param>
+        /// <returns>线程帮助类返回结果。</returns>
+        /// <exception cref="System.ArgumentNullException"><c>method</c> 为 null。</exception>
         public static ThreadHelperResult<TResult> StartFunc<TResult>(Func<TResult> method)
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method不能为空。");
+                throw new ArgumentNullException("method 不能为空。");
             }
             ThreadHelperResult<TResult> result = new ThreadHelperResult<TResult>()
             {
@@ -42,19 +39,19 @@ namespace Common.Threading
         }
 
         /// <summary>
-        /// 异步执行一个带有返回值的方法
+        /// 异步执行一个带有返回值的方法。
         /// </summary>
-        /// <typeparam name="T1">第一个参数类型</typeparam>
-        /// <typeparam name="TResult">返回值类型</typeparam>
-        /// <param name="method">带一个参数的方法</param>
-        /// <param name="arg1">方法的第一个参数</param>
-        /// <returns></returns>
-        /// <exception cref="System.ArgumentNullException"></exception>
+        /// <typeparam name="T1">第一个参数类型。</typeparam>
+        /// <typeparam name="TResult">返回值类型。</typeparam>
+        /// <param name="method">带一个参数的方法。</param>
+        /// <param name="arg1">方法的第一个参数。</param>
+        /// <returns>线程帮助类返回结果。</returns>
+        /// <exception cref="System.ArgumentNullException"><c>method</c> 为 null。</exception>
         public static ThreadHelperResult<TResult> StartFunc<T1, TResult>(Func<T1, TResult> method, T1 arg1)
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method不能为空。");
+                throw new ArgumentNullException("method 不能为空。");
             }
             ThreadHelperResult<TResult> result = new ThreadHelperResult<TResult>()
             {
@@ -77,21 +74,21 @@ namespace Common.Threading
         }
 
         /// <summary>
-        /// 异步执行一个带有返回值的方法
+        /// 异步执行一个带有返回值的方法。
         /// </summary>
-        /// <typeparam name="T1">第一个参数类型</typeparam>
-        /// <typeparam name="T2">第二个参数类型</typeparam>
-        /// <typeparam name="TResult">返回值类型</typeparam>
-        /// <param name="method">带两个参数的方法</param>
-        /// <param name="arg1">方法的第一个参数</param>
-        /// <param name="arg2">方法的第二个参数</param>
-        /// <returns></returns>
-        /// <exception cref="System.ArgumentNullException"></exception>
+        /// <typeparam name="T1">第一个参数类型。</typeparam>
+        /// <typeparam name="T2">第二个参数类型。</typeparam>
+        /// <typeparam name="TResult">返回值类型。</typeparam>
+        /// <param name="method">带两个参数的方法。</param>
+        /// <param name="arg1">方法的第一个参数。</param>
+        /// <param name="arg2">方法的第二个参数。</param>
+        /// <returns>线程帮助类返回结果。</returns>
+        /// <exception cref="System.ArgumentNullException"><c>method</c> 为 null。</exception>
         public static ThreadHelperResult<TResult> StartFunc<T1, T2, TResult>(Func<T1, T2, TResult> method, T1 arg1, T2 arg2)
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method不能为空。");
+                throw new ArgumentNullException("method 不能为空。");
             }
             ThreadHelperResult<TResult> result = new ThreadHelperResult<TResult>()
             {
@@ -115,23 +112,23 @@ namespace Common.Threading
         }
 
         /// <summary>
-        /// 异步执行一个带有返回值的方法
+        /// 异步执行一个带有返回值的方法。
         /// </summary>
-        /// <typeparam name="T1">第一个参数类型</typeparam>
-        /// <typeparam name="T2">第二个参数类型</typeparam>
-        /// <typeparam name="T3">第三个参数类型</typeparam>
-        /// <typeparam name="TResult">返回值类型</typeparam>
-        /// <param name="method">带三个参数的方法</param>
-        /// <param name="arg1">方法的第一个参数</param>
-        /// <param name="arg2">方法的第二个参数</param>
-        /// <param name="arg3">方法的第三个参数</param>
-        /// <returns></returns>
-        /// <exception cref="System.ArgumentNullException"></exception>
+        /// <typeparam name="T1">第一个参数类型。</typeparam>
+        /// <typeparam name="T2">第二个参数类型。</typeparam>
+        /// <typeparam name="T3">第三个参数类型。</typeparam>
+        /// <typeparam name="TResult">返回值类型。</typeparam>
+        /// <param name="method">带三个参数的方法。</param>
+        /// <param name="arg1">方法的第一个参数。</param>
+        /// <param name="arg2">方法的第二个参数。</param>
+        /// <param name="arg3">方法的第三个参数。</param>
+        /// <returns>线程帮助类返回结果。</returns>
+        /// <exception cref="System.ArgumentNullException"><c>method</c> 为 null。</exception>
         public static ThreadHelperResult<TResult> StartFunc<T1, T2, T3, TResult>(Func<T1, T2, T3, TResult> method, T1 arg1, T2 arg2, T3 arg3)
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method不能为空。");
+                throw new ArgumentNullException("method 不能为空。");
             }
             ThreadHelperResult<TResult> result = new ThreadHelperResult<TResult>()
             {
@@ -156,25 +153,25 @@ namespace Common.Threading
         }
 
         /// <summary>
-        /// 异步执行一个带有返回值的方法
+        /// 异步执行一个带有返回值的方法。
         /// </summary>
-        /// <typeparam name="T1">第一个参数类型</typeparam>
-        /// <typeparam name="T2">第二个参数类型</typeparam>
-        /// <typeparam name="T3">第三个参数类型</typeparam>
-        /// <typeparam name="T4">第四个参数类型</typeparam>
-        /// <typeparam name="TResult">返回值类型</typeparam>
-        /// <param name="method">带四个参数的方法</param>
-        /// <param name="arg1">方法的第一个参数</param>
-        /// <param name="arg2">方法的第二个参数</param>
-        /// <param name="arg3">方法的第三个参数</param>
-        /// <param name="arg4">方法的第四个参数</param>
-        /// <returns></returns>
-        /// <exception cref="System.ArgumentNullException"></exception>
+        /// <typeparam name="T1">第一个参数类型。</typeparam>
+        /// <typeparam name="T2">第二个参数类型。</typeparam>
+        /// <typeparam name="T3">第三个参数类型。</typeparam>
+        /// <typeparam name="T4">第四个参数类型。</typeparam>
+        /// <typeparam name="TResult">返回值类型。</typeparam>
+        /// <param name="method">带四个参数的方法。</param>
+        /// <param name="arg1">方法的第一个参数。</param>
+        /// <param name="arg2">方法的第二个参数。</param>
+        /// <param name="arg3">方法的第三个参数。</param>
+        /// <param name="arg4">方法的第四个参数。</param>
+        /// <returns>线程帮助类返回结果。</returns>
+        /// <exception cref="System.ArgumentNullException"><c>method</c> 为 null。</exception>
         public static ThreadHelperResult<TResult> StartFunc<T1, T2, T3, T4, TResult>(Func<T1, T2, T3, T4, TResult> method, T1 arg1, T2 arg2, T3 arg3, T4 arg4)
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method不能为空。");
+                throw new ArgumentNullException("method 不能为空。");
             }
             ThreadHelperResult<TResult> result = new ThreadHelperResult<TResult>()
             {
@@ -200,27 +197,27 @@ namespace Common.Threading
         }
 
         /// <summary>
-        /// 异步执行一个带有返回值的方法
+        /// 异步执行一个带有返回值的方法。
         /// </summary>
-        /// <typeparam name="T1"></typeparam>
-        /// <typeparam name="T2"></typeparam>
-        /// <typeparam name="T3"></typeparam>
-        /// <typeparam name="T4"></typeparam>
-        /// <typeparam name="T5"></typeparam>
-        /// <typeparam name="TResult"></typeparam>
-        /// <param name="method"></param>
-        /// <param name="arg1"></param>
-        /// <param name="arg2"></param>
-        /// <param name="arg3"></param>
-        /// <param name="arg4"></param>
-        /// <param name="arg5"></param>
-        /// <returns></returns>
-        /// <exception cref="System.ArgumentNullException"></exception>
+        /// <typeparam name="T1">第一个参数类型。</typeparam>
+        /// <typeparam name="T2">第二个参数类型。</typeparam>
+        /// <typeparam name="T3">第三个参数类型。</typeparam>
+        /// <typeparam name="T4">第四个参数类型。</typeparam>
+        /// <typeparam name="T5">第五个参数类型。</typeparam>
+        /// <typeparam name="TResult">返回值类型。</typeparam>
+        /// <param name="method">带五个参数的方法。</param>
+        /// <param name="arg1">方法的第一个参数。</param>
+        /// <param name="arg2">方法的第二个参数。</param>
+        /// <param name="arg3">方法的第三个参数。</param>
+        /// <param name="arg4">方法的第四个参数。</param>
+        /// <param name="arg5">方法的第五个参数。</param>
+        /// <returns>线程帮助类返回结果。</returns>
+        /// <exception cref="System.ArgumentNullException"><c>method</c> 为 null。</exception>
         public static ThreadHelperResult<TResult> StartFunc<T1, T2, T3, T4, T5, TResult>(Func<T1, T2, T3, T4, T5, TResult> method, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5)
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method不能为空。");
+                throw new ArgumentNullException("method 不能为空。");
             }
             ThreadHelperResult<TResult> result = new ThreadHelperResult<TResult>()
             {
@@ -247,29 +244,29 @@ namespace Common.Threading
         }
 
         /// <summary>
-        /// 异步执行一个带有返回值的方法
+        /// 异步执行一个带有返回值的方法。
         /// </summary>
-        /// <typeparam name="T1"></typeparam>
-        /// <typeparam name="T2"></typeparam>
-        /// <typeparam name="T3"></typeparam>
-        /// <typeparam name="T4"></typeparam>
-        /// <typeparam name="T5"></typeparam>
-        /// <typeparam name="T6"></typeparam>
-        /// <typeparam name="TResult"></typeparam>
-        /// <param name="method"></param>
-        /// <param name="arg1"></param>
-        /// <param name="arg2"></param>
-        /// <param name="arg3"></param>
-        /// <param name="arg4"></param>
-        /// <param name="arg5"></param>
-        /// <param name="arg6"></param>
-        /// <returns></returns>
-        /// <exception cref="System.ArgumentNullException"></exception>
+        /// <typeparam name="T1">第一个参数类型。</typeparam>
+        /// <typeparam name="T2">第二个参数类型。</typeparam>
+        /// <typeparam name="T3">第三个参数类型。</typeparam>
+        /// <typeparam name="T4">第四个参数类型。</typeparam>
+        /// <typeparam name="T5">第五个参数类型。</typeparam>
+        /// <typeparam name="T6">第六个参数类型。</typeparam>
+        /// <typeparam name="TResult">返回值类型。</typeparam>
+        /// <param name="method">带六个参数的方法。</param>
+        /// <param name="arg1">方法的第一个参数。</param>
+        /// <param name="arg2">方法的第二个参数。</param>
+        /// <param name="arg3">方法的第三个参数。</param>
+        /// <param name="arg4">方法的第四个参数。</param>
+        /// <param name="arg5">方法的第五个参数。</param>
+        /// <param name="arg6">方法的第六个参数。</param>
+        /// <returns>线程帮助类返回结果。</returns>
+        /// <exception cref="System.ArgumentNullException"><c>method</c> 为 null。</exception>
         public static ThreadHelperResult<TResult> StartFunc<T1, T2, T3, T4, T5, T6, TResult>(Func<T1, T2, T3, T4, T5, T6, TResult> method, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6)
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method不能为空。");
+                throw new ArgumentNullException("method 不能为空。");
             }
             ThreadHelperResult<TResult> result = new ThreadHelperResult<TResult>()
             {
@@ -297,31 +294,31 @@ namespace Common.Threading
         }
 
         /// <summary>
-        /// 异步执行一个带有返回值的方法
+        /// 异步执行一个带有返回值的方法。
         /// </summary>
-        /// <typeparam name="T1"></typeparam>
-        /// <typeparam name="T2"></typeparam>
-        /// <typeparam name="T3"></typeparam>
-        /// <typeparam name="T4"></typeparam>
-        /// <typeparam name="T5"></typeparam>
-        /// <typeparam name="T6"></typeparam>
-        /// <typeparam name="T7"></typeparam>
-        /// <typeparam name="TResult"></typeparam>
-        /// <param name="method"></param>
-        /// <param name="arg1"></param>
-        /// <param name="arg2"></param>
-        /// <param name="arg3"></param>
-        /// <param name="arg4"></param>
-        /// <param name="arg5"></param>
-        /// <param name="arg6"></param>
-        /// <param name="arg7"></param>
-        /// <returns></returns>
-        /// <exception cref="System.ArgumentNullException"></exception>
+        /// <typeparam name="T1">第一个参数类型。</typeparam>
+        /// <typeparam name="T2">第二个参数类型。</typeparam>
+        /// <typeparam name="T3">第三个参数类型。</typeparam>
+        /// <typeparam name="T4">第四个参数类型。</typeparam>
+        /// <typeparam name="T5">第五个参数类型。</typeparam>
+        /// <typeparam name="T6">第六个参数类型。</typeparam>
+        /// <typeparam name="T7">第七个参数类型。</typeparam>
+        /// <typeparam name="TResult">返回值类型。</typeparam>
+        /// <param name="method">带七个参数的方法。</param>
+        /// <param name="arg1">方法的第一个参数。</param>
+        /// <param name="arg2">方法的第二个参数。</param>
+        /// <param name="arg3">方法的第三个参数。</param>
+        /// <param name="arg4">方法的第四个参数。</param>
+        /// <param name="arg5">方法的第五个参数。</param>
+        /// <param name="arg6">方法的第六个参数。</param>
+        /// <param name="arg7">方法的第七个参数。</param>
+        /// <returns>线程帮助类返回结果。</returns>
+        /// <exception cref="System.ArgumentNullException"><c>method</c> 为 null。</exception>
         public static ThreadHelperResult<TResult> StartFunc<T1, T2, T3, T4, T5, T6, T7, TResult>(Func<T1, T2, T3, T4, T5, T6, T7, TResult> method, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5, T6 arg6, T7 arg7)
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method不能为空。");
+                throw new ArgumentNullException("method 不能为空。");
             }
             ThreadHelperResult<TResult> result = new ThreadHelperResult<TResult>()
             {
@@ -350,7 +347,7 @@ namespace Common.Threading
         }
 
         /// <summary>
-        /// 异步执行一个带有返回值的方法
+        /// 异步执行一个带有返回值的方法。
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
@@ -376,7 +373,7 @@ namespace Common.Threading
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method不能为空。");
+                throw new ArgumentNullException("method 不能为空。");
             }
             ThreadHelperResult<TResult> result = new ThreadHelperResult<TResult>()
             {
@@ -406,7 +403,7 @@ namespace Common.Threading
         }
 
         /// <summary>
-        /// 异步执行一个带有返回值的方法
+        /// 异步执行一个带有返回值的方法。
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
@@ -434,7 +431,7 @@ namespace Common.Threading
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method不能为空。");
+                throw new ArgumentNullException("method 不能为空。");
             }
             ThreadHelperResult<TResult> result = new ThreadHelperResult<TResult>()
             {
@@ -465,7 +462,7 @@ namespace Common.Threading
         }
 
         /// <summary>
-        /// 异步执行一个带有返回值的方法
+        /// 异步执行一个带有返回值的方法。
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
@@ -495,7 +492,7 @@ namespace Common.Threading
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method不能为空。");
+                throw new ArgumentNullException("method 不能为空。");
             }
             ThreadHelperResult<TResult> result = new ThreadHelperResult<TResult>()
             {
@@ -527,7 +524,7 @@ namespace Common.Threading
         }
 
         /// <summary>
-        /// 异步执行一个带有返回值的方法
+        /// 异步执行一个带有返回值的方法。
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
@@ -559,7 +556,7 @@ namespace Common.Threading
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method不能为空。");
+                throw new ArgumentNullException("method 不能为空。");
             }
             ThreadHelperResult<TResult> result = new ThreadHelperResult<TResult>()
             {
@@ -592,7 +589,7 @@ namespace Common.Threading
         }
 
         /// <summary>
-        /// 异步执行一个带有返回值的方法
+        /// 异步执行一个带有返回值的方法。
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
@@ -626,7 +623,7 @@ namespace Common.Threading
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method不能为空。");
+                throw new ArgumentNullException("method 不能为空。");
             }
             ThreadHelperResult<TResult> result = new ThreadHelperResult<TResult>()
             {
@@ -660,7 +657,7 @@ namespace Common.Threading
         }
 
         /// <summary>
-        /// 异步执行一个带有返回值的方法
+        /// 异步执行一个带有返回值的方法。
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
@@ -696,7 +693,7 @@ namespace Common.Threading
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method不能为空。");
+                throw new ArgumentNullException("method 不能为空。");
             }
             ThreadHelperResult<TResult> result = new ThreadHelperResult<TResult>()
             {
@@ -731,7 +728,7 @@ namespace Common.Threading
         }
 
         /// <summary>
-        /// 异步执行一个带有返回值的方法
+        /// 异步执行一个带有返回值的方法。
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
@@ -769,7 +766,7 @@ namespace Common.Threading
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method不能为空。");
+                throw new ArgumentNullException("method 不能为空。");
             }
             ThreadHelperResult<TResult> result = new ThreadHelperResult<TResult>()
             {
@@ -805,7 +802,7 @@ namespace Common.Threading
         }
 
         /// <summary>
-        /// 异步执行一个带有返回值的方法
+        /// 异步执行一个带有返回值的方法。
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
@@ -845,7 +842,7 @@ namespace Common.Threading
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method不能为空。");
+                throw new ArgumentNullException("method 不能为空。");
             }
             ThreadHelperResult<TResult> result = new ThreadHelperResult<TResult>()
             {
@@ -882,7 +879,7 @@ namespace Common.Threading
         }
 
         /// <summary>
-        /// 异步执行一个带有返回值的方法
+        /// 异步执行一个带有返回值的方法。
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>
@@ -924,7 +921,7 @@ namespace Common.Threading
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method不能为空。");
+                throw new ArgumentNullException("method 不能为空。");
             }
             ThreadHelperResult<TResult> result = new ThreadHelperResult<TResult>()
             {

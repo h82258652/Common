@@ -50,5 +50,22 @@ namespace System
         {
             return char.IsLower(c);
         }
+
+        /// <summary>
+        /// 指示当前字符是否属于中文字符。
+        /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
+        public static bool IsChinese(this char c)
+        {
+            if (c >= 0x4e00 && c <= 0x9fa5)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

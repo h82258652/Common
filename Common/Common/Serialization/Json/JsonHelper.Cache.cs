@@ -4,6 +4,9 @@ using System.Reflection;
 
 namespace Common.Serialization
 {
+    /// <summary>
+    /// 为启用 AFAX 的应用程序提供序列化和反序列化功能。
+    /// </summary>
     public static partial class JsonHelper
     {
         /// <summary>

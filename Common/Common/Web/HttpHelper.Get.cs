@@ -5,15 +5,18 @@ using System.Web;
 
 namespace Common.Web
 {
+    /// <summary>
+    /// Http 帮助类。
+    /// </summary>
     public static partial class HttpHelper
     {
         /// <summary>
         /// 发出一个同步 Get 请求。
         /// </summary>
-        /// <param name="url"></param>
-        /// <param name="param"></param>
-        /// <returns></returns>
-        /// <exception cref="System.ArgumentException"></exception>
+        /// <param name="url">请求的 url。</param>
+        /// <param name="param">Get 请求的参数。</param>
+        /// <returns>请求结果。</returns>
+        /// <exception cref="ArgumentException"><c>url</c> 为空字符串或 null。</exception>
         public static string Get(string url, object param = null)
         {
             if (string.IsNullOrWhiteSpace(url) == true)
@@ -40,10 +43,10 @@ namespace Common.Web
         /// <summary>
         /// 发出一个异步 GET 请求。
         /// </summary>
-        /// <param name="url"></param>
-        /// <param name="param"></param>
-        /// <param name="success"></param>
-        /// <param name="failure"></param>
+        /// <param name="url">请求的 url。</param>
+        /// <param name="param">Get 请求的参数。</param>
+        /// <param name="success">请求成功时执行的方法。</param>
+        /// <param name="failure">请求失败时执行的方法。</param>
         public static void GetAsync(string url, object param = null, Action<string> success = null,
             Action<WebException> failure = null)
         {

@@ -2,12 +2,24 @@
 
 namespace Common.Threading
 {
+    /// <summary>
+    /// 线程帮助类返回结果。
+    /// </summary>
+    /// <typeparam name="TResult"></typeparam>
     public class ThreadHelperResult<TResult>
     {
         private bool _hasFinish;
         
+        /// <summary>
+        /// 异步方法执行完成时触发该事件。
+        /// </summary>
         public event ThreadHelperFinishedHandler Finished;
 
+        /// <summary>
+        /// 指定异步方法执行完成时的方法。
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public delegate void ThreadHelperFinishedHandler(object sender, ThreadHelperFinishedEventArgs<TResult> e);
         
         /// <summary>

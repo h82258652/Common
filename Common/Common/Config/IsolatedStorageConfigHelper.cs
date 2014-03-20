@@ -5,10 +5,18 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Common.Config
 {
+    /// <summary>
+    /// 独立存储设置帮助类。
+    /// </summary>
     public static partial class IsolatedStorageConfigHelper
     {
         private const string ISOLATEDSTORAGESETTINGNAME = "appsetting.bin";
 
+        /// <summary>
+        /// 获取指定键的值。
+        /// </summary>
+        /// <param name="key">键。</param>
+        /// <returns>键的值。</returns>
         public static object Get(string key)
         {
             using (IsolatedStorageFile file = IsolatedStorageFile.GetMachineStoreForDomain())
@@ -39,6 +47,12 @@ namespace Common.Config
             }
         }
 
+        /// <summary>
+        /// 获取指定键的值。
+        /// </summary>
+        /// <typeparam name="T">键的类型。</typeparam>
+        /// <param name="key">键。</param>
+        /// <returns>键的值。</returns>
         public static T Get<T>(string key)
         {
             var temp = Get(key);
@@ -52,6 +66,11 @@ namespace Common.Config
             }
         }
 
+        /// <summary>
+        /// 设置指定键的值。
+        /// </summary>
+        /// <param name="key">键。</param>
+        /// <param name="value">值。</param>
         public static void Set(string key, object value)
         {
             using (IsolatedStorageFile file = IsolatedStorageFile.GetMachineStoreForDomain())

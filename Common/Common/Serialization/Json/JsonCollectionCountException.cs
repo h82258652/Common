@@ -44,7 +44,7 @@ namespace Common.Serialization
             set;
         }
 
-        public static JsonCollectionCountException CreateLessThanException(object collection, int lessThan)
+        internal static JsonCollectionCountException CreateLessThanException(object collection, int lessThan)
         {
             return new JsonCollectionCountException()
             {
@@ -54,7 +54,7 @@ namespace Common.Serialization
             };
         }
 
-        public static JsonCollectionCountException CreateGreaterThanException(object collection, int greaterThan
+        internal static JsonCollectionCountException CreateGreaterThanException(object collection, int greaterThan
 )
         {
             return new JsonCollectionCountException()
@@ -71,6 +71,10 @@ namespace Common.Serialization
             GreaterThan = -1;
         }
 
+        /// <summary>
+        /// 返回表示当前异常的字符串。
+        /// </summary>
+        /// <returns>描述该异常的字符串。</returns>
         public override string ToString()
         {
             if (LessThan > -1)
