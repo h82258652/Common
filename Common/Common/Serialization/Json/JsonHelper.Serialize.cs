@@ -5,6 +5,7 @@ using System.Linq;
 using System.Numerics;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Common.Serialization
 {
@@ -87,6 +88,25 @@ namespace Common.Serialization
                 return obj.ToString();
             }
             #endregion
+            #region Regex
+            if (obj is Regex)
+            {
+                Regex regex = obj as Regex;
+                StringBuilder sb = new StringBuilder();
+                sb.Append("/");
+                sb.Append(regex.ToString());
+                sb.Append("/");
+                if (regex.Options == RegexOptions.IgnoreCase)
+                {
+                    sb.Append("i");
+                }
+                if (regex.Options == RegexOptions.Multiline)
+                {
+                    sb.Append("m");
+                }
+                return sb.ToString();
+            }
+            #endregion
             #region DateTime
             else if (obj is DateTime)
             {
@@ -114,7 +134,6 @@ namespace Common.Serialization
             {
                 Array arr = obj as Array;
                 StringBuilder sb = new StringBuilder();
-                sb.Append('[');
                 for (int i = 0, length = arr.Length; i < length; i++)
                 {
                     sb.Append(SerializeObject(arr.GetValue(i)));
@@ -123,8 +142,7 @@ namespace Common.Serialization
                         sb.Append(',');
                     }
                 }
-                sb.Append(']');
-                return sb.ToString();
+                return "[" + sb.ToString() + "]";
             }
             #endregion
             #region List
@@ -132,7 +150,6 @@ namespace Common.Serialization
             {
                 IList list = obj as IList;
                 StringBuilder sb = new StringBuilder();
-                sb.Append("[");
                 for (int i = 0, count = list.Count; i < count; i++)
                 {
                     sb.Append(SerializeObject(list[i]));
@@ -141,8 +158,7 @@ namespace Common.Serialization
                         sb.Append(",");
                     }
                 }
-                sb.Append("]");
-                return sb.ToString();
+                return "[" + sb.ToString() + "]";
             }
             #endregion
             #region Dictionary
@@ -272,10 +288,9 @@ namespace Common.Serialization
                 }
                 foreach (PropertyInfo property in properties)
                 {
-                    if (property.GetIndexParameters().Length == 0)// 非索引器属性
+                    if (property.GetIndexParameters().Length == 0) // 非索引器属性
                     {
-                        JsonAttribute attribute =
-                            property.GetCustomAttributes(typeof(JsonAttribute), true).FirstOrDefault() as JsonAttribute;
+                        JsonAttribute attribute = property.GetCustomAttributes(typeof(JsonAttribute), true).FirstOrDefault() as JsonAttribute;
                         string name;
                         object value;
                         string valueString;

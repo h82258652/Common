@@ -221,9 +221,80 @@ namespace Test
             }
         }
 
+        public static void VV(string s = "")
+        {
+            Console.WriteLine(s);
+        }
+
         public static void Main(string[] args)
         {
+            VV();
+            VV(null);
             Console.ReadKey();
+        }
+    }
+
+    class Tst
+    {
+        public string Hellp
+        {
+            get;
+            set;
+        }
+
+        public string Hellp2
+        {
+            get;
+            set;
+        }
+
+        public string Hellp3
+        {
+            get;
+            set;
+        }
+
+        public string Hellp4
+        {
+            get;
+            set;
+        }
+
+        public string Hellp5
+        {
+            get;
+            set;
+        }
+
+        public string Hellp6
+        {
+            get;
+            set;
+        }
+
+        public string Hellp7
+        {
+            get;
+            set;
+        }
+
+        public string Hellp8
+        {
+            get;
+            set;
+        }
+
+
+        public string Name
+        {
+            get;
+            set;
+        }
+
+        public int Age
+        {
+            get;
+            set;
         }
     }
 }

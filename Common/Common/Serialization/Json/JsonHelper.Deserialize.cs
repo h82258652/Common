@@ -11,9 +11,27 @@ namespace Common.Serialization
 {
     public static partial class JsonHelper
     {
+        private static bool IsHex(char c)
+        {
+            if (c >= '0' && c <= '9')
+            {
+                return true;
+            }
+            if (c >= 'a' && c <= 'f')
+            {
+                return true;
+            }
+            if (c >= 'A' && c <= 'F')
+            {
+                return true;
+            }
+            return false;
+        }
+
         private static IEnumerable<string> JsonItemReader(string input)
         {
-            if (input.Length == 0)
+            int length = input.Length;
+            if (length == 0)
             {
                 yield return null;
                 yield break;
@@ -22,34 +40,33 @@ namespace Common.Serialization
             int doubleQuote = 0;// 双引号
             int bracket = 0;// 中括号
             int brace = 0;// 大括号
-            for (int i = 0; i < input.Length; i++)
+            for (int i = 0; i < length; i++)
             {
                 if (input[i] == '\\')
                 {
                     i++;
-                    continue;
                 }
-                if (input[i] == '\"')
+                else if (input[i] == '\"')
                 {
                     doubleQuote = 1 - doubleQuote;
                 }
-                if (input[i] == '[')
+                else if (input[i] == '[')
                 {
                     bracket++;
                 }
-                if (input[i] == ']')
+                else if (input[i] == ']')
                 {
                     bracket--;
                 }
-                if (input[i] == '{')
+                else if (input[i] == '{')
                 {
                     brace++;
                 }
-                if (input[i] == '}')
+                else if (input[i] == '}')
                 {
                     brace--;
                 }
-                if (input[i] == ',' && bracket == 0 && brace == 0)
+                else if (input[i] == ',' && bracket == 0 && brace == 0)
                 {
                     string item = input.Substring(startIndex, i - startIndex);
                     startIndex = i + 1;
@@ -58,11 +75,10 @@ namespace Common.Serialization
                 }
             }
             {
-                string item = input.Substring(startIndex, input.Length - startIndex);
+                string item = input.Substring(startIndex, length - startIndex);
                 item = item.Trim();
                 yield return item;
             }
-            yield break;
         }
 
         /// <summary>
@@ -97,7 +113,7 @@ namespace Common.Serialization
                 }
                 else
                 {
-                    // char 长度不为1
+                    // char 长度不为 1。
                     throw new JsonFormatException("无法将“" + s + "”转换为 " + type.Name + " 类型。");
                 }
             }
@@ -109,13 +125,13 @@ namespace Common.Serialization
                 {
                     input = input.Substring(1, input.Length - 2);
                     StringBuilder sb = new StringBuilder();
-                    for (int i = 0; i < input.Length; i++)
+                    for (int i = 0, length = input.Length; i < length; i++)
                     {
                         if (input[i] == '\\')
                         {
-                            if (i + 1 == input.Length)
+                            if (i + 1 == length)
                             {
-                                // 转义符错误
+                                // 转义符错误。
                                 throw new Exception("JSON格式错误");
                             }
                             if (input[i + 1] == '\\')
@@ -142,29 +158,13 @@ namespace Common.Serialization
                             {
                                 sb.Append("\t");
                             }
-                            else if (input[i + 1] == 'u' && i + 5 < input.Length)
+                            else if (input[i + 1] == 'u' && i + 5 < length)
                             {
                                 char c0 = input[i + 2];
                                 char c1 = input[i + 3];
                                 char c2 = input[i + 4];
                                 char c3 = input[i + 5];
-                                Func<char, bool> isHex = (temp) =>
-                                {
-                                    if (temp >= '0' && temp <= '9')
-                                    {
-                                        return true;
-                                    }
-                                    if (temp >= 'a' && temp <= 'f')
-                                    {
-                                        return true;
-                                    }
-                                    if (temp >= 'A' && temp <= 'F')
-                                    {
-                                        return true;
-                                    }
-                                    return false;
-                                };
-                                if (isHex(c0) && isHex(c1) && isHex(c2) && isHex(c3))
+                                if (IsHex(c0) && IsHex(c1) && IsHex(c2) && IsHex(c3))
                                 {
                                     byte b0 = Convert.ToByte(c2.ToString() + c3.ToString(), 16);
                                     byte b1 = Convert.ToByte(c0.ToString() + c1.ToString(), 16);
@@ -236,6 +236,32 @@ namespace Common.Serialization
                 }
             }
             #endregion
+            #region Regex
+            if (type == typeof(Regex))
+            {
+                Regex regex = new Regex(@"^/(.*?)/(g|i|m|gi|gm|ig|im|mg|mi|gim|gmi|igm|img|mgi|mig)?$");
+                Match match = regex.Match(input);
+                if (match.Success == true)
+                {
+                    string pattern = match.Groups[1].Value;
+                    string flags = match.Groups[2].Value;
+                    RegexOptions options = RegexOptions.None;
+                    if (flags.Contains("i") == true)
+                    {
+                        options = options | RegexOptions.IgnoreCase;
+                    }
+                    if (flags.Contains("m") == true)
+                    {
+                        options = options | RegexOptions.Multiline;
+                    }
+                    return new Regex(pattern, options);
+                }
+                else
+                {
+                    throw new JsonFormatException("无法将 " + input + "转换为正则表达式。");
+                }
+            }
+            #endregion
             #region DateTime
             if (type == typeof(DateTime))
             {
@@ -300,7 +326,8 @@ namespace Common.Serialization
                 {
                     input = input.Substring(1, input.Length - 2).Trim();
                     ArrayList arr = new ArrayList();
-                    Type elementType = type.GetElementType();// 获取元素类型
+                    // 获取元素类型。
+                    Type elementType = type.GetElementType();
                     foreach (var s in JsonItemReader(input))
                     {
                         arr.Add(Deserialize(s, elementType));
@@ -320,7 +347,8 @@ namespace Common.Serialization
                 {
                     input = input.Substring(1, input.Length - 2).Trim();
                     IList list = (IList)Activator.CreateInstance(type);
-                    Type elementType = type.GetGenericTypeDefinition();// 获取元素类型
+                    // 获取元素类型。
+                    Type elementType = type.GetGenericTypeDefinition();
                     foreach (var s in JsonItemReader(input))
                     {
                         list.Add(Deserialize(s, elementType));
@@ -381,7 +409,7 @@ namespace Common.Serialization
                     }
                     List<object> list = new List<object>();
                     var parameters = constructor.GetParameters();
-                    for (int i = 0; i < parameters.Length; i++)
+                    for (int i = 0, length = parameters.Length; i < length; i++)
                     {
                         list.Add(Deserialize(param[i], parameters[i].ParameterType));
                     }
@@ -488,8 +516,7 @@ namespace Common.Serialization
                 }
                 foreach (PropertyInfo property in properties)
                 {
-                    JsonAttribute attribute =
-                        property.GetCustomAttributes(typeof(JsonAttribute), true).FirstOrDefault() as JsonAttribute;
+                    JsonAttribute attribute = property.GetCustomAttributes(typeof(JsonAttribute), true).FirstOrDefault() as JsonAttribute;
                     if (attribute != null)
                     {
                         if (attribute.ProcessNonPublic == false && property.CanWrite == false)
