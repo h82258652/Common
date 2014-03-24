@@ -9,16 +9,16 @@ namespace Common.Threading
     public class ThreadHelperFinishedEventArgs<TResult> : EventArgs
     {
         /// <summary>
-        /// 
+        /// 创建一个 ThreadHelperFinishedEventArgs 的新实例。
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="value">异步方法的返回值。</param>
         public ThreadHelperFinishedEventArgs(TResult value)
         {
             this.Value = value;
         }
 
         /// <summary>
-        /// 
+        /// 异步方法的返回值。
         /// </summary>
         public TResult Value
         {

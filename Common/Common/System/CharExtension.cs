@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace System
 {
     /// <summary>
@@ -12,10 +7,10 @@ namespace System
     public static partial class CharExtension
     {
         /// <summary>
-        /// 指示当前字符是否属于数字类别。（'0'-'9'及罗马字母例如'Ⅰ'等字符）
+        /// 指示当前字符是否属于数字类别。（'0'-'9'及例如罗马字母'Ⅰ'等字符）
         /// </summary>
-        /// <param name="c"></param>
-        /// <returns></returns>
+        /// <param name="c">测试的字符。</param>
+        /// <returns>是否属于数字类别。</returns>
         public static bool IsNumber(this char c)
         {
             return char.IsNumber(c);
@@ -24,8 +19,8 @@ namespace System
         /// <summary>
         /// 指示当前字符是否属于十进制数字类别。（即字符'0'-'9'）
         /// </summary>
-        /// <param name="c"></param>
-        /// <returns></returns>
+        /// <param name="c">测试的字符。</param>
+        /// <returns>是否属于十进制数字类别。</returns>
         public static bool IsDigit(this char c)
         {
             return char.IsDigit(c);
@@ -34,8 +29,8 @@ namespace System
         /// <summary>
         /// 指示当前字符是否属于大写字母类别。
         /// </summary>
-        /// <param name="c"></param>
-        /// <returns></returns>
+        /// <param name="c">测试的字符。</param>
+        /// <returns>是否属于大写字母类别。</returns>
         public static bool IsUpper(this char c)
         {
             return char.IsUpper(c);
@@ -44,8 +39,8 @@ namespace System
         /// <summary>
         /// 指示当前字符是否属于小写字母类别。
         /// </summary>
-        /// <param name="c"></param>
-        /// <returns></returns>
+        /// <param name="c">测试的字符。</param>
+        /// <returns>是否属于小写字母类别。</returns>
         public static bool IsLower(this char c)
         {
             return char.IsLower(c);
@@ -54,11 +49,36 @@ namespace System
         /// <summary>
         /// 指示当前字符是否属于中文字符。
         /// </summary>
-        /// <param name="c"></param>
-        /// <returns></returns>
+        /// <param name="c">测试的字符。</param>
+        /// <returns>是否属于中文字符。</returns>
         public static bool IsChinese(this char c)
         {
             if (c >= 0x4e00 && c <= 0x9fa5)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 指示当前字符是否属于十六进制字符类别。
+        /// </summary>
+        /// <param name="c">测试的字符。</param>
+        /// <returns>是否属于十六进制字符类别。</returns>
+        public static bool IsHex(this char c)
+        {
+            if (c >= '0' && c <= '9')
+            {
+                return true;
+            }
+            else if (c >= 'a' && c <= 'f')
+            {
+                return true;
+            }
+            else if (c >= 'A' && c <= 'F')
             {
                 return true;
             }

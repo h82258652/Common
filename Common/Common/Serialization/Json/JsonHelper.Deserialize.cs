@@ -199,13 +199,41 @@ namespace Common.Serialization
             }
             #endregion
             #region number
-            if (type == typeof(byte) || type == typeof(sbyte) || type == typeof(short) || type == typeof(int) || type == typeof(long) || type == typeof(float) || type == typeof(double) || type == typeof(ushort) || type == typeof(uint) || type == typeof(ulong) || type == typeof(decimal))
+            if (type == typeof(byte) || type == typeof(sbyte) || type == typeof(short) || type == typeof(int) || type == typeof(long) || type == typeof(float) || type == typeof(double) || type == typeof(ushort) || type == typeof(uint) || type == typeof(ulong) || type == typeof(decimal) || type == typeof(BigInteger))
             {
-                return Convert.ChangeType(input, type);
-            }
-            if (type == typeof(BigInteger))
-            {
-                return BigInteger.Parse(input);
+                Regex regex = new Regex(@"^(\-?)(0|[1-9]\d*)(\.\d+)?((e|E)(\+|\-)?\d+)?$");
+                Match match = regex.Match(input);
+                if (match.Success == true)
+                {
+                    string num = match.Groups[1].Value + match.Groups[2].Value + match.Groups[3].Value;
+                    if (match.Groups[4].Success == true)
+                    {
+                        string e = match.Groups[4].Value.Substring(1);
+                        if (type != typeof(BigInteger))
+                        {
+                            return Convert.ChangeType(double.Parse(num) * Math.Pow(10, double.Parse(e)), type);
+                        }
+                        else
+                        {
+                            return BigInteger.Multiply(BigInteger.Parse(num), BigInteger.Pow(new BigInteger(10), int.Parse(e)));
+                        }
+                    }
+                    else
+                    {
+                        if (type != typeof(BigInteger))
+                        {
+                            return Convert.ChangeType(num, type);
+                        }
+                        else
+                        {
+                            return BigInteger.Parse(num);
+                        }
+                    }
+                }
+                else
+                {
+                    throw new JsonFormatException("无法将 " + input + " 转换为 " + type.Name + " 格式。");
+                }
             }
             #endregion
             #region DateTime

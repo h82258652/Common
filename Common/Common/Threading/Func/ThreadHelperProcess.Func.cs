@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 namespace Common.Threading
 {
     internal class ThreadHelperProcess<TResult>

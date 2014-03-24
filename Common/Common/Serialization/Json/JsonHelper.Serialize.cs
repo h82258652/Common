@@ -216,13 +216,11 @@ namespace Common.Serialization
                         if (value is ICollection)
                         {
                             ICollection collection = value as ICollection;
-                            if (attribute.CollectionCountLessThan > -1 &&
-                                collection.Count >= attribute.CollectionCountLessThan)
+                            if (attribute.CollectionCountLessThan > -1 && collection.Count >= attribute.CollectionCountLessThan)
                             {
                                 throw JsonCollectionCountException.CreateLessThanException(value, attribute.CollectionCountLessThan);
                             }
-                            if (attribute.CollectionCountGreaterThan > -1 &&
-                                collection.Count <= attribute.CollectionCountGreaterThan)
+                            if (attribute.CollectionCountGreaterThan > -1 && collection.Count <= attribute.CollectionCountGreaterThan)
                             {
                                 throw JsonCollectionCountException.CreateGreaterThanException(value, attribute.CollectionCountGreaterThan);
                             }
@@ -312,13 +310,11 @@ namespace Common.Serialization
                             if (value is ICollection)
                             {
                                 ICollection collection = value as ICollection;
-                                if (attribute.CollectionCountLessThan > -1 &&
-                                    collection.Count >= attribute.CollectionCountLessThan)
+                                if (attribute.CollectionCountLessThan > -1 && collection.Count >= attribute.CollectionCountLessThan)
                                 {
                                     throw JsonCollectionCountException.CreateLessThanException(value, attribute.CollectionCountLessThan);
                                 }
-                                if (attribute.CollectionCountGreaterThan > -1 &&
-                                    collection.Count <= attribute.CollectionCountGreaterThan)
+                                if (attribute.CollectionCountGreaterThan > -1 && collection.Count <= attribute.CollectionCountGreaterThan)
                                 {
                                     throw JsonCollectionCountException.CreateGreaterThanException(value, attribute.CollectionCountGreaterThan);
                                 }

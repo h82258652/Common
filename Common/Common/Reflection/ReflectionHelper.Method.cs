@@ -53,19 +53,6 @@ namespace Common.Reflection
         /// <summary>
         /// 执行对象指定的实例方法。
         /// </summary>
-        /// <typeparam name="T">方法的返回值类型。</typeparam>
-        /// <param name="obj">对象。</param>
-        /// <param name="methodName">方法名称。</param>
-        /// <param name="args">方法参数。</param>
-        /// <returns>方法的返回值。</returns>
-        public static T InvokeMethod<T>(object obj, string methodName, params object[] args)
-        {
-            return (T)InvokeMethod(obj, methodName, args);
-        }
-
-        /// <summary>
-        /// 执行对象指定的实例方法。
-        /// </summary>
         /// <param name="obj">对象。</param>
         /// <param name="methodName">方法名称。</param>
         /// <param name="option">方法名称的匹配方式。</param>
@@ -79,6 +66,19 @@ namespace Common.Reflection
                 return method.Invoke(obj, args);
             }
             return null;
+        }
+
+        /// <summary>
+        /// 执行对象指定的实例方法。
+        /// </summary>
+        /// <typeparam name="T">方法的返回值类型。</typeparam>
+        /// <param name="obj">对象。</param>
+        /// <param name="methodName">方法名称。</param>
+        /// <param name="args">方法参数。</param>
+        /// <returns>方法的返回值。</returns>
+        public static T InvokeMethod<T>(object obj, string methodName, params object[] args)
+        {
+            return (T)InvokeMethod(obj, methodName, args);
         }
 
         /// <summary>

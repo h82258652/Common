@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 namespace Common.Threading
 {
     /// <summary>
@@ -9,7 +8,7 @@ namespace Common.Threading
     public class ThreadHelperResult<TResult>
     {
         private bool _hasFinish;
-        
+
         /// <summary>
         /// 异步方法执行完成时触发该事件。
         /// </summary>
@@ -18,10 +17,10 @@ namespace Common.Threading
         /// <summary>
         /// 指定异步方法执行完成时的方法。
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">触发该事件的源头。</param>
+        /// <param name="e">异步方法完成的事件。</param>
         public delegate void ThreadHelperFinishedHandler(object sender, ThreadHelperFinishedEventArgs<TResult> e);
-        
+
         /// <summary>
         /// 指示方法是否结束。
         /// </summary>
@@ -69,7 +68,7 @@ namespace Common.Threading
                 }
             }
         }
-        
+
         internal ThreadHelperResult()
         {
             HasFinish = false;

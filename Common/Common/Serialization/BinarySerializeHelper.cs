@@ -16,6 +16,20 @@ namespace Common.Serialization
         }
 
         /// <summary>
+        /// 将指定的字节数组转换为 T 类型的对象。
+        /// </summary>
+        /// <typeparam name="T">所生成对象的类型。</typeparam>
+        /// <param name="bytes">要进行反序列化的字节数组。</param>
+        /// <returns>反序列化的对象。</returns>
+        public static T Deserialize<T>(byte[] bytes)
+        {
+            using (MemoryStream ms = new MemoryStream(bytes))
+            {
+                return (T)_bf.Deserialize(ms);
+            }
+        }
+
+        /// <summary>
         /// 将当前对象转换为字节数组。（需要对对象的类用 Serializable 进行标记）
         /// </summary>
         /// <typeparam name="T">序列化的对象的类型。</typeparam>
@@ -27,20 +41,6 @@ namespace Common.Serialization
             {
                 _bf.Serialize(ms, input);
                 return ms.ToArray();
-            }
-        }
-
-        /// <summary>
-        /// 将指定的字节数组转换为 T 类型的对象。
-        /// </summary>
-        /// <typeparam name="T">所生成对象的类型。</typeparam>
-        /// <param name="bytes">要进行反序列化的字节数组。</param>
-        /// <returns>反序列化的对象。</returns>
-        public static T Deserialize<T>(byte[] bytes)
-        {
-            using (MemoryStream ms = new MemoryStream(bytes))
-            {
-                return (T)_bf.Deserialize(ms);
             }
         }
     }

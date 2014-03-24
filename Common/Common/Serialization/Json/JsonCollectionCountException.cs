@@ -44,6 +44,12 @@ namespace Common.Serialization
             set;
         }
 
+        private JsonCollectionCountException()
+        {
+            LessThan = -1;
+            GreaterThan = -1;
+        }
+
         internal static JsonCollectionCountException CreateLessThanException(object collection, int lessThan)
         {
             return new JsonCollectionCountException()
@@ -55,7 +61,7 @@ namespace Common.Serialization
         }
 
         internal static JsonCollectionCountException CreateGreaterThanException(object collection, int greaterThan
-)
+            )
         {
             return new JsonCollectionCountException()
             {
@@ -63,12 +69,6 @@ namespace Common.Serialization
                 CurrentCount = (collection as ICollection).Count,
                 GreaterThan = greaterThan
             };
-        }
-
-        private JsonCollectionCountException()
-        {
-            LessThan = -1;
-            GreaterThan = -1;
         }
 
         /// <summary>

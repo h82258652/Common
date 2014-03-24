@@ -2,7 +2,9 @@
 using System.Collections.Concurrent;
 using System.Globalization;
 using System.IO.Compression;
+using System.Numerics;
 using System.Runtime.Remoting.Messaging;
+using System.Text.RegularExpressions;
 using System.Web.UI.WebControls;
 using Common.Config;
 using Common.Reflection;
@@ -26,6 +28,7 @@ using System.Web.Script.Serialization;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+using Common.Web;
 
 namespace Test
 {
@@ -193,50 +196,33 @@ namespace Test
         }
     }
 
-    internal class P
-    {
-        [Json(CollectionCountGreaterThan = 2, CollectionCountLessThan = 5)]
-        public string[] SS
-        {
-            get;
-            set;
-        }
-
-        public int Age
-        {
-            get;
-            set;
-        }
-
-        public P()
-        {
-        }
-    }
-
     class Program
     {
+        public static double ToNum(string input)
+        {
+            Regex r = new Regex(@"^(\-?)(0|[1-9]\d*)(\.\d+)?((e|E)(\+|\-)?\d+)?");
+            Match m = r.Match(input);
+            if (m.Success == true)
+            {
+                string num = m.Groups[1].Value + m.Groups[2].Value + m.Groups[3].Value;
+                if (m.Groups[4].Success == true)
+                {
+                    string e = m.Groups[4].Value.Substring(1);
+                    return double.Parse(num) * Math.Pow(10, double.Parse(e));
+                }
+                else
+                {
+                    return double.Parse(num);
+                }
+            }
+            else
+            {
+                throw new Exception();
+            }
+        }
+
         public static void Main(string[] args)
         {
-           var c = (char)(0x4e00+0);
-            var c2 = (char)(0x9fa5);
-            Console.WriteLine(c);
-            Console.WriteLine(c2);
-            Console.ReadKey();
-            return;
-            
-            var x = new
-            {
-                name = "haha",
-                age = 18
-            };
-            string s;
-            Console.WriteLine(s=JsonHelper.SerializeToJson(x));
-            Type t = x.GetType();
-            var q = JsonHelper.Deserialize(s, t);
-            Console.WriteLine(ReflectionHelper.GetField(q, "name"));
-
-var xxx=            ReflectionHelper.Create(t);
-
             Console.ReadKey();
         }
     }

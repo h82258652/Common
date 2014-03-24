@@ -12,38 +12,6 @@ namespace Common.Config
     /// </summary>
     public static partial class XmlConfigHelper
     {
-        /// <summary>
-        /// 获取。
-        /// </summary>
-        /// <param name="xmlPath"></param>
-        /// <param name="xpath"></param>
-        /// <returns></returns>
-        public static string Get(string xmlPath, string xpath)
-        {
-            if (File.Exists(xmlPath) == false)
-            {
-                return string.Empty;
-            }
-
-            XDocument xd = XDocument.Load(xmlPath);
-            string[] paths = xpath.Split('/', '\\');
-            var xes = xd.Elements();
-            for (int i = 0; i < paths.Length; i++)
-            {
-                var xe = xes.Where(temp => temp.Name.LocalName.Equals(paths[i], StringComparison.OrdinalIgnoreCase) == true).FirstOrDefault();
-                if (xe == null)
-                {
-                    return string.Empty;
-                }
-                if (i == paths.Length - 1)
-                {
-                    return xe.Value;
-                }
-                xes = xe.Elements();
-            }
-            return string.Empty;
-        }
-
         internal static XmlNode SelectNode(XmlDocument xd, string xpath)
         {
             Stack<string> stack = new Stack<string>();
@@ -80,11 +48,43 @@ namespace Common.Config
         }
 
         /// <summary>
-        /// 
+        /// 获取 xml 文件中指定 xml 路径的值。
         /// </summary>
-        /// <param name="xmlPath"></param>
-        /// <param name="xpath"></param>
-        /// <param name="value"></param>
+        /// <param name="xmlPath">xml 文件路径。</param>
+        /// <param name="xpath">xml 查询路径。</param>
+        /// <returns>若存在值，则返回值，否则返回空字符串。</returns>
+        public static string Get(string xmlPath, string xpath)
+        {
+            if (File.Exists(xmlPath) == false)
+            {
+                return string.Empty;
+            }
+
+            XDocument xd = XDocument.Load(xmlPath);
+            string[] paths = xpath.Split('/', '\\');
+            var xes = xd.Elements();
+            for (int i = 0; i < paths.Length; i++)
+            {
+                var xe = xes.Where(temp => temp.Name.LocalName.Equals(paths[i], StringComparison.OrdinalIgnoreCase) == true).FirstOrDefault();
+                if (xe == null)
+                {
+                    return string.Empty;
+                }
+                if (i == paths.Length - 1)
+                {
+                    return xe.Value;
+                }
+                xes = xe.Elements();
+            }
+            return string.Empty;
+        }
+
+        /// <summary>
+        /// 设置 xml 文件中指定 xml 路径的值。
+        /// </summary>
+        /// <param name="xmlPath">xml 文件路径。</param>
+        /// <param name="xpath">xml 查询路径。</param>
+        /// <param name="value">新的值。</param>
         public static void Set(string xmlPath, string xpath, object value)
         {
             // 检查参数

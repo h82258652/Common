@@ -8,26 +8,6 @@ namespace Common.Reflection
     public static partial class ReflectionHelper
     {
         /// <summary>
-        /// 指示对象是否存在索引器。
-        /// </summary>
-        /// <param name="obj">测试的对象。</param>
-        /// <returns>是否存在索引器。</returns>
-        public static bool HasIndexer(object obj)
-        {
-            return GetIndexerCount(obj) > 0;
-        }
-
-        /// <summary>
-        /// 指示对象具有的索引器的数量。
-        /// </summary>
-        /// <param name="obj">测试的对象。</param>
-        /// <returns>索引器的数量。</returns>
-        public static int GetIndexerCount(object obj)
-        {
-            return GetAllIndexer(obj).Length;
-        }
-
-        /// <summary>
         /// 获取对象的所有索引器。
         /// </summary>
         /// <param name="obj">对象。</param>
@@ -73,6 +53,26 @@ namespace Common.Reflection
             return (T)GetIndexer(obj, args);
         }
 
+        /// <summary>
+        /// 指示对象具有的索引器的数量。
+        /// </summary>
+        /// <param name="obj">测试的对象。</param>
+        /// <returns>索引器的数量。</returns>
+        public static int GetIndexerCount(object obj)
+        {
+            return GetAllIndexer(obj).Length;
+        }
+
+        /// <summary>
+        /// 指示对象是否存在索引器。
+        /// </summary>
+        /// <param name="obj">测试的对象。</param>
+        /// <returns>是否存在索引器。</returns>
+        public static bool HasIndexer(object obj)
+        {
+            return GetIndexerCount(obj) > 0;
+        }
+        
         /// <summary>
         /// 设置索引器的值。
         /// </summary>

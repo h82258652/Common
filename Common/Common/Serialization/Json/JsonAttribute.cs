@@ -9,7 +9,7 @@ namespace Common.Serialization
     public sealed partial class JsonAttribute : Attribute
     {
         /// <summary>
-        /// 构造函数。
+        /// 创建一个 JsonAttribute 的实例。
         /// </summary>
         public JsonAttribute()
             : this(null, null)
@@ -17,7 +17,7 @@ namespace Common.Serialization
         }
 
         /// <summary>
-        /// 构造函数。
+        /// 创建一个 JsonAttribute 的实例。
         /// </summary>
         /// <param name="name">指定该字段或属性在序列化和反序列化时映射的名字。</param>
         public JsonAttribute(string name)
@@ -26,7 +26,7 @@ namespace Common.Serialization
         }
 
         /// <summary>
-        /// 构造函数。
+        /// 创建一个 JsonAttribute 的实例。
         /// </summary>
         /// <param name="converter">指定该字段或属性在序列化和反序列化时使用的自定义转换器的类型。</param>
         public JsonAttribute(Type converter)
@@ -35,7 +35,7 @@ namespace Common.Serialization
         }
 
         /// <summary>
-        /// 构造函数。
+        /// 创建一个 JsonAttribute 的实例。
         /// </summary>
         /// <param name="name">指定该字段或属性在序列化和反序列化时映射的名字。</param>
         /// <param name="converter">指定该字段或属性在序列化和反序列化时使用的自定义转换器的类型。</param>
@@ -48,9 +48,27 @@ namespace Common.Serialization
         }
 
         /// <summary>
-        /// 指定在序列化和反序列化时映射的名字。
+        /// 约束在序列化时数组或集合的元素个数必须大于指定值。小于零为不约束。默认为 -1。
         /// </summary>
-        public string Name
+        public int CollectionCountGreaterThan
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// 约束在序列化时数组或集合的元素个数必须小于指定值。小于零为不约束。默认为 -1。
+        /// </summary>
+        public int CollectionCountLessThan
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// 使用自定义的序列化转换。
+        /// </summary>
+        public Type Converter
         {
             get;
             set;
@@ -75,9 +93,9 @@ namespace Common.Serialization
         }
 
         /// <summary>
-        /// 使用自定义的序列化转换。
+        /// 指定在序列化和反序列化时映射的名字。
         /// </summary>
-        public Type Converter
+        public string Name
         {
             get;
             set;
@@ -87,24 +105,6 @@ namespace Common.Serialization
         /// 是否序列化与反序列化非公有字段或属性。默认 false。
         /// </summary>
         public bool ProcessNonPublic
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// 约束在序列化时数组或集合的元素个数必须小于指定值。小于零为不约束。默认为 -1。
-        /// </summary>
-        public int CollectionCountLessThan
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// 约束在序列化时数组或集合的元素个数必须大于指定值。小于零为不约束。默认为 -1。
-        /// </summary>
-        public int CollectionCountGreaterThan
         {
             get;
             set;

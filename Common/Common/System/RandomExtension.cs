@@ -39,7 +39,7 @@ namespace System
         /// </summary>
         /// <param name="maxValue">要生成的随机字节的上限（随机字节不能取该上限值）。 maxValue 必须大于或等于零。</param>
         /// <returns>大于等于且小于 maxValue 的无符号 8 位整数，即：返回值的范围通常包括零但不包括 maxValue。 不过，如果 maxValue 等于零，则返回 maxValue。</returns>
-        /// <exception cref="System.ArgumentOutOfRangeException"></exception>
+        /// <exception cref="System.ArgumentOutOfRangeException"><c>maxValue</c> 小于 0。</exception>
         public static byte NextByte(byte maxValue)
         {
             if (maxValue < 0)
@@ -55,7 +55,7 @@ namespace System
         /// <param name="minValue">返回的随机字节的下界（随机字节可取该下界值）。</param>
         /// <param name="maxValue">返回的随机字节的上界（随机字节不能取该上界值）。 maxValue 必须大于或等于 minValue。</param>
         /// <returns>一个大于等于 minValue 且小于 maxValue 的无符号 8 位整数，即：返回的值范围包括 minValue 但不包括 maxValue。 如果 minValue 等于 maxValue，则返回 minValue。</returns>
-        /// <exception cref="System.ArgumentOutOfRangeException"></exception>
+        /// <exception cref="System.ArgumentOutOfRangeException"><c>maxValue</c> 小于 <c>minValue</c>。</exception>
         public static byte NextByte(byte minValue, byte maxValue)
         {
             return (byte)_rand.Next(minValue, maxValue);
@@ -65,7 +65,7 @@ namespace System
         /// 用随机数填充指定字节数组的元素。
         /// </summary>
         /// <param name="buffer">包含随机数的字节数组。</param>
-        /// <exception cref="System.ArgumentNullException"></exception>
+        /// <exception cref="System.ArgumentNullException"><c>buffer</c> 为 null。</exception>
         public static void NextBytes(byte[] buffer)
         {
             _rand.NextBytes(buffer);
@@ -76,7 +76,7 @@ namespace System
         /// </summary>
         /// <param name="length">字节数组长度。</param>
         /// <returns>包含随机数的字节数组。</returns>
-        /// <exception cref="System.ArgumentOutOfRangeException"></exception>
+        /// <exception cref="System.ArgumentOutOfRangeException"><c>length</c> 小于或等于 0。</exception>
         public static byte[] NextBytes(int length)
         {
             if (length <= 0)
@@ -112,7 +112,7 @@ namespace System
         /// </summary>
         /// <param name="maxValue">要生成的随机数的上限（随机数不能取该上限值）。 maxValue 必须大于或等于零。</param>
         /// <returns>大于等于零且小于 maxValue 的 Decimal，即：返回值的范围通常包括零但不包括 maxValue。 不过，如果 maxValue 等于零，则返回 maxValue。</returns>
-        /// <exception cref="System.ArgumentOutOfRangeException"></exception>
+        /// <exception cref="System.ArgumentOutOfRangeException"><c>maxValue</c> 小于 0。</exception>
         public static decimal NextDecimal(decimal maxValue)
         {
             if (maxValue == 0)
@@ -145,7 +145,7 @@ namespace System
         /// <param name="minValue">返回的随机数的下界（随机数可取该下界值）。</param>
         /// <param name="maxValue">返回的随机数的上界（随机数不能取该上界值）。 maxValue 必须大于或等于 minValue。</param>
         /// <returns>一个大于等于 minValue 且小于 maxValue 的 Decimal，即：返回的值范围包括 minValue 但不包括 maxValue。 如果 minValue 等于 maxValue，则返回 minValue。</returns>
-        /// <exception cref="System.ArgumentOutOfRangeException"></exception>
+        /// <exception cref="System.ArgumentOutOfRangeException"><c>maxValue</c> 小于 <c>minValue</c>。</exception>
         public static decimal NextDecimal(decimal minValue, decimal maxValue)
         {
             if (minValue == maxValue)
@@ -207,7 +207,7 @@ namespace System
         /// </summary>
         /// <param name="maxValue">要生成的随机数的上限（随机数不能取该上限值）。 maxValue 必须大于或等于零。</param>
         /// <returns>大于等于零且小于 maxValue 的双精度浮点数，即：返回值的范围通常包括零但不包括 maxValue。 不过，如果 maxValue 等于零，则返回 maxValue。</returns>
-        /// <exception cref="System.ArgumentOutOfRangeException"></exception>
+        /// <exception cref="System.ArgumentOutOfRangeException"><c>maxValue</c> 小于 0。</exception>
         public static double NextDouble(double maxValue)
         {
             if (maxValue == 0)
@@ -234,7 +234,7 @@ namespace System
         /// <param name="minValue">返回的随机数的下界（随机数可取该下界值）。</param>
         /// <param name="maxValue">返回的随机数的上界（随机数不能取该上界值）。 maxValue 必须大于或等于 minValue。</param>
         /// <returns>一个大于等于 minValue 且小于 maxValue 的双精度浮点数，即：返回的值范围包括 minValue 但不包括 maxValue。 如果 minValue 等于 maxValue，则返回 minValue。</returns>
-        /// <exception cref="System.ArgumentOutOfRangeException"></exception>
+        /// <exception cref="System.ArgumentOutOfRangeException"><c>maxValue</c> 小于 <c>minValue</c>。</exception>
         public static double NextDouble(double minValue, double maxValue)
         {
             if (minValue == maxValue)
@@ -260,6 +260,7 @@ namespace System
         /// </summary>
         /// <typeparam name="T">可枚举类型。</typeparam>
         /// <returns>返回其中一个枚举。</returns>
+        /// <exception cref="System.InvalidOperationException"><c>T</c> 不是枚举类型。</exception>
         public static T NextEnum<T>()
         {
             return (T)NextEnum(typeof(T));
@@ -270,8 +271,8 @@ namespace System
         /// </summary>
         /// <param name="type">可枚举类型</param>
         /// <returns>返回其中一个枚举值。</returns>
-        /// <exception cref="System.ArgumentNullException"></exception>
-        /// <exception cref="System.InvalidOperationException"></exception>
+        /// <exception cref="System.ArgumentNullException"><c>type</c> 为 null。</exception>
+        /// <exception cref="System.InvalidOperationException"><c>type</c> 不是枚举类型。</exception>
         public static object NextEnum(Type type)
         {
             if (type == null)
@@ -321,7 +322,7 @@ namespace System
         /// </summary>
         /// <param name="maxValue">要生成的随机数的上限（随机数不能取该上限值）。 maxValue 必须大于或等于零。</param>
         /// <returns>大于等于零且小于 maxValue 的单精度浮点数，即：返回值的范围通常包括零但不包括 maxValue。 不过，如果 maxValue 等于零，则返回 maxValue。</returns>
-        /// <exception cref="System.ArgumentOutOfRangeException"></exception>
+        /// <exception cref="System.ArgumentOutOfRangeException"><c>maxValue</c> 小于 0。</exception>
         public static float NextFloat(float maxValue)
         {
             if (maxValue == 0)
@@ -348,7 +349,7 @@ namespace System
         /// <param name="minValue">返回的随机数的下界（随机数可取该下界值）。</param>
         /// <param name="maxValue">返回的随机数的上界（随机数不能取该上界值）。 maxValue 必须大于或等于 minValue。</param>
         /// <returns>一个大于等于 minValue 且小于 maxValue 的单精度浮点数，即：返回的值范围包括 minValue 但不包括 maxValue。 如果 minValue 等于 maxValue，则返回 minValue。</returns>
-        /// <exception cref="System.ArgumentOutOfRangeException"></exception>
+        /// <exception cref="System.ArgumentOutOfRangeException"><c>maxValue</c> 小于 <c>minValue</c>。</exception>
         public static float NextFloat(float minValue, float maxValue)
         {
             if (minValue == maxValue)
@@ -391,7 +392,7 @@ namespace System
         /// </summary>
         /// <param name="maxValue">要生成的随机数的上限（随机数不能取该上限值）。 maxValue 必须大于或等于零。</param>
         /// <returns>大于等于零且小于 maxValue 的 32 位带符号整数，即：返回值的范围通常包括零但不包括 maxValue。 不过，如果 maxValue 等于零，则返回 maxValue。</returns>
-        /// <exception cref="System.ArgumentOutOfRangeException"></exception>
+        /// <exception cref="System.ArgumentOutOfRangeException"><c>maxValue</c> 小于 0。</exception>
         public static int NextInt(int maxValue)
         {
             return _rand.Next(maxValue);
@@ -403,7 +404,7 @@ namespace System
         /// <param name="minValue">返回的随机数的下界（随机数可取该下界值）。</param>
         /// <param name="maxValue">返回的随机数的上界（随机数不能取该上界值）。 maxValue 必须大于或等于 minValue。</param>
         /// <returns>一个大于等于 minValue 且小于 maxValue 的 32 位带符号整数，即：返回的值范围包括 minValue 但不包括 maxValue。 如果 minValue 等于 maxValue，则返回 minValue。</returns>
-        /// <exception cref="System.ArgumentOutOfRangeException"></exception>
+        /// <exception cref="System.ArgumentOutOfRangeException"><c>maxValue</c> 小于 <c>minValue</c>。</exception>
         public static int NextInt(int minValue, int maxValue)
         {
             return _rand.Next(minValue, maxValue);
@@ -440,7 +441,7 @@ namespace System
         /// </summary>
         /// <param name="maxValue">要生成的随机数的上限（随机数不能取该上限值）。 maxValue 必须大于或等于零。</param>
         /// <returns>大于等于零且小于 maxValue 的 64 位带符号整数，即：返回值的范围通常包括零但不包括 maxValue。 不过，如果 maxValue 等于零，则返回 maxValue。</returns>
-        /// <exception cref="System.ArgumentOutOfRangeException"></exception>
+        /// <exception cref="System.ArgumentOutOfRangeException"><c>maxValue</c> 小于 0。</exception>
         public static long NextLong(long maxValue)
         {
             if (maxValue == 0)
@@ -467,7 +468,7 @@ namespace System
         /// <param name="minValue">返回的随机数的下界（随机数可取该下界值）。</param>
         /// <param name="maxValue">返回的随机数的上界（随机数不能取该上界值）。 maxValue 必须大于或等于 minValue。</param>
         /// <returns>一个大于等于 minValue 且小于 maxValue 的 64 位带符号整数，即：返回的值范围包括 minValue 但不包括 maxValue。 如果 minValue 等于 maxValue，则返回 minValue。</returns>
-        /// <exception cref="System.ArgumentOutOfRangeException"></exception>
+        /// <exception cref="System.ArgumentOutOfRangeException"><c>maxValue</c> 小于 <c>minValue</c>。</exception>
         public static long NextLong(long minValue, long maxValue)
         {
             if (minValue == maxValue)
@@ -510,7 +511,7 @@ namespace System
         /// </summary>
         /// <param name="maxValue">要生成的随机数的上限（随机数不能取该上限值）。 maxValue 必须大于或等于零。</param>
         /// <returns>大于等于零且小于 maxValue 的 SByte，即：返回值的范围通常包括零但不包括 maxValue。 不过，如果 maxValue 等于零，则返回 maxValue。</returns>
-        /// <exception cref="System.ArgumentOutOfRangeException"></exception>
+        /// <exception cref="System.ArgumentOutOfRangeException"><c>maxValue</c> 小于 0。</exception>
         public static sbyte NextSByte(sbyte maxValue)
         {
             return (sbyte)_rand.Next(0, maxValue);
@@ -522,7 +523,7 @@ namespace System
         /// <param name="minValue">返回的随机数的下界（随机数可取该下界值）。</param>
         /// <param name="maxValue">返回的随机数的上界（随机数不能取该上界值）。 maxValue 必须大于或等于 minValue。</param>
         /// <returns>一个大于等于 minValue 且小于 maxValue 的 SByte，即：返回的值范围包括 minValue 但不包括 maxValue。 如果 minValue 等于 maxValue，则返回 minValue。</returns>
-        /// <exception cref="System.ArgumentOutOfRangeException"></exception>
+        /// <exception cref="System.ArgumentOutOfRangeException"><c>maxValue</c> 小于 <c>minValue</c>。</exception>
         public static sbyte NextSByte(sbyte minValue, sbyte maxValue)
         {
             return (sbyte)_rand.Next(minValue, maxValue);
@@ -550,7 +551,7 @@ namespace System
         /// </summary>
         /// <param name="maxValue">要生成的随机数的上限（随机数不能取该上限值）。 maxValue 必须大于或等于零。</param>
         /// <returns>大于等于零且小于 maxValue 的 16 位带符号整数，即：返回值的范围通常包括零但不包括 maxValue。 不过，如果 maxValue 等于零，则返回 maxValue。</returns>
-        /// <exception cref="System.ArgumentOutOfRangeException"></exception>
+        /// <exception cref="System.ArgumentOutOfRangeException"><c>maxValue</c> 小于 0。</exception>
         public static short NextShort(short maxValue)
         {
             return (short)_rand.Next(maxValue);
@@ -562,7 +563,7 @@ namespace System
         /// <param name="minValue">返回的随机数的下界（随机数可取该下界值）。</param>
         /// <param name="maxValue">返回的随机数的上界（随机数不能取该上界值）。 maxValue 必须大于或等于 minValue。</param>
         /// <returns>一个大于等于 minValue 且小于 maxValue 的 16 位带符号整数，即：返回的值范围包括 minValue 但不包括 maxValue。 如果 minValue 等于 maxValue，则返回 minValue。</returns>
-        /// <exception cref="System.ArgumentOutOfRangeException"></exception>
+        /// <exception cref="System.ArgumentOutOfRangeException"><c>maxValue</c> 小于 <c>minValue</c>。</exception>
         public static short NextShort(short minValue, short maxValue)
         {
             return (short)_rand.Next(minValue, maxValue);
@@ -573,7 +574,7 @@ namespace System
         /// </summary>
         /// <param name="strs">字符串数组。</param>
         /// <returns>字符串数组中随机一个字符串。</returns>
-        /// <exception cref="System.ArgumentNullException"></exception>
+        /// <exception cref="System.ArgumentNullException"><c>strs</c> 为 null。</exception>
         public static string NextString(params string[] strs)
         {
             if (strs == null)
@@ -597,7 +598,7 @@ namespace System
         /// </summary>
         /// <param name="maxValue">要生成的随机数的上限（随机数不能取该上限值）。 maxValue 必须大于或等于零。</param>
         /// <returns>大于等于零且小于 maxValue 的 32 位无符号整数，即：返回值的范围通常包括零但不包括 maxValue。 不过，如果 maxValue 等于零，则返回 maxValue。</returns>
-        /// <exception cref="System.ArgumentOutOfRangeException"></exception>
+        /// <exception cref="System.ArgumentOutOfRangeException"><c>maxValue</c> 小于 0。</exception>
         public static uint NextUInt(uint maxValue)
         {
             if (maxValue == 0)
@@ -617,7 +618,7 @@ namespace System
         /// <param name="minValue">返回的随机数的下界（随机数可取该下界值）。</param>
         /// <param name="maxValue">返回的随机数的上界（随机数不能取该上界值）。 maxValue 必须大于或等于 minValue。</param>
         /// <returns>一个大于等于 minValue 且小于 maxValue 的 32 位无符号整数，即：返回的值范围包括 minValue 但不包括 maxValue。 如果 minValue 等于 maxValue，则返回 minValue。</returns>
-        /// <exception cref="System.ArgumentOutOfRangeException"></exception>
+        /// <exception cref="System.ArgumentOutOfRangeException"><c>maxValue</c> 小于 <c>minValue</c>。</exception>
         public static uint NextUInt(uint minValue, uint maxValue)
         {
             if (minValue == maxValue)
@@ -652,7 +653,7 @@ namespace System
         /// </summary>
         /// <param name="maxValue">要生成的随机数的上限（随机数不能取该上限值）。 maxValue 必须大于或等于零。</param>
         /// <returns>大于等于零且小于 maxValue 的 64 位无符号长整数，即：返回值的范围通常包括零但不包括 maxValue。 不过，如果 maxValue 等于零，则返回 maxValue。</returns>
-        /// <exception cref="System.ArgumentOutOfRangeException"></exception>
+        /// <exception cref="System.ArgumentOutOfRangeException"><c>maxValue</c> 小于 0。</exception>
         public static ulong NextULong(ulong maxValue)
         {
             if (maxValue == 0)
@@ -679,7 +680,7 @@ namespace System
         /// <param name="minValue">返回的随机数的下界（随机数可取该下界值）。</param>
         /// <param name="maxValue">返回的随机数的上界（随机数不能取该上界值）。 maxValue 必须大于或等于 minValue。</param>
         /// <returns>一个大于等于 minValue 且小于 maxValue 的 64 位无符号长整数，即：返回的值范围包括 minValue 但不包括 maxValue。 如果 minValue 等于 maxValue，则返回 minValue。</returns>
-        /// <exception cref="System.ArgumentOutOfRangeException"></exception>
+        /// <exception cref="System.ArgumentOutOfRangeException"><c>maxValue</c> 小于 <c>minValue</c>。</exception>
         public static ulong NextULong(ulong minValue, ulong maxValue)
         {
             if (minValue == maxValue)
@@ -721,7 +722,7 @@ namespace System
         /// </summary>
         /// <param name="maxValue">要生成的随机数的上限（随机数不能取该上限值）。 maxValue 必须大于或等于零。</param>
         /// <returns>大于等于零且小于 maxValue 的 16 位无符号长整数，即：返回值的范围通常包括零但不包括 maxValue。 不过，如果 maxValue 等于零，则返回 maxValue。</returns>
-        /// <exception cref="System.ArgumentOutOfRangeException"></exception>
+        /// <exception cref="System.ArgumentOutOfRangeException"><c>maxValue</c> 小于 0。</exception>
         public static ushort NextUShort(ushort maxValue)
         {
             if (maxValue == 0)
@@ -748,7 +749,7 @@ namespace System
         /// <param name="minValue">返回的随机数的下界（随机数可取该下界值）。</param>
         /// <param name="maxValue">返回的随机数的上界（随机数不能取该上界值）。 maxValue 必须大于或等于 minValue。</param>
         /// <returns>一个大于等于 minValue 且小于 maxValue 的 16 位无符号长整数，即：返回的值范围包括 minValue 但不包括 maxValue。 如果 minValue 等于 maxValue，则返回 minValue。</returns>
-        /// <exception cref="System.ArgumentOutOfRangeException"></exception>
+        /// <exception cref="System.ArgumentOutOfRangeException"><c>maxValue</c> 小于 <c>minValue</c>。</exception>
         public static ushort NextUShort(ushort minValue, ushort maxValue)
         {
             if (minValue == maxValue)
@@ -813,16 +814,18 @@ namespace System
             return gb2312.GetString(new byte[] { b1, b2 })[0];
         }
 
+
         /// <summary>
         /// 返回指定个数的随机汉字。
         /// </summary>
+        /// <param name="length">随机汉字的个数。</param>
         /// <returns>指定个数的随机汉字。</returns>
-        /// <exception cref="System.ArgumentOutOfRangeException"></exception>
+        /// <exception cref="System.ArgumentOutOfRangeException"><c>length</c> 小于或等于 0。</exception>
         public static string NextChinese(int length)
         {
             if (length <= 0)
             {
-                throw new ArgumentOutOfRangeException("length不能小于等于0。");
+                throw new ArgumentOutOfRangeException("length 不能小于等于0。");
             }
             StringBuilder sb = new StringBuilder(length);
             for (int i = 0; i < length; i++)

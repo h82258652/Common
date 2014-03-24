@@ -8,6 +8,11 @@ namespace Common.Config
     /// <summary>
     /// 独立存储设置帮助类。
     /// </summary>
+    /// <namespace>
+    /// <summary>
+    /// 公共类库设置文件。
+    /// </summary>
+    /// </namespace>
     public static partial class IsolatedStorageConfigHelper
     {
         private const string ISOLATEDSTORAGESETTINGNAME = "appsetting.bin";

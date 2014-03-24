@@ -15,13 +15,18 @@ namespace Common.Web
         /// <param name="param">Post 请求的参数。</param>
         /// <returns>请求结果。</returns>
         /// <exception cref="ArgumentException"><c>url</c> 为空字符串或 null。</exception>
+        /// <exception cref="System.UriFormatException"><c>url</c> 格式错误。</exception>
+        /// <exception cref="System.Net.WebException">连接失败。</exception>
         public static string Post(string url, object param = null)
         {
             if (string.IsNullOrWhiteSpace(url) == true)
             {
                 throw new ArgumentException("url 不能为空。");
             }
-            url = HttpUtility.UrlEncode(url);
+            if (url.Contains("://") == false)
+            {
+                url = "http://" + url;
+            }
             WebRequest request = HttpWebRequest.Create(new Uri(url));
             request.Method = "POST";
             request.ContentType = @"application/x-www-form-urlencoded";
@@ -55,7 +60,10 @@ namespace Common.Web
                 {
                     throw new ArgumentException("url 不能为空。");
                 }
-                url = HttpUtility.UrlEncode(url);
+                if (url.Contains("://") == false)
+                {
+                    url = "http://" + url;
+                }
                 WebRequest request = HttpWebRequest.Create(new Uri(url));
                 request.Method = "POST";
                 request.ContentType = @"application/x-www-form-urlencoded";
