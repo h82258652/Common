@@ -4,9 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common.Serialization.Json.Deserialize
+namespace Common.Serialization
 {
-    class JsonHelper
+    public static partial class JsonHelper
     {
+        internal static byte DeserializeToByte(string input, Type type)
+        {
+            byte b;
+            if (byte.TryParse(input,out b)==false)
+            {
+                throw new
+            }
+            return b;
+        }
     }
 }

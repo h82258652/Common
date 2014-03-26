@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Common.Serialization.Json.Deserialize
 {
-    class JsonHelper
+   public static partial class JsonHelper
     {
+       internal static ulong DeserializeToUInt64(string input,Type type)
+       {
+       }
     }
 }

@@ -6,11 +6,6 @@ using System.Numerics;
 using System.Runtime.Remoting.Messaging;
 using System.Text.RegularExpressions;
 using System.Web.UI.WebControls;
-using Common.Config;
-using Common.Reflection;
-using Common.Security;
-using Common.Serialization;
-using Common.Threading;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -28,7 +23,6 @@ using System.Web.Script.Serialization;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
-using Common.Web;
 
 namespace Test
 {
@@ -228,14 +222,13 @@ namespace Test
 
         public static void Main(string[] args)
         {
-var QQ=            JsonHelper.SerializeObject(TTTTT.ggggggggggggggg);
+            unchecked
+            {
+                Console.WriteLine(Double.NaN.ToString());
 
-            var qqqq = TTTTT.ggggggggggggggg;
-            
-
-            var s = Newtonsoft.Json.JsonConvert.SerializeObject(TTTTT.ggggggggggggggg);
-            Console.WriteLine(s);
-
+                var s = Newtonsoft.Json.JsonConvert.SerializeObject(Double.NaN);
+                Console.WriteLine(s);
+            }
             Console.ReadKey();
         }
     }

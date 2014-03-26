@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common.Serialization.Json.Deserialize
+namespace Common.Serialization
 {
-    class JsonHelper
+  public static partial  class JsonHelper
     {
+      internal static IList DeserializeToList(string input, Type type)
+      {
+      }
     }
 }
