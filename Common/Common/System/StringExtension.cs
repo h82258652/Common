@@ -48,7 +48,7 @@ namespace System
         /// </summary>
         /// <param name="value">要测试的字符串。</param>
         /// <returns>若符合 E-mail 格式，则为 true，否则为 false。</returns>
-        /// <exception cref="System.Text.RegularExpressions.RegexMatchTimeoutException"></exception>
+        /// <exception cref="System.Text.RegularExpressions.RegexMatchTimeoutException">发生超时。</exception>
         public static bool IsEmail(this string value)
         {
             if (value == null)

@@ -33,8 +33,8 @@ namespace Common.Reflection
             CompilerParameters parameter = new CompilerParameters();
             parameter.GenerateExecutable = false;
             parameter.GenerateInMemory = true;
-            StringBuilder sb = new StringBuilder();// 生成方法参数代码
-            List<object> methodParameters = new List<object>();// 调用方法时的参数对象列表
+            StringBuilder sb = new StringBuilder();// 生成方法参数代码。
+            List<object> methodParameters = new List<object>();// 调用方法时的参数对象列表。
             for (int i = 0; i < parameters.Count; i++)
             {
                 var temp = parameters.ElementAt(i);
@@ -45,17 +45,17 @@ namespace Common.Reflection
                     sb.Append(",");
                 }
             }
-            string source = @"using System;namespace NameSpace{public class Class{public static object Method(" + sb.ToString() + @"){" + codeBody + @"}}}";// 最终代码段
-            CompilerResults result = provider.CompileAssemblyFromSource(parameter, source);// 编译代码
+            string source = @"using System;namespace NameSpace{public class Class{public static object Method(" + sb.ToString() + @"){" + codeBody + @"}}}";// 最终代码段。
+            CompilerResults result = provider.CompileAssemblyFromSource(parameter, source);// 编译代码。
             if (result.Errors.Count > 0)
             {
                 throw new Exception("代码错误");
             }
             else
             {
-                Assembly assembly = result.CompiledAssembly;// 获得编译成功的程序集
+                Assembly assembly = result.CompiledAssembly;// 获得编译成功的程序集。
                 Type type = assembly.GetType("NameSpace.Class");
-                return type.GetMethod("Method").Invoke(null, methodParameters.ToArray());// 执行方法
+                return type.GetMethod("Method").Invoke(null, methodParameters.ToArray());// 执行方法。
             }
         }
     }

@@ -4,9 +4,14 @@ namespace Common.Serialization
     public static partial class JsonHelper
     {
         /// <summary>
-        /// 设置 DateTime 序列化的格式，默认"yyyy-MM-ddTHH:mm:ss.FFFFFFFK"。
+        /// 设置 DateTime 类型在序列化的格式，默认 "yyyy-MM-ddTHH:mm:ss.FFFFFFFK"。
         /// </summary>
         public static DateTimeFormat DateTimeFormat = DateTimeFormat.Default;
+
+        /// <summary>
+        /// 设置 Regex 类型在序列化的格式，默认 /pattern/attributes。
+        /// </summary>
+        public static RegexFormat RegexFormat = RegexFormat.Default;
 
         /// <summary>
         /// 序列化时，缩进的空格数，默认为 0。

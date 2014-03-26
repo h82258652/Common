@@ -87,7 +87,7 @@ namespace Common.Config
         /// <param name="value">新的值。</param>
         public static void Set(string xmlPath, string xpath, object value)
         {
-            // 检查参数
+            // 检查参数。
             if (string.IsNullOrWhiteSpace(xmlPath) == true)
             {
                 throw new ArgumentException("XML 的路径不能为空。");
@@ -110,7 +110,7 @@ namespace Common.Config
                 }
                 else
                 {
-                    // 根节点名称不符合
+                    // 根节点名称不符合。
                     if (root.Name.Equals(xpath.Split('/', '\\')[0], StringComparison.OrdinalIgnoreCase) == false)
                     {
                         return;

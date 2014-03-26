@@ -228,10 +228,22 @@ namespace Test
 
         public static void Main(string[] args)
         {
-            VV();
-            VV(null);
+var QQ=            JsonHelper.SerializeObject(TTTTT.ggggggggggggggg);
+
+            var qqqq = TTTTT.ggggggggggggggg;
+            
+
+            var s = Newtonsoft.Json.JsonConvert.SerializeObject(TTTTT.ggggggggggggggg);
+            Console.WriteLine(s);
+
             Console.ReadKey();
         }
+    }
+
+    enum  TTTTT
+    {
+        HHHHHH,
+        ggggggggggggggg
     }
 
     class Tst

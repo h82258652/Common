@@ -64,19 +64,98 @@
     <Compile Include="Reflection\ReflectionHelper.Property.cs" />
     <Compile Include="Reflection\ReflectionHelper.SearchOption.cs" />
     <Compile Include="Security\RSAHelper.cs" />
-    <Compile Include="Serialization\BinarySerializeHelper.cs" />
     <Compile Include="Security\SHA1Helper.cs" />
     <Compile Include="Security\MD5Helper.cs" />
+    <Compile Include="Serialization\BinarySerializeHelper.cs" />
+    <Compile Include="Serialization\Json\JsonAttribute.cs" />
     <Compile Include="Serialization\Json\JsonCollectionCountException.cs" />
+    <Compile Include="Serialization\Json\JsonConverter.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Serialization\Json\JsonFormatException.cs" />
     <Compile Include="Serialization\Json\JsonHelper.Cache.cs" />
     <Compile Include="Serialization\Json\JsonHelper.DateTimeFormat.cs" />
-    <Compile Include="Serialization\Json\JsonAttribute.cs" />
-    <Compile Include="Serialization\Json\JsonConverter.cs" />
     <Compile Include="Serialization\Json\JsonHelper.Deserialize.cs" />
-    <Compile Include="Serialization\Json\JsonHelper.FormatJson.cs" />
-    <Compile Include="Serialization\Json\JsonHelper.Serialize.cs" />
-    <Compile Include="Serialization\Json\JsonHelper.Setting.cs" />
+    <Compile Include="Serialization\Json\JsonHelper.FormatJson.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\JsonHelper.RegexFormat.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\JsonHelper.Serialize.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\JsonHelper.Setting.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.Array.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.BigInteger.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.Boolean.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.Byte.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.Char.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.Class.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.DateTime.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.Decimal.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.Dictionary.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.Double.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.Enum.cs" />
+    <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.Int16.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.Int32.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.Int64.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.List.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.Object.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.Regex.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.SByte.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.Single.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.String.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.UInt16.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.UInt32.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.UInt64.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\XMLSerializerHelper.cs" />
     <Compile Include="System\CharExtension.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -84,7 +163,6 @@
     <Compile Include="System\RandomExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="System\StringExtension.cs" />
-    <Compile Include="Serialization\XMLSerializerHelper.cs" />
     <Compile Include="Threading\Action\ThreadHelper.Action.cs" />
     <Compile Include="Threading\Func\ThreadHelper.Func.cs" />
     <Compile Include="Threading\Action\ThreadHelperPackage.Action.cs" />
@@ -97,6 +175,9 @@
     <Compile Include="Web\HttpHelper.Get.cs" />
     <Compile Include="Web\HttpHelper.ObjectToRequestData.cs" />
     <Compile Include="Web\HttpHelper.Post.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Serialization\Json\Deserialize\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

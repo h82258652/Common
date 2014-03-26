@@ -341,14 +341,14 @@ namespace Common.Serialization
             }
             #endregion
             #region List
-            if (type is IList)
+            if (type.GetInterface(typeof(IList).Name) != null)
             {
                 if (input.StartsWith("[") && input.EndsWith("]"))
                 {
                     input = input.Substring(1, input.Length - 2).Trim();
                     IList list = (IList)Activator.CreateInstance(type);
                     // 获取元素类型。
-                    Type elementType = type.GetGenericTypeDefinition();
+                    Type elementType = type.GetGenericArguments()[0];
                     foreach (var s in JsonItemReader(input))
                     {
                         list.Add(Deserialize(s, elementType));
@@ -362,7 +362,7 @@ namespace Common.Serialization
             }
             #endregion
             #region Dictionary
-            if (type is IDictionary)
+            if (type.GetInterface(typeof(IDictionary).Name) != null)
             {
                 if (input.StartsWith("{") && input.EndsWith("}"))
                 {
@@ -467,8 +467,8 @@ namespace Common.Serialization
                             if (attribute.Converter != null)
                             {
                                 JsonConverter converter = (JsonConverter)Activator.CreateInstance(attribute.Converter);
-                                bool skip;
-                                value = converter.Deserialize(keyValue[fieldName], field.FieldType, out skip);
+                                bool skip=false;
+                                value = converter.Deserialize(keyValue[fieldName], field.FieldType, ref skip);
                                 if (skip == true)
                                 {
                                     continue;
@@ -538,8 +538,8 @@ namespace Common.Serialization
                             if (attribute.Converter != null)
                             {
                                 JsonConverter converter = (JsonConverter)Activator.CreateInstance(attribute.Converter);
-                                bool skip;
-                                value = converter.Deserialize(keyValue[propertyName], property.PropertyType, out skip);
+                                bool skip=false;
+                                value = converter.Deserialize(keyValue[propertyName], property.PropertyType, ref skip);
                                 if (skip == true)
                                 {
                                     continue;

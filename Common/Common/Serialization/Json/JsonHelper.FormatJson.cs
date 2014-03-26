@@ -10,7 +10,7 @@ namespace Common.Serialization
             return new string(' ', SerializeIndentationWhiteSpaceCount * level);
         }
 
-        internal static string FormatJson(string json)
+        public static string FormatJson(string json)
         {
             if (SerializeIndentationWhiteSpaceCount < 0)
             {

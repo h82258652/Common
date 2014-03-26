@@ -20,16 +20,16 @@ namespace Common.Serialization
         {
             string json;
 
-            // 序列化
+            // 序列化。
             json = SerializeObject(obj);
 
-            // 格式化
+            // 格式化。
             json = FormatJson(json);
 
             return json;
         }
 
-        internal static string SerializeObject(object obj)
+        internal static string SerializeObjectOld(object obj)
         {
             #region null
             if (obj == null)
@@ -203,23 +203,23 @@ namespace Common.Serialization
                     string valueString;
                     if (attribute != null)
                     {
-                        // 非公有字段且不序列化
+                        // 非公有字段且不序列化。
                         if (attribute.ProcessNonPublic == false && field.IsPublic == false)
                         {
                             continue;
                         }
-                        // 不序列化此字段
+                        // 不序列化此字段。
                         if (attribute.Ignore == true)
                         {
                             continue;
                         }
                         value = field.GetValue(obj);
-                        // 不序列化 null 字段
+                        // 不序列化 null 字段。
                         if (value == null && attribute.IgnoreNull == true)
                         {
                             continue;
                         }
-                        // 使用自定义映射名字
+                        // 使用自定义映射名字。
                         if (attribute.Name != null)
                         {
                             name = "\"" + attribute.Name + "\"";
@@ -228,7 +228,7 @@ namespace Common.Serialization
                         {
                             name = "\"" + field.Name + "\"";
                         }
-                        // 检查数量约束
+                        // 检查数量约束。
                         if (value is ICollection)
                         {
                             ICollection collection = value as ICollection;
@@ -241,12 +241,12 @@ namespace Common.Serialization
                                 throw JsonCollectionCountException.CreateGreaterThanException(value, attribute.CollectionCountGreaterThan);
                             }
                         }
-                        // 使用自定义序列化
+                        // 使用自定义序列化。
                         if (attribute.Converter != null)
                         {
                             JsonConverter converter = (JsonConverter)Activator.CreateInstance(attribute.Converter);
-                            bool skip;
-                            valueString = converter.Serialize(value, field.FieldType, out skip);
+                            bool skip = false;
+                            valueString = converter.Serialize(value, field.FieldType, ref skip);
                             if (skip == true)
                             {
                                 continue;
@@ -288,7 +288,7 @@ namespace Common.Serialization
                 }
                 foreach (PropertyInfo property in properties)
                 {
-                    if (property.GetIndexParameters().Length == 0) // 非索引器属性
+                    if (property.GetIndexParameters().Length == 0) // 非索引器属性。
                     {
                         JsonAttribute attribute = property.GetCustomAttributes(typeof(JsonAttribute), true).FirstOrDefault() as JsonAttribute;
                         string name;
@@ -296,23 +296,23 @@ namespace Common.Serialization
                         string valueString;
                         if (attribute != null)
                         {
-                            // 非公有属性且不序列化
+                            // 非公有属性且不序列化。
                             if (attribute.ProcessNonPublic == false && property.CanRead == false)
                             {
                                 continue;
                             }
-                            // 不序列化此属性
+                            // 不序列化此属性。
                             if (attribute.Ignore == true)
                             {
                                 continue;
                             }
                             value = property.GetGetMethod(true).Invoke(obj, null);
-                            // 不序列化 null 属性
+                            // 不序列化 null 属性。
                             if (value == null && attribute.IgnoreNull == true)
                             {
                                 continue;
                             }
-                            // 使用自定义映射名字
+                            // 使用自定义映射名字。
                             if (attribute.Name != null)
                             {
                                 name = "\"" + attribute.Name + "\"";
@@ -321,7 +321,7 @@ namespace Common.Serialization
                             {
                                 name = "\"" + property.Name + "\"";
                             }
-                            // 检查数量约束
+                            // 检查数量约束。
                             if (value is ICollection)
                             {
                                 ICollection collection = value as ICollection;
@@ -334,12 +334,12 @@ namespace Common.Serialization
                                     throw JsonCollectionCountException.CreateGreaterThanException(value, attribute.CollectionCountGreaterThan);
                                 }
                             }
-                            // 使用自定义序列化
+                            // 使用自定义序列化。
                             if (attribute.Converter != null)
                             {
                                 JsonConverter converter = (JsonConverter)Activator.CreateInstance(attribute.Converter);
-                                bool skip;
-                                valueString = converter.Serialize(value, property.PropertyType, out skip);
+                                bool skip = false;
+                                valueString = converter.Serialize(value, property.PropertyType, ref skip);
                                 if (skip == true)
                                 {
                                     continue;
