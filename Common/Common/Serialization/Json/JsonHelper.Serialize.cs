@@ -16,7 +16,7 @@ namespace Common.Serialization
         /// </summary>
         /// <param name="obj">需要进行 JSON 序列化的对象。</param>
         /// <returns>序列化的 JSON 字符串。</returns>
-        public static string SerializeToJson(this object obj)
+        public static string SerializeToJsonOld(this object obj)
         {
             string json;
 

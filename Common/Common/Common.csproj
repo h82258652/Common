@@ -47,35 +47,160 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Config\Ini\IniComment.cs" />
-    <Compile Include="Config\Ini\IniConfigHelper.cs" />
-    <Compile Include="Config\Ini\IniKey.cs" />
-    <Compile Include="Config\Ini\IniUnknownLine.cs" />
-    <Compile Include="Config\Ini\IniNode.cs" />
-    <Compile Include="Config\Ini\IniSection.cs" />
-    <Compile Include="Config\Ini\IniTree.cs" />
-    <Compile Include="Config\IsolatedStorageConfigHelper.cs" />
-    <Compile Include="Config\XmlConfigHelper.cs" />
-    <Compile Include="Reflection\ReflectionHelper.Constructor.cs" />
-    <Compile Include="Reflection\ReflectionHelper.DynamicCompile.cs" />
-    <Compile Include="Reflection\ReflectionHelper.Field.cs" />
-    <Compile Include="Reflection\ReflectionHelper.Indexer.cs" />
-    <Compile Include="Reflection\ReflectionHelper.Method.cs" />
-    <Compile Include="Reflection\ReflectionHelper.Property.cs" />
-    <Compile Include="Reflection\ReflectionHelper.SearchOption.cs" />
-    <Compile Include="Security\RSAHelper.cs" />
-    <Compile Include="Security\SHA1Helper.cs" />
-    <Compile Include="Security\MD5Helper.cs" />
-    <Compile Include="Serialization\BinarySerializeHelper.cs" />
-    <Compile Include="Serialization\Json\JsonAttribute.cs" />
-    <Compile Include="Serialization\Json\JsonCollectionCountException.cs" />
+    <Compile Include="Config\Ini\IniComment.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Config\Ini\IniConfigHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Config\Ini\IniKey.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Config\Ini\IniNode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Config\Ini\IniSection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Config\Ini\IniTree.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Config\Ini\IniUnknownLine.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Config\IsolatedStorageConfigHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Config\XmlConfigHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reflection\ReflectionHelper.Constructor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reflection\ReflectionHelper.DynamicCompile.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reflection\ReflectionHelper.Field.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reflection\ReflectionHelper.Indexer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reflection\ReflectionHelper.Method.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reflection\ReflectionHelper.Property.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reflection\ReflectionHelper.SearchOption.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\MD5Helper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\RSAHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\SHA1Helper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\BinarySerializeHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.Array.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.BigInteger.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.Boolean.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.Byte.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.Char.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.Class.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.DateTime.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.Decimal.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.Dictionary.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.Double.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.Enum.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.Int16.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.Int32.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.Int64.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.List.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.Object.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.Regex.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.SByte.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.Single.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.String.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.UInt16.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.UInt32.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.UInt64.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\JsonAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\JsonCollectionCountException.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Serialization\Json\JsonConverter.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Serialization\Json\JsonFormatException.cs" />
-    <Compile Include="Serialization\Json\JsonHelper.Cache.cs" />
-    <Compile Include="Serialization\Json\JsonHelper.DateTimeFormat.cs" />
-    <Compile Include="Serialization\Json\JsonHelper.Deserialize.cs" />
+    <Compile Include="Serialization\Json\JsonFormatException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\JsonHelper.Cache.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\JsonHelper.DateTimeFormat.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\JsonHelper.Deserialize.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Serialization\Json\JsonHelper.FormatJson.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -106,6 +231,9 @@
     <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.Class.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.DateTime.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -118,7 +246,9 @@
     <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.Double.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.Enum.cs" />
+    <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.Enum.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.Int16.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -155,30 +285,62 @@
     <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.UInt64.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Serialization\XMLSerializerHelper.cs" />
+    <Compile Include="Serialization\XMLSerializerHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="System\CharExtension.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="System\Collections\Generic\IDictionaryExtension.cs" />
-    <Compile Include="System\RandomExtension.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="System\StringExtension.cs" />
-    <Compile Include="Threading\Action\ThreadHelper.Action.cs" />
-    <Compile Include="Threading\Func\ThreadHelper.Func.cs" />
-    <Compile Include="Threading\Action\ThreadHelperPackage.Action.cs" />
-    <Compile Include="Threading\Action\ThreadHelperProcess.Action.cs" />
-    <Compile Include="Threading\Func\ThreadHelperFinishedEventArgs.Func.cs" />
-    <Compile Include="Threading\Func\ThreadHelperProcess.Func.cs" />
-    <Compile Include="Threading\Func\ThreadHelperPackage.Func.cs" />
-    <Compile Include="Threading\Action\ThreadHelperResult.Action.cs" />
-    <Compile Include="Threading\Func\ThreadHelperResult.Func.cs" />
-    <Compile Include="Web\HttpHelper.Get.cs" />
-    <Compile Include="Web\HttpHelper.ObjectToRequestData.cs" />
-    <Compile Include="Web\HttpHelper.Post.cs" />
+    <Compile Include="System\Collections\Generic\IDictionaryExtension.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="System\RandomExtension.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="System\StringExtension.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="System\TypeExtension.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Threading\Action\ThreadHelper.Action.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Threading\Action\ThreadHelperPackage.Action.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Threading\Action\ThreadHelperProcess.Action.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Threading\Action\ThreadHelperResult.Action.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Threading\Func\ThreadHelper.Func.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Threading\Func\ThreadHelperFinishedEventArgs.Func.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Threading\Func\ThreadHelperPackage.Func.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Threading\Func\ThreadHelperProcess.Func.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Threading\Func\ThreadHelperResult.Func.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\HttpHelper.Get.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\HttpHelper.ObjectToRequestData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\HttpHelper.Post.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Serialization\Json\Deserialize\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

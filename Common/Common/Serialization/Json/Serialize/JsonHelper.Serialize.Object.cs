@@ -11,7 +11,7 @@ namespace Common.Serialization
 {
     public static partial class JsonHelper
     {
-        public static string SerializeObject(object obj)
+        internal static string SerializeObject(object obj)
         {
             #region null
             if (obj == null)
