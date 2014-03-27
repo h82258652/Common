@@ -4,18 +4,18 @@ namespace Common.Serialization
 {
     public static partial class JsonHelper
     {
-        internal static Enum DeserializeToEnum(string input, Type type)
+        internal static Uri DeserializeToUri(string input, Type type)
         {
             if (input.StartsWith("\"") == true && input.EndsWith("\"") == true)
             {
                 string source = input;
                 input = input.Substring(1, input.Length - 2);
-                Enum value;
+                Uri value;
                 try
                 {
-                    value = (Enum)Enum.Parse(type, input);
+                    value = new Uri(input);
                 }
-                catch (Exception)
+                catch
                 {
                     throw new JsonDeserializeException(source, type);
                 }
@@ -23,15 +23,7 @@ namespace Common.Serialization
             }
             else
             {
-                int i;
-                if (int.TryParse(input, out i) == true)
-                {
-                    return (Enum)Enum.Parse(type, i.ToString());
-                }
-                else
-                {
-                    throw new JsonDeserializeException(input, type);
-                }
+                throw new JsonDeserializeException(input, type);
             }
         }
     }

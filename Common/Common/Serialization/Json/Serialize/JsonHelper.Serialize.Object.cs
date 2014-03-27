@@ -121,16 +121,16 @@ namespace Common.Serialization
                 return SerializeDateTime((DateTime)obj);
             }
             #endregion
-            #region Enum
-            else if (obj is Enum)
-            {
-                return SerializeEnum(obj as Enum);
-            }
-            #endregion
             #region Dictionary
             else if (obj is IDictionary)
             {
                 return SerializeDictionary(obj as IDictionary);
+            }
+            #endregion
+            #region Enum
+            else if (obj is Enum)
+            {
+                return SerializeEnum(obj as Enum);
             }
             #endregion
             #region List
@@ -143,6 +143,12 @@ namespace Common.Serialization
             else if (obj is Regex)
             {
                 return SerializeRegex(obj as Regex);
+            }
+            #endregion
+            #region Uri
+            else if (obj is Uri)
+            {
+                return SerializeUri(obj as Uri);
             }
             #endregion
             #region Class

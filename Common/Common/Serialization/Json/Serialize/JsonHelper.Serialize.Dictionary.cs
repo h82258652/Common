@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using System.Linq;
+using System.Collections.Generic;
 
 namespace Common.Serialization
 {
@@ -7,9 +7,12 @@ namespace Common.Serialization
     {
         internal static string SerializeDictionary(IDictionary dictionary)
         {
-            var query = from DictionaryEntry temp in dictionary
-                        select "\"" + temp.Key.ToString() + "\":" + SerializeObject(temp.Value);
-            return "{" + string.Join(",", query) + "}";
+            List<string> values = new List<string>();
+            foreach (DictionaryEntry temp in dictionary)
+            {
+                values.Add("\"" + temp.Key.ToString() + "\":" + SerializeObject(temp.Value));
+            }
+            return "{" + string.Join(",", values) + "}";
         }
     }
 }

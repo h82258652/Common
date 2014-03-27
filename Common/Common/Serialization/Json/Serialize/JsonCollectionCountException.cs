@@ -4,13 +4,13 @@ using System.Collections;
 namespace Common.Serialization
 {
     /// <summary>
-    /// 表示 JSON 序列化时数组或集合的元素个数有误。
+    /// 表示 JSON 序列化时字符串或数组或集合的元素个数有误。
     /// </summary>
     [Serializable]
     public sealed class JsonCollectionCountException : Exception
     {
         /// <summary>
-        /// 数组或集合的元素个数应该小于此值。
+        /// 字符串或数组或集合的元素个数应该小于此值。
         /// </summary>
         public int LessThan
         {
@@ -19,7 +19,7 @@ namespace Common.Serialization
         }
 
         /// <summary>
-        /// 数组或集合的元素个数应该大于此值。
+        /// 字符串或数组或集合的元素个数应该大于此值。
         /// </summary>
         public int GreaterThan
         {
@@ -28,7 +28,7 @@ namespace Common.Serialization
         }
 
         /// <summary>
-        /// 引发当前异常的数组或集合
+        /// 引发当前异常的字符串或数组或集合
         /// </summary>
         public object CurrentCollection
         {
@@ -37,7 +37,7 @@ namespace Common.Serialization
         }
 
         /// <summary>
-        /// 引发当前异常的数组或集合的元素个数。
+        /// 引发当前异常的字符串或数组或集合的元素个数。
         /// </summary>
         public int CurrentCount
         {
@@ -80,11 +80,11 @@ namespace Common.Serialization
         {
             if (LessThan > -1)
             {
-                return "当前数组或集合的个数为：" + CurrentCount + "，但应小于 " + LessThan + "。";
+                return "当前字符串或数组或集合的个数为：" + CurrentCount + "，但应小于 " + LessThan + "。";
             }
             if (GreaterThan > -1)
             {
-                return "当前数组或集合的个数为：" + CurrentCount + "，但应大于 " + GreaterThan + "。";
+                return "当前字符串或数组或集合的个数为：" + CurrentCount + "，但应大于 " + GreaterThan + "。";
             }
             return base.ToString();
         }

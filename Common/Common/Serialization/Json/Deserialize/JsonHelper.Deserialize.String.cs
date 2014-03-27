@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Common.Serialization
 {
@@ -12,6 +9,7 @@ namespace Common.Serialization
         {
             if (input.StartsWith("\"") && input.EndsWith("\""))
             {
+                string source = input;
                 input = input.Substring(1, input.Length - 2);
                 StringBuilder sb = new StringBuilder();
                 for (int i = 0, length = input.Length; i < length; i++)
@@ -20,8 +18,7 @@ namespace Common.Serialization
                     {
                         if (i + 1 == length)
                         {
-                            // 转义符错误。
-                            throw new JsonDeserializeException("JSON格式错误");
+                            throw new JsonDeserializeException(source, type);
                         }
                         if (input[i + 1] == '\\')
                         {
@@ -53,23 +50,21 @@ namespace Common.Serialization
                             char c1 = input[i + 3];
                             char c2 = input[i + 4];
                             char c3 = input[i + 5];
-                            if (IsHex(c0) && IsHex(c1) && IsHex(c2) && IsHex(c3))
+                            if (c0.IsHex() == true && c1.IsHex() == true && c2.IsHex() == true && c3.IsHex() == true)
                             {
                                 byte b0 = Convert.ToByte(c2.ToString() + c3.ToString(), 16);
                                 byte b1 = Convert.ToByte(c0.ToString() + c1.ToString(), 16);
-                                sb.Append(Encoding.Unicode.GetChars(new byte[] { b0, b1 })[0]);
+                                sb.Append(Encoding.Unicode.GetChars(new byte[2] { b0, b1 })[0]);
                                 i += 4;
                             }
-                            // \u 转义符错误。
                             else
                             {
-                                throw new JsonFormatException(@"\u转义符错误。");
+                                throw new JsonDeserializeException(source, type);
                             }
                         }
                         else
                         {
-                            // 转义符错误。
-                            throw new JsonFormatException("转义符错误。");
+                            throw new JsonDeserializeException(source, type);
                         }
                         i++;
                     }
@@ -82,8 +77,7 @@ namespace Common.Serialization
             }
             else
             {
-                // 缺少前后的双引号。
-                throw new JsonDeserializeException("字符串缺失双引号。");
+                throw new JsonDeserializeException(input, type);
             }
         }
     }

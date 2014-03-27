@@ -18,7 +18,7 @@ namespace Common.Serialization
                     }
                 default:
                     {
-                        throw new JsonDeserializeException();
+                        throw new JsonDeserializeException(input, type);
                     }
             }
         }

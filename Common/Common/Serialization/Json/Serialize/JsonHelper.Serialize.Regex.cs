@@ -10,7 +10,7 @@ namespace Common.Serialization
         {
             switch (JsonHelper.RegexFormat)
             {
-                case RegexFormat.Create:
+                case Json.RegexFormat.Create:
                     {
                         StringBuilder flags = new StringBuilder(2);
                         if (regex.Options.HasFlag(RegexOptions.IgnoreCase) == true)
@@ -30,7 +30,7 @@ namespace Common.Serialization
                             return "new RegExp(\"" + regex.ToString() + "\")";
                         }
                     }
-                case RegexFormat.Default:
+                case Json.RegexFormat.Default:
                     {
                         StringBuilder sb = new StringBuilder("/");
                         sb.Append(regex.ToString());

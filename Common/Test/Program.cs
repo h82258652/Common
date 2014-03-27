@@ -23,6 +23,7 @@ using System.Web.Script.Serialization;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+using Common.Serialization;
 
 namespace Test
 {
@@ -192,114 +193,12 @@ namespace Test
 
     class Program
     {
-        public static double ToNum(string input)
-        {
-            Regex r = new Regex(@"^(\-?)(0|[1-9]\d*)(\.\d+)?((e|E)(\+|\-)?\d+)?");
-            Match m = r.Match(input);
-            if (m.Success == true)
-            {
-                string num = m.Groups[1].Value + m.Groups[2].Value + m.Groups[3].Value;
-                if (m.Groups[4].Success == true)
-                {
-                    string e = m.Groups[4].Value.Substring(1);
-                    return double.Parse(num) * Math.Pow(10, double.Parse(e));
-                }
-                else
-                {
-                    return double.Parse(num);
-                }
-            }
-            else
-            {
-                throw new Exception();
-            }
-        }
-
-        public static void VV(string s = "")
-        {
-            Console.WriteLine(s);
-        }
-
         public static void Main(string[] args)
         {
-            unchecked
-            {
-                Console.WriteLine(Double.NaN.ToString());
+            
 
-                var s = Newtonsoft.Json.JsonConvert.SerializeObject(Double.NaN);
-                Console.WriteLine(s);
-            }
             Console.ReadKey();
         }
     }
 
-    enum  TTTTT
-    {
-        HHHHHH,
-        ggggggggggggggg
-    }
-
-    class Tst
-    {
-        public string Hellp
-        {
-            get;
-            set;
-        }
-
-        public string Hellp2
-        {
-            get;
-            set;
-        }
-
-        public string Hellp3
-        {
-            get;
-            set;
-        }
-
-        public string Hellp4
-        {
-            get;
-            set;
-        }
-
-        public string Hellp5
-        {
-            get;
-            set;
-        }
-
-        public string Hellp6
-        {
-            get;
-            set;
-        }
-
-        public string Hellp7
-        {
-            get;
-            set;
-        }
-
-        public string Hellp8
-        {
-            get;
-            set;
-        }
-
-
-        public string Name
-        {
-            get;
-            set;
-        }
-
-        public int Age
-        {
-            get;
-            set;
-        }
-    }
 }

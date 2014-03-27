@@ -9,16 +9,16 @@ namespace Common.Serialization
         {
             switch (JsonHelper.DateTimeFormat)
             {
-                case DateTimeFormat.Create:
+                case Json.DateTimeFormat.Create:
                     {
                         return "new Date(" + (dateTime.ToUniversalTime() - new DateTime(1970, 1, 1, 0, 0, 0)).Ticks / 0x2710 +
                                ")";
                     }
-                case DateTimeFormat.Default:
+                case Json.DateTimeFormat.Default:
                     {
                         return "\"" + dateTime.ToString("yyyy-MM-ddTHH:mm:ss.FFFFFFFK") + "\"";
                     }
-                case DateTimeFormat.Function:
+                case Json.DateTimeFormat.Function:
                     {
                         return "\"\\/Date(" + (dateTime.ToUniversalTime() - new DateTime(1970, 1, 1, 0, 0, 0)).Ticks / 0x2710 +
                                ")\\/\"";

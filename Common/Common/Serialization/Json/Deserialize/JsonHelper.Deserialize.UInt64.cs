@@ -1,15 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Common.Serialization.Json.Deserialize
+namespace Common.Serialization
 {
-   public static partial class JsonHelper
+    public static partial class JsonHelper
     {
-       internal static ulong DeserializeToUInt64(string input,Type type)
-       {
-       }
+        internal static ulong DeserializeToUInt64(string input, Type type)
+        {
+            ulong ul;
+            if (ulong.TryParse(input, out ul) == false)
+            {
+                throw new JsonDeserializeException(input, type);
+            }
+            return ul;
+        }
     }
 }

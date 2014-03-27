@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Net;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace System
@@ -241,6 +242,21 @@ namespace System
         public static string Base64Decode(this string value)
         {
             return Encoding.Default.GetString(Convert.FromBase64String(value));
+        }
+
+        /// <summary>
+        /// 指示当前字符串是否为 IP 地址。
+        /// </summary>
+        /// <param name="value">测试的字符串。</param>
+        /// <returns>是否为 IP 地址。</returns>
+        public static bool IsIPAddress(this string value)
+        {
+            if (value == null)
+            {
+                return false;
+            }
+            IPAddress address;
+            return IPAddress.TryParse(value, out address);
         }
     }
 }

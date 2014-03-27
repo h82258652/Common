@@ -8,6 +8,8 @@ namespace Common.Serialization
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false)]
     public sealed partial class JsonAttribute : Attribute
     {
+        private Type converter;
+
         /// <summary>
         /// 创建一个 JsonAttribute 的实例。
         /// </summary>
@@ -48,7 +50,7 @@ namespace Common.Serialization
         }
 
         /// <summary>
-        /// 约束在序列化时数组或集合的元素个数必须大于指定值。小于零为不约束。默认为 -1。
+        /// 约束在序列化时字符串或数组或集合的元素个数必须大于指定值。小于零为不约束。默认为 -1。
         /// </summary>
         public int CollectionCountGreaterThan
         {
@@ -57,7 +59,7 @@ namespace Common.Serialization
         }
 
         /// <summary>
-        /// 约束在序列化时数组或集合的元素个数必须小于指定值。小于零为不约束。默认为 -1。
+        /// 约束在序列化时字符串或数组或集合的元素个数必须小于指定值。小于零为不约束。默认为 -1。
         /// </summary>
         public int CollectionCountLessThan
         {
@@ -70,8 +72,21 @@ namespace Common.Serialization
         /// </summary>
         public Type Converter
         {
-            get;
-            set;
+            get
+            {
+                return converter;
+            }
+            set
+            {
+                if (typeof(JsonConverter).IsSubclassOf(value) == true)
+                {
+                    converter = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Converter 必须为 JsonConverter 类的子类。");
+                }
+            }
         }
 
         /// <summary>

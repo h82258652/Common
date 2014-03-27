@@ -108,6 +108,9 @@
     <Compile Include="Serialization\BinarySerializeHelper.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Serialization\Json\Deserialize\JsonDeserializeException.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.Array.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -153,6 +156,9 @@
     <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.Int64.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.ItemReader.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.List.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -180,37 +186,31 @@
     <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.UInt64.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Serialization\Json\JsonAttribute.cs">
+    <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.Uri.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Serialization\Json\JsonCollectionCountException.cs">
+    <Compile Include="Serialization\Json\JsonAttribute.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Serialization\Json\JsonConverter.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Serialization\Json\JsonFormatException.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Serialization\Json\JsonHelper.Cache.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Serialization\Json\JsonHelper.DateTimeFormat.cs">
+    <Compile Include="Serialization\Json\Serialize\JsonCollectionCountException.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Serialization\Json\JsonHelper.Deserialize.cs">
+    <Compile Include="Serialization\Json\Serialize\JsonHelper.DateTimeFormat.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Serialization\Json\JsonHelper.FormatJson.cs">
+    <Compile Include="Serialization\Json\Serialize\JsonHelper.EnumFormat.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Serialization\Json\JsonHelper.RegexFormat.cs">
+    <Compile Include="Serialization\Json\Serialize\JsonHelper.FormatJson.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Serialization\Json\JsonHelper.Serialize.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Serialization\Json\JsonHelper.Setting.cs">
+    <Compile Include="Serialization\Json\Serialize\JsonHelper.RegexFormat.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.Array.cs">
@@ -283,6 +283,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.UInt64.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.Uri.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\Json\Serialize\JsonHelper.Setting.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Serialization\XMLSerializerHelper.cs">

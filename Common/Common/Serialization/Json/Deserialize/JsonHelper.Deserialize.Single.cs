@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Common.Serialization
 {
@@ -10,7 +6,12 @@ namespace Common.Serialization
     {
         internal static float DeserializeToSingle(string input, Type type)
         {
-
+            float f;
+            if (float.TryParse(input, out f) == false)
+            {
+                throw new JsonDeserializeException(input, type);
+            }
+            return f;
         }
     }
 }

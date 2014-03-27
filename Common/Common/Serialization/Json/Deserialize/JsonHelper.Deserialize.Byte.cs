@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Common.Serialization
 {
@@ -11,9 +7,9 @@ namespace Common.Serialization
         internal static byte DeserializeToByte(string input, Type type)
         {
             byte b;
-            if (byte.TryParse(input,out b)==false)
+            if (byte.TryParse(input, out b) == false)
             {
-                throw new
+                throw new JsonDeserializeException(input, type);
             }
             return b;
         }
