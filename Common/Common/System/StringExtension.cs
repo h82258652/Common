@@ -10,6 +10,54 @@ namespace System
     public static partial class StringExtension
     {
         /// <summary>
+        /// 将当前字符串转换为双精度浮点数。
+        /// </summary>
+        /// <param name="value">转换的字符串。</param>
+        /// <param name="failureValue">无法转换时返回的默认值。</param>
+        /// <returns>成功则返回相应的双精度浮点数，失败则返回指定的默认值。</returns>
+        public static double AsDouble(this string value, double failureValue)
+        {
+            double d;
+            if (double.TryParse(value, out d) == true)
+            {
+                return d;
+            }
+            else
+            {
+                return failureValue;
+            }
+        }
+
+        /// <summary>
+        /// 将当前字符串转换为 16 位有符号整数。
+        /// </summary>
+        /// <param name="value">转换的字符串。</param>
+        /// <returns>成功则返回相应的 16 位有符号整数，失败则返回 -1。</returns>
+        public static short AsInt16(this string value)
+        {
+            return AsInt16(value, -1);
+        }
+
+        /// <summary>
+        /// 将当前字符串转换为 16 位有符号整数。
+        /// </summary>
+        /// <param name="value">转换的字符串。</param>
+        /// <param name="failureValue">无法转换时返回的默认值。</param>
+        /// <returns>成功则返回相应的 16 位有符号整数，失败则返回指定的默认值。</returns>
+        public static short AsInt16(this string value, short failureValue)
+        {
+            short s;
+            if (short.TryParse(value, out s) == true)
+            {
+                return s;
+            }
+            else
+            {
+                return failureValue;
+            }
+        }
+
+        /// <summary>
         /// 指示指定正则表达式在字符串中是否找到了匹配项。
         /// </summary>
         /// <param name="input">字符串。</param>
@@ -529,6 +577,17 @@ namespace System
         }
 
         /// <summary>
+        /// 指示当前字符串是否能转换为双精度浮点数。
+        /// </summary>
+        /// <param name="value">测试的字符串。</param>
+        /// <returns>是否能转换为双精度浮点数。</returns>
+        public static bool IsDouble(this string value)
+        {
+            double d;
+            return double.TryParse(value, out d);
+        }
+
+        /// <summary>
         /// 将当前字符串转换为 32 位有符号整数。
         /// </summary>
         /// <param name="value">转换的字符串。</param>
@@ -539,12 +598,22 @@ namespace System
         }
 
         /// <summary>
+        /// 将当前字符串转换为 64 位有符号整数。
+        /// </summary>
+        /// <param name="value">转换的字符串。</param>
+        /// <returns>成功则返回相应的 64 位有符号整数，失败则返回 -1。</returns>
+        public static long AsInt64(this string value)
+        {
+            return AsInt64(value, -1);
+        }
+
+        /// <summary>
         /// 将当前字符串转换为 32 位有符号整数。
         /// </summary>
         /// <param name="value">转换的字符串。</param>
-        /// <param name="falseValue">无法转换时返回的默认值。</param>
+        /// <param name="failureValue">无法转换时返回的默认值。</param>
         /// <returns>成功则返回相应的 32 位有符号整数，失败则返回指定的默认值。</returns>
-        public static int AsInt32(this string value, int falseValue)
+        public static int AsInt32(this string value, int failureValue)
         {
             int i;
             if (int.TryParse(value, out i) == true)
@@ -553,7 +622,26 @@ namespace System
             }
             else
             {
-                return falseValue;
+                return failureValue;
+            }
+        }
+
+        /// <summary>
+        /// 将当前字符串转换为 64 位有符号整数。
+        /// </summary>
+        /// <param name="value">转换的字符串。</param>
+        /// <param name="failureValue">无法转换时返回的默认值。</param>
+        /// <returns>成功则返回相应的 64 位有符号整数，失败则返回指定的默认值。</returns>
+        public static long AsInt64(this string value, long failureValue)
+        {
+            long l;
+            if (long.TryParse(value, out l) == true)
+            {
+                return l;
+            }
+            else
+            {
+                return failureValue;
             }
         }
     }
