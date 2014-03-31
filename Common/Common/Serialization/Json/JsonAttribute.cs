@@ -78,7 +78,7 @@ namespace Common.Serialization
             }
             set
             {
-                if (typeof(JsonConverter).IsSubclassOf(value) == true)
+                if (converter == null || typeof(JsonConverter).IsSubclassOf(value) == true)
                 {
                     converter = value;
                 }

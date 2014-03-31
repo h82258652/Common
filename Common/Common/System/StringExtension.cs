@@ -258,5 +258,303 @@ namespace System
             IPAddress address;
             return IPAddress.TryParse(value, out address);
         }
+
+        /// <summary>
+        /// 返回一个新字符串，其中当前实例中出现的所有指定字符串都替换为另一个指定的字符串。
+        /// </summary>
+        /// <param name="value">当前字符串。</param>
+        /// <param name="oldValue">要被替换的字符串。</param>
+        /// <param name="newValue">要替换出现的所有 oldValue 的字符串。</param>
+        /// <param name="comparisonType">指定搜索规则的枚举值之一。</param>
+        /// <returns>等效于当前字符串（除了 oldValue 的所有实例都已替换为 newValue 外）的字符串。</returns>
+        /// <exception cref="System.NullReferenceException"><c>value</c> 为 null。</exception>
+        /// <exception cref="System.ArgumentNullException"><c>oldValue</c> 为 null。</exception>
+        /// <exception cref="System.ArgumentException"><c>oldValue</c> 是空字符串 ("")。</exception>
+        public static string Replace(this string value, string oldValue, string newValue,
+            StringComparison comparisonType)
+        {
+            if (value == null)
+            {
+                throw new NullReferenceException("未将对象引用设置到对象的实例。");
+            }
+            if (oldValue == null)
+            {
+                throw new ArgumentNullException("值不能为 null。", "oldValue");
+            }
+            if (oldValue.Length == 0)
+            {
+                throw new ArgumentException("字符串的长度不能为零。", "oldValue");
+            }
+            while (true)
+            {
+                int index = value.IndexOf(oldValue, comparisonType);
+                if (index == -1)
+                {
+                    return value;
+                }
+                value = value.Substring(0, index) + newValue + value.Substring(index + oldValue.Length);
+            }
+        }
+
+        /// <summary>
+        /// 返回一个新字符串，其中当前实例中出现的所有指定字符串都替换为另一个指定的字符串。
+        /// </summary>
+        /// <param name="value">当前字符串。</param>
+        /// <param name="oldValue">要被替换的字符串。</param>
+        /// <param name="newValue">要替换出现的所有 oldValue 的字符串。</param>
+        /// <returns>等效于当前字符串（除了 oldValue 的所有实例都已替换为 newValue 外）的字符串。</returns>
+        public static string ReplaceSafely(this string value, string oldValue, string newValue)
+        {
+            return value.ReplaceSafely(oldValue, newValue, StringComparison.CurrentCulture);
+        }
+
+        /// <summary>
+        /// 返回一个新字符串，其中当前实例中出现的所有指定字符串都替换为另一个指定的字符串。
+        /// </summary>
+        /// <param name="value">当前字符串。</param>
+        /// <param name="oldValue">要被替换的字符串。</param>
+        /// <param name="newValue">要替换出现的所有 oldValue 的字符串。</param>
+        /// <param name="comparisonType">指定搜索规则的枚举值之一。</param>
+        /// <returns>等效于当前字符串（除了 oldValue 的所有实例都已替换为 newValue 外）的字符串。</returns>
+        public static string ReplaceSafely(this string value, string oldValue, string newValue, StringComparison comparisonType)
+        {
+            if (value == null)
+            {
+                return value;
+            }
+            if (string.IsNullOrEmpty(oldValue) == true)
+            {
+                return value;
+            }
+            return Replace(value, oldValue, newValue, comparisonType);
+        }
+
+        /// <summary>
+        /// 返回一个新字符串，其中当前实例中出现的第一个指定字符串会被替换为另一个指定的字符串。
+        /// </summary>
+        /// <param name="value">当前字符串。</param>
+        /// <param name="oldValue">要被替换的字符串。</param>
+        /// <param name="newValue">要替换第一次出现的 oldValue 的字符串。</param>
+        /// <returns>等效于当前字符串（除了 oldValue 的第一个实例都已替换为 newValue 外）的字符串。</returns>
+        /// <exception cref="System.NullReferenceException"><c>value</c> 为 null。</exception>
+        /// <exception cref="System.ArgumentNullException"><c>oldValue</c> 为 null。</exception>
+        /// <exception cref="System.ArgumentException"><c>oldValue</c> 是空字符串 ("")。</exception>
+        public static string ReplaceFirst(this string value, string oldValue, string newValue)
+        {
+            return ReplaceFirst(value, oldValue, newValue, StringComparison.CurrentCulture);
+        }
+
+        /// <summary>
+        /// 返回一个新字符串，其中当前实例中出现的第一个指定字符串会被替换为另一个指定的字符串。
+        /// </summary>
+        /// <param name="value">当前字符串。</param>
+        /// <param name="oldValue">要被替换的字符串。</param>
+        /// <param name="newValue">要替换第一次出现的 oldValue 的字符串。</param>
+        /// <param name="comparisonType">指定搜索规则的枚举值之一。</param>
+        /// <returns>等效于当前字符串（除了 oldValue 的第一个实例都已替换为 newValue 外）的字符串。</returns>
+        /// <exception cref="System.NullReferenceException"><c>value</c> 为 null。</exception>
+        /// <exception cref="System.ArgumentNullException"><c>oldValue</c> 为 null。</exception>
+        /// <exception cref="System.ArgumentException"><c>oldValue</c> 是空字符串 ("")。</exception>
+        public static string ReplaceFirst(this string value, string oldValue, string newValue,
+            StringComparison comparisonType)
+        {
+            if (value == null)
+            {
+                throw new NullReferenceException("未将对象引用设置到对象的实例。");
+            }
+            if (oldValue == null)
+            {
+                throw new ArgumentNullException("值不能为 null。", "oldValue");
+            }
+            if (oldValue.Length == 0)
+            {
+                throw new ArgumentException("字符串的长度不能为零。", "oldValue");
+            }
+            int index = value.IndexOf(oldValue, comparisonType);
+            if (index == -1)
+            {
+                return value;
+            }
+            return value.Substring(0, index) + newValue + value.Substring(index + oldValue.Length);
+        }
+
+        /// <summary>
+        /// 返回一个新字符串，其中当前实例中出现的第一个指定字符串会被替换为另一个指定的字符串。
+        /// </summary>
+        /// <param name="value">当前字符串。</param>
+        /// <param name="oldValue">要被替换的字符串。</param>
+        /// <param name="newValue">要替换第一次出现的 oldValue 的字符串。</param>
+        /// <returns>等效于当前字符串（除了 oldValue 的第一个实例都已替换为 newValue 外）的字符串。</returns>
+        public static string ReplaceFirstSafely(this string value, string oldValue, string newValue)
+        {
+            return ReplaceFirstSafely(value, oldValue, newValue, StringComparison.CurrentCulture);
+        }
+
+        /// <summary>
+        /// 返回一个新字符串，其中当前实例中出现的第一个指定字符串会被替换为另一个指定的字符串。
+        /// </summary>
+        /// <param name="value">当前字符串。</param>
+        /// <param name="oldValue">要被替换的字符串。</param>
+        /// <param name="newValue">要替换第一次出现的 oldValue 的字符串。</param>
+        /// <param name="comparisonType">指定搜索规则的枚举值之一。</param>
+        /// <returns>等效于当前字符串（除了 oldValue 的第一个实例都已替换为 newValue 外）的字符串。</returns>
+        public static string ReplaceFirstSafely(this string value, string oldValue, string newValue,
+            StringComparison comparisonType)
+        {
+            if (value == null)
+            {
+                return value;
+            }
+            if (string.IsNullOrEmpty(oldValue) == true)
+            {
+                return value;
+            }
+            return ReplaceFirst(value, oldValue, newValue, comparisonType);
+        }
+
+        /// <summary>
+        /// 返回一个新字符串，其中当前实例中出现的最后一个指定字符串会被替换为另一个指定的字符串。
+        /// </summary>
+        /// <param name="value">当前字符串。</param>
+        /// <param name="oldValue">要被替换的字符串。</param>
+        /// <param name="newValue">要替换最后一次出现的 oldValue 的字符串。</param>
+        /// <returns>等效于当前字符串（除了 oldValue 的最后一个实例都已替换为 newValue 外）的字符串。</returns>
+        /// <exception cref="System.NullReferenceException"><c>value</c> 为 null。</exception>
+        /// <exception cref="System.ArgumentNullException"><c>oldValue</c> 为 null。</exception>
+        /// <exception cref="System.ArgumentException"><c>oldValue</c> 是空字符串 ("")。</exception>
+        public static string ReplaceLast(this string value, string oldValue, string newValue)
+        {
+            return ReplaceLast(value, oldValue, newValue, StringComparison.CurrentCulture);
+        }
+
+        /// <summary>
+        /// 返回一个新字符串，其中当前实例中出现的最后一个指定字符串会被替换为另一个指定的字符串。
+        /// </summary>
+        /// <param name="value">当前字符串。</param>
+        /// <param name="oldValue">要被替换的字符串。</param>
+        /// <param name="newValue">要替换最后一次出现的 oldValue 的字符串。</param>
+        /// <param name="comparisonType">指定搜索规则的枚举值之一。</param>
+        /// <returns>等效于当前字符串（除了 oldValue 的最后一个实例都已替换为 newValue 外）的字符串。</returns>
+        /// <exception cref="System.NullReferenceException"><c>value</c> 为 null。</exception>
+        /// <exception cref="System.ArgumentNullException"><c>oldValue</c> 为 null。</exception>
+        /// <exception cref="System.ArgumentException"><c>oldValue</c> 是空字符串 ("")。</exception>
+        public static string ReplaceLast(this string value, string oldValue, string newValue,
+            StringComparison comparisonType)
+        {
+            if (value == null)
+            {
+                throw new NullReferenceException("未将对象引用设置到对象的实例。");
+            }
+            if (oldValue == null)
+            {
+                throw new ArgumentNullException("值不能为 null。", "oldValue");
+            }
+            if (oldValue.Length == 0)
+            {
+                throw new ArgumentException("字符串的长度不能为零。", "oldValue");
+            }
+            int index = value.LastIndexOf(oldValue, comparisonType);
+            if (index == -1)
+            {
+                return value;
+            }
+            return value.Substring(0, index) + newValue + value.Substring(index + oldValue.Length);
+        }
+
+        /// <summary>
+        /// 返回一个新字符串，其中当前实例中出现的最后一个指定字符串会被替换为另一个指定的字符串。
+        /// </summary>
+        /// <param name="value">当前字符串。</param>
+        /// <param name="oldValue">要被替换的字符串。</param>
+        /// <param name="newValue">要替换最后一次出现的 oldValue 的字符串。</param>
+        /// <returns>等效于当前字符串（除了 oldValue 的最后一个实例都已替换为 newValue 外）的字符串。</returns>
+        public static string ReplaceLastSafely(this string value, string oldValue, string newValue)
+        {
+            return ReplaceLast(value, oldValue, newValue, StringComparison.CurrentCulture);
+        }
+
+        /// <summary>
+        /// 返回一个新字符串，其中当前实例中出现的最后一个指定字符串会被替换为另一个指定的字符串。
+        /// </summary>
+        /// <param name="value">当前字符串。</param>
+        /// <param name="oldValue">要被替换的字符串。</param>
+        /// <param name="newValue">要替换最后一次出现的 oldValue 的字符串。</param>
+        /// <param name="comparisonType">指定搜索规则的枚举值之一。</param>
+        /// <returns>等效于当前字符串（除了 oldValue 的最后一个实例都已替换为 newValue 外）的字符串。</returns>
+        public static string ReplaceLastSafely(this string value, string oldValue, string newValue,
+            StringComparison comparisonType)
+        {
+            if (value == null)
+            {
+                return value;
+            }
+            if (string.IsNullOrEmpty(oldValue) == true)
+            {
+                return value;
+            }
+            return ReplaceLast(value, oldValue, newValue, comparisonType);
+        }
+
+        /// <summary>
+        /// 指示当前字符串是否能转换为 16 位有符号整数。
+        /// </summary>
+        /// <param name="value">测试的字符串。</param>
+        /// <returns>能否转换为 16 位有符号整数。</returns>
+        public static bool IsInt16(this string value)
+        {
+            short s;
+            return short.TryParse(value, out s);
+        }
+
+        /// <summary>
+        /// 指示当前字符串是否能转换为 32 位有符号整数。
+        /// </summary>
+        /// <param name="value">测试的字符串。</param>
+        /// <returns>是否能转换为 32 位有符号整数。</returns>
+        public static bool IsInt32(this string value)
+        {
+            int i;
+            return int.TryParse(value, out i);
+        }
+
+        /// <summary>
+        /// 指示当前字符串是否能转换为 64 位有符号整数。
+        /// </summary>
+        /// <param name="value">测试的字符串。</param>
+        /// <returns>是否能转换为 64 位有符号整数。</returns>
+        public static bool IsInt64(this string value)
+        {
+            long l;
+            return long.TryParse(value, out l);
+        }
+
+        /// <summary>
+        /// 将当前字符串转换为 32 位有符号整数。
+        /// </summary>
+        /// <param name="value">转换的字符串。</param>
+        /// <returns>成功则返回相应的 32 位有符号整数，失败则返回 -1。</returns>
+        public static int AsInt32(this string value)
+        {
+            return AsInt32(value, -1);
+        }
+
+        /// <summary>
+        /// 将当前字符串转换为 32 位有符号整数。
+        /// </summary>
+        /// <param name="value">转换的字符串。</param>
+        /// <param name="falseValue">无法转换时返回的默认值。</param>
+        /// <returns>成功则返回相应的 32 位有符号整数，失败则返回指定的默认值。</returns>
+        public static int AsInt32(this string value, int falseValue)
+        {
+            int i;
+            if (int.TryParse(value, out i) == true)
+            {
+                return i;
+            }
+            else
+            {
+                return falseValue;
+            }
+        }
     }
 }

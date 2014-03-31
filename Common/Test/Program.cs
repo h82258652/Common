@@ -195,7 +195,10 @@ namespace Test
     {
         public static void Main(string[] args)
         {
-            
+            int i;
+            bool b = int.TryParse(null, out i);
+
+            Console.WriteLine(b);
 
             Console.ReadKey();
         }
