@@ -4,7 +4,7 @@ namespace Common.Threading
     /// <summary>
     /// 线程帮助类返回结果。
     /// </summary>
-    /// <typeparam name="TResult"></typeparam>
+    /// <typeparam name="TResult">返回值类型。</typeparam>
     public class ThreadHelperResult<TResult>
     {
         private bool _hasFinish;
