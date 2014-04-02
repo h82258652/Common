@@ -93,7 +93,7 @@ namespace Common.Serialization
                 }
                 foreach (FieldInfo field in fields)
                 {
-                    JsonAttribute attribute = field.GetCustomAttributes(typeof(JsonAttribute), true).FirstOrDefault() as JsonAttribute;
+                    JsonAttribute attribute = field.GetCustomAttributes(typeof(JsonAttribute), false).FirstOrDefault() as JsonAttribute;
                     if (attribute != null)
                     {
                         if (field.IsPublic == false && attribute.ProcessNonPublic == false)
@@ -170,7 +170,7 @@ namespace Common.Serialization
                 {
                     if (property.GetIndexParameters().Length == 0)
                     {
-                        JsonAttribute attribute = property.GetCustomAttributes(typeof(JsonAttribute), true).FirstOrDefault() as JsonAttribute;
+                        JsonAttribute attribute = property.GetCustomAttributes(typeof(JsonAttribute), false).FirstOrDefault() as JsonAttribute;
                         if (attribute != null)
                         {
                             if (property.CanWrite == false && attribute.ProcessNonPublic == false)

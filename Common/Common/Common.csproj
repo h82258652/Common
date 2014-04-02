@@ -147,6 +147,7 @@
     <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.Enum.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.Guid.cs" />
     <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.Int16.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -249,6 +250,7 @@
     <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.Enum.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.Guid.cs" />
     <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.Int16.cs">
       <SubType>Code</SubType>
     </Compile>

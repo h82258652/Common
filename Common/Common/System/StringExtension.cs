@@ -114,6 +114,25 @@ namespace System
                 return failureValue;
             }
         }
+        
+        /// <summary>
+        /// 将当前字符串转换为单精度浮点数。
+        /// </summary>
+        /// <param name="value">转换的字符串。</param>
+        /// <param name="failureValue">无法转换时返回的默认值。</param>
+        /// <returns>成功则返回相应的双精度浮点数，失败则返回指定的默认值。</returns>
+        public static float AsSingle(this string value, float failureValue)
+        {
+            float f; ;
+            if (float.TryParse(value, out f) == true)
+            {
+                return f;
+            }
+            else
+            {
+                return failureValue;
+            }
+        }
 
         /// <summary>
         /// 将当前字符串进行 Base64 解码。

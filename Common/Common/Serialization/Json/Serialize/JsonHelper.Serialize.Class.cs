@@ -29,7 +29,7 @@ namespace Common.Serialization
             }
             foreach (var field in fields)
             {
-                JsonAttribute attribute = field.GetCustomAttributes(typeof(JsonAttribute), true).FirstOrDefault() as JsonAttribute;
+                JsonAttribute attribute = field.GetCustomAttributes(typeof(JsonAttribute), false).FirstOrDefault() as JsonAttribute;
                 string name;
                 object value;
                 string valueString;
@@ -91,7 +91,7 @@ namespace Common.Serialization
                 }
                 else
                 {
-                    if (field.IsPublic==false)
+                    if (field.IsPublic == false)
                     {
                         continue;
                     }
@@ -99,16 +99,14 @@ namespace Common.Serialization
                     value = field.GetValue(obj);
                     valueString = SerializeObject(value);
                 }
-                values.Add(name+":"+valueString);
+                values.Add(name + ":" + valueString);
             }
             #endregion
             #region 属性
             PropertyInfo[] properties;
             if (typeProperties.TryGetValue(type, out properties) == false)
             {
-                properties =
-                    type.GetProperties(BindingFlags.Public | BindingFlags.Static | BindingFlags.NonPublic |
-                                       BindingFlags.Instance);
+                properties = type.GetProperties(BindingFlags.Public | BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Instance);
                 if (typeProperties.ContainsKey(type) == false)
                 {
                     lock (typeProperties)
@@ -124,8 +122,7 @@ namespace Common.Serialization
             {
                 if (property.GetIndexParameters().Length == 0)
                 {
-                    JsonAttribute attribute =
-                        property.GetCustomAttributes(typeof (JsonAttribute), true).FirstOrDefault() as JsonAttribute;
+                    JsonAttribute attribute = property.GetCustomAttributes(typeof(JsonAttribute), false).FirstOrDefault() as JsonAttribute;
                     string name;
                     object value;
                     string valueString;
@@ -167,7 +164,7 @@ namespace Common.Serialization
                         // 使用自定义序列化。
                         if (attribute.Converter != null)
                         {
-                            JsonConverter converter = (JsonConverter) Activator.CreateInstance(attribute.Converter);
+                            JsonConverter converter = (JsonConverter)Activator.CreateInstance(attribute.Converter);
                             bool skip = false;
                             valueString = converter.Serialize(value, property.PropertyType, ref skip);
                             if (skip == true)
@@ -196,7 +193,7 @@ namespace Common.Serialization
                             continue;
                         }
                         name = "\"" + property.Name + "\"";
-                        value = property.GetValue(obj,null);
+                        value = property.GetValue(obj, null);
                         valueString = SerializeObject(value);
                     }
                     values.Add(name + ":" + valueString);

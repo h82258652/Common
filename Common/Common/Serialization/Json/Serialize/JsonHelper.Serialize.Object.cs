@@ -133,29 +133,40 @@ namespace Common.Serialization
                 return SerializeEnum(obj as Enum);
             }
             #endregion
+            #region Guid
+            else if (obj is Guid)
+            {
+                return SerializeGuid((Guid)obj);
+            }
+            #endregion
             #region List
+
             else if (obj is IList)
             {
                 return SerializeList(obj as IList);
             }
             #endregion
             #region Regex
+
             else if (obj is Regex)
             {
                 return SerializeRegex(obj as Regex);
             }
             #endregion
             #region Uri
+
             else if (obj is Uri)
             {
                 return SerializeUri(obj as Uri);
             }
             #endregion
             #region Class
+
             else
             {
                 return SerializeClass(obj);
             }
+
             #endregion
         }
     }

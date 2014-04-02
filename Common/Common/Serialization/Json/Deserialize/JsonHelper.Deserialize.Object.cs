@@ -130,6 +130,12 @@ namespace Common.Serialization
                 return DeserializeToEnum(input, type);
             }
             #endregion
+            #region Guid
+            else if (type == typeof(Guid))
+            {
+                return DeserializeToGuid(input, type);
+            }
+            #endregion
             #region List
             else if (typeof(IList).IsAssignableFrom(type) == true)
             {

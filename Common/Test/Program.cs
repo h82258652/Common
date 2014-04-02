@@ -195,10 +195,11 @@ namespace Test
     {
         public static void Main(string[] args)
         {
-            int i;
-            bool b = int.TryParse(null, out i);
+            Guid g = Guid.NewGuid();
+            Console.WriteLine(g);
+            Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(g));
+            Console.WriteLine(JsonHelper.SerializeToJson(g));
 
-            Console.WriteLine(b);
 
             Console.ReadKey();
         }
