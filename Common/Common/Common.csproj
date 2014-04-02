@@ -163,6 +163,7 @@
     <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.List.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.Nullable.cs" />
     <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.Object.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -263,6 +264,7 @@
     <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.List.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.Nullable.cs" />
     <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.Object.cs">
       <SubType>Code</SubType>
     </Compile>

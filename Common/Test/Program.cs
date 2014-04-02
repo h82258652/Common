@@ -191,16 +191,18 @@ namespace Test
         }
     }
 
+    class JT
+    {
+        public int? X
+        {
+            get; set;
+        }
+    }
+
     class Program
     {
         public static void Main(string[] args)
         {
-            Guid g = Guid.NewGuid();
-            Console.WriteLine(g);
-            Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(g));
-            Console.WriteLine(JsonHelper.SerializeToJson(g));
-
-
             Console.ReadKey();
         }
     }

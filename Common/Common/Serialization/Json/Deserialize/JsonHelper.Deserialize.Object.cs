@@ -142,6 +142,12 @@ namespace Common.Serialization
                 return DeserializeToList(input, type);
             }
             #endregion
+            #region Nullable
+            else if (type.IsGenericType == true && type.GetGenericTypeDefinition() == typeof(Nullable<>))
+            {
+                return DeserializeToNullable(input, type);
+            }
+            #endregion
             #region Regex
             else if (type == typeof(Regex))
             {
