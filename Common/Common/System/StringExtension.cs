@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Runtime.Serialization.Formatters;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -114,7 +115,7 @@ namespace System
                 return failureValue;
             }
         }
-        
+
         /// <summary>
         /// 将当前字符串转换为单精度浮点数。
         /// </summary>
@@ -231,6 +232,55 @@ namespace System
                 }
             }
             return false;
+        }
+
+        /// <summary>
+        /// 确定此字符串是否与指定的 System.String 对象具有相同的值。 参数指定区域性、大小写以及比较所用的排序规则。
+        /// </summary>
+        /// <param name="this"></param>
+        /// <param name="value">要与此实例进行比较的字符串。</param>
+        /// <returns>如果 value 参数的值为空或与此字符串相同，则为 true；否则为 false。</returns>
+        public static bool EqualsSafely(this string @this, string value)
+        {
+            return EqualsSafely(@this, value, StringComparison.CurrentCulture);
+        }
+
+        /// <summary>
+        /// 确定此字符串是否与指定的 System.String 对象具有相同的值。 参数指定区域性、大小写以及比较所用的排序规则。
+        /// </summary>
+        /// <param name="this"></param>
+        /// <param name="value">要与此实例进行比较的字符串。</param>
+        /// <param name="comparisonType">枚举值之一，用于指定将如何比较字符串。</param>
+        /// <returns>如果 value 参数的值为空或与此字符串相同，则为 true；否则为 false。</returns>
+        public static bool EqualsSafely(this string @this, string value, StringComparison comparisonType)
+        {
+            if (@this == null)
+            {
+                if (value == null)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            switch (comparisonType)
+            {
+                case StringComparison.CurrentCulture:
+                case StringComparison.CurrentCultureIgnoreCase:
+                case StringComparison.InvariantCulture:
+                case StringComparison.InvariantCultureIgnoreCase:
+                case StringComparison.Ordinal:
+                case StringComparison.OrdinalIgnoreCase:
+                    {
+                        return @this.Equals(value, comparisonType);
+                    }
+                default:
+                    {
+                        return false;
+                    }
+            }
         }
 
         /// <summary>

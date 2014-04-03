@@ -18,9 +18,13 @@ namespace System.Collections.Generic
         /// <exception cref="ArgumentNullException"><c>key</c> 为 null。</exception>
         public static bool TryRemove<TKey, TValue>(this IDictionary<TKey, TValue> dict, TKey key, out TValue value)
         {
+            if (dict == null)
+            {
+                throw new ArgumentNullException("dict");
+            }
             if (key == null)
             {
-                throw new ArgumentNullException("key 不能为空。");
+                throw new ArgumentNullException("key");
             }
             if (dict.ContainsKey(key) == true)
             {
@@ -46,28 +50,51 @@ namespace System.Collections.Generic
         /// <exception cref="System.ArgumentNullException"><c>key</c> 为 null。</exception>
         public static void AddOrUpdate<TKey, TValue>(this IDictionary<TKey, TValue> dict, TKey key, TValue value)
         {
+            if (dict == null)
+            {
+                throw new ArgumentNullException("dict");
+            }
             if (key == null)
             {
-                throw new ArgumentNullException("key 不能为空。");
+                throw new ArgumentNullException("key");
             }
             if (dict.ContainsKey(key) == true)
             {
-                lock (dict)
-                {
-                    if (dict.ContainsKey(key) == true)
-                    {
-                        dict[key] = value;
-                    }
-                    else
-                    {
-                        dict.Add(key, value);
-                    }
-                }
+                dict[key] = value;
             }
             else
             {
-                dict[key] = value;
+                dict.Add(key, value);
             }
+        }
+
+        /// <summary>
+        /// 添加或更新字典中指定的键的值。
+        /// </summary>
+        /// <typeparam name="TKey">键的类型。</typeparam>
+        /// <typeparam name="TValue">值的类型。</typeparam>
+        /// <param name="dict">字典。</param>
+        /// <param name="key">要添加或更新的元素的键。</param>
+        /// <param name="value">要添加或更新的值。</param>
+        /// <returns>是否成功添加或更新。</returns>
+        public static bool AddOrUpdateSafely<TKey, TValue>(this IDictionary<TKey, TValue> dict, TKey key, TValue value)
+        {
+            if (key == null)
+            {
+                return false;
+            }
+            lock (dict)
+            {
+                if (dict.ContainsKey(key) == true)
+                {
+                    dict[key] = value;
+                }
+                else
+                {
+                    dict.Add(key, value);
+                }
+            }
+            return true;
         }
     }
 }

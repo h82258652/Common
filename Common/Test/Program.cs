@@ -2,6 +2,7 @@
 using System.Collections.Concurrent;
 using System.Globalization;
 using System.IO.Compression;
+using System.Linq.Expressions;
 using System.Numerics;
 using System.Runtime.Remoting.Messaging;
 using System.Text.RegularExpressions;
@@ -191,18 +192,144 @@ namespace Test
         }
     }
 
-    class JT
+    class JT : Ex<JT>, IQueryable<int>
     {
-        public int? X
+        public JT FirstOrDefault(Expression<Func<JT, bool>> expression)
         {
-            get; set;
+            return new JT();
         }
+
+        public IEnumerator<int> GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Type ElementType
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public Expression Expression
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IQueryProvider Provider
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+    }
+
+    interface Ex<T>
+    {
+        T FirstOrDefault(Expression<Func<T, bool>> expression);
     }
 
     class Program
     {
+        public static string Select(Expression<Func<Program, bool>> expression)
+        {
+            return "";
+        }
+
+        public static string E(Expression<Func<bool>> a)
+        {
+            return "";
+        }
+
+
+        public static int Hahahahaha(string sss)
+        {
+            try
+            {
+                if (sss == "111")
+                {
+                    return 111;
+                }
+                else
+                {
+                    return 222;
+                }
+            }
+            catch (Exception)
+            {
+                return 10;
+            }
+        }
+
+        public static void Go(Expression expression)
+        {
+            if (expression is BinaryExpression)
+            {
+                Console.WriteLine("BinaryExpression");
+            }
+            else if(expression is LambdaExpression)
+            {
+                Go(((LambdaExpression)expression).Body);
+            }
+            else if (expression is ConditionalExpression)
+            {
+var xxx=                (ConditionalExpression) expression;
+                Go(xxx.IfFalse);
+            }
+            else if (expression is ConstantExpression)
+            {
+var q=                (ConstantExpression) expression;
+            }
+            else
+            {
+                throw new Exception(expression.ToString());
+            }
+        }
+
+
         public static void Main(string[] args)
         {
+            IQueryable<int> a;
+         
+
+            Expression<Func<string, int>> xqqq = (s) => s.StartsWith("") ? 0 : 1;
+
+            Go(xqqq);
+            return;
+
+            var b = xqqq.Body;
+
+
+            Func<int, bool> deleg = i => i < 5;
+            // Invoke the delegate and display the output.
+            Console.WriteLine("deleg(4) = {0}", deleg(4));
+
+            // Lambda expression as data in the form of an expression tree.
+            System.Linq.Expressions.Expression<Func<int, bool>> expr = i => i < 5;
+            // Compile the expression tree into executable code.
+            Func<int, bool> deleg2 = expr.Compile();
+            // Invoke the method and print the output.
+            Console.WriteLine("deleg2(4) = {0}", deleg2(4));
+
+
+            var xx = Expression.MakeBinary(ExpressionType.Subtract, Expression.Constant(5), Expression.Constant(4));
+
+
+            var rs = xx.Method.Invoke(null, null);
+
+            JT jt = new JT();
+            jt.FirstOrDefault(temp => temp.ToString() == "");
+
             Console.ReadKey();
         }
     }
