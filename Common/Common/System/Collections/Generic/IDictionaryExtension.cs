@@ -22,7 +22,7 @@ namespace System.Collections.Generic
             {
                 throw new ArgumentNullException("dict");
             }
-            if (key == null)
+            if (key is ValueType == false && object.Equals(key, default(TKey)) == true)
             {
                 throw new ArgumentNullException("key");
             }
@@ -54,7 +54,7 @@ namespace System.Collections.Generic
             {
                 throw new ArgumentNullException("dict");
             }
-            if (key == null)
+            if (key is ValueType == false && object.Equals(key, default(TKey)) == true)
             {
                 throw new ArgumentNullException("key");
             }
@@ -79,7 +79,11 @@ namespace System.Collections.Generic
         /// <returns>是否成功添加或更新。</returns>
         public static bool AddOrUpdateSafely<TKey, TValue>(this IDictionary<TKey, TValue> dict, TKey key, TValue value)
         {
-            if (key == null)
+            if (dict == null)
+            {
+                return false;
+            }
+            if (key is ValueType == false && object.Equals(key, default(TKey)) == true)
             {
                 return false;
             }

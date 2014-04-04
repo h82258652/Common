@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Globalization;
 using System.IO.Compression;
 using System.Linq.Expressions;
+using System.Net.Mime;
 using System.Numerics;
 using System.Runtime.Remoting.Messaging;
 using System.Text.RegularExpressions;
@@ -299,6 +300,9 @@ var q=                (ConstantExpression) expression;
 
         public static void Main(string[] args)
         {
+            ForTest.MyMain();
+            Environment.Exit(1);
+
             IQueryable<int> a;
          
 
