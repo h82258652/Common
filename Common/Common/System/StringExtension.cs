@@ -1,6 +1,4 @@
-﻿using System.Net;
-using System.Runtime.Serialization.Formatters;
-using System.Text;
+﻿using System.Text;
 using System.Text.RegularExpressions;
 
 namespace System
@@ -10,6 +8,25 @@ namespace System
     /// </summary>
     public static partial class StringExtension
     {
+        /// <summary>
+        /// 将当前字符串转换为 8 位无符号整数。
+        /// </summary>
+        /// <param name="value">转换的字符串。</param>
+        /// <param name="failureValue">无法转换时返回的默认值。</param>
+        /// <returns>成功则返回相应的双精度浮点数，失败则返回指定的默认值。</returns>
+        public static byte AsByte(this string value, byte failureValue)
+        {
+            byte b;
+            if (byte.TryParse(value, out b) == true)
+            {
+                return b;
+            }
+            else
+            {
+                return failureValue;
+            }
+        }
+
         /// <summary>
         /// 将当前字符串转换为双精度浮点数。
         /// </summary>
@@ -304,6 +321,17 @@ namespace System
         public static string[] GetWords(this string value)
         {
             return Regex.Split(value, @"\W");
+        }
+
+        /// <summary>
+        /// 指示当前字符串能否转换为 8 位无符号整数。
+        /// </summary>
+        /// <param name="value">测试的字符串。</param>
+        /// <returns>是否能转换为 8 位无符号整数。</returns>
+        public static bool IsByte(this string value)
+        {
+            byte b;
+            return byte.TryParse(value, out b);
         }
 
         /// <summary>
