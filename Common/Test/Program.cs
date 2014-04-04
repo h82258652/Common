@@ -300,6 +300,8 @@ var q=                (ConstantExpression) expression;
 
         public static void Main(string[] args)
         {
+           
+
             int aa = 1;
             Console.WriteLine(aa is ValueType);
             Console.ReadKey();

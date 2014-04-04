@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", 
 EndProject
 Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "CommonDocumentation", "CommonDocumentation\CommonDocumentation.shfbproj", "{08EEEFA8-0397-4BE0-8048-E89EE78003EE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonDotNet", "CommonDotNet\CommonDotNet.csproj", "{203E67B6-4088-496B-B792-AD918E5419F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{08EEEFA8-0397-4BE0-8048-E89EE78003EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08EEEFA8-0397-4BE0-8048-E89EE78003EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08EEEFA8-0397-4BE0-8048-E89EE78003EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{203E67B6-4088-496B-B792-AD918E5419F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{203E67B6-4088-496B-B792-AD918E5419F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{203E67B6-4088-496B-B792-AD918E5419F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{203E67B6-4088-496B-B792-AD918E5419F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
