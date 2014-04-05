@@ -811,7 +811,7 @@ namespace System
             byte b1 = Convert.ToByte(sr1 + sr2, 16);
             byte b2 = Convert.ToByte(sr3 + sr4, 16);
 
-            return gb2312.GetString(new byte[] { b1, b2 })[0];
+            return gb2312.GetString(new byte[] { b1, b2 }, 0, 2)[0];
         }
 
 

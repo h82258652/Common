@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace System
@@ -160,7 +161,8 @@ namespace System
         /// <exception cref="System.ArgumentNullException"><c>value</c> 为 null。</exception>
         public static string Base64Decode(this string value)
         {
-            return Encoding.Default.GetString(Convert.FromBase64String(value));
+            byte[] bytes = Convert.FromBase64String(value);
+            return Encoding.UTF8.GetString(bytes, 0, bytes.Length);
         }
 
         /// <summary>
@@ -171,7 +173,8 @@ namespace System
         /// <exception cref="System.ArgumentNullException"><c>value</c> 为 null。</exception>
         public static string Base64Encode(this string value)
         {
-            return Convert.ToBase64String(Encoding.Default.GetBytes(value));
+            byte[] bytes = Encoding.UTF8.GetBytes(value);
+            return Convert.ToBase64String(bytes);
         }
 
         /// <summary>
@@ -282,21 +285,13 @@ namespace System
                     return false;
                 }
             }
-            switch (comparisonType)
+            if (Enum.IsDefined(typeof (StringComparison), comparisonType) == true)
             {
-                case StringComparison.CurrentCulture:
-                case StringComparison.CurrentCultureIgnoreCase:
-                case StringComparison.InvariantCulture:
-                case StringComparison.InvariantCultureIgnoreCase:
-                case StringComparison.Ordinal:
-                case StringComparison.OrdinalIgnoreCase:
-                    {
-                        return @this.Equals(value, comparisonType);
-                    }
-                default:
-                    {
-                        return false;
-                    }
+                return @this.Equals(value, comparisonType);
+            }
+            else
+            {
+                return false;
             }
         }
 
@@ -677,7 +672,7 @@ namespace System
                 return value;
             }
             StringBuilder sb = new StringBuilder();
-            foreach (var c in value)
+            foreach (char c in value)
             {
                 if (c == 12288)
                 {
@@ -708,7 +703,7 @@ namespace System
                 return value;
             }
             StringBuilder sb = new StringBuilder();
-            foreach (var c in value)
+            foreach (char c in value)
             {
                 if (c == 32)
                 {

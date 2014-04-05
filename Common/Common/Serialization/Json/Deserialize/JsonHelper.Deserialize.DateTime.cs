@@ -5,11 +5,11 @@ namespace Common.Serialization
 {
     public static partial class JsonHelper
     {
-        private static readonly Regex DateTimeCreateRegex = new Regex(@"^new\s+Date\(\s*(\d*)\s*\)$", RegexOptions.Compiled);
+        private static readonly Regex DateTimeCreateRegex = new Regex(@"^new\s+Date\(\s*(\d*)\s*\)$");
 
-        private static readonly Regex DateTimeDefaultRegex = new Regex(@"^(\d{4})\-(\d{2})\-(\d{2})T(\d{2}):(\d{2}):(\d{2})(\.\d*)?([\+|\-]\d{2}:\d{2})?$", RegexOptions.Compiled);
+        private static readonly Regex DateTimeDefaultRegex = new Regex(@"^(\d{4})\-(\d{2})\-(\d{2})T(\d{2}):(\d{2}):(\d{2})(\.\d*)?([\+|\-]\d{2}:\d{2})?$");
 
-        private static readonly Regex DateTimeFunctionRegex = new Regex(@"^\\/Date\((\d+)\)\\/$", RegexOptions.Compiled);
+        private static readonly Regex DateTimeFunctionRegex = new Regex(@"^\\/Date\((\d+)\)\\/$");
 
         internal static DateTime DeserializeToDateTime(string input, Type type)
         {

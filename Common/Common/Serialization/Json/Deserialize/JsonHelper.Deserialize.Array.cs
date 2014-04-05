@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace Common.Serialization
 {
@@ -12,12 +13,12 @@ namespace Common.Serialization
                 input = input.Substring(1, input.Length - 2).Trim();
                 // 获取元素类型。
                 Type elementType = type.GetElementType();
-                ArrayList array = new ArrayList();
+                List<object> list = new List<object>();
                 foreach (var temp in JsonHelper.ItemReader(input))
                 {
-                    array.Add(DeserializeToObject(temp, elementType));
+                    list.Add(DeserializeToObject(temp, elementType));
                 }
-                return array.ToArray(elementType);
+                return list.ToArray();
             }
             else
             {

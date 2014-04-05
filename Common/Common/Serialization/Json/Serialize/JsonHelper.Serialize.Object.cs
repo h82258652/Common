@@ -116,58 +116,69 @@ namespace Common.Serialization
             }
             #endregion
             #region DateTime
+
             else if (obj is DateTime)
             {
                 return SerializeDateTime((DateTime)obj);
             }
             #endregion
             #region Dictionary
+
             else if (obj is IDictionary)
             {
                 return SerializeDictionary(obj as IDictionary);
             }
             #endregion
             #region Enum
+
             else if (obj is Enum)
             {
                 return SerializeEnum(obj as Enum);
             }
             #endregion
             #region Guid
+
             else if (obj is Guid)
             {
                 return SerializeGuid((Guid)obj);
             }
             #endregion
             #region List
+
             else if (obj is IList)
             {
                 return SerializeList(obj as IList);
             }
             #endregion
             #region Nullable
-            else if (obj.GetType().IsGenericType == true && obj.GetType().GetGenericTypeDefinition() == typeof(Nullable<>))
+
+            else if (obj.GetType().IsGenericType == true &&
+                     obj.GetType().GetGenericTypeDefinition() == typeof(Nullable<>))
             {
                 return SerializeNullable(obj);
             }
             #endregion
             #region Regex
+
             else if (obj is Regex)
             {
                 return SerializeRegex(obj as Regex);
             }
             #endregion
             #region Uri
+
             else if (obj is Uri)
             {
                 return SerializeUri(obj as Uri);
             }
             #endregion
             #region Class
+
             else
             {
                 return SerializeClass(obj);
             }
+
             #endregion
         }
     }

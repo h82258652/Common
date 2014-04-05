@@ -25,7 +25,7 @@ namespace Common.Serialization
                     }
                 default:
                     {
-                        throw new InvalidEnumArgumentException("DateTime 类型的序列化格式未指定。");
+                        throw new ArgumentException("DateTime 类型的序列化格式未指定。");
                     }
             }
         }

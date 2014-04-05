@@ -19,7 +19,7 @@ namespace Common.Serialization
         {
             if (SerializeIndentationWhiteSpaceCount < 0)
             {
-                throw new ArgumentOutOfRangeException("JSON 格式化缩进空格数不能小于0。");
+                throw new ArgumentOutOfRangeException("json", "JSON 格式化缩进空格数不能小于0。");
             }
 
             if (SerializeIndentationWhiteSpaceCount == 0 && SerializeWapp == false)

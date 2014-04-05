@@ -29,7 +29,7 @@ namespace Common.Reflection
         public static bool HasMethod(object obj, string methodName, out MethodInfo method, SearchOption option = SearchOption.Default)
         {
             Type t = obj.GetType();
-            BindingFlags flags = BindingFlags.Default;
+            BindingFlags flags = (BindingFlags)0;
             if (option == SearchOption.IgnoreCase)
             {
                 flags = flags | BindingFlags.IgnoreCase;

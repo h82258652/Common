@@ -59,7 +59,7 @@ namespace Common.Reflection
         public static bool HasField(object obj, string fieldName, out FieldInfo field, SearchOption option = SearchOption.Default)
         {
             Type t = obj.GetType();
-            BindingFlags flags = BindingFlags.Default;
+            BindingFlags flags = (BindingFlags)0;
             if (option == SearchOption.IgnoreCase)
             {
                 flags = flags | BindingFlags.IgnoreCase;

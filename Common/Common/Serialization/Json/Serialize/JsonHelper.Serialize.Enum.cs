@@ -23,7 +23,7 @@ namespace Common.Serialization
                     }
                 default:
                     {
-                        throw new InvalidEnumArgumentException("Enum 类型的序列化格式未指定。");
+                        throw new ArgumentException("Enum 类型的序列化格式未指定。");
                     }
             }
         }

@@ -13,7 +13,7 @@ namespace Common.Serialization
                 Enum value;
                 try
                 {
-                    value = (Enum)Enum.Parse(type, input);
+                    value = (Enum)Enum.Parse(type, input, false);
                 }
                 catch (Exception)
                 {
@@ -26,7 +26,7 @@ namespace Common.Serialization
                 int i;
                 if (int.TryParse(input, out i) == true)
                 {
-                    return (Enum)Enum.Parse(type, i.ToString());
+                    return (Enum)Enum.Parse(type, i.ToString(), false);
                 }
                 else
                 {

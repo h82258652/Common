@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -47,7 +48,7 @@ namespace Common.Serialization
                     }
                 default:
                     {
-                        throw new InvalidEnumArgumentException("Regex 类型的序列化格式未指定。");
+                        throw new ArgumentException("Regex 类型的序列化格式未指定。");
                     }
             }
         }

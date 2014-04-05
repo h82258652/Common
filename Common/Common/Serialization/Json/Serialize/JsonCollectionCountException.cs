@@ -6,7 +6,6 @@ namespace Common.Serialization
     /// <summary>
     /// 表示 JSON 序列化时字符串或数组或集合的元素个数有误。
     /// </summary>
-    [Serializable]
     public sealed class JsonCollectionCountException : Exception
     {
         /// <summary>

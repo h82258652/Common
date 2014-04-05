@@ -5,9 +5,9 @@ namespace Common.Serialization
 {
     public static partial class JsonHelper
     {
-        private static readonly Regex RegexCreateRegex = new Regex("new\\s+RegExp\\(\\s*(\\\"(.*?)\\\"|\\'(.*?)\\')\\s*(,\\s*(\\\"(.*?)\\\"|\\'(.*?)\\')\\s*)?\\)", RegexOptions.Compiled);
+        private static readonly Regex RegexCreateRegex = new Regex("new\\s+RegExp\\(\\s*(\\\"(.*?)\\\"|\\'(.*?)\\')\\s*(,\\s*(\\\"(.*?)\\\"|\\'(.*?)\\')\\s*)?\\)");
 
-        private static readonly Regex RegexDefaultRegex = new Regex(@"^/(.*?)/(g|i|m|gi|gm|ig|im|mg|mi|gim|gmi|igm|img|mgi|mig)?$", RegexOptions.Compiled);
+        private static readonly Regex RegexDefaultRegex = new Regex(@"^/(.*?)/(g|i|m|gi|gm|ig|im|mg|mi|gim|gmi|igm|img|mgi|mig)?$");
 
         internal static Regex DeserializeToRegex(string input, Type type)
         {

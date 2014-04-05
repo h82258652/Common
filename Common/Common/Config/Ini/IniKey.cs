@@ -54,7 +54,7 @@ namespace Common.Config
             }
             set
             {
-                if (value.Contains('=') == false)
+                if (value.Contains("=") == false)
                 {
                     value = value + '=';
                 }
