@@ -26,6 +26,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using Common.Serialization;
+using Common.Serialization.Json;
 
 namespace Test
 {
@@ -300,10 +301,12 @@ var q=                (ConstantExpression) expression;
 
         public static void Main(string[] args)
         {
-           
+            int ia = 0;
+            JsonHelper.MaxStackLevel = 0;
+            Console.WriteLine(JsonHelper.SerializeToJson(ia));
 
-            int aa = 1;
-            Console.WriteLine(aa is ValueType);
+
+
             Console.ReadKey();
             return;
                 

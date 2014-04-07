@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DACD4205-58BB-4CAC-824E-9E53E2E8F2E8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Common</RootNamespace>
+    <AssemblyName>CommonDotNet</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\CommonDotNet.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Config\Ini\IniComment.cs" />
+    <Compile Include="Config\Ini\IniConfigHelper.cs" />
+    <Compile Include="Config\Ini\IniKey.cs" />
+    <Compile Include="Config\Ini\IniNode.cs" />
+    <Compile Include="Config\Ini\IniSection.cs" />
+    <Compile Include="Config\Ini\IniTree.cs" />
+    <Compile Include="Config\Ini\IniUnknownLine.cs" />
+    <Compile Include="Config\IsolatedStorageConfigHelper.cs" />
+    <Compile Include="Config\XmlConfigHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reflection\ReflectionHelper.Constructor.cs" />
+    <Compile Include="Reflection\ReflectionHelper.DynamicCompile.cs" />
+    <Compile Include="Reflection\ReflectionHelper.Field.cs" />
+    <Compile Include="Reflection\ReflectionHelper.Indexer.cs" />
+    <Compile Include="Reflection\ReflectionHelper.Method.cs" />
+    <Compile Include="Reflection\ReflectionHelper.Property.cs" />
+    <Compile Include="Reflection\ReflectionHelper.SearchOption.cs" />
+    <Compile Include="Security\MD5Helper.cs" />
+    <Compile Include="Security\RSAHelper.cs" />
+    <Compile Include="Security\SHA1Helper.cs" />
+    <Compile Include="Serialization\BinarySerializeHelper.cs" />
+    <Compile Include="Serialization\JsonV2\JsonAttribute.cs" />
+    <Compile Include="Serialization\JsonV2\JsonConverter.cs" />
+    <Compile Include="Serialization\JsonV2\JsonHelper.Cache.cs" />
+    <Compile Include="Serialization\JsonV2\JsonStackOverFlowException.cs" />
+    <Compile Include="Serialization\JsonV2\Serialize\JsonCountException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\JsonV2\Serialize\JsonHelper.DateTimeFormat.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\JsonV2\Serialize\JsonHelper.EnumFormat.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\JsonV2\Serialize\JsonHelper.FormatJson.cs" />
+    <Compile Include="Serialization\JsonV2\Serialize\JsonHelper.RegexFormat.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serialization\JsonV2\Serialize\JsonHelper.Serialize.cs" />
+    <Compile Include="Serialization\JsonV2\Serialize\JsonHelper.Setting.cs" />
+    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.Array.cs" />
+    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.BigInteger.cs" />
+    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.Boolean.cs" />
+    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.Byte.cs" />
+    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.Char.cs" />
+    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.Class.cs" />
+    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.cs" />
+    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.DateTime.cs" />
+    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.Decimal.cs" />
+    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.Dictionary.cs" />
+    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.Double.cs" />
+    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.Enum.cs" />
+    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.Int64.cs" />
+    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.Int32.cs" />
+    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.Int16.cs" />
+    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.List.cs" />
+    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.Nullable.cs" />
+    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.Object.cs" />
+    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.Regex.cs" />
+    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.SByte.cs" />
+    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.Single.cs" />
+    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.String.cs" />
+    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.UInt16.cs" />
+    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.UInt32.cs" />
+    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.UInt64.cs" />
+    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.Uri.cs" />
+    <Compile Include="Serialization\XMLSerializerHelper.cs" />
+    <Compile Include="System\CharExtension.cs" />
+    <Compile Include="System\Collections\Generic\IDictionaryExtension.cs" />
+    <Compile Include="System\RandomExtension.cs" />
+    <Compile Include="System\StringExtension.cs" />
+    <Compile Include="System\TypeExtension.cs" />
+    <Compile Include="Threading\Action\ThreadHelper.Action.cs" />
+    <Compile Include="Threading\Action\ThreadHelperPackage.Action.cs" />
+    <Compile Include="Threading\Action\ThreadHelperProcess.Action.cs" />
+    <Compile Include="Threading\Action\ThreadHelperResult.Action.cs" />
+    <Compile Include="Threading\Func\ThreadHelper.Func.cs" />
+    <Compile Include="Threading\Func\ThreadHelperFinishedEventArgs.Func.cs" />
+    <Compile Include="Threading\Func\ThreadHelperPackage.Func.cs" />
+    <Compile Include="Threading\Func\ThreadHelperProcess.Func.cs" />
+    <Compile Include="Threading\Func\ThreadHelperResult.Func.cs" />
+    <Compile Include="Web\HttpHelper.Get.cs" />
+    <Compile Include="Web\HttpHelper.ObjectToRequestData.cs" />
+    <Compile Include="Web\HttpHelper.Post.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Serialization\JsonV2\Deserialize\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.Guid.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
