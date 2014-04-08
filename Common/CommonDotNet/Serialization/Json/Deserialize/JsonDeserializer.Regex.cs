@@ -15,8 +15,8 @@ namespace Common.Serialization.Json
             match = RegexCreateRegex.Match(input);
             if (match.Success == true)
             {
-                string pattern = match.Groups[3].Value;
-                string attributes = match.Groups[7].Value;
+                string pattern = match.Groups[2].Success ? match.Groups[2].Value : match.Groups[3].Value;
+                string attributes = match.Groups[6].Success ? match.Groups[6].Value : match.Groups[7].Value;
                 RegexOptions options = RegexOptions.None;
                 if (attributes.Contains("i") == true)
                 {

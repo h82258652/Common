@@ -279,18 +279,18 @@ namespace Test
             {
                 Console.WriteLine("BinaryExpression");
             }
-            else if(expression is LambdaExpression)
+            else if (expression is LambdaExpression)
             {
                 Go(((LambdaExpression)expression).Body);
             }
             else if (expression is ConditionalExpression)
             {
-var xxx=                (ConditionalExpression) expression;
+                var xxx = (ConditionalExpression)expression;
                 Go(xxx.IfFalse);
             }
             else if (expression is ConstantExpression)
             {
-var q=                (ConstantExpression) expression;
+                var q = (ConstantExpression)expression;
             }
             else
             {
@@ -301,26 +301,29 @@ var q=                (ConstantExpression) expression;
 
         public static void Main(string[] args)
         {
-            int ia = 100;
-//            JsonHelper.MaxStackLevel = 0;
-            string sx = JsonHelper.SerializeToJson(ia);
-            Console.WriteLine(sx);
-int aq=(int)            JsonHelper.Deserialize(sx,typeof(int));
-            Console.WriteLine(aq);
+            DateTime dt = DateTime.Now;
+            JsonHelper.DateTimeFormat = Common.Serialization.Json.DateTimeFormat.Create;
+            string sss = JsonHelper.SerializeToJson(dt);
+            Console.WriteLine(sss);
+            Regex dt2 = JsonHelper.Deserialize<Regex>("new RegExp(  \"\\d\" , \"m\" )");
+
+
+
+
 
 
 
 
             Console.ReadKey();
             return;
-                
+
 
 
             ForTest.MyMain();
             Environment.Exit(1);
 
             IQueryable<int> a;
-         
+
 
             Expression<Func<string, int>> xqqq = (s) => s.StartsWith("") ? 0 : 1;
 
@@ -351,7 +354,7 @@ int aq=(int)            JsonHelper.Deserialize(sx,typeof(int));
             jt.FirstOrDefault(temp => temp.ToString() == "");
 
             Console.ReadKey();
-        
+
         }
     }
 
