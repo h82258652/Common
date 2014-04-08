@@ -42,6 +42,9 @@
   <ItemGroup>
     <Compile Include="CommonJS.Using.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="System\Array.isArray.js" />
+    <Content Include="System\String.trimEnd.js" />
+    <Content Include="System\String.trimStart.js" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="System\String.trim.js" />

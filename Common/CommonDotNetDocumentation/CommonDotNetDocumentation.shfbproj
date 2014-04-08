@@ -13,7 +13,7 @@
     <RootNamespace>CommonDotNetDocumentation</RootNamespace>
     <Name>CommonDotNetDocumentation</Name>
     <!-- SHFB properties -->
-    <FrameworkVersion>.NET Framework 4.5.1</FrameworkVersion>
+    <FrameworkVersion>.NET Framework 4.5</FrameworkVersion>
     <OutputPath>.\Help\</OutputPath>
     <HtmlHelpName>CommonDotNetDocumentation</HtmlHelpName>
     <Language>en-US</Language>
