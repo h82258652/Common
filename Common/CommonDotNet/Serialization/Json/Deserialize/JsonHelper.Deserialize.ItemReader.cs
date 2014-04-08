@@ -1,15 +1,14 @@
 ﻿using System.Collections.Generic;
 
-namespace Common.Serialization
+namespace Common.Serialization.Json
 {
     public static partial class JsonHelper
     {
-        private static IEnumerable<string> ItemReader(string input)
+        internal static IEnumerable<string> ItemReader(string input)
         {
             int length = input.Length;
             if (length == 0)
             {
-                yield return null;
                 yield break;
             }
             int startIndex = 0;

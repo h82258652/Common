@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace Common.Serialization
+namespace Common.Serialization.Json
 {
     public static partial class JsonHelper
     {

@@ -1,17 +1,17 @@
-ï»¿using System;
+using System;
 
-namespace Common.Serialization
+namespace Common.Serialization.Json
 {
     /// <summary>
-    /// æ ‡è®°å­—æ®µæˆ–å±æ€§ä»¥è‡ªå®šä¹‰ JSON åºåˆ—åŒ–ã€‚
+    /// ±ê¼Ç×Ö¶Î»òÊôĞÔÒÔ×Ô¶¨Òå JSON ĞòÁĞ»¯¡£
     /// </summary>
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false)]
-    public sealed partial class JsonAttribute : Attribute
+    public sealed class JsonAttribute : Attribute
     {
-        private Type converter;
+        private Type _converter;
 
         /// <summary>
-        /// åˆ›å»ºä¸€ä¸ª JsonAttribute çš„å®ä¾‹ã€‚
+        /// ´´½¨Ò»¸ö JsonAttribute µÄÊµÀı¡£
         /// </summary>
         public JsonAttribute()
             : this(null, null)
@@ -19,78 +19,78 @@ namespace Common.Serialization
         }
 
         /// <summary>
-        /// åˆ›å»ºä¸€ä¸ª JsonAttribute çš„å®ä¾‹ã€‚
+        /// ´´½¨Ò»¸ö JsonAttribute µÄÊµÀı¡£
         /// </summary>
-        /// <param name="name">æŒ‡å®šè¯¥å­—æ®µæˆ–å±æ€§åœ¨åºåˆ—åŒ–å’Œååºåˆ—åŒ–æ—¶æ˜ å°„çš„åå­—ã€‚</param>
+        /// <param name="name">Ö¸¶¨¸Ã×Ö¶Î»òÊôĞÔÔÚĞòÁĞ»¯ºÍ·´ĞòÁĞ»¯Ê±Ó³ÉäµÄÃû×Ö¡£</param>
         public JsonAttribute(string name)
             : this(name, null)
         {
         }
 
         /// <summary>
-        /// åˆ›å»ºä¸€ä¸ª JsonAttribute çš„å®ä¾‹ã€‚
+        /// ´´½¨Ò»¸ö JsonAttribute µÄÊµÀı¡£
         /// </summary>
-        /// <param name="converter">æŒ‡å®šè¯¥å­—æ®µæˆ–å±æ€§åœ¨åºåˆ—åŒ–å’Œååºåˆ—åŒ–æ—¶ä½¿ç”¨çš„è‡ªå®šä¹‰è½¬æ¢å™¨çš„ç±»å‹ã€‚</param>
+        /// <param name="converter">Ö¸¶¨¸Ã×Ö¶Î»òÊôĞÔÔÚĞòÁĞ»¯ºÍ·´ĞòÁĞ»¯Ê±Ê¹ÓÃµÄ×Ô¶¨Òå×ª»»Æ÷µÄÀàĞÍ¡£</param>
         public JsonAttribute(Type converter)
             : this(null, converter)
         {
         }
 
         /// <summary>
-        /// åˆ›å»ºä¸€ä¸ª JsonAttribute çš„å®ä¾‹ã€‚
+        /// ´´½¨Ò»¸ö JsonAttribute µÄÊµÀı¡£
         /// </summary>
-        /// <param name="name">æŒ‡å®šè¯¥å­—æ®µæˆ–å±æ€§åœ¨åºåˆ—åŒ–å’Œååºåˆ—åŒ–æ—¶æ˜ å°„çš„åå­—ã€‚</param>
-        /// <param name="converter">æŒ‡å®šè¯¥å­—æ®µæˆ–å±æ€§åœ¨åºåˆ—åŒ–å’Œååºåˆ—åŒ–æ—¶ä½¿ç”¨çš„è‡ªå®šä¹‰è½¬æ¢å™¨çš„ç±»å‹ã€‚</param>
+        /// <param name="name">Ö¸¶¨¸Ã×Ö¶Î»òÊôĞÔÔÚĞòÁĞ»¯ºÍ·´ĞòÁĞ»¯Ê±Ó³ÉäµÄÃû×Ö¡£</param>
+        /// <param name="converter">Ö¸¶¨¸Ã×Ö¶Î»òÊôĞÔÔÚĞòÁĞ»¯ºÍ·´ĞòÁĞ»¯Ê±Ê¹ÓÃµÄ×Ô¶¨Òå×ª»»Æ÷µÄÀàĞÍ¡£</param>
         public JsonAttribute(string name, Type converter)
         {
-            Name = name;
-            Converter = converter;
-            CollectionCountGreaterThan = -1;
-            CollectionCountLessThan = -1;
+            this.Name = name;
+            this.Converter = converter;
+            this.CountGreaterThan = -1;
+            this.CountLessThan = -1;
         }
 
         /// <summary>
-        /// çº¦æŸåœ¨åºåˆ—åŒ–æ—¶å­—ç¬¦ä¸²æˆ–æ•°ç»„æˆ–é›†åˆçš„å…ƒç´ ä¸ªæ•°å¿…é¡»å¤§äºæŒ‡å®šå€¼ã€‚å°äºé›¶ä¸ºä¸çº¦æŸã€‚é»˜è®¤ä¸º -1ã€‚
+        /// Ô¼ÊøÔÚĞòÁĞ»¯Ê±×Ö·û´®»òÊı×é»ò¼¯ºÏµÄÔªËØ¸öÊı±ØĞë´óÓÚÖ¸¶¨Öµ¡£Ğ¡ÓÚÁãÎª²»Ô¼Êø¡£Ä¬ÈÏÎª -1¡£
         /// </summary>
-        public int CollectionCountGreaterThan
+        public int CountGreaterThan
         {
             get;
             set;
         }
 
         /// <summary>
-        /// çº¦æŸåœ¨åºåˆ—åŒ–æ—¶å­—ç¬¦ä¸²æˆ–æ•°ç»„æˆ–é›†åˆçš„å…ƒç´ ä¸ªæ•°å¿…é¡»å°äºæŒ‡å®šå€¼ã€‚å°äºé›¶ä¸ºä¸çº¦æŸã€‚é»˜è®¤ä¸º -1ã€‚
+        /// Ô¼ÊøÔÚĞòÁĞ»¯Ê±×Ö·û´®»òÊı×é»ò¼¯ºÏµÄÔªËØ¸öÊı±ØĞëĞ¡ÓÚÖ¸¶¨Öµ¡£Ğ¡ÓÚÁãÎª²»Ô¼Êø¡£Ä¬ÈÏÎª -1¡£
         /// </summary>
-        public int CollectionCountLessThan
+        public int CountLessThan
         {
             get;
             set;
         }
 
         /// <summary>
-        /// ä½¿ç”¨è‡ªå®šä¹‰çš„åºåˆ—åŒ–è½¬æ¢ã€‚
+        /// Ê¹ÓÃ×Ô¶¨ÒåµÄĞòÁĞ»¯×ª»»¡£
         /// </summary>
         public Type Converter
         {
             get
             {
-                return converter;
+                return _converter;
             }
             set
             {
-                if (converter == null || typeof(JsonConverter).IsSubclassOf(value) == true)
+                if (value == null || typeof(JsonConverter).IsSubclassOf(value) == true)
                 {
-                    converter = value;
+                    _converter = value;
                 }
                 else
                 {
-                    throw new ArgumentException("Converter å¿…é¡»ä¸º JsonConverter ç±»çš„å­ç±»ã€‚");
+                    throw new ArgumentException("Converter ±ØĞëÎª JsonConverter ÀàµÄ×ÓÀà¡£");
                 }
             }
         }
 
         /// <summary>
-        /// æ˜¯å¦åœ¨åºåˆ—åŒ–æ—¶å¿½ç•¥æ ‡è®°çš„å­—æ®µæˆ–å±æ€§ã€‚é»˜è®¤ falseã€‚
+        /// ÊÇ·ñÔÚĞòÁĞ»¯Ê±ºöÂÔ±ê¼ÇµÄ×Ö¶Î»òÊôĞÔ¡£Ä¬ÈÏ false¡£
         /// </summary>
         public bool Ignore
         {
@@ -99,7 +99,7 @@ namespace Common.Serialization
         }
 
         /// <summary>
-        /// è‹¥æ ‡è®°çš„å­—æ®µæˆ–å±æ€§ä¸º null æ—¶ï¼Œæ˜¯å¦åœ¨åºåˆ—åŒ–æ—¶å¿½ç•¥ã€‚é»˜è®¤ falseã€‚
+        /// Èô±ê¼ÇµÄ×Ö¶Î»òÊôĞÔÎª null Ê±£¬ÊÇ·ñÔÚĞòÁĞ»¯Ê±ºöÂÔ¡£Ä¬ÈÏ false¡£
         /// </summary>
         public bool IgnoreNull
         {
@@ -108,7 +108,7 @@ namespace Common.Serialization
         }
 
         /// <summary>
-        /// æŒ‡å®šåœ¨åºåˆ—åŒ–å’Œååºåˆ—åŒ–æ—¶æ˜ å°„çš„åå­—ã€‚
+        /// Ö¸¶¨ÔÚĞòÁĞ»¯ºÍ·´ĞòÁĞ»¯Ê±Ó³ÉäµÄÃû×Ö¡£
         /// </summary>
         public string Name
         {
@@ -117,7 +117,7 @@ namespace Common.Serialization
         }
 
         /// <summary>
-        /// æ˜¯å¦åºåˆ—åŒ–ä¸ååºåˆ—åŒ–éå…¬æœ‰å­—æ®µæˆ–å±æ€§ã€‚é»˜è®¤ falseã€‚
+        /// ÊÇ·ñĞòÁĞ»¯Óë·´ĞòÁĞ»¯·Ç¹«ÓĞ×Ö¶Î»òÊôĞÔ¡£Ä¬ÈÏ false¡£
         /// </summary>
         public bool ProcessNonPublic
         {

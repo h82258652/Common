@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Common.Serialization
+namespace Common.Serialization.Json
 {
     /// <summary>
     /// 表示 JSON 反序列化失败。

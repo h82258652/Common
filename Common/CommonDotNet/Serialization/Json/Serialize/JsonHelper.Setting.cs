@@ -1,6 +1,5 @@
-﻿using Common.Serialization.Json;
-
-namespace Common.Serialization
+﻿
+namespace Common.Serialization.Json
 {
     public static partial class JsonHelper
     {

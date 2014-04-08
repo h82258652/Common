@@ -1,21 +1,29 @@
-ï»¿
-namespace Common.Serialization
+
+namespace Common.Serialization.Json
 {
     public static partial class JsonHelper
     {
         /// <summary>
-        /// å°†å½“å‰å¯¹è±¡è½¬æ¢ä¸º JSON å­—ç¬¦ä¸²ã€‚
+        /// ½«µ±Ç°¶ÔÏó×ª»»Îª JSON ×Ö·û´®¡£
         /// </summary>
-        /// <param name="obj">éœ€è¦è¿›è¡Œ JSON åºåˆ—åŒ–çš„å¯¹è±¡ã€‚</param>
-        /// <returns>åºåˆ—åŒ–çš„ JSON å­—ç¬¦ä¸²ã€‚</returns>
+        /// <param name="obj">ĞèÒª½øĞĞ JSON ĞòÁĞ»¯µÄ¶ÔÏó¡£</param>
+        /// <returns>ĞòÁĞ»¯µÄ JSON ×Ö·û´®¡£</returns>
         public static string SerializeToJson(this object obj)
         {
+            JsonSerializer serializer = new JsonSerializer()
+            {
+                DateTimeFormat = JsonHelper.DateTimeFormat,
+                EnumFormat = JsonHelper.EnumFormat,
+                RegexFormat = JsonHelper.RegexFormat,
+                MaxStackLevel = JsonHelper.MaxStackLevel
+            };
+
             string json;
 
-            // åºåˆ—åŒ–ã€‚
-            json = SerializeObject(obj);
+            // ĞòÁĞ»¯¡£
+            json = serializer.SerializeObject(obj);
 
-            // æ ¼å¼åŒ–ã€‚
+            // ¸ñÊ½»¯¡£
             json = FormatJson(json);
 
             return json;

@@ -10,6 +10,7 @@ namespace Common.Serialization.Json
         /// 将 Regex 序列化成 /pattern/attributes 格式（默认）。
         /// </summary>
         Default,
+
         /// <summary>
         /// 将 Regex 序列化成 new RegExp(pattern,attributes) 格式。
         /// </summary>

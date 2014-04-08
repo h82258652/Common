@@ -10,6 +10,7 @@ namespace Common.Serialization.Json
         /// 将 Enum 序列化成 value 格式（默认）。
         /// </summary>
         Default,
+
         /// <summary>
         /// 将 Enum 序列化成 "name" 格式。
         /// </summary>

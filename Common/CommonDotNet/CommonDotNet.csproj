@@ -64,51 +64,82 @@
     <Compile Include="Security\RSAHelper.cs" />
     <Compile Include="Security\SHA1Helper.cs" />
     <Compile Include="Serialization\BinarySerializeHelper.cs" />
-    <Compile Include="Serialization\JsonV2\JsonAttribute.cs" />
-    <Compile Include="Serialization\JsonV2\JsonConverter.cs" />
-    <Compile Include="Serialization\JsonV2\JsonHelper.Cache.cs" />
-    <Compile Include="Serialization\JsonV2\JsonStackOverFlowException.cs" />
-    <Compile Include="Serialization\JsonV2\Serialize\JsonCountException.cs">
+    <Compile Include="Serialization\Json\Deserialize\JsonDeserializeException.cs" />
+    <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.Array.cs" />
+    <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.BigInteger.cs" />
+    <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.Boolean.cs" />
+    <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.Byte.cs" />
+    <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.Char.cs" />
+    <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.Class.cs" />
+    <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.cs" />
+    <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.DateTime.cs" />
+    <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.Decimal.cs" />
+    <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.Dictionary.cs" />
+    <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.Double.cs" />
+    <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.Enum.cs" />
+    <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.Guid.cs" />
+    <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.Int16.cs" />
+    <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.Int32.cs" />
+    <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.Int64.cs" />
+    <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.List.cs" />
+    <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.Nullable.cs" />
+    <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.Object.cs" />
+    <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.Regex.cs" />
+    <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.SByte.cs" />
+    <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.Single.cs" />
+    <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.String.cs" />
+    <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.UInt16.cs" />
+    <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.UInt32.cs" />
+    <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.UInt64.cs" />
+    <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.Uri.cs" />
+    <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.cs" />
+    <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.ItemReader.cs" />
+    <Compile Include="Serialization\Json\JsonAttribute.cs" />
+    <Compile Include="Serialization\Json\JsonConverter.cs" />
+    <Compile Include="Serialization\Json\JsonHelper.Cache.cs" />
+    <Compile Include="Serialization\Json\JsonHelper.Setting.cs" />
+    <Compile Include="Serialization\Json\JsonStackOverFlowException.cs" />
+    <Compile Include="Serialization\Json\Serialize\JsonCountException.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Serialization\JsonV2\Serialize\JsonHelper.DateTimeFormat.cs">
+    <Compile Include="Serialization\Json\Serialize\JsonHelper.DateTimeFormat.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Serialization\JsonV2\Serialize\JsonHelper.EnumFormat.cs">
+    <Compile Include="Serialization\Json\Serialize\JsonHelper.EnumFormat.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Serialization\JsonV2\Serialize\JsonHelper.FormatJson.cs" />
-    <Compile Include="Serialization\JsonV2\Serialize\JsonHelper.RegexFormat.cs">
+    <Compile Include="Serialization\Json\Serialize\JsonHelper.FormatJson.cs" />
+    <Compile Include="Serialization\Json\Serialize\JsonHelper.RegexFormat.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Serialization\JsonV2\Serialize\JsonHelper.Serialize.cs" />
-    <Compile Include="Serialization\JsonV2\Serialize\JsonHelper.Setting.cs" />
-    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.Array.cs" />
-    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.BigInteger.cs" />
-    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.Boolean.cs" />
-    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.Byte.cs" />
-    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.Char.cs" />
-    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.Class.cs" />
-    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.cs" />
-    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.DateTime.cs" />
-    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.Decimal.cs" />
-    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.Dictionary.cs" />
-    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.Double.cs" />
-    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.Enum.cs" />
-    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.Int64.cs" />
-    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.Int32.cs" />
-    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.Int16.cs" />
-    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.List.cs" />
-    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.Nullable.cs" />
-    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.Object.cs" />
-    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.Regex.cs" />
-    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.SByte.cs" />
-    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.Single.cs" />
-    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.String.cs" />
-    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.UInt16.cs" />
-    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.UInt32.cs" />
-    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.UInt64.cs" />
-    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.Uri.cs" />
+    <Compile Include="Serialization\Json\Serialize\JsonHelper.Serialize.cs" />
+    <Compile Include="Serialization\Json\Serialize\JsonHelper.Setting.cs" />
+    <Compile Include="Serialization\Json\Serialize\JsonSerializer.Array.cs" />
+    <Compile Include="Serialization\Json\Serialize\JsonSerializer.BigInteger.cs" />
+    <Compile Include="Serialization\Json\Serialize\JsonSerializer.Boolean.cs" />
+    <Compile Include="Serialization\Json\Serialize\JsonSerializer.Byte.cs" />
+    <Compile Include="Serialization\Json\Serialize\JsonSerializer.Char.cs" />
+    <Compile Include="Serialization\Json\Serialize\JsonSerializer.Class.cs" />
+    <Compile Include="Serialization\Json\Serialize\JsonSerializer.cs" />
+    <Compile Include="Serialization\Json\Serialize\JsonSerializer.DateTime.cs" />
+    <Compile Include="Serialization\Json\Serialize\JsonSerializer.Decimal.cs" />
+    <Compile Include="Serialization\Json\Serialize\JsonSerializer.Dictionary.cs" />
+    <Compile Include="Serialization\Json\Serialize\JsonSerializer.Double.cs" />
+    <Compile Include="Serialization\Json\Serialize\JsonSerializer.Enum.cs" />
+    <Compile Include="Serialization\Json\Serialize\JsonSerializer.Int64.cs" />
+    <Compile Include="Serialization\Json\Serialize\JsonSerializer.Int32.cs" />
+    <Compile Include="Serialization\Json\Serialize\JsonSerializer.Int16.cs" />
+    <Compile Include="Serialization\Json\Serialize\JsonSerializer.List.cs" />
+    <Compile Include="Serialization\Json\Serialize\JsonSerializer.Nullable.cs" />
+    <Compile Include="Serialization\Json\Serialize\JsonSerializer.Object.cs" />
+    <Compile Include="Serialization\Json\Serialize\JsonSerializer.Regex.cs" />
+    <Compile Include="Serialization\Json\Serialize\JsonSerializer.SByte.cs" />
+    <Compile Include="Serialization\Json\Serialize\JsonSerializer.Single.cs" />
+    <Compile Include="Serialization\Json\Serialize\JsonSerializer.String.cs" />
+    <Compile Include="Serialization\Json\Serialize\JsonSerializer.UInt16.cs" />
+    <Compile Include="Serialization\Json\Serialize\JsonSerializer.UInt32.cs" />
+    <Compile Include="Serialization\Json\Serialize\JsonSerializer.UInt64.cs" />
+    <Compile Include="Serialization\Json\Serialize\JsonSerializer.Uri.cs" />
     <Compile Include="Serialization\XMLSerializerHelper.cs" />
     <Compile Include="System\CharExtension.cs" />
     <Compile Include="System\Collections\Generic\IDictionaryExtension.cs" />
@@ -128,11 +159,9 @@
     <Compile Include="Web\HttpHelper.ObjectToRequestData.cs" />
     <Compile Include="Web\HttpHelper.Post.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Serialization\JsonV2\Deserialize\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Serialization\JsonV2\Serialize\JsonSerializer.Guid.cs" />
+    <Compile Include="Serialization\Json\Serialize\JsonSerializer.Guid.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,22 +1,22 @@
-ï»¿using System;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace Common.Serialization
+namespace Common.Serialization.Json
 {
     /// <summary>
-    /// ä¸ºå¯ç”¨ AFAX çš„åº”ç”¨ç¨‹åºæä¾›åºåˆ—åŒ–å’Œååºåˆ—åŒ–åŠŸèƒ½ã€‚
+    /// JSON ĞòÁĞ»¯Óë·´ĞòÁĞ»¯°ïÖúÀà¡£
     /// </summary>
     public static partial class JsonHelper
     {
         /// <summary>
-        /// ç¼“å­˜ç±»çš„å­—æ®µã€‚
+        /// »º´æÀàµÄ×Ö¶Î¡£
         /// </summary>
-        internal static volatile Dictionary<Type, FieldInfo[]> typeFields = new Dictionary<Type, FieldInfo[]>();
+        internal static volatile Dictionary<Type, FieldInfo[]> _typeFields = new Dictionary<Type, FieldInfo[]>();
 
         /// <summary>
-        /// ç¼“å­˜ç±»çš„å±æ€§ã€‚
+        /// »º´æÀàµÄÊôĞÔ¡£
         /// </summary>
-        internal static volatile Dictionary<Type, PropertyInfo[]> typeProperties = new Dictionary<Type, PropertyInfo[]>();
+        internal static volatile Dictionary<Type, PropertyInfo[]> _typeProperties = new Dictionary<Type, PropertyInfo[]>();
     }
 }
