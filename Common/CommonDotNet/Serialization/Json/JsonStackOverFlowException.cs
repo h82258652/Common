@@ -31,6 +31,10 @@ namespace Common.Serialization.Json
             this.MaxStackLevel = maxStackLevel;
         }
 
+        /// <summary>
+        /// 显示当前异常的信息。
+        /// </summary>
+        /// <returns>异常的信息。</returns>
         public override string ToString()
         {
             return "当前深度：" + this.CurrentStackLevel + "：最大深度：" + this.MaxStackLevel + "。";

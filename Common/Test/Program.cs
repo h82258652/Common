@@ -301,9 +301,13 @@ var q=                (ConstantExpression) expression;
 
         public static void Main(string[] args)
         {
-            int ia = 0;
-            JsonHelper.MaxStackLevel = 0;
-            Console.WriteLine(JsonHelper.SerializeToJson(ia));
+            int ia = 100;
+//            JsonHelper.MaxStackLevel = 0;
+            string sx = JsonHelper.SerializeToJson(ia);
+            Console.WriteLine(sx);
+int aq=(int)            JsonHelper.Deserialize(sx,typeof(int));
+            Console.WriteLine(aq);
+
 
 
 
@@ -347,6 +351,7 @@ var q=                (ConstantExpression) expression;
             jt.FirstOrDefault(temp => temp.ToString() == "");
 
             Console.ReadKey();
+        
         }
     }
 
