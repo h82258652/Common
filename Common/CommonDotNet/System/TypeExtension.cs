@@ -30,5 +30,30 @@ namespace System
             }
             return interfaceType.IsAssignableFrom(type);
         }
+
+        /// <summary>
+        /// 指示当前类型是否为可空类型。
+        /// </summary>
+        /// <param name="type">当前类型。</param>
+        /// <returns>是否可空类型。</returns>
+        public static bool IsNullableType(this Type type)
+        {
+            if (type == null)
+            {
+                return false;
+            }
+            if (type.IsGenericType == false)
+            {
+                return false;
+            }
+            if (type.GetGenericTypeDefinition() == typeof(Nullable<>))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
