@@ -29,6 +29,7 @@ using System.Xml.Serialization;
 using Common.DataBase;
 using Common.Serialization;
 using Common.Serialization.Json;
+using Common.Web;
 
 namespace Test
 {
@@ -303,9 +304,7 @@ namespace Test
 
         public static void Main(string[] args)
         {
-            Common.DataBase.SqlHelper sql=new SqlHelper(new SqlConnection(),"data source=d:\\sqlitetest.db");
-          
-            SqlHelper.ExecuteNonQuery("111");
+var xxx=            Common.CommonJS.Using("System");
 
             Console.ReadKey();
             return;

@@ -68,6 +68,10 @@
       <Project>{dacd4205-58bb-4cac-824e-9e53e2e8f2e8}</Project>
       <Name>CommonDotNet</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CommonJS\CommonJS.csproj">
+      <Project>{afba8df3-091e-4bc1-9e3f-282a8dd5ddfa}</Project>
+      <Name>CommonJS</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
