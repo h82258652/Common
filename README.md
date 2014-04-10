@@ -1,4 +1,4 @@
-Common
+﻿Common
 ======
 
-个人.net公共库
+.net与Js公共类库。
