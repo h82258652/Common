@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -9,6 +10,25 @@ namespace System
     /// </summary>
     public static partial class StringExtension
     {
+        /// <summary>
+        /// 将当前字符串转换为任意大的带符号整数。
+        /// </summary>
+        /// <param name="value">转换的字符串。</param>
+        /// <param name="failureValue">无法转换时返回的默认值。</param>
+        /// <returns>成功则返回相应的任意大的带符号整数，失败则返回指定的默认值。</returns>
+        public static BigInteger AsBigInteger(this string value, BigInteger failureValue)
+        {
+            BigInteger bigInteger;
+            if (BigInteger.TryParse(value, out bigInteger) == true)
+            {
+                return bigInteger;
+            }
+            else
+            {
+                return failureValue;
+            }
+        }
+
         /// <summary>
         /// 将当前字符串转换为 8 位无符号整数。
         /// </summary>
@@ -21,6 +41,25 @@ namespace System
             if (byte.TryParse(value, out b) == true)
             {
                 return b;
+            }
+            else
+            {
+                return failureValue;
+            }
+        }
+
+        /// <summary>
+        /// 将当前字符串转换为十进制数。
+        /// </summary>
+        /// <param name="value">转换的字符串。</param>
+        /// <param name="failureValue">无法转换时返回的默认值。</param>
+        /// <returns>成功则返回相应的十进制数，失败则返回指定的默认值。</returns>
+        public static decimal AsDecimal(this string value, decimal failureValue)
+        {
+            decimal d;
+            if (decimal.TryParse(value, out d) == true)
+            {
+                return d;
             }
             else
             {
@@ -146,6 +185,63 @@ namespace System
             if (float.TryParse(value, out f) == true)
             {
                 return f;
+            }
+            else
+            {
+                return failureValue;
+            }
+        }
+
+        /// <summary>
+        /// 将当前字符串转换为 16 位无符号整数。
+        /// </summary>
+        /// <param name="value">转换的字符串。</param>
+        /// <param name="failureValue">无法转换时返回的默认值。</param>
+        /// <returns>成功则返回相应的 16 位无符号整数，失败则返回指定的默认值。</returns>
+        public static ushort AsUInt16(this string value, ushort failureValue)
+        {
+            ushort us;
+            if (ushort.TryParse(value, out us) == true)
+            {
+                return us;
+            }
+            else
+            {
+                return failureValue;
+            }
+        }
+
+        /// <summary>
+        /// 将当前字符串转换为 32 位无符号整数。
+        /// </summary>
+        /// <param name="value">转换的字符串。</param>
+        /// <param name="failureValue">无法转换时返回的默认值。</param>
+        /// <returns>成功则返回相应的 32 位无符号整数，失败则返回指定的默认值。</returns>
+        public static uint AsUInt32(this string value, uint failureValue)
+        {
+            uint ui;
+            if (uint.TryParse(value, out ui) == true)
+            {
+                return ui;
+            }
+            else
+            {
+                return failureValue;
+            }
+        }
+
+        /// <summary>
+        /// 将当前字符串转换为 64 位无符号整数。
+        /// </summary>
+        /// <param name="value">转换的字符串。</param>
+        /// <param name="failureValue">无法转换时返回的默认值。</param>
+        /// <returns>成功则返回相应的 64 位无符号整数，失败则返回指定的默认值。</returns>
+        public static ulong AsUInt64(this string value, ulong failureValue)
+        {
+            ulong ul;
+            if (ulong.TryParse(value, out ul) == true)
+            {
+                return ul;
             }
             else
             {
@@ -285,7 +381,7 @@ namespace System
                     return false;
                 }
             }
-            if (Enum.IsDefined(typeof (StringComparison), comparisonType) == true)
+            if (Enum.IsDefined(typeof(StringComparison), comparisonType) == true)
             {
                 return @this.Equals(value, comparisonType);
             }
@@ -319,6 +415,17 @@ namespace System
         }
 
         /// <summary>
+        /// 指示当前字符串能否转换为任意大的带符号整数。
+        /// </summary>
+        /// <param name="value">测试的字符串。</param>
+        /// <returns>是否能转换为任意大的带符号整数。</returns>
+        public static bool IsBigInteger(this string value)
+        {
+            BigInteger bigInteger;
+            return BigInteger.TryParse(value, out bigInteger);
+        }
+
+        /// <summary>
         /// 指示当前字符串能否转换为 8 位无符号整数。
         /// </summary>
         /// <param name="value">测试的字符串。</param>
@@ -327,6 +434,17 @@ namespace System
         {
             byte b;
             return byte.TryParse(value, out b);
+        }
+
+        /// <summary>
+        /// 指示当前字符串是否能转换为十进制数。
+        /// </summary>
+        /// <param name="value">测试的字符串。</param>
+        /// <returns>是否能转换为十进制数。</returns>
+        public static bool IsDecimal(this string value)
+        {
+            decimal d;
+            return decimal.TryParse(value, out d);
         }
 
         /// <summary>
@@ -422,6 +540,50 @@ namespace System
         public static bool IsNullOrWhiteSpace(this string value)
         {
             return string.IsNullOrWhiteSpace(value);
+        }
+
+        /// <summary>
+        /// 指示当前字符串是否能转换为单精度浮点数。
+        /// </summary>
+        /// <param name="value">测试的字符串。</param>
+        /// <returns>是否能转换为单精度浮点数。</returns>
+        public static bool IsSingle(this string value)
+        {
+            float f;
+            return float.TryParse(value, out f);
+        }
+
+        /// <summary>
+        /// 指示当前字符串是否能转换为 16 位无符号整数。
+        /// </summary>
+        /// <param name="value">测试的字符串。</param>
+        /// <returns>是否能转换为 16 位无符号整数。</returns>
+        public static bool IsUInt16(this string value)
+        {
+            ushort us;
+            return ushort.TryParse(value, out us);
+        }
+
+        /// <summary>
+        /// 指示当前字符串是否能转换为 32 位无符号整数。
+        /// </summary>
+        /// <param name="value">测试的字符串。</param>
+        /// <returns>是否能转换为 32 位无符号整数。</returns>
+        public static bool IsUInt32(this string value)
+        {
+            uint ui;
+            return uint.TryParse(value, out ui);
+        }
+
+        /// <summary>
+        /// 指示当前字符串是否能转换为 64 位无符号整数。
+        /// </summary>
+        /// <param name="value">测试的字符串。</param>
+        /// <returns>是否能转换为 64 位无符号整数。</returns>
+        public static bool IsUInt64(this string value)
+        {
+            ulong ul;
+            return ulong.TryParse(value, out ul);
         }
 
         /// <summary>

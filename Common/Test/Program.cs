@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Concurrent;
+using System.Data.SqlClient;
 using System.Globalization;
 using System.IO.Compression;
 using System.Linq.Expressions;
@@ -25,6 +26,7 @@ using System.Web.Script.Serialization;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+using Common.DataBase;
 using Common.Serialization;
 using Common.Serialization.Json;
 
@@ -301,18 +303,9 @@ namespace Test
 
         public static void Main(string[] args)
         {
-            DateTime dt = DateTime.Now;
-            JsonHelper.DateTimeFormat = Common.Serialization.Json.DateTimeFormat.Create;
-            string sss = JsonHelper.SerializeToJson(dt);
-            Console.WriteLine(sss);
-            Regex dt2 = JsonHelper.Deserialize<Regex>("new RegExp(  \"\\d\" , \"m\" )");
-
-
-
-
-
-
-
+            Common.DataBase.SqlHelper sql=new SqlHelper(new SqlConnection(),"data source=d:\\sqlitetest.db");
+          
+            SqlHelper.ExecuteNonQuery("111");
 
             Console.ReadKey();
             return;

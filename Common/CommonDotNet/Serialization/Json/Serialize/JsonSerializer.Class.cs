@@ -51,6 +51,11 @@ namespace Common.Serialization.Json
                     {
                         continue;
                     }
+                    // 字段是否必须。
+                    if (attribute.Required == true && value == null)
+                    {
+                        throw new ArgumentNullException(field.Name, "该字段不能为 null。");
+                    }
                     // 检查数量约束。
                     IEnumerable<object> enumerable = value as IEnumerable<object>;
                     if (enumerable != null)
@@ -113,7 +118,7 @@ namespace Common.Serialization.Json
                     {
                         if (JsonHelper._typeProperties.ContainsKey(type) == false)
                         {
-                           JsonHelper._typeProperties.Add(type, properties);
+                            JsonHelper._typeProperties.Add(type, properties);
                         }
                     }
                 }
@@ -143,6 +148,11 @@ namespace Common.Serialization.Json
                         if (attribute.IgnoreNull == true && value == null)
                         {
                             continue;
+                        }
+                        // 属性是否必须。
+                        if (attribute.Required == true && value == null)
+                        {
+                            throw new ArgumentNullException(property.Name, "该属性不能为 null。");
                         }
                         // 检查数量约束。
                         IEnumerable<object> enumerable = value as IEnumerable<object>;

@@ -124,5 +124,13 @@ namespace Common.Serialization.Json
             get;
             set;
         }
+        
+        /// <summary>
+        /// 若序列化时，当前字段或属性为 null。则抛出异常。默认 false。（优先度低于 Ignore 和 IgnoreNull 属性）。
+        /// </summary>
+        public bool Required
+        {
+            get; set;
+        }
     }
 }
