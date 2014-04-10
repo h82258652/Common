@@ -145,8 +145,7 @@ namespace Common.Serialization.Json
             }
             #endregion
             #region Nullable
-            else if (obj.GetType().IsGenericType == true &&
-                     obj.GetType().GetGenericTypeDefinition() == typeof(Nullable<>))
+            else if (obj.GetType().IsGenericType == true && obj.GetType().GetGenericTypeDefinition() == typeof(Nullable<>))
             {
                 json = SerializeNullable(obj);
             }
