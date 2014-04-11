@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Threading;
 
 namespace Common.Threading
@@ -17,22 +17,18 @@ namespace Common.Threading
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method 不能为空。");
+                throw new ArgumentNullException("method");
             }
             ThreadHelperResult<TResult> result = new ThreadHelperResult<TResult>()
             {
                 HasFinish = false,
                 Value = default(TResult)
             };
-            ArrayList arglist = new ArrayList();
-            Thread t = new Thread(ThreadHelperProcess<TResult>.Process)
-            {
-                IsBackground = true
-            };
-            t.Start(new ThreadHelperPackage<TResult>()
+            List<object> argList = new List<object>();
+            ThreadPool.QueueUserWorkItem(ThreadHelperProcess<TResult>.Process, new ThreadHelperPackage<TResult>()
             {
                 Method = method,
-                Args = arglist.ToArray(),
+                Args = argList.ToArray(),
                 Result = result
             });
             return result;
@@ -51,23 +47,19 @@ namespace Common.Threading
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method 不能为空。");
+                throw new ArgumentNullException("method");
             }
             ThreadHelperResult<TResult> result = new ThreadHelperResult<TResult>()
             {
                 HasFinish = false,
                 Value = default(TResult)
             };
-            ArrayList arglist = new ArrayList();
-            arglist.Add(arg1);
-            Thread t = new Thread(ThreadHelperProcess<TResult>.Process)
-            {
-                IsBackground = true
-            };
-            t.Start(new ThreadHelperPackage<TResult>()
+            List<object> argList = new List<object>();
+            argList.Add(arg1);
+            ThreadPool.QueueUserWorkItem(ThreadHelperProcess<TResult>.Process, new ThreadHelperPackage<TResult>()
             {
                 Method = method,
-                Args = arglist.ToArray(),
+                Args = argList.ToArray(),
                 Result = result
             });
             return result;
@@ -88,24 +80,20 @@ namespace Common.Threading
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method 不能为空。");
+                throw new ArgumentNullException("method");
             }
             ThreadHelperResult<TResult> result = new ThreadHelperResult<TResult>()
             {
                 HasFinish = false,
                 Value = default(TResult)
             };
-            ArrayList arglist = new ArrayList();
-            arglist.Add(arg1);
-            arglist.Add(arg2);
-            Thread t = new Thread(ThreadHelperProcess<TResult>.Process)
-            {
-                IsBackground = true
-            };
-            t.Start(new ThreadHelperPackage<TResult>()
+            List<object> argList = new List<object>();
+            argList.Add(arg1);
+            argList.Add(arg2);
+            ThreadPool.QueueUserWorkItem(ThreadHelperProcess<TResult>.Process, new ThreadHelperPackage<TResult>()
             {
                 Method = method,
-                Args = arglist.ToArray(),
+                Args = argList.ToArray(),
                 Result = result
             });
             return result;
@@ -128,25 +116,21 @@ namespace Common.Threading
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method 不能为空。");
+                throw new ArgumentNullException("method");
             }
             ThreadHelperResult<TResult> result = new ThreadHelperResult<TResult>()
             {
                 HasFinish = false,
                 Value = default(TResult)
             };
-            ArrayList arglist = new ArrayList();
-            arglist.Add(arg1);
-            arglist.Add(arg2);
-            arglist.Add(arg3);
-            Thread t = new Thread(ThreadHelperProcess<TResult>.Process)
-            {
-                IsBackground = true
-            };
-            t.Start(new ThreadHelperPackage<TResult>()
+            List<object> argList = new List<object>();
+            argList.Add(arg1);
+            argList.Add(arg2);
+            argList.Add(arg3);
+            ThreadPool.QueueUserWorkItem(ThreadHelperProcess<TResult>.Process, new ThreadHelperPackage<TResult>()
             {
                 Method = method,
-                Args = arglist.ToArray(),
+                Args = argList.ToArray(),
                 Result = result
             });
             return result;
@@ -171,26 +155,22 @@ namespace Common.Threading
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method 不能为空。");
+                throw new ArgumentNullException("method");
             }
             ThreadHelperResult<TResult> result = new ThreadHelperResult<TResult>()
             {
                 HasFinish = false,
                 Value = default(TResult)
             };
-            ArrayList arglist = new ArrayList();
-            arglist.Add(arg1);
-            arglist.Add(arg2);
-            arglist.Add(arg3);
-            arglist.Add(arg4);
-            Thread t = new Thread(ThreadHelperProcess<TResult>.Process)
-            {
-                IsBackground = true
-            };
-            t.Start(new ThreadHelperPackage<TResult>()
+            List<object> argList = new List<object>();
+            argList.Add(arg1);
+            argList.Add(arg2);
+            argList.Add(arg3);
+            argList.Add(arg4);
+            ThreadPool.QueueUserWorkItem(ThreadHelperProcess<TResult>.Process, new ThreadHelperPackage<TResult>()
             {
                 Method = method,
-                Args = arglist.ToArray(),
+                Args = argList.ToArray(),
                 Result = result
             });
             return result;
@@ -217,27 +197,23 @@ namespace Common.Threading
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method 不能为空。");
+                throw new ArgumentNullException("method");
             }
             ThreadHelperResult<TResult> result = new ThreadHelperResult<TResult>()
             {
                 HasFinish = false,
                 Value = default(TResult)
             };
-            ArrayList arglist = new ArrayList();
-            arglist.Add(arg1);
-            arglist.Add(arg2);
-            arglist.Add(arg3);
-            arglist.Add(arg4);
-            arglist.Add(arg5);
-            Thread t = new Thread(ThreadHelperProcess<TResult>.Process)
-            {
-                IsBackground = true
-            };
-            t.Start(new ThreadHelperPackage<TResult>()
+            List<object> argList = new List<object>();
+            argList.Add(arg1);
+            argList.Add(arg2);
+            argList.Add(arg3);
+            argList.Add(arg4);
+            argList.Add(arg5);
+            ThreadPool.QueueUserWorkItem(ThreadHelperProcess<TResult>.Process, new ThreadHelperPackage<TResult>()
             {
                 Method = method,
-                Args = arglist.ToArray(),
+                Args = argList.ToArray(),
                 Result = result
             });
             return result;
@@ -266,28 +242,24 @@ namespace Common.Threading
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method 不能为空。");
+                throw new ArgumentNullException("method");
             }
             ThreadHelperResult<TResult> result = new ThreadHelperResult<TResult>()
             {
                 HasFinish = false,
                 Value = default(TResult)
             };
-            ArrayList arglist = new ArrayList();
-            arglist.Add(arg1);
-            arglist.Add(arg2);
-            arglist.Add(arg3);
-            arglist.Add(arg4);
-            arglist.Add(arg5);
-            arglist.Add(arg6);
-            Thread t = new Thread(ThreadHelperProcess<TResult>.Process)
-            {
-                IsBackground = true
-            };
-            t.Start(new ThreadHelperPackage<TResult>()
+            List<object> argList = new List<object>();
+            argList.Add(arg1);
+            argList.Add(arg2);
+            argList.Add(arg3);
+            argList.Add(arg4);
+            argList.Add(arg5);
+            argList.Add(arg6);
+            ThreadPool.QueueUserWorkItem(ThreadHelperProcess<TResult>.Process, new ThreadHelperPackage<TResult>()
             {
                 Method = method,
-                Args = arglist.ToArray(),
+                Args = argList.ToArray(),
                 Result = result
             });
             return result;
@@ -318,29 +290,25 @@ namespace Common.Threading
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method 不能为空。");
+                throw new ArgumentNullException("method");
             }
             ThreadHelperResult<TResult> result = new ThreadHelperResult<TResult>()
             {
                 HasFinish = false,
                 Value = default(TResult)
             };
-            ArrayList arglist = new ArrayList();
-            arglist.Add(arg1);
-            arglist.Add(arg2);
-            arglist.Add(arg3);
-            arglist.Add(arg4);
-            arglist.Add(arg5);
-            arglist.Add(arg6);
-            arglist.Add(arg7);
-            Thread t = new Thread(ThreadHelperProcess<TResult>.Process)
-            {
-                IsBackground = true
-            };
-            t.Start(new ThreadHelperPackage<TResult>()
+            List<object> argList = new List<object>();
+            argList.Add(arg1);
+            argList.Add(arg2);
+            argList.Add(arg3);
+            argList.Add(arg4);
+            argList.Add(arg5);
+            argList.Add(arg6);
+            argList.Add(arg7);
+            ThreadPool.QueueUserWorkItem(ThreadHelperProcess<TResult>.Process, new ThreadHelperPackage<TResult>()
             {
                 Method = method,
-                Args = arglist.ToArray(),
+                Args = argList.ToArray(),
                 Result = result
             });
             return result;
@@ -373,30 +341,26 @@ namespace Common.Threading
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method 不能为空。");
+                throw new ArgumentNullException("method");
             }
             ThreadHelperResult<TResult> result = new ThreadHelperResult<TResult>()
             {
                 HasFinish = false,
                 Value = default(TResult)
             };
-            ArrayList arglist = new ArrayList();
-            arglist.Add(arg1);
-            arglist.Add(arg2);
-            arglist.Add(arg3);
-            arglist.Add(arg4);
-            arglist.Add(arg5);
-            arglist.Add(arg6);
-            arglist.Add(arg7);
-            arglist.Add(arg8);
-            Thread t = new Thread(ThreadHelperProcess<TResult>.Process)
-            {
-                IsBackground = true
-            };
-            t.Start(new ThreadHelperPackage<TResult>()
+            List<object> argList = new List<object>();
+            argList.Add(arg1);
+            argList.Add(arg2);
+            argList.Add(arg3);
+            argList.Add(arg4);
+            argList.Add(arg5);
+            argList.Add(arg6);
+            argList.Add(arg7);
+            argList.Add(arg8);
+            ThreadPool.QueueUserWorkItem(ThreadHelperProcess<TResult>.Process, new ThreadHelperPackage<TResult>()
             {
                 Method = method,
-                Args = arglist.ToArray(),
+                Args = argList.ToArray(),
                 Result = result
             });
             return result;
@@ -431,31 +395,27 @@ namespace Common.Threading
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method 不能为空。");
+                throw new ArgumentNullException("method");
             }
             ThreadHelperResult<TResult> result = new ThreadHelperResult<TResult>()
             {
                 HasFinish = false,
                 Value = default(TResult)
             };
-            ArrayList arglist = new ArrayList();
-            arglist.Add(arg1);
-            arglist.Add(arg2);
-            arglist.Add(arg3);
-            arglist.Add(arg4);
-            arglist.Add(arg5);
-            arglist.Add(arg6);
-            arglist.Add(arg7);
-            arglist.Add(arg8);
-            arglist.Add(arg9);
-            Thread t = new Thread(ThreadHelperProcess<TResult>.Process)
-            {
-                IsBackground = true
-            };
-            t.Start(new ThreadHelperPackage<TResult>()
+            List<object> argList = new List<object>();
+            argList.Add(arg1);
+            argList.Add(arg2);
+            argList.Add(arg3);
+            argList.Add(arg4);
+            argList.Add(arg5);
+            argList.Add(arg6);
+            argList.Add(arg7);
+            argList.Add(arg8);
+            argList.Add(arg9);
+            ThreadPool.QueueUserWorkItem(ThreadHelperProcess<TResult>.Process, new ThreadHelperPackage<TResult>()
             {
                 Method = method,
-                Args = arglist.ToArray(),
+                Args = argList.ToArray(),
                 Result = result
             });
             return result;
@@ -492,32 +452,28 @@ namespace Common.Threading
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method 不能为空。");
+                throw new ArgumentNullException("method");
             }
             ThreadHelperResult<TResult> result = new ThreadHelperResult<TResult>()
             {
                 HasFinish = false,
                 Value = default(TResult)
             };
-            ArrayList arglist = new ArrayList();
-            arglist.Add(arg1);
-            arglist.Add(arg2);
-            arglist.Add(arg3);
-            arglist.Add(arg4);
-            arglist.Add(arg5);
-            arglist.Add(arg6);
-            arglist.Add(arg7);
-            arglist.Add(arg8);
-            arglist.Add(arg9);
-            arglist.Add(arg10);
-            Thread t = new Thread(ThreadHelperProcess<TResult>.Process)
-            {
-                IsBackground = true
-            };
-            t.Start(new ThreadHelperPackage<TResult>()
+            List<object> argList = new List<object>();
+            argList.Add(arg1);
+            argList.Add(arg2);
+            argList.Add(arg3);
+            argList.Add(arg4);
+            argList.Add(arg5);
+            argList.Add(arg6);
+            argList.Add(arg7);
+            argList.Add(arg8);
+            argList.Add(arg9);
+            argList.Add(arg10);
+            ThreadPool.QueueUserWorkItem(ThreadHelperProcess<TResult>.Process, new ThreadHelperPackage<TResult>()
             {
                 Method = method,
-                Args = arglist.ToArray(),
+                Args = argList.ToArray(),
                 Result = result
             });
             return result;
@@ -556,33 +512,29 @@ namespace Common.Threading
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method 不能为空。");
+                throw new ArgumentNullException("method");
             }
             ThreadHelperResult<TResult> result = new ThreadHelperResult<TResult>()
             {
                 HasFinish = false,
                 Value = default(TResult)
             };
-            ArrayList arglist = new ArrayList();
-            arglist.Add(arg1);
-            arglist.Add(arg2);
-            arglist.Add(arg3);
-            arglist.Add(arg4);
-            arglist.Add(arg5);
-            arglist.Add(arg6);
-            arglist.Add(arg7);
-            arglist.Add(arg8);
-            arglist.Add(arg9);
-            arglist.Add(arg10);
-            arglist.Add(arg11);
-            Thread t = new Thread(ThreadHelperProcess<TResult>.Process)
-            {
-                IsBackground = true
-            };
-            t.Start(new ThreadHelperPackage<TResult>()
+            List<object> argList = new List<object>();
+            argList.Add(arg1);
+            argList.Add(arg2);
+            argList.Add(arg3);
+            argList.Add(arg4);
+            argList.Add(arg5);
+            argList.Add(arg6);
+            argList.Add(arg7);
+            argList.Add(arg8);
+            argList.Add(arg9);
+            argList.Add(arg10);
+            argList.Add(arg11);
+            ThreadPool.QueueUserWorkItem(ThreadHelperProcess<TResult>.Process, new ThreadHelperPackage<TResult>()
             {
                 Method = method,
-                Args = arglist.ToArray(),
+                Args = argList.ToArray(),
                 Result = result
             });
             return result;
@@ -623,34 +575,30 @@ namespace Common.Threading
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method 不能为空。");
+                throw new ArgumentNullException("method");
             }
             ThreadHelperResult<TResult> result = new ThreadHelperResult<TResult>()
             {
                 HasFinish = false,
                 Value = default(TResult)
             };
-            ArrayList arglist = new ArrayList();
-            arglist.Add(arg1);
-            arglist.Add(arg2);
-            arglist.Add(arg3);
-            arglist.Add(arg4);
-            arglist.Add(arg5);
-            arglist.Add(arg6);
-            arglist.Add(arg7);
-            arglist.Add(arg8);
-            arglist.Add(arg9);
-            arglist.Add(arg10);
-            arglist.Add(arg11);
-            arglist.Add(arg12);
-            Thread t = new Thread(ThreadHelperProcess<TResult>.Process)
-            {
-                IsBackground = true
-            };
-            t.Start(new ThreadHelperPackage<TResult>()
+            List<object> argList = new List<object>();
+            argList.Add(arg1);
+            argList.Add(arg2);
+            argList.Add(arg3);
+            argList.Add(arg4);
+            argList.Add(arg5);
+            argList.Add(arg6);
+            argList.Add(arg7);
+            argList.Add(arg8);
+            argList.Add(arg9);
+            argList.Add(arg10);
+            argList.Add(arg11);
+            argList.Add(arg12);
+            ThreadPool.QueueUserWorkItem(ThreadHelperProcess<TResult>.Process, new ThreadHelperPackage<TResult>()
             {
                 Method = method,
-                Args = arglist.ToArray(),
+                Args = argList.ToArray(),
                 Result = result
             });
             return result;
@@ -693,35 +641,31 @@ namespace Common.Threading
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method 不能为空。");
+                throw new ArgumentNullException("method");
             }
             ThreadHelperResult<TResult> result = new ThreadHelperResult<TResult>()
             {
                 HasFinish = false,
                 Value = default(TResult)
             };
-            ArrayList arglist = new ArrayList();
-            arglist.Add(arg1);
-            arglist.Add(arg2);
-            arglist.Add(arg3);
-            arglist.Add(arg4);
-            arglist.Add(arg5);
-            arglist.Add(arg6);
-            arglist.Add(arg7);
-            arglist.Add(arg8);
-            arglist.Add(arg9);
-            arglist.Add(arg10);
-            arglist.Add(arg11);
-            arglist.Add(arg12);
-            arglist.Add(arg13);
-            Thread t = new Thread(ThreadHelperProcess<TResult>.Process)
-            {
-                IsBackground = true
-            };
-            t.Start(new ThreadHelperPackage<TResult>()
+            List<object> argList = new List<object>();
+            argList.Add(arg1);
+            argList.Add(arg2);
+            argList.Add(arg3);
+            argList.Add(arg4);
+            argList.Add(arg5);
+            argList.Add(arg6);
+            argList.Add(arg7);
+            argList.Add(arg8);
+            argList.Add(arg9);
+            argList.Add(arg10);
+            argList.Add(arg11);
+            argList.Add(arg12);
+            argList.Add(arg13);
+            ThreadPool.QueueUserWorkItem(ThreadHelperProcess<TResult>.Process, new ThreadHelperPackage<TResult>()
             {
                 Method = method,
-                Args = arglist.ToArray(),
+                Args = argList.ToArray(),
                 Result = result
             });
             return result;
@@ -766,36 +710,32 @@ namespace Common.Threading
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method 不能为空。");
+                throw new ArgumentNullException("method");
             }
             ThreadHelperResult<TResult> result = new ThreadHelperResult<TResult>()
             {
                 HasFinish = false,
                 Value = default(TResult)
             };
-            ArrayList arglist = new ArrayList();
-            arglist.Add(arg1);
-            arglist.Add(arg2);
-            arglist.Add(arg3);
-            arglist.Add(arg4);
-            arglist.Add(arg5);
-            arglist.Add(arg6);
-            arglist.Add(arg7);
-            arglist.Add(arg8);
-            arglist.Add(arg9);
-            arglist.Add(arg10);
-            arglist.Add(arg11);
-            arglist.Add(arg12);
-            arglist.Add(arg13);
-            arglist.Add(arg14);
-            Thread t = new Thread(ThreadHelperProcess<TResult>.Process)
-            {
-                IsBackground = true
-            };
-            t.Start(new ThreadHelperPackage<TResult>()
+            List<object> argList = new List<object>();
+            argList.Add(arg1);
+            argList.Add(arg2);
+            argList.Add(arg3);
+            argList.Add(arg4);
+            argList.Add(arg5);
+            argList.Add(arg6);
+            argList.Add(arg7);
+            argList.Add(arg8);
+            argList.Add(arg9);
+            argList.Add(arg10);
+            argList.Add(arg11);
+            argList.Add(arg12);
+            argList.Add(arg13);
+            argList.Add(arg14);
+            ThreadPool.QueueUserWorkItem(ThreadHelperProcess<TResult>.Process, new ThreadHelperPackage<TResult>()
             {
                 Method = method,
-                Args = arglist.ToArray(),
+                Args = argList.ToArray(),
                 Result = result
             });
             return result;
@@ -842,37 +782,33 @@ namespace Common.Threading
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method 不能为空。");
+                throw new ArgumentNullException("method");
             }
             ThreadHelperResult<TResult> result = new ThreadHelperResult<TResult>()
             {
                 HasFinish = false,
                 Value = default(TResult)
             };
-            ArrayList arglist = new ArrayList();
-            arglist.Add(arg1);
-            arglist.Add(arg2);
-            arglist.Add(arg3);
-            arglist.Add(arg4);
-            arglist.Add(arg5);
-            arglist.Add(arg6);
-            arglist.Add(arg7);
-            arglist.Add(arg8);
-            arglist.Add(arg9);
-            arglist.Add(arg10);
-            arglist.Add(arg11);
-            arglist.Add(arg12);
-            arglist.Add(arg13);
-            arglist.Add(arg14);
-            arglist.Add(arg15);
-            Thread t = new Thread(ThreadHelperProcess<TResult>.Process)
-            {
-                IsBackground = true
-            };
-            t.Start(new ThreadHelperPackage<TResult>()
+            List<object> argList = new List<object>();
+            argList.Add(arg1);
+            argList.Add(arg2);
+            argList.Add(arg3);
+            argList.Add(arg4);
+            argList.Add(arg5);
+            argList.Add(arg6);
+            argList.Add(arg7);
+            argList.Add(arg8);
+            argList.Add(arg9);
+            argList.Add(arg10);
+            argList.Add(arg11);
+            argList.Add(arg12);
+            argList.Add(arg13);
+            argList.Add(arg14);
+            argList.Add(arg15);
+            ThreadPool.QueueUserWorkItem(ThreadHelperProcess<TResult>.Process, new ThreadHelperPackage<TResult>()
             {
                 Method = method,
-                Args = arglist.ToArray(),
+                Args = argList.ToArray(),
                 Result = result
             });
             return result;
@@ -921,38 +857,34 @@ namespace Common.Threading
         {
             if (method == null)
             {
-                throw new ArgumentNullException("method 不能为空。");
+                throw new ArgumentNullException("method");
             }
             ThreadHelperResult<TResult> result = new ThreadHelperResult<TResult>()
             {
                 HasFinish = false,
                 Value = default(TResult)
             };
-            ArrayList arglist = new ArrayList();
-            arglist.Add(arg1);
-            arglist.Add(arg2);
-            arglist.Add(arg3);
-            arglist.Add(arg4);
-            arglist.Add(arg5);
-            arglist.Add(arg6);
-            arglist.Add(arg7);
-            arglist.Add(arg8);
-            arglist.Add(arg9);
-            arglist.Add(arg10);
-            arglist.Add(arg11);
-            arglist.Add(arg12);
-            arglist.Add(arg13);
-            arglist.Add(arg14);
-            arglist.Add(arg15);
-            arglist.Add(arg16);
-            Thread t = new Thread(ThreadHelperProcess<TResult>.Process)
-            {
-                IsBackground = true
-            };
-            t.Start(new ThreadHelperPackage<TResult>()
+            List<object> argList = new List<object>();
+            argList.Add(arg1);
+            argList.Add(arg2);
+            argList.Add(arg3);
+            argList.Add(arg4);
+            argList.Add(arg5);
+            argList.Add(arg6);
+            argList.Add(arg7);
+            argList.Add(arg8);
+            argList.Add(arg9);
+            argList.Add(arg10);
+            argList.Add(arg11);
+            argList.Add(arg12);
+            argList.Add(arg13);
+            argList.Add(arg14);
+            argList.Add(arg15);
+            argList.Add(arg16);
+            ThreadPool.QueueUserWorkItem(ThreadHelperProcess<TResult>.Process, new ThreadHelperPackage<TResult>()
             {
                 Method = method,
-                Args = arglist.ToArray(),
+                Args = argList.ToArray(),
                 Result = result
             });
             return result;
