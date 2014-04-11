@@ -1,10 +1,9 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 using System.Data.Common;
 
 namespace Common.DataBase
 {
-    public static partial class SqlHelper
+    public partial class SqlHelper
     {
         /// <summary>
         /// 执行查询，并返回查询所返回的结果集中第一行的第一列。 忽略额外的列或行。
@@ -12,21 +11,21 @@ namespace Common.DataBase
         /// <param name="sql">sql 语句。</param>
         /// <param name="parameters">sql 参数。</param>
         /// <returns>结果集中第一行的第一列。</returns>
-        public static object ExecuteScalar(string sql, params DbParameter[] parameters)
+        public object ExecuteScalar(string sql, params DbParameter[] parameters)
         {
-            using (IDbConnection conn = Activator.CreateInstance(DbProvider) as IDbConnection)
+            if (this._connection.State != ConnectionState.Open)
             {
-                conn.ConnectionString = ConnectionString;
-                conn.Open();
-                using (IDbCommand cmd = conn.CreateCommand())
+                this._connection.ConnectionString = this._connString;
+                this._connection.Open();
+            }
+            using (IDbCommand cmd = this._connection.CreateCommand())
+            {
+                cmd.CommandText = sql;
+                foreach (DbParameter parameter in parameters)
                 {
-                    cmd.CommandText = sql;
-                    foreach (DbParameter parameter in parameters)
-                    {
-                        cmd.Parameters.Add(parameter);
-                    }
-                    return cmd.ExecuteScalar();
+                    cmd.Parameters.Add(parameter);
                 }
+                return cmd.ExecuteScalar();
             }
         }
     }

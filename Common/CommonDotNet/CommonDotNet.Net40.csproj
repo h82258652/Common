@@ -57,6 +57,9 @@
     <Compile Include="DataBase\SqlHelper.cs" />
     <Compile Include="DataBase\SqlHelper.ExecuteNonQuery.cs" />
     <Compile Include="DataBase\SqlHelper.ExecuteScalar.cs" />
+    <Compile Include="DataBase\SqlHelper.ExecuteSqlNonQuery.cs" />
+    <Compile Include="DataBase\SqlHelper.ExecuteSqlReader.cs" />
+    <Compile Include="DataBase\SqlHelper.ExecuteSqlScalar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\ReflectionHelper.Constructor.cs" />
     <Compile Include="Reflection\ReflectionHelper.DynamicCompile.cs" />

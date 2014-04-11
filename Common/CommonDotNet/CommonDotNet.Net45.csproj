@@ -52,10 +52,13 @@
     <Compile Include="Config\Ini\IniUnknownLine.cs" />
     <Compile Include="Config\IsolatedStorageConfigHelper.cs" />
     <Compile Include="Config\XmlConfigHelper.cs" />
-    <Compile Include="DataBase\SqlHelper.ExecuteReader.cs" />
-    <Compile Include="DataBase\SqlHelper.cs" />
     <Compile Include="DataBase\SqlHelper.ExecuteNonQuery.cs" />
+    <Compile Include="DataBase\SqlHelper.ExecuteReader.cs" />
     <Compile Include="DataBase\SqlHelper.ExecuteScalar.cs" />
+    <Compile Include="DataBase\SqlHelper.ExecuteSqlReader.cs" />
+    <Compile Include="DataBase\SqlHelper.cs" />
+    <Compile Include="DataBase\SqlHelper.ExecuteSqlNonQuery.cs" />
+    <Compile Include="DataBase\SqlHelper.ExecuteSqlScalar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\ReflectionHelper.Constructor.cs" />
     <Compile Include="Reflection\ReflectionHelper.DynamicCompile.cs" />

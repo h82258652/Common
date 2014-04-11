@@ -6,7 +6,7 @@ namespace Common.DataBase
     /// <summary>
     /// sql 帮助类。
     /// </summary>
-    public static partial class SqlHelper
+    public partial class SqlHelper : IDisposable
     {
         private static Type _dbProvider;
 
@@ -38,6 +38,61 @@ namespace Common.DataBase
                 {
                     throw new ArgumentException("DbProvider 必须实现 IDbConnection 接口。");
                 }
+            }
+        }
+
+        private string _connString;
+        private IDbConnection _connection;
+
+        /// <summary>
+        /// 创建一个 SqlHelper 实例。
+        /// </summary>
+        /// <param name="connection">数据库连接。</param>
+        public SqlHelper(IDbConnection connection)
+        {
+            this._connString = connection.ConnectionString;
+            this._connection = connection;
+        }
+
+        /// <summary>
+        /// 创建一个 SqlHelper 实例。
+        /// </summary>
+        /// <param name="connectionString">连接字符串。</param>
+        /// <param name="provider">数据库连接类。</param>
+        public SqlHelper(string connectionString, Type provider)
+        {
+            if (connectionString == null)
+            {
+                throw new ArgumentNullException("connectionString");
+            }
+            if (provider == null)
+            {
+                throw new ArgumentNullException("provider");
+            }
+            if (connectionString.Length == 0)
+            {
+                throw new ArgumentException("连接字符串不能为空字符串。", "connectionString");
+            }
+            if (typeof(IDbConnection).IsAssignableFrom(provider))
+            {
+                throw new ArgumentException("Provider 必须实现 IDbConnection 接口。");
+            }
+            this._connString = connectionString;
+            this._connection = (IDbConnection)Activator.CreateInstance(provider);
+        }
+
+        /// <summary>
+        /// 释放当前 SqlHelper 的数据库连接。
+        /// </summary>
+        public void Dispose()
+        {
+            if (this._connection == null)
+            {
+                return;
+            }
+            else
+            {
+                this._connection.Dispose();
             }
         }
     }
