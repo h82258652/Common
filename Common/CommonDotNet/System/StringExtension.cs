@@ -458,12 +458,20 @@ namespace System
             return double.TryParse(value, out d);
         }
 
+#if !DotNet45
+        /// <summary>
+        /// 指示指定字符串是否为 E-mail 地址。
+        /// </summary>
+        /// <param name="value">要测试的字符串。</param>
+        /// <returns>若符合 E-mail 格式，则为 true，否则为 false。</returns>
+#else
         /// <summary>
         /// 指示指定字符串是否为 E-mail 地址。
         /// </summary>
         /// <param name="value">要测试的字符串。</param>
         /// <returns>若符合 E-mail 格式，则为 true，否则为 false。</returns>
         /// <exception cref="System.Text.RegularExpressions.RegexMatchTimeoutException">发生超时。</exception>
+#endif
         public static bool IsEmail(this string value)
         {
             if (value == null)
@@ -507,6 +515,16 @@ namespace System
             return long.TryParse(value, out l);
         }
 
+#if !DotNet45
+        /// <summary>
+        /// 指示指定正则表达式在字符串中是否找到了匹配项。
+        /// </summary>
+        /// <param name="input">字符串。</param>
+        /// <param name="regex">正则表达式。</param>
+        /// <returns>如果正则表达式找到匹配项，则为 true；否则，为 false。</returns>
+        /// <exception cref="System.ArgumentException">出现正则表达式分析错误。</exception>
+        /// <exception cref="System.ArgumentNullException"><c>input</c> 为 null。</exception>
+#else
         /// <summary>
         /// 指示指定正则表达式在字符串中是否找到了匹配项。
         /// </summary>
@@ -516,6 +534,7 @@ namespace System
         /// <exception cref="System.ArgumentException">出现正则表达式分析错误。</exception>
         /// <exception cref="System.ArgumentNullException"><c>input</c> 为 null。</exception>
         /// <exception cref="System.Text.RegularExpressions.RegexMatchTimeoutException">发生超时。</exception>
+#endif
         public static bool IsMatch(this string input, string regex)
         {
             Regex r = new Regex(regex);

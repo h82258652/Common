@@ -14,7 +14,7 @@
     <Name>CommonDotNetDocumentation</Name>
     <!-- SHFB properties -->
     <FrameworkVersion>.NET Framework 4.5</FrameworkVersion>
-    <OutputPath>.\Help\</OutputPath>
+    <OutputPath>Help\net45\</OutputPath>
     <HtmlHelpName>CommonDotNetDocumentation</HtmlHelpName>
     <Language>en-US</Language>
     <TransformComponentArguments>
@@ -27,7 +27,7 @@
       <Argument Key="maxVersionParts" Value="" xmlns="" />
     </TransformComponentArguments>
     <DocumentationSources>
-      <DocumentationSource sourceFile="..\CommonDotNet\CommonDotNet.csproj" xmlns="" />
+      <DocumentationSource sourceFile="..\CommonDotNet\CommonDotNet.Net45.csproj" xmlns="" />
     </DocumentationSources>
     <BuildAssemblerVerbosity>OnlyWarningsAndErrors</BuildAssemblerVerbosity>
     <HelpFileFormat>HtmlHelp1</HelpFileFormat>
