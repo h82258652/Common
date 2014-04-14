@@ -43,9 +43,13 @@
   <ItemGroup>
     <Compile Include="CommonJS.Using.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Ajax\XMLHttpRequest.js" />
+    <Content Include="Dom\Document.onready.js" />
+    <Content Include="System\Array.indexOf.js" />
     <Content Include="System\Array.isArray.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="System\Array.lastIndexOf.js" />
     <Content Include="System\String.trimEnd.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
