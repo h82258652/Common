@@ -73,7 +73,7 @@ namespace Common.DataBase
             {
                 throw new ArgumentException("连接字符串不能为空字符串。", "connectionString");
             }
-            if (typeof(IDbConnection).IsAssignableFrom(provider))
+            if (typeof(IDbConnection).IsAssignableFrom(provider) == false)
             {
                 throw new ArgumentException("Provider 必须实现 IDbConnection 接口。");
             }
