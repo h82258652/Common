@@ -1,4 +1,5 @@
 ﻿(function (window) {
+    "use strict";
     if (!window.XMLHttpRequest) {
         var xhr;
         try {

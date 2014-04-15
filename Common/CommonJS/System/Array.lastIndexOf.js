@@ -1,4 +1,5 @@
 ﻿(function () {
+    "use strict";
     Array.prototype.lastIndexOf = function (el, index) {
         var n = this.length;
         var i = index == null ? n - 1 : index;

@@ -1,4 +1,5 @@
 ﻿(function (window) {
+    "use strict";
     var document = window.document;
 
     // 指示是否已经 onReady。
