@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections;
+using System.Runtime.Serialization;
 
 namespace Common.Serialization.Json
 {
     /// <summary>
     /// 表示 JSON 序列化时字符串或数组或集合的元素个数有误。
     /// </summary>
-    public sealed class JsonCountException : Exception
+    [Serializable]
+    public sealed class JsonCountException : Exception,ISerializable
     {
         /// <summary>
         /// 字符串或数组或集合的元素个数应该小于此值。
@@ -86,6 +88,11 @@ namespace Common.Serialization.Json
                 return "当前字符串或数组或集合的个数为：" + this.CurrentCount + "，但应大于 " + this.GreaterThan + "。";
             }
             return base.ToString();
+        }
+        
+        void ISerializable.GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            base.GetObjectData(info,context);
         }
     }
 }

@@ -86,13 +86,24 @@ namespace Common.DataBase
         /// </summary>
         public void Dispose()
         {
-            if (this._connection == null)
+            Dispose(true);
+            System.GC.SuppressFinalize(this);
+        }
+
+        ~SqlHelper()
+        {
+            Dispose(false);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing == true)
             {
-                return;
-            }
-            else
-            {
-                this._connection.Dispose();
+                if (this._connection != null)
+                {
+                    this._connection.Dispose();
+                    this._connection = null;
+                }
             }
         }
     }

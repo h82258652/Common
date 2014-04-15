@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Data.Common;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Common.DataBase
 {
@@ -11,6 +12,7 @@ namespace Common.DataBase
         /// <param name="sql">sql 语句。</param>
         /// <param name="parameters">sql 参数。</param>
         /// <returns>System.Data.IDataReader 对象。</returns>
+        [SuppressMessage("Microsoft.Security", "CA2100")]
         public IDataReader ExecuteReader(string sql, params DbParameter[] parameters)
         {
             if (this._connection.State != ConnectionState.Open)

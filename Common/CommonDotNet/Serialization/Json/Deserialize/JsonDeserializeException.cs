@@ -5,6 +5,7 @@ namespace Common.Serialization.Json
     /// <summary>
     /// 表示 JSON 反序列化失败。
     /// </summary>
+    [Serializable]
     public sealed class JsonDeserializeException : Exception
     {
         /// <summary>

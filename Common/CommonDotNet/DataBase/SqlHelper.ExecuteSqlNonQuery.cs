@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.Common;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Common.DataBase
 {
@@ -12,6 +13,7 @@ namespace Common.DataBase
         /// <param name="sql">sql 语句。</param>
         /// <param name="parameters">sql 参数。</param>
         /// <returns>受影响的行数。</returns>
+        [SuppressMessage("Microsoft.Security", "CA2100")]
         public static int ExecuteSqlNonQuery(string sql, params DbParameter[] parameters)
         {
             using (IDbConnection conn = Activator.CreateInstance(DbProvider) as IDbConnection)
