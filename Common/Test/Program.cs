@@ -304,7 +304,14 @@ namespace Test
 
         public static void Main(string[] args)
         {
-var xxx=            Common.CommonJS.Using("System");
+            var x = new
+            {
+                XX = 1,
+                YY = "abc"
+            };
+            string j = x.SerializeToJson();
+            Console.WriteLine(j);
+            var xqq = JsonHelper.Deserialize(j, x.GetType());
 
             Console.ReadKey();
             return;

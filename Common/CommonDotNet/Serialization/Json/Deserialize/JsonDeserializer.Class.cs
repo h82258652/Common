@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Serialization;
 
 namespace Common.Serialization.Json
 {
@@ -49,20 +50,20 @@ namespace Common.Serialization.Json
                 #region 匿名类。
                 if (type.Name.Contains("AnonymousType") == true && string.IsNullOrEmpty(type.Namespace) == true)
                 {
-                    var constructors = type.GetConstructors(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).OrderBy(temp => temp.IsPublic == false).ThenBy(temp => temp.GetParameters().Length);
-                    var constructor = constructors.ElementAt(0);
-                    List<string> param = new List<string>();
-                    foreach (KeyValuePair<string, string> keyValuePair in keyValue)
+                    var anonymousObj = FormatterServices.GetUninitializedObject(type);
+                    foreach (FieldInfo field in type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
                     {
-                        param.Add(keyValuePair.Value);
+                        string fieldName = field.Name;
+                        foreach (KeyValuePair<string, string> keyValuePair in keyValue)
+                        {
+                            if (fieldName.Contains("<" + keyValuePair.Key + ">") == true)
+                            {
+                                field.SetValue(anonymousObj, DeserializeToObject(keyValuePair.Value, field.FieldType));
+                                break;
+                            }
+                        }
                     }
-                    List<object> list = new List<object>();
-                    var parameters = constructor.GetParameters();
-                    for (int i = 0, length = parameters.Length; i < length; i++)
-                    {
-                        list.Add(DeserializeToObject(param[i], parameters[i].ParameterType));
-                    }
-                    return constructor.Invoke(list.ToArray());
+                    return anonymousObj;
                 }
                 #endregion
                 object instance;
