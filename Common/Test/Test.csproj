@@ -64,9 +64,9 @@
     <Content Include="TextFile1.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CommonDotNet\CommonDotNet.Net40.csproj">
+    <ProjectReference Include="..\CommonDotNet\CommonDotNet.Net45.csproj">
       <Project>{dacd4205-58bb-4cac-824e-9e53e2e8f2e8}</Project>
-      <Name>CommonDotNet</Name>
+      <Name>CommonDotNet.Net45</Name>
     </ProjectReference>
     <ProjectReference Include="..\CommonJS\CommonJS.csproj">
       <Project>{afba8df3-091e-4bc1-9e3f-282a8dd5ddfa}</Project>

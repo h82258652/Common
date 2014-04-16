@@ -10,7 +10,6 @@ namespace Common.Serialization.Json
     {
         private object DeserializeToClass(string input, Type type)
         {
-
             if (input.StartsWith("{") == true && input.EndsWith("}") == true)
             {
                 string source = input;
@@ -71,7 +70,15 @@ namespace Common.Serialization.Json
                         else
                         {
                             // json 中不存在对应的值，填充类型的默认值。
-                            args.Add(FormatterServices.GetUninitializedObject(parameter.ParameterType));
+                            Type parameterType = parameter.ParameterType;
+                            if (parameterType.IsValueType == true)
+                            {
+                                args.Add(Convert.ChangeType(0, parameterType));
+                            }
+                            else
+                            {
+                                args.Add(null);
+                            }
                         }
                     }
 

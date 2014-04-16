@@ -306,16 +306,15 @@ namespace Test
         {
             var x = new
             {
+                aa=0.5,
                 XX = 1,
-                YY = "abc"
+                YY = "abc",
+                zz=true
             };
             Type t = x.GetType();
-            SqlConnection
-
-
-            var fqfg = t.GetConstructors();
-            var qgagz = fqfg.Single();
-var qgzha=            qgagz.GetParameters();
+            string sqq = JsonHelper.SerializeToJson(x);
+            var xxa = JsonHelper.Deserialize(sqq, t);
+            var xxa2 = JsonHelper.Deserialize("{\"YY\":\"xxxxx\"}", t);
 
 
             Console.ReadKey();
