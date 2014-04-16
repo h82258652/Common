@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30324.0
+VisualStudioVersion = 12.0.30110.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{CA59DB0D-7B59-4C43-88C8-99B76EEB0254}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonDotNet", "CommonDotNet\CommonDotNet.Net40.csproj", "{DACD4205-58BB-4CAC-824E-9E53E2E8F2E8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonDotNet.Net40", "CommonDotNet\CommonDotNet.Net40.csproj", "{DACD4205-58BB-4CAC-824E-9E53E2E8F2E8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonJS", "CommonJS\CommonJS.csproj", "{AFBA8DF3-091E-4BC1-9E3F-282A8DD5DDFA}"
 EndProject
-Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "CommonDotNetDocumentation", "CommonDotNetDocumentation\CommonDotNetDocumentation.Net40.shfbproj", "{39027FD5-54FA-42D7-9ADE-0AFA0AFBF5D2}"
+Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "CommonDotNetDocumentation.Net40", "CommonDotNetDocumentation\CommonDotNetDocumentation.Net40.shfbproj", "{39027FD5-54FA-42D7-9ADE-0AFA0AFBF5D2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

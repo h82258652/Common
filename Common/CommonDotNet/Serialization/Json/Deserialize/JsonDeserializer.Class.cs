@@ -50,20 +50,33 @@ namespace Common.Serialization.Json
                 #region 匿名类。
                 if (type.Name.Contains("AnonymousType") == true && string.IsNullOrEmpty(type.Namespace) == true)
                 {
-                    var anonymousObj = FormatterServices.GetUninitializedObject(type);
-                    foreach (FieldInfo field in type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
+                    // 获取匿名类唯一构造函数。
+                    ConstructorInfo constructor = type.GetConstructors().Single();
+
+                    // 获取匿名类构造函数的参数。
+                    ParameterInfo[] parameters = constructor.GetParameters();
+
+                    // 存放反序列化的参数。
+                    List<object> args = new List<object>();
+
+                    foreach (ParameterInfo parameter in parameters)
                     {
-                        string fieldName = field.Name;
-                        foreach (KeyValuePair<string, string> keyValuePair in keyValue)
+                        // 参数名字。
+                        string parameterName = parameter.Name;
+                        if (keyValue.ContainsKey(parameterName) == true)
                         {
-                            if (fieldName.Contains("<" + keyValuePair.Key + ">") == true)
-                            {
-                                field.SetValue(anonymousObj, DeserializeToObject(keyValuePair.Value, field.FieldType));
-                                break;
-                            }
+                            // json 中存在对应的值。
+                            args.Add(DeserializeToObject(keyValue[parameterName], parameter.ParameterType));
+                        }
+                        else
+                        {
+                            // json 中不存在对应的值，填充类型的默认值。
+                            args.Add(FormatterServices.GetUninitializedObject(parameter.ParameterType));
                         }
                     }
-                    return anonymousObj;
+
+                    // 执行构造函数。
+                    return constructor.Invoke(args.ToArray());
                 }
                 #endregion
                 object instance;

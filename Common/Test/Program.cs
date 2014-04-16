@@ -309,9 +309,14 @@ namespace Test
                 XX = 1,
                 YY = "abc"
             };
-            string j = x.SerializeToJson();
-            Console.WriteLine(j);
-            var xqq = JsonHelper.Deserialize(j, x.GetType());
+            Type t = x.GetType();
+            SqlConnection
+
+
+            var fqfg = t.GetConstructors();
+            var qgagz = fqfg.Single();
+var qgzha=            qgagz.GetParameters();
+
 
             Console.ReadKey();
             return;

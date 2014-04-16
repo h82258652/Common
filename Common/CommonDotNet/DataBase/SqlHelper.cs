@@ -95,6 +95,10 @@ namespace Common.DataBase
             Dispose(false);
         }
 
+        /// <summary>
+        /// 释放当前 SqlHelper 的数据库连接。
+        /// </summary>
+        /// <param name="disposing">是否由用户释放。</param>
         protected virtual void Dispose(bool disposing)
         {
             if (disposing == true)
