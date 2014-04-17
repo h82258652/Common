@@ -73,7 +73,7 @@ namespace Common.Serialization.Json
                             Type parameterType = parameter.ParameterType;
                             if (parameterType.IsValueType == true)
                             {
-                                args.Add(Convert.ChangeType(0, parameterType));
+                                args.Add(Activator.CreateInstance(parameterType));
                             }
                             else
                             {

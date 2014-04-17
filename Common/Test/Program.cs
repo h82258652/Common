@@ -302,8 +302,23 @@ namespace Test
         }
 
 
+        public struct XXX
+        {
+            public int A;
+        }
+
         public static void Main(string[] args)
         {
+
+
+
+            var xgba = typeof (XXX);
+
+var gahoghaohgoiahgoa=            Activator.CreateInstance(typeof (bool));
+            
+            
+            var xxxxxx = Convert.ChangeType(0, typeof (XXX));
+
             var x = new
             {
                 aa=0.5,
