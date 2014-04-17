@@ -28,7 +28,7 @@ namespace System
                 return failureValue;
             }
         }
-
+        
         /// <summary>
         /// 将当前字符串转换为 8 位无符号整数。
         /// </summary>
@@ -166,6 +166,25 @@ namespace System
             if (long.TryParse(value, out l) == true)
             {
                 return l;
+            }
+            else
+            {
+                return failureValue;
+            }
+        }
+
+        /// <summary>
+        /// 将当前字符串转换为 8 位有符号整数。
+        /// </summary>
+        /// <param name="value">转换的字符串。</param>
+        /// <param name="failureValue">无法转换时返回的默认值。</param>
+        /// <returns>成功则返回相应的 8 位有符号整数，失败则返回指定的默认值。</returns>
+        public static sbyte AsSByte(this string value, sbyte failureValue)
+        {
+            sbyte sb;
+            if (sbyte.TryParse(value, out sb) == true)
+            {
+                return sb;
             }
             else
             {
@@ -561,6 +580,17 @@ namespace System
         public static bool IsNullOrWhiteSpace(this string value)
         {
             return string.IsNullOrWhiteSpace(value);
+        }
+
+        /// <summary>
+        /// 指示当前字符串是否能转换为 8 位有符号整数。
+        /// </summary>
+        /// <param name="value">测试的字符串。</param>
+        /// <returns>是否能转换为 8 位有符号整数。</returns>
+        public static bool IsSByte(this string value)
+        {
+            sbyte sb;
+            return sbyte.TryParse(value, out sb);
         }
 
         /// <summary>
