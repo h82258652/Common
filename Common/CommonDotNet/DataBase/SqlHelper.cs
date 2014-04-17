@@ -82,7 +82,7 @@ namespace Common.DataBase
         }
 
         /// <summary>
-        /// 释放当前 SqlHelper 的数据库连接。
+        /// 释放当前 SqlHelper 的实例。
         /// </summary>
         public void Dispose()
         {
@@ -90,13 +90,16 @@ namespace Common.DataBase
             System.GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// 释放当前 SqlHelper 的实例。
+        /// </summary>
         ~SqlHelper()
         {
             Dispose(false);
         }
 
         /// <summary>
-        /// 释放当前 SqlHelper 的数据库连接。
+        /// 释放当前 SqlHelper 的实例。
         /// </summary>
         /// <param name="disposing">是否由用户释放。</param>
         protected virtual void Dispose(bool disposing)
