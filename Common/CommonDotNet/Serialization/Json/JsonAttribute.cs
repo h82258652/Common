@@ -130,7 +130,8 @@ namespace Common.Serialization.Json
         /// </summary>
         public bool Required
         {
-            get; set;
+            get;
+            set;
         }
     }
 }
