@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Dynamic;
 using System.Numerics;
 using System.Text.RegularExpressions;
 
@@ -133,10 +134,22 @@ namespace Common.Serialization.Json
                 obj = DeserializeToEnum(input, type);
             }
             #endregion
+            #region ExpandoObject
+            else if (type == typeof(ExpandoObject))
+            {
+                obj = DeserializeToExpandoObject(input, type);
+            }
+            #endregion
             #region Guid
             else if (type == typeof(Guid))
             {
                 obj = DeserializeToGuid(input, type);
+            }
+            #endregion
+            #region Lazy
+            else if (type.IsGenericType == true && type.GetGenericTypeDefinition() == typeof (Lazy<>))
+            {
+                obj = DeserializeToLazy(input, type);
             }
             #endregion
             #region List

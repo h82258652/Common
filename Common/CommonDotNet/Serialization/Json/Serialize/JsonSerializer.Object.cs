@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Dynamic;
 using System.Numerics;
 using System.Text.RegularExpressions;
 
@@ -132,10 +133,22 @@ namespace Common.Serialization.Json
                 json = SerializeEnum(obj as Enum);
             }
             #endregion
+            #region ExpandoObject
+            else if (obj is ExpandoObject)
+            {
+                json = SerializeExpandoObject(obj as ExpandoObject);
+            }
+            #endregion
             #region Guid
             else if (obj is Guid)
             {
                 json = SerializeGuid((Guid)obj);
+            }
+            #endregion
+            #region Lazy
+            else if (obj.GetType().IsGenericType == true && obj.GetType().GetGenericTypeDefinition() == typeof(Lazy<>))
+            {
+                json = SerializeLazy((dynamic)obj);
             }
             #endregion
             #region List
@@ -145,7 +158,7 @@ namespace Common.Serialization.Json
             }
             #endregion
             #region Nullable
-            else if (obj.GetType().IsGenericType == true && obj.GetType().GetGenericTypeDefinition() == typeof(Nullable<>))
+            else if (obj.GetType().IsGenericType == true && obj.GetType().GetGenericTypeDefinition() == typeof(Nullable<>) && obj.GetType().GetElementType().IsValueType == true)
             {
                 json = SerializeNullable(obj);
             }

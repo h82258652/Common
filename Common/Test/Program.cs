@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Concurrent;
 using System.Data.SqlClient;
+using System.Dynamic;
 using System.Globalization;
 using System.IO.Compression;
 using System.Linq.Expressions;
@@ -305,72 +306,13 @@ namespace Test
         public struct XXX
         {
             public int A;
+
+            public bool? BB;
         }
 
         public static void Main(string[] args)
         {
-
-
-
-            var xgba = typeof (XXX);
-
-var gahoghaohgoiahgoa=            Activator.CreateInstance(typeof (bool));
             
-            
-            var xxxxxx = Convert.ChangeType(0, typeof (XXX));
-
-            var x = new
-            {
-                aa=0.5,
-                XX = 1,
-                YY = "abc",
-                zz=true
-            };
-            Type t = x.GetType();
-            string sqq = JsonHelper.SerializeToJson(x);
-            var xxa = JsonHelper.Deserialize(sqq, t);
-            var xxa2 = JsonHelper.Deserialize("{\"YY\":\"xxxxx\"}", t);
-
-
-            Console.ReadKey();
-            return;
-
-
-
-            ForTest.MyMain();
-            Environment.Exit(1);
-
-            IQueryable<int> a;
-
-
-            Expression<Func<string, int>> xqqq = (s) => s.StartsWith("") ? 0 : 1;
-
-            Go(xqqq);
-            return;
-
-            var b = xqqq.Body;
-
-
-            Func<int, bool> deleg = i => i < 5;
-            // Invoke the delegate and display the output.
-            Console.WriteLine("deleg(4) = {0}", deleg(4));
-
-            // Lambda expression as data in the form of an expression tree.
-            System.Linq.Expressions.Expression<Func<int, bool>> expr = i => i < 5;
-            // Compile the expression tree into executable code.
-            Func<int, bool> deleg2 = expr.Compile();
-            // Invoke the method and print the output.
-            Console.WriteLine("deleg2(4) = {0}", deleg2(4));
-
-
-            var xx = Expression.MakeBinary(ExpressionType.Subtract, Expression.Constant(5), Expression.Constant(4));
-
-
-            var rs = xx.Method.Invoke(null, null);
-
-            JT jt = new JT();
-            jt.FirstOrDefault(temp => temp.ToString() == "");
-
             Console.ReadKey();
 
         }

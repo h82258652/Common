@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 namespace Common.Serialization.Json
 {
     internal partial class JsonSerializer
