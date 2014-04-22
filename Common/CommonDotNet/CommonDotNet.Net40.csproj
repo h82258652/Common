@@ -90,10 +90,12 @@
     <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.Dictionary.cs" />
     <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.Double.cs" />
     <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.Enum.cs" />
+    <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.ExpandoObject.cs" />
     <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.Guid.cs" />
     <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.Int16.cs" />
     <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.Int32.cs" />
     <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.Int64.cs" />
+    <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.Lazy.cs" />
     <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.List.cs" />
     <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.Nullable.cs" />
     <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.Object.cs" />
@@ -139,9 +141,11 @@
     <Compile Include="Serialization\Json\Serialize\JsonSerializer.Dictionary.cs" />
     <Compile Include="Serialization\Json\Serialize\JsonSerializer.Double.cs" />
     <Compile Include="Serialization\Json\Serialize\JsonSerializer.Enum.cs" />
+    <Compile Include="Serialization\Json\Serialize\JsonSerializer.ExpandoObject.cs" />
     <Compile Include="Serialization\Json\Serialize\JsonSerializer.Int64.cs" />
     <Compile Include="Serialization\Json\Serialize\JsonSerializer.Int32.cs" />
     <Compile Include="Serialization\Json\Serialize\JsonSerializer.Int16.cs" />
+    <Compile Include="Serialization\Json\Serialize\JsonSerializer.Lazy.cs" />
     <Compile Include="Serialization\Json\Serialize\JsonSerializer.List.cs" />
     <Compile Include="Serialization\Json\Serialize\JsonSerializer.Nullable.cs" />
     <Compile Include="Serialization\Json\Serialize\JsonSerializer.Object.cs" />
