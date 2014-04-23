@@ -151,6 +151,30 @@ namespace System.Data
         }
 
         /// <summary>
+        /// 返回指定字段的值。
+        /// </summary>
+        /// <param name="record">DataRecord 实例。</param>
+        /// <param name="name">要查找的字段的名称。</param>
+        /// <returns>返回时将包含字段值的 Object。</returns>
+        /// <exception cref="System.IndexOutOfRangeException">不存在该名称的字段。</exception>
+        public static object GetValue(this IDataRecord record, string name)
+        {
+            return record.GetValue(record.GetOrdinal(name));
+        }
+
+        /// <summary>
+        /// 返回是否将指定字段设置为空。
+        /// </summary>
+        /// <param name="record">DataRecord 实例。</param>
+        /// <param name="name">要查找的字段的名称。</param>
+        /// <returns>如果指定的字段设置为 Null，则为 true；否则为 false。</returns>
+        /// <exception cref="System.IndexOutOfRangeException">不存在该名称的字段。</exception>
+        public static bool IsDBNull(this IDataRecord record, string name)
+        {
+            return record.IsDBNull(record.GetOrdinal(name));
+        }
+
+        /// <summary>
         /// 尝试返回命名字段的索引。
         /// </summary>
         /// <param name="record">DataRecord 实例。</param>
