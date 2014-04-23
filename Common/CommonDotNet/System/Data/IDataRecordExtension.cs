@@ -43,6 +43,30 @@ namespace System.Data
         }
 
         /// <summary>
+        /// 返回指定的列序号的 IDataReader。
+        /// </summary>
+        /// <param name="record">DataRecord 实例。</param>
+        /// <param name="name">要查找的字段的名称。</param>
+        /// <returns>指定列序号的 IDataReader 。</returns>
+        /// <exception cref="System.IndexOutOfRangeException">不存在该名称的字段。</exception>
+        public static IDataReader GetData(this IDataRecord record, string name)
+        {
+            return record.GetData(record.GetOrdinal(name));
+        }
+
+        /// <summary>
+        /// 获取指定字段的数据类型信息。
+        /// </summary>
+        /// <param name="record">DataRecord 实例。</param>
+        /// <param name="name">要查找的字段的名称。</param>
+        /// <returns>指定字段的数据类型信息。</returns>
+        /// <exception cref="System.IndexOutOfRangeException">不存在该名称的字段。</exception>
+        public static string GetDataTypeName(this IDataRecord record, string name)
+        {
+            return record.GetDataTypeName(record.GetOrdinal(name));
+        }
+
+        /// <summary>
         /// 获取指定字段的日期和时间数据值。
         /// </summary>
         /// <param name="record">DataRecord 实例。</param>
@@ -76,6 +100,18 @@ namespace System.Data
         public static double GetDouble(this IDataRecord record, string name)
         {
             return record.GetDouble(record.GetOrdinal(name));
+        }
+
+        /// <summary>
+        /// 获取与从 GetValue 返回的 Object 类型对应的 Type 信息。
+        /// </summary>
+        /// <param name="record">DataRecord 实例。</param>
+        /// <param name="name">要查找的字段的名称。</param>
+        /// <returns>与从 GetValue 返回的 Object 类型对应的 Type 信息。</returns>
+        /// <exception cref="System.IndexOutOfRangeException">不存在该名称的字段。</exception>
+        public static Type GetFieldType(this IDataRecord record, string name)
+        {
+            return record.GetFieldType(record.GetOrdinal(name));
         }
 
         /// <summary>
@@ -160,6 +196,18 @@ namespace System.Data
         public static object GetValue(this IDataRecord record, string name)
         {
             return record.GetValue(record.GetOrdinal(name));
+        }
+
+        /// <summary>
+        /// 获取一个填充了记录的列值的对象数组。
+        /// </summary>
+        /// <param name="record">DataRecord 实例。</param>
+        /// <returns>一个填充了记录的列值的对象的数组。</returns>
+        public static object[] GetValues(this IDataRecord record)
+        {
+            object[] values = new object[record.FieldCount];
+            record.GetValues(values);
+            return values;
         }
 
         /// <summary>
