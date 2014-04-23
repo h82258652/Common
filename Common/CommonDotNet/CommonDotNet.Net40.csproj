@@ -160,6 +160,7 @@
     <Compile Include="Serialization\XMLSerializerHelper.cs" />
     <Compile Include="System\CharExtension.cs" />
     <Compile Include="System\Collections\Generic\IDictionaryExtension.cs" />
+    <Compile Include="System\Data\IDataRecordExtension.cs" />
     <Compile Include="System\RandomExtension.cs" />
     <Compile Include="System\StringExtension.cs" />
     <Compile Include="System\TypeExtension.cs" />
