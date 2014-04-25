@@ -313,6 +313,9 @@ namespace Test
 
         public static void Main(string[] args)
         {
+            var x = System.Data.Common.DbProviderFactories.GetFactory("System.Data.SQLite");
+
+
             var qqq = System.Data.Common.DbProviderFactories.GetFactoryClasses();
             foreach (DataRow row in qqq.Rows)
             {
