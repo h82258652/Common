@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Concurrent;
+using System.Data;
 using System.Data.SqlClient;
 using System.Dynamic;
 using System.Globalization;
@@ -312,7 +313,12 @@ namespace Test
 
         public static void Main(string[] args)
         {
-            
+            var qqq = System.Data.Common.DbProviderFactories.GetFactoryClasses();
+            foreach (DataRow row in qqq.Rows)
+            {
+                Console.WriteLine(row["InvariantName"]);
+            }
+
             Console.ReadKey();
 
         }
