@@ -30,17 +30,17 @@
         }
     }
 
-    if (document.readyState === "complete") {
+    if (document.readyState === 'complete') {
         fireReady();
     } else if (document.addEventListener) {
-        document.addEventListener("DOMContentLoaded", function () {
-            document.removeEventListener("DOMContentLoaded", arguments.callee, false);
+        document.addEventListener('DOMContentLoaded', function () {
+            document.removeEventListener('DOMContentLoaded', arguments.callee, false);
             fireReady();
         }, false);
     } else if (document.attachEvent) {
-        document.attachEvent("onreadystatechange", function () {
-            if (document.readyState === "complete") {
-                document.detachEvent("onreadystatechange", arguments.callee);
+        document.attachEvent('onreadystatechange', function () {
+            if (document.readyState === 'complete') {
+                document.detachEvent('onreadystatechange', arguments.callee);
                 fireReady();
             }
         });

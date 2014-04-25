@@ -50,6 +50,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="System\Array.lastIndexOf.js" />
+    <Content Include="System\Array.unshift.js" />
+    <Content Include="System\Number.toFixed.js" />
+    <Content Include="System\String.substr.js" />
     <Content Include="System\String.trimEnd.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
