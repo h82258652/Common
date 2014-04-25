@@ -53,17 +53,23 @@
     <Compile Include="Config\Ini\IniUnknownLine.cs" />
     <Compile Include="Config\IsolatedStorageConfigHelper.cs" />
     <Compile Include="Config\XmlConfigHelper.cs" />
-    <Compile Include="DataBase\SqlHelper.DataRowToEntity.cs" />
-    <Compile Include="DataBase\SqlHelper.DataTableToEntities.cs" />
-    <Compile Include="DataBase\SqlHelper.ExecuteReader.cs" />
-    <Compile Include="DataBase\SqlHelper.cs" />
-    <Compile Include="DataBase\SqlHelper.ExecuteNonQuery.cs" />
-    <Compile Include="DataBase\SqlHelper.ExecuteScalar.cs" />
-    <Compile Include="DataBase\SqlHelper.ExecuteSqlNonQuery.cs" />
-    <Compile Include="DataBase\SqlHelper.ExecuteSqlReader.cs" />
-    <Compile Include="DataBase\SqlHelper.ExecuteSqlScalar.cs" />
-    <Compile Include="DataBase\SqlHelper.ExecuteSqlTable.cs" />
-    <Compile Include="DataBase\SqlHelper.ExecuteTable.cs" />
+    <Compile Include="DataBaseOld\SqlHelper.cs" />
+    <Compile Include="DataBaseOld\SqlHelper.DataRowToEntity.cs" />
+    <Compile Include="DataBaseOld\SqlHelper.DataTableToEntities.cs" />
+    <Compile Include="DataBaseOld\SqlHelper.ExecuteNonQuery.cs" />
+    <Compile Include="DataBaseOld\SqlHelper.ExecuteReader.cs" />
+    <Compile Include="DataBaseOld\SqlHelper.ExecuteScalar.cs" />
+    <Compile Include="DataBaseOld\SqlHelper.ExecuteSqlNonQuery.cs" />
+    <Compile Include="DataBaseOld\SqlHelper.ExecuteSqlReader.cs" />
+    <Compile Include="DataBaseOld\SqlHelper.ExecuteSqlScalar.cs" />
+    <Compile Include="DataBaseOld\SqlHelper.ExecuteSqlTable.cs" />
+    <Compile Include="DataBaseOld\SqlHelper.ExecuteTable.cs" />
+    <Compile Include="DataBase\DataBaseHelper.MySql.cs" />
+    <Compile Include="DataBase\DataBaseHelper.Odbc.cs" />
+    <Compile Include="DataBase\DataBaseHelper.OleDb.cs" />
+    <Compile Include="DataBase\DataBaseHelper.Oracle.cs" />
+    <Compile Include="DataBase\DataBaseHelper.SQLite.cs" />
+    <Compile Include="DataBase\DataBaseHelper.SqlServer.cs" />
     <Compile Include="GC\VariableRefrence.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\ReflectionHelper.Constructor.cs" />
@@ -178,6 +184,7 @@
     <Compile Include="Web\HttpHelper.Post.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="DataBaseOld\ORM\" />
     <Folder Include="DataBase\ORM\" />
   </ItemGroup>
   <ItemGroup>

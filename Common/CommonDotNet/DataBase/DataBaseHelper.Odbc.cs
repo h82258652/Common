@@ -2,6 +2,9 @@
 
 namespace Common.DataBase
 {
+    /// <summary>
+    /// DataBase 帮助类。
+    /// </summary>
     public partial class DataBaseHelper
     {
         private const string OdbcInvariant = "System.Data.Odbc";
