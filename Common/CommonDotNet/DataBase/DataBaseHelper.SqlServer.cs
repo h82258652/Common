@@ -6,7 +6,7 @@ namespace Common.DataBase
     {
         private const string SqlServerInvariant = "System.Data.SqlClient";
 
-        public static DbProviderFactory SqlServerDbProviderFactory
+        public static DbProviderFactory SqlServerProviderFactory
         {
             get
             {
@@ -18,7 +18,7 @@ namespace Common.DataBase
         {
             get
             {
-                return SqlServerDbProviderFactory.CreateConnection();
+                return SqlServerProviderFactory.CreateConnection();
             }
         }
 
@@ -26,7 +26,7 @@ namespace Common.DataBase
         {
             get
             {
-                return SqlServerDbProviderFactory.CreateCommand();
+                return SqlServerProviderFactory.CreateCommand();
             }
         }
 
@@ -34,7 +34,7 @@ namespace Common.DataBase
         {
             get
             {
-                return SqlServerDbProviderFactory.CreateParameter();
+                return SqlServerProviderFactory.CreateParameter();
             }
         }
 
@@ -42,7 +42,7 @@ namespace Common.DataBase
         {
             get
             {
-                return SqlServerDbProviderFactory.CreateDataAdapter();
+                return SqlServerProviderFactory.CreateDataAdapter();
             }
         }
     }
