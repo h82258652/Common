@@ -1,4 +1,5 @@
-﻿using System.Data.Common;
+﻿using System;
+using System.Data.Common;
 
 namespace Common.DataBase
 {
@@ -10,7 +11,14 @@ namespace Common.DataBase
         {
             get
             {
-                return DbProviderFactories.GetFactory(SQLiteInvariant);
+                try
+                {
+                    return DbProviderFactories.GetFactory(SQLiteInvariant);
+                }
+                catch (ArgumentException)
+                {
+                    return null;
+                }
             }
         }
 
@@ -18,7 +26,7 @@ namespace Common.DataBase
         {
             get
             {
-                return SQLiteProviderFactory.CreateConnection();
+                return SQLiteProviderFactory == null ? null : SQLiteProviderFactory.CreateConnection();
             }
         }
 
@@ -26,7 +34,7 @@ namespace Common.DataBase
         {
             get
             {
-                return SQLiteProviderFactory.CreateCommand();
+                return SQLiteProviderFactory == null ? null : SQLiteProviderFactory.CreateCommand();
             }
         }
 
@@ -34,7 +42,7 @@ namespace Common.DataBase
         {
             get
             {
-                return SQLiteProviderFactory.CreateParameter();
+                return SQLiteProviderFactory == null ? null : SQLiteProviderFactory.CreateParameter();
             }
         }
 
@@ -42,7 +50,7 @@ namespace Common.DataBase
         {
             get
             {
-                return SQLiteProviderFactory.CreateDataAdapter();
+                return SQLiteProviderFactory == null ? null : SQLiteProviderFactory.CreateDataAdapter();
             }
         }
     }

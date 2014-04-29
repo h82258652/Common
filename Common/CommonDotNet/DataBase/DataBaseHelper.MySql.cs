@@ -1,4 +1,5 @@
-﻿using System.Data.Common;
+﻿using System;
+using System.Data.Common;
 
 namespace Common.DataBase
 {
@@ -10,7 +11,14 @@ namespace Common.DataBase
         {
             get
             {
-                return DbProviderFactories.GetFactory(MySqlInvariant);
+                try
+                {
+                    return DbProviderFactories.GetFactory(MySqlInvariant);
+                }
+                catch (ArgumentException)
+                {
+                    return null;
+                }
             }
         }
 
@@ -18,7 +26,7 @@ namespace Common.DataBase
         {
             get
             {
-                return MySqlProviderFactory.CreateConnection();
+                return MySqlParameter == null ? null : MySqlProviderFactory.CreateConnection();
             }
         }
 
@@ -26,7 +34,7 @@ namespace Common.DataBase
         {
             get
             {
-                return MySqlProviderFactory.CreateCommand();
+                return MySqlProviderFactory == null ? null : MySqlProviderFactory.CreateCommand();
             }
         }
 
@@ -34,7 +42,7 @@ namespace Common.DataBase
         {
             get
             {
-                return MySqlProviderFactory.CreateParameter();
+                return MySqlProviderFactory == null ? null : MySqlProviderFactory.CreateParameter();
             }
         }
 
@@ -42,7 +50,7 @@ namespace Common.DataBase
         {
             get
             {
-                return MySqlProviderFactory.CreateDataAdapter();
+                return MySqlProviderFactory == null ? null : MySqlProviderFactory.CreateDataAdapter();
             }
         }
     }

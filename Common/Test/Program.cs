@@ -313,24 +313,9 @@ namespace Test
 
         public static void Main(string[] args)
         {
-            Lazy<int> l = new Lazy<int>(() =>
-            {
-                return 5;
-            });
-            string s = Newtonsoft.Json.JsonConvert.SerializeObject(l);
-            Console.WriteLine(JsonHelper.SerializeToJson(l));
-            Console.ReadKey();
-            Console.WriteLine(l.Value);
-           var xxx= JsonHelper.Deserialize<Lazy<int>>(s);
-
-
-            Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(l));
-            Console.WriteLine(l.IsValueCreated);
-            Console.WriteLine(l.Value);
-            Console.WriteLine(l.IsValueCreated);
+            var x = Common.DataBase.DataBaseHelper.SqlServerConnection;
 
             Console.ReadKey();
-
         }
     }
 

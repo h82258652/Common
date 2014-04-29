@@ -1,4 +1,5 @@
-﻿using System.Data.Common;
+﻿using System;
+using System.Data.Common;
 
 namespace Common.DataBase
 {
@@ -13,7 +14,14 @@ namespace Common.DataBase
         {
             get
             {
-                return DbProviderFactories.GetFactory(OdbcInvariant);
+                try
+                {
+                    return DbProviderFactories.GetFactory(OdbcInvariant);
+                }
+                catch (ArgumentException)
+                {
+                    return null;
+                }
             }
         }
 
@@ -21,7 +29,7 @@ namespace Common.DataBase
         {
             get
             {
-                return OdbcProviderFactory.CreateConnection();
+                return OdbcProviderFactory == null ? null : OdbcProviderFactory.CreateConnection();
             }
         }
 
@@ -29,7 +37,7 @@ namespace Common.DataBase
         {
             get
             {
-                return OdbcProviderFactory.CreateCommand();
+                return OdbcProviderFactory == null ? null : OdbcProviderFactory.CreateCommand();
             }
         }
 
@@ -37,7 +45,7 @@ namespace Common.DataBase
         {
             get
             {
-                return OdbcProviderFactory.CreateParameter();
+                return OdbcProviderFactory == null ? null : OdbcProviderFactory.CreateParameter();
             }
         }
 
@@ -45,7 +53,7 @@ namespace Common.DataBase
         {
             get
             {
-                return OdbcProviderFactory.CreateDataAdapter();
+                return OdbcProviderFactory == null ? null : OdbcProviderFactory.CreateDataAdapter();
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using System.Data.Common;
+﻿using System;
+using System.Data.Common;
 
 namespace Common.DataBase
 {
@@ -10,7 +11,14 @@ namespace Common.DataBase
         {
             get
             {
-                return DbProviderFactories.GetFactory(OracleInvariant);
+                try
+                {
+                    return DbProviderFactories.GetFactory(OracleInvariant);
+                }
+                catch (ArgumentException)
+                {
+                    return null;
+                }
             }
         }
 
@@ -18,7 +26,7 @@ namespace Common.DataBase
         {
             get
             {
-                return OracleProviderFactory.CreateConnection();
+                return OracleProviderFactory == null ? null : OracleProviderFactory.CreateConnection();
             }
         }
 
@@ -26,7 +34,7 @@ namespace Common.DataBase
         {
             get
             {
-                return OracleProviderFactory.CreateCommand();
+                return OracleProviderFactory == null ? null : OracleProviderFactory.CreateCommand();
             }
         }
 
@@ -34,7 +42,7 @@ namespace Common.DataBase
         {
             get
             {
-                return OracleProviderFactory.CreateParameter();
+                return OracleProviderFactory == null ? null : OracleProviderFactory.CreateParameter();
             }
         }
 
@@ -42,7 +50,7 @@ namespace Common.DataBase
         {
             get
             {
-                return OracleProviderFactory.CreateDataAdapter();
+                return OracleProviderFactory == null ? null : OracleProviderFactory.CreateDataAdapter();
             }
         }
     }

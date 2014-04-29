@@ -1,4 +1,5 @@
-﻿using System.Data.Common;
+﻿using System;
+using System.Data.Common;
 
 namespace Common.DataBase
 {
@@ -10,7 +11,14 @@ namespace Common.DataBase
         {
             get
             {
-                return DbProviderFactories.GetFactory(SqlServerInvariant);
+                try
+                {
+                    return DbProviderFactories.GetFactory(SqlServerInvariant);
+                }
+                catch (ArgumentException)
+                {
+                    return null;
+                }
             }
         }
 
@@ -18,7 +26,7 @@ namespace Common.DataBase
         {
             get
             {
-                return SqlServerProviderFactory.CreateConnection();
+                return SqlServerProviderFactory == null ? null : SqlServerProviderFactory.CreateConnection();
             }
         }
 
@@ -26,7 +34,7 @@ namespace Common.DataBase
         {
             get
             {
-                return SqlServerProviderFactory.CreateCommand();
+                return SqlServerProviderFactory == null ? null : SqlServerProviderFactory.CreateCommand();
             }
         }
 
@@ -34,7 +42,7 @@ namespace Common.DataBase
         {
             get
             {
-                return SqlServerProviderFactory.CreateParameter();
+                return SqlServerProviderFactory == null ? null : SqlServerProviderFactory.CreateParameter();
             }
         }
 
@@ -42,7 +50,7 @@ namespace Common.DataBase
         {
             get
             {
-                return SqlServerProviderFactory.CreateDataAdapter();
+                return SqlServerProviderFactory == null ? null : SqlServerProviderFactory.CreateDataAdapter();
             }
         }
     }
