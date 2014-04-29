@@ -313,14 +313,21 @@ namespace Test
 
         public static void Main(string[] args)
         {
-            var x = System.Data.Common.DbProviderFactories.GetFactory("System.Data.SQLite");
-
-
-            var qqq = System.Data.Common.DbProviderFactories.GetFactoryClasses();
-            foreach (DataRow row in qqq.Rows)
+            Lazy<int> l = new Lazy<int>(() =>
             {
-                Console.WriteLine(row["InvariantName"]);
-            }
+                return 5;
+            });
+            string s = Newtonsoft.Json.JsonConvert.SerializeObject(l);
+            Console.WriteLine(JsonHelper.SerializeToJson(l));
+            Console.ReadKey();
+            Console.WriteLine(l.Value);
+           var xxx= JsonHelper.Deserialize<Lazy<int>>(s);
+
+
+            Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(l));
+            Console.WriteLine(l.IsValueCreated);
+            Console.WriteLine(l.Value);
+            Console.WriteLine(l.IsValueCreated);
 
             Console.ReadKey();
 

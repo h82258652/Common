@@ -8,11 +8,11 @@ namespace Common.Serialization.Json
         {
             if (lazy.IsValueCreated == true)
             {
-                return SerializeObject(lazy.Value);
+                return "{\"IsValueCreated\":true,\"Value\":" + SerializeObject(lazy.Value) + "}";
             }
             else
             {
-                return SerializeObject(null);
+                return "{\"IsValueCreated\":false,\"Value\":" + SerializeObject(default(T)) + "}";
             }
         }
     }
