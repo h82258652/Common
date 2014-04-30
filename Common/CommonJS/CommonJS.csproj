@@ -54,6 +54,7 @@
     </Content>
     <Content Include="System\Array.lastIndexOf.js" />
     <Content Include="System\Array.map.js" />
+    <Content Include="System\Array.distinct.js" />
     <Content Include="System\Array.some.js" />
     <Content Include="System\Array.unshift.js" />
     <Content Include="System\Date.now.js" />
