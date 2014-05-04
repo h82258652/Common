@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Concurrent;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Dynamic;
@@ -313,7 +314,15 @@ namespace Test
 
         public static void Main(string[] args)
         {
-            var x = Common.DataBase.DataBaseHelper.SqlServerConnection;
+            ObservableCollection<string> o=new ObservableCollection<string>();
+            o.Add("aa");
+            o.Add("qqqx");
+
+            string ss;
+            Console.WriteLine(ss=JsonHelper.SerializeToJson(o));
+            var zx = JsonHelper.Deserialize<ObservableCollection<string>>(ss);
+            Console.WriteLine(ss=Newtonsoft.Json.JsonConvert.SerializeObject(o));
+            var xx = Newtonsoft.Json.JsonConvert.DeserializeObject<ObservableCollection<string>>(ss);
 
             Console.ReadKey();
         }
