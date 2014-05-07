@@ -314,17 +314,40 @@ namespace Test
 
         public static void Main(string[] args)
         {
-            ObservableCollection<string> o=new ObservableCollection<string>();
+            ObservableCollection<string> o = new ObservableCollection<string>();
             o.Add("aa");
             o.Add("qqqx");
 
             string ss;
-            Console.WriteLine(ss=JsonHelper.SerializeToJson(o));
+            Console.WriteLine(ss = JsonHelper.SerializeToJson(o));
             var zx = JsonHelper.Deserialize<ObservableCollection<string>>(ss);
-            Console.WriteLine(ss=Newtonsoft.Json.JsonConvert.SerializeObject(o));
+            Console.WriteLine(ss = Newtonsoft.Json.JsonConvert.SerializeObject(o));
             var xx = Newtonsoft.Json.JsonConvert.DeserializeObject<ObservableCollection<string>>(ss);
 
             Console.ReadKey();
+        }
+
+        public static class EnumberableExtension
+        {
+            public static IEnumerable<TSource> Distinct<TSource, TCompareElement>(this IEnumerable<TSource> source, Func<TSource, TCompareElement> comparer)
+            {
+                return source.Distinct();
+            }
+        }
+
+
+
+        private class ElementEqualityComparer<T, TComparElement> : IEqualityComparer<T>
+        {
+            public bool Equals(T x, T y)
+            {
+                throw new NotImplementedException();
+            }
+
+            public int GetHashCode(T obj)
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 
