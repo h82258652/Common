@@ -91,6 +91,7 @@
     <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.Char.cs" />
     <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.Class.cs" />
     <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.cs" />
+    <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.DataTable.cs" />
     <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.DateTime.cs" />
     <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.Decimal.cs" />
     <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.Dictionary.cs" />
@@ -115,6 +116,8 @@
     <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.Uri.cs" />
     <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.cs" />
     <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.ItemReader.cs" />
+    <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.ItemSpliter.cs" />
+    <Compile Include="Serialization\Json\Deserialize\JsonHelper.TypeInference.cs" />
     <Compile Include="Serialization\Json\JsonAttribute.cs" />
     <Compile Include="Serialization\Json\JsonConverter.cs" />
     <Compile Include="Serialization\Json\JsonHelper.Cache.cs" />
@@ -142,6 +145,7 @@
     <Compile Include="Serialization\Json\Serialize\JsonSerializer.Char.cs" />
     <Compile Include="Serialization\Json\Serialize\JsonSerializer.Class.cs" />
     <Compile Include="Serialization\Json\Serialize\JsonSerializer.cs" />
+    <Compile Include="Serialization\Json\Serialize\JsonSerializer.DataTable.cs" />
     <Compile Include="Serialization\Json\Serialize\JsonSerializer.DateTime.cs" />
     <Compile Include="Serialization\Json\Serialize\JsonSerializer.Decimal.cs" />
     <Compile Include="Serialization\Json\Serialize\JsonSerializer.Dictionary.cs" />
@@ -167,6 +171,8 @@
     <Compile Include="System\CharExtension.cs" />
     <Compile Include="System\Collections\Generic\IDictionaryExtension.cs" />
     <Compile Include="System\Data\IDataRecordExtension.cs" />
+    <Compile Include="System\Linq\EnumerableExtension.cs" />
+    <Compile Include="System\ObjectExtension.cs" />
     <Compile Include="System\RandomExtension.cs" />
     <Compile Include="System\StringExtension.cs" />
     <Compile Include="System\TypeExtension.cs" />
