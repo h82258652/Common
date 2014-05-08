@@ -339,8 +339,18 @@ namespace Test
                 }
             }
 
+            JsonHelper.DateTimeFormat = Common.Serialization.Json.DateTimeFormat.Function;
+            var ttt = JsonHelper.SerializeToJson(DateTime.Now);
+            var xx = JsonHelper.Deserialize<DateTime>(ttt);
+            Console.WriteLine(JsonHelper.TypeInference(ttt));
+
+            DataTable dt2 = new DataTable();
+
             Console.WriteLine(myjson);
             Console.WriteLine(rightjson);
+
+            var t1 = Newtonsoft.Json.JsonConvert.DeserializeObject<DataTable>(myjson);
+            var t2 = JsonHelper.Deserialize<DataTable>(myjson);
 
             Console.ReadKey();
         }

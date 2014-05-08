@@ -13,7 +13,14 @@ namespace Common.Serialization.Json
     {
         private object DeserializeToLazy(string input, Type type)
         {
-            Dictionary<string, string> dictionary = JsonHelper.ItemReader(input.Substring(1, input.Length - 2)).ToDictionary(temp => temp.Substring(0, temp.IndexOf(':')).Trim('\"'), temp => temp.Substring(temp.IndexOf(':') + 1));
+            Dictionary<string, string> dictionary = new Dictionary<string, string>();
+            foreach (var temp in JsonHelper.ItemReader(input))
+            {
+                string key;
+                string value;
+                JsonHelper.ItemSpliter(temp, out key, out value);
+                dictionary.Add(key, value);
+            }
 
             if (dictionary["IsValueCreated"] == "true")
             {

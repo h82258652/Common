@@ -5,11 +5,11 @@ namespace Common.Serialization.Json
 {
     internal partial class JsonDeserializer
     {
-        private static readonly Regex DateTimeCreateRegex = new Regex(@"^new\s+Date\(\s*(\d*)\s*\)$", RegexOptions.Compiled);
+        internal static readonly Regex DateTimeCreateRegex = new Regex(@"^new\s+Date\(\s*(\d*)\s*\)$", RegexOptions.Compiled);
 
-        private static readonly Regex DateTimeDefaultRegex = new Regex(@"^(\d{4})\-(\d{2})\-(\d{2})T(\d{2}):(\d{2}):(\d{2})(\.\d*)?([\+|\-]\d{2}:\d{2})?$", RegexOptions.Compiled);
+        internal static readonly Regex DateTimeDefaultRegex = new Regex(@"^(\d{4})\-(\d{2})\-(\d{2})T(\d{2}):(\d{2}):(\d{2})(\.\d*)?([\+|\-]\d{2}:\d{2})?$", RegexOptions.Compiled);
 
-        private static readonly Regex DateTimeFunctionRegex = new Regex(@"^\\/Date\((\d+)\)\\/$", RegexOptions.Compiled);
+        internal static readonly Regex DateTimeFunctionRegex = new Regex(@"^\\/Date\((\d+)\)\\/$", RegexOptions.Compiled);
 
         private DateTime DeserializeToDateTime(string input, Type type)
         {
@@ -25,7 +25,7 @@ namespace Common.Serialization.Json
                 }
                 return new DateTime(1970, 1, 1, 8, 0, 0).AddMilliseconds(ms);
             }
-            match = DateTimeDefaultRegex.Match(input);
+            match = DateTimeDefaultRegex.Match(input.Substring(1, input.Length - 2));
             if (match.Success == true)
             {
                 string syear = match.Groups[1].Value;
@@ -83,7 +83,7 @@ namespace Common.Serialization.Json
                     return new DateTime((new DateTime(year, month, day, hour, minute, second)).Ticks + (long)(ms * 10000000), DateTimeKind.Local);
                 }
             }
-            match = DateTimeFunctionRegex.Match(input);
+            match = DateTimeFunctionRegex.Match(input.Substring(1, input.Length - 2));
             if (match.Success == true)
             {
                 string sms = match.Groups[1].Value;

@@ -89,6 +89,7 @@
     <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.Char.cs" />
     <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.Class.cs" />
     <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.cs" />
+    <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.DataTable.cs" />
     <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.DateTime.cs" />
     <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.Decimal.cs" />
     <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.Dictionary.cs" />
@@ -112,7 +113,9 @@
     <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.UInt64.cs" />
     <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.Uri.cs" />
     <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.cs" />
+    <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.ItemSpliter.cs" />
     <Compile Include="Serialization\Json\Deserialize\JsonHelper.Deserialize.ItemReader.cs" />
+    <Compile Include="Serialization\Json\Deserialize\JsonHelper.TypeInference.cs" />
     <Compile Include="Serialization\Json\JsonAttribute.cs" />
     <Compile Include="Serialization\Json\JsonConverter.cs" />
     <Compile Include="Serialization\Json\JsonHelper.Cache.cs" />
@@ -127,6 +130,7 @@
     <Compile Include="Serialization\Json\Serialize\JsonHelper.EnumFormat.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Serialization\Json\Serialize\JsonSerializer.DataTable.cs" />
     <Compile Include="Serialization\Json\Serialize\JsonSerializer.ExpandoObject.cs" />
     <Compile Include="Serialization\Json\Serialize\JsonHelper.FormatJson.cs" />
     <Compile Include="Serialization\Json\Serialize\JsonHelper.RegexFormat.cs">

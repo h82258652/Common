@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Data;
 using System.Dynamic;
 using System.Numerics;
 using System.Text.RegularExpressions;
@@ -113,6 +114,12 @@ namespace Common.Serialization.Json
             else if (obj is BigInteger)
             {
                 json = SerializeBigInteger((BigInteger)obj);
+            }
+            #endregion
+            #region DataTable
+            else if (obj is DataTable)
+            {
+                json = SerializeDataTable((DataTable) obj);
             }
             #endregion
             #region DateTime

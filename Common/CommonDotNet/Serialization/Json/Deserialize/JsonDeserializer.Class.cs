@@ -17,33 +17,24 @@ namespace Common.Serialization.Json
                 Dictionary<string, string> keyValue = new Dictionary<string, string>();
                 foreach (var temp in JsonHelper.ItemReader(input))
                 {
-                    int index = temp.IndexOf(':');
-                    if (index == -1)
+                    string key;
+                    string value;
+                    JsonHelper.ItemSpliter(temp, out key, out value);
+                    if (key.StartsWith("\"") == true && key.EndsWith("\"") == true)
                     {
-                        throw new JsonDeserializeException(source, type);
+                        key = key.Substring(1, key.Length - 2);
                     }
                     else
                     {
-                        string key = temp.Substring(0, index).Trim();
-                        if (key.StartsWith("\"") == true && key.EndsWith("\"") == true)
-                        {
-                            key = key.Substring(1, key.Length - 2);
-                        }
-                        else
-                        {
-                            throw new JsonDeserializeException(source, type);
-                        }
-
-                        string value = temp.Substring(index + 1).Trim();
-
-                        if (keyValue.ContainsKey(key) == false)
-                        {
-                            keyValue.Add(key, value);
-                        }
-                        else
-                        {
-                            throw new JsonDeserializeException(source, type);
-                        }
+                        throw new JsonDeserializeException(source, type);
+                    }
+                    if (keyValue.ContainsKey(key) == false)
+                    {
+                        keyValue.Add(key, value);
+                    }
+                    else
+                    {
+                        throw new JsonDeserializeException(source, type);
                     }
                 }
                 #region 匿名类。

@@ -18,25 +18,18 @@ namespace Common.Serialization.Json
                 Type valueType = type.GetGenericArguments()[1];
                 foreach (var temp in JsonHelper.ItemReader(input))
                 {
-                    int index = temp.IndexOf(':');
-                    if (index == -1)
+                    string key;
+                    string value;
+                    JsonHelper.ItemSpliter(temp, out key, out value);
+                    object oKey = DeserializeToObject(key, keyType);
+                    if (dictionary.Contains(oKey) == false)
                     {
-                        throw new JsonDeserializeException(source, type);
+                        object oValue = DeserializeToObject(value, valueType);
+                        dictionary.Add(oKey, oValue);
                     }
                     else
                     {
-                        string key = temp.Substring(0, index).Trim();
-                        object oKey = DeserializeToObject(key, keyType);
-                        if (dictionary.Contains(oKey) == false)
-                        {
-                            string value = temp.Substring(index + 1).Trim();
-                            object oValue = DeserializeToObject(value, valueType);
-                            dictionary.Add(oKey, oValue);
-                        }
-                        else
-                        {
-                            throw new JsonDeserializeException(source, type);
-                        }
+                        throw new JsonDeserializeException(source, type);
                     }
                 }
                 return dictionary;

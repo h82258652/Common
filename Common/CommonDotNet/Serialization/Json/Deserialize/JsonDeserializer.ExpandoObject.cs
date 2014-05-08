@@ -17,17 +17,10 @@ namespace Common.Serialization.Json
                 IDictionary<string, object> dictionary = expandoObject;
                 foreach (var temp in JsonHelper.ItemReader(input))
                 {
-                    int index = temp.IndexOf(':');
-                    if (index == -1)
-                    {
-                        throw new JsonDeserializeException(source, type);
-                    }
-                    else
-                    {
-                        string key = temp.Substring(0, index).Trim();
-                        string value = temp.Substring(index + 1).Trim();
-                        dictionary.Add((string)DeserializeToObject(key, typeof(string)), value);
-                    }
+                    string key;
+                    string value;
+                    JsonHelper.ItemSpliter(temp, out key, out value);
+                    dictionary.Add((string)DeserializeToObject(key, typeof(string)), value);
                 }
                 return expandoObject;
             }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Data;
 using System.Dynamic;
 using System.Numerics;
 using System.Text.RegularExpressions;
@@ -116,6 +117,12 @@ namespace Common.Serialization.Json
                 obj = DeserializeToBigInteger(input, type);
             }
             #endregion
+            #region DataTable
+            else if (type == typeof(DataTable))
+            {
+                obj = DeserializeToDataTable(input, type);
+            }
+            #endregion
             #region DateTime
             else if (type == typeof(DateTime))
             {
@@ -147,7 +154,7 @@ namespace Common.Serialization.Json
             }
             #endregion
             #region Lazy
-            else if (type.IsGenericType == true && type.GetGenericTypeDefinition() == typeof (Lazy<>))
+            else if (type.IsGenericType == true && type.GetGenericTypeDefinition() == typeof(Lazy<>))
             {
                 obj = DeserializeToLazy(input, type);
             }
