@@ -76,6 +76,7 @@
     <Compile Include="Reflection\ReflectionHelper.DynamicCompile.cs" />
     <Compile Include="Reflection\ReflectionHelper.Field.cs" />
     <Compile Include="Reflection\ReflectionHelper.Indexer.cs" />
+    <Compile Include="Reflection\ReflectionHelper.Member.cs" />
     <Compile Include="Reflection\ReflectionHelper.Method.cs" />
     <Compile Include="Reflection\ReflectionHelper.Property.cs" />
     <Compile Include="Reflection\ReflectionHelper.SearchOption.cs" />

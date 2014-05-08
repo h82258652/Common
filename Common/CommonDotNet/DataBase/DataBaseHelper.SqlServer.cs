@@ -7,6 +7,9 @@ namespace Common.DataBase
     {
         private const string SqlServerInvariant = "System.Data.SqlClient";
 
+        /// <summary>
+        /// 返回 System.Data.Common.DbProviderFactory 的一个实例。
+        /// </summary>
         public static DbProviderFactory SqlServerProviderFactory
         {
             get
