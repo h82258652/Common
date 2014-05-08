@@ -5,7 +5,7 @@ namespace System.Linq
     /// <summary>
     /// IEnumerable&lt;T&gt;扩展类。
     /// </summary>
-    public static class EnumerableExtension
+    public static partial class EnumerableExtension
     {
         /// <summary>
         /// 通过使用元素的字段的值、属性的值或调用方法返回的值进行比较，返回序列中的非重复元素。

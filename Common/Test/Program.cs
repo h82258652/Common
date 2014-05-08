@@ -310,29 +310,19 @@ namespace Test
             public int A;
             public string B;
         }
-        
+
+
         public static void Main(string[] args)
         {
-            List<MyClass> list=new List<MyClass>();
-            list.Add(new MyClass()
-            {
-                A = 1,B="zza"
-            });
-            list.Add(new MyClass()
-            {
-                A = 2,B="zzA"
-            }); 
-            list.Add(new MyClass()
-            {
-                A = 1,B="qqq"
-            });
-            Console.WriteLine(list.Count);
-            list = list.Distinct(temp=>temp.B.Length).ToList();
-            Console.WriteLine(list.Count);
+            string s1 = "aaaaaa";
+            s1.If(t => t.StartsWith("a"), t => Console.WriteLine(s1));
 
+            string email = "ldp615@163.com";
+            string page = email.If(s => s.Contains("@"), s => s.Substring(0, s.IndexOf("@")))
+                .If(s => !s.StartsWith("www."), s => s = "www." + s)
+                .If(s => !s.EndsWith(".com"), s => s += ".com");
             Console.ReadKey();
         }
-
     }
 
 }
