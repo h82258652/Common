@@ -1,101 +1,48 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace Test
 {
-    internal class JavaScriptVar<T>
+
+    public static class EnumberableExtension
     {
-        public T Value
+        public static IEnumerable<TSource> Distinct<TSource, TCompareElement>(this IEnumerable<TSource> source, Func<TSource, TCompareElement> comparer) where TCompareElement : struct
         {
-            get;
-            set;
+            return source.Distinct(new ElementEqualityComparer<TSource, TCompareElement>(comparer));
         }
 
-        public JavaScriptVar(T value)
+        public static IEnumerable<TSource> Distinct<TSource>(this IEnumerable<TSource> source,
+            Func<TSource, string> comparer)
         {
-            this.Value = value;
+            return source.Distinct(new ElementEqualityComparer<TSource, string>(comparer));
         }
-
-        public static implicit operator JavaScriptVar<T>(T value)
+        private class ElementEqualityComparer<T, TComparElement> : IEqualityComparer<T>
         {
-            Console.WriteLine("var temp = " + value + ";");
-            var o = new JavaScriptVar<T>(value);
-            if (ForTest.wrr == null)
+            private readonly Func<T, TComparElement> _compareFunc;
+
+            internal ElementEqualityComparer(Func<T, TComparElement> compareFunc)
             {
-                ForTest.wrr = new WeakReference(o);
+                this._compareFunc = compareFunc;
             }
-            else
+
+            public bool Equals(T x, T y)
             {
-                var xxx = ForTest.wrr.Target as JavaScriptVar<T>;
-                xxx.Value = value;
-                return xxx;
+                return object.Equals(_compareFunc(x), _compareFunc(y));
             }
-            return o;
-        }
 
-        public static implicit operator T(JavaScriptVar<T> jsv)
-        {
-            return jsv.Value;
-        }
-    }
-
-   class Window
-    {
-       public static void Alert<T>(JavaScriptVar<T> jsv)
-       {
-           Console.WriteLine("alert(" + jsv.Value + ");");
-       }
-    }
-
-    class ForTest
-    {
-        public static WeakReference wrr;
-
-        public static bool X<T>(T myArgument)
-        {
-            return (object.Equals(myArgument, default(T)));
-        }
-
-        public static void MyMain()
-        {
-            Console.WriteLine(X(0));
-            Console.WriteLine(X("ss"));
-            string s = null;
-
-            Console.WriteLine(X(s));
-            Console.ReadKey();
-
-
-            Expression<Func<string>> e =()=> "a";
-
-var qqq=            Expression.Parameter(typeof (int), "ax");
-
-
-var q=            Expression.Constant(1, typeof (int));
-
-            //JSvar v = 1;//var temp = 1;
-            //v.Value = 4444;// temp = 4444;
-
-            //Window.Alert(v);// alert(temp);
-
-
-            int a = 1;
-            WeakReference wr = new WeakReference(a);
-            Console.WriteLine(wr.Target);
-
-            JavaScriptVar<int> j = 1;
-            Console.WriteLine(wrr.IsAlive);
-            j = 2;
-            GC.Collect();
-            Console.WriteLine(wrr.IsAlive);
-            int x = j;
-            Window.Alert(j);
-            Console.ReadKey();
+            public int GetHashCode(T obj)
+            {
+                return _compareFunc(obj).GetHashCode();
+            }
         }
     }
+
+    
 }

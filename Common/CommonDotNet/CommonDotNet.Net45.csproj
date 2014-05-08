@@ -166,6 +166,7 @@
     <Compile Include="System\Collections\Generic\IDictionaryExtension.cs" />
     <Compile Include="System\Data\Common\DbProviderFactoryExtension.cs" />
     <Compile Include="System\Data\IDataRecordExtension.cs" />
+    <Compile Include="System\Linq\EnumerableExtension.cs" />
     <Compile Include="System\RandomExtension.cs" />
     <Compile Include="System\StringExtension.cs" />
     <Compile Include="System\TypeExtension.cs" />

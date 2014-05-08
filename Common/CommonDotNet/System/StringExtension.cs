@@ -28,7 +28,7 @@ namespace System
                 return failureValue;
             }
         }
-        
+
         /// <summary>
         /// 将当前字符串转换为 8 位无符号整数。
         /// </summary>
@@ -657,7 +657,7 @@ namespace System
             }
             if (oldValue == null)
             {
-                throw new ArgumentNullException("值不能为 null。", "oldValue");
+                throw new ArgumentNullException("oldValue", "值不能为 null。");
             }
             if (oldValue.Length == 0)
             {
@@ -709,7 +709,7 @@ namespace System
             }
             if (oldValue == null)
             {
-                throw new ArgumentNullException("值不能为 null。", "oldValue");
+                throw new ArgumentNullException("oldValue", "值不能为 null。");
             }
             if (oldValue.Length == 0)
             {
@@ -792,7 +792,7 @@ namespace System
             }
             if (oldValue == null)
             {
-                throw new ArgumentNullException("值不能为 null。", "oldValue");
+                throw new ArgumentNullException("oldValue", "值不能为 null。");
             }
             if (oldValue.Length == 0)
             {
