@@ -173,6 +173,9 @@
     <Compile Include="System\Linq\EnumerableExtension.cs" />
     <Compile Include="System\ObjectExtension.cs" />
     <Compile Include="System\RandomExtension.cs" />
+    <Compile Include="System\Runtime\CompilerServices\CallerFilePathAttribute.cs" />
+    <Compile Include="System\Runtime\CompilerServices\CallerLineNumberAttribute.cs" />
+    <Compile Include="System\Runtime\CompilerServices\CallerMemberNameAttribute.cs" />
     <Compile Include="System\StringExtension.cs" />
     <Compile Include="System\TypeExtension.cs" />
     <Compile Include="Threading\Action\ThreadHelper.Action.cs" />

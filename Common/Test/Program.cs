@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Dynamic;
@@ -29,10 +30,7 @@ using System.Web.Script.Serialization;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
-using Common.DataBase;
-using Common.Serialization;
-using Common.Serialization.Json;
-using Common.Web;
+using System.Runtime.CompilerServices;
 
 namespace Test
 {
@@ -314,8 +312,34 @@ namespace Test
 
         public static void Main(string[] args)
         {
+            HHHHH();
             Console.ReadKey();
+        }
+
+        public static void HHHHH([CallerLineNumber] int propertyNamex=0)
+        {
+            Console.WriteLine(propertyNamex);
         }
     }
 
+}
+
+
+
+namespace System.Runtime.CompilerServices
+{
+    [AttributeUsage(AttributeTargets.Parameter, AllowMultiple = false, Inherited = false)]
+    public class CallerMemberNameAttribute : Attribute
+    {
+    }
+
+    [AttributeUsage(AttributeTargets.Parameter, AllowMultiple = false, Inherited = false)]
+    public class CallerFilePathAttribute : Attribute
+    {
+    }
+
+    [AttributeUsage(AttributeTargets.Parameter, AllowMultiple = false, Inherited = false)]
+    public class CallerLineNumberAttribute : Attribute
+    {
+    }
 }
