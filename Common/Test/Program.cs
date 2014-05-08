@@ -310,47 +310,25 @@ namespace Test
             public int A;
             public string B;
         }
-
-        public struct MyStruct
-        {
-            public int BBB;
-
-        }
-
+        
         public static void Main(string[] args)
         {
-            string connString = @"Data Source=202.135.33.200;Initial Catalog=weixindb;User ID=wxuser;Password=wxtest;";
-
-            string myjson = string.Empty;
-            string rightjson = string.Empty;
-
-            using (var conn = new SqlConnection(connString))
+            List<MyClass> list=new List<MyClass>();
+            list.Add(new MyClass()
             {
-                conn.Open();
-                using (var cmd = conn.CreateCommand())
-                {
-                    cmd.CommandText = "select * from [W_ViewPage]";
-                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    adapter.Fill(dt);
-
-                    myjson = JsonHelper.SerializeToJson(dt);
-                    rightjson = Newtonsoft.Json.JsonConvert.SerializeObject(dt);
-                }
-            }
-
-            JsonHelper.DateTimeFormat = Common.Serialization.Json.DateTimeFormat.Function;
-            var ttt = JsonHelper.SerializeToJson(DateTime.Now);
-            var xx = JsonHelper.Deserialize<DateTime>(ttt);
-            Console.WriteLine(JsonHelper.TypeInference(ttt));
-
-            DataTable dt2 = new DataTable();
-
-            Console.WriteLine(myjson);
-            Console.WriteLine(rightjson);
-
-            var t1 = Newtonsoft.Json.JsonConvert.DeserializeObject<DataTable>(myjson);
-            var t2 = JsonHelper.Deserialize<DataTable>(myjson);
+                A = 1,B="zza"
+            });
+            list.Add(new MyClass()
+            {
+                A = 2,B="zzA"
+            }); 
+            list.Add(new MyClass()
+            {
+                A = 1,B="qqq"
+            });
+            Console.WriteLine(list.Count);
+            list = list.Distinct(temp=>temp.B.Length).ToList();
+            Console.WriteLine(list.Count);
 
             Console.ReadKey();
         }

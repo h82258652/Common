@@ -7,42 +7,47 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Microsoft.SqlServer.Server;
 
 namespace Test
 {
-
     public static class EnumberableExtension
     {
-        public static IEnumerable<TSource> Distinct<TSource, TCompareElement>(this IEnumerable<TSource> source, Func<TSource, TCompareElement> comparer) where TCompareElement : struct
+        public static IEnumerable<TSource> Distinct<TSource, TCompareElement>(this IEnumerable<TSource> source, Func<TSource, TCompareElement> keySelector)
         {
-            return source.Distinct(new ElementEqualityComparer<TSource, TCompareElement>(comparer));
+            return source.Distinct(new ElementEqualityComparer<TSource, TCompareElement>(keySelector));
         }
 
-        public static IEnumerable<TSource> Distinct<TSource>(this IEnumerable<TSource> source,
-            Func<TSource, string> comparer)
+        public static IEnumerable<TSource> Distinct<TSource>(this IEnumerable<TSource> source, Func<TSource, string> keySelector, StringComparer comparer)
         {
-            return source.Distinct(new ElementEqualityComparer<TSource, string>(comparer));
+            return source.Distinct(new ElementEqualityComparer<TSource, string>(keySelector, comparer));
         }
-        private class ElementEqualityComparer<T, TComparElement> : IEqualityComparer<T>
+
+        private class ElementEqualityComparer<TSource, TCompareElement> : IEqualityComparer<TSource>
         {
-            private readonly Func<T, TComparElement> _compareFunc;
+            private readonly Func<TSource, TCompareElement> _keySelector;
+            private readonly IEqualityComparer<TCompareElement> _comparer;
 
-            internal ElementEqualityComparer(Func<T, TComparElement> compareFunc)
+            internal ElementEqualityComparer(Func<TSource, TCompareElement> keySelector)
+                : this(keySelector, EqualityComparer<TCompareElement>.Default)
             {
-                this._compareFunc = compareFunc;
             }
 
-            public bool Equals(T x, T y)
+            internal ElementEqualityComparer(Func<TSource, TCompareElement> keySelector, IEqualityComparer<TCompareElement> comparer)
             {
-                return object.Equals(_compareFunc(x), _compareFunc(y));
+                this._keySelector = keySelector;
+                this._comparer = comparer;
+            }
+            
+            public bool Equals(TSource x, TSource y)
+            {
+                return this._comparer.Equals(this._keySelector(x), this._keySelector(y));
             }
 
-            public int GetHashCode(T obj)
+            public int GetHashCode(TSource obj)
             {
-                return _compareFunc(obj).GetHashCode();
+                return this._comparer.GetHashCode(this._keySelector(obj));
             }
         }
     }
-
-    
 }
