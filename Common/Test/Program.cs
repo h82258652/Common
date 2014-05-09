@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Dynamic;
 using System.Globalization;
@@ -34,38 +35,11 @@ using System.Runtime.CompilerServices;
 
 namespace Test
 {
-
-
     public class Program
     {
-        string CC
-        {
-            get
-            {
-                return CallerMemberName;
-            }
-        }
-
         public static void Main(string[] args)
         {
-            Console.WriteLine(new Program(). CC);
-
-            HHHHH();
             Console.ReadKey();
-        }
-
-        public static string CallerMemberName
-        {
-            get
-            {
-                return new StackTrace(true).GetFrame(1).GetMethod().Name;
-            }
-        }
-
-        public static void HHHHH([CallerLineNumber] int propertyNamex = 0)
-        {
-            Console.WriteLine(CallerMemberName);
-            Console.WriteLine(propertyNamex);
         }
     }
 }

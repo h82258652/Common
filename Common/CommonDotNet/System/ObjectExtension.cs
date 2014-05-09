@@ -76,12 +76,20 @@ namespace System
         /// <param name="obj">当前对象。</param>
         /// <param name="predicate">判断条件。</param>
         /// <param name="func">条件成立时执行的方法。</param>
-        /// <returns></returns>
+        /// <returns>若条件成立，则返回方法的返回值，否则返回当前对象。</returns>
         public static T If<T>(this T obj, Predicate<T> predicate, Func<T, T> func)
         {
             return predicate(obj) == true ? func(obj) : obj;
         }
 
+        /// <summary>
+        /// 如果条件不成立，则执行方法。
+        /// </summary>
+        /// <typeparam name="T">当前对象的类型。</typeparam>
+        /// <param name="obj">当前对象。</param>
+        /// <param name="predicate">判断条件。</param>
+        /// <param name="action">条件成立时执行的方法。</param>
+        /// <returns>当前对象。</returns>
         public static T IfNot<T>(this T obj, Predicate<T> predicate, Action<T> action)
         {
             if (predicate(obj) == false)
@@ -91,11 +99,28 @@ namespace System
             return obj;
         }
 
+        /// <summary>
+        /// 如果条件不成立，则执行方法。
+        /// </summary>
+        /// <typeparam name="T">当前对象的类型。</typeparam>
+        /// <param name="obj">当前对象。</param>
+        /// <param name="predicate">判断条件。</param>
+        /// <param name="func">条件不成立时执行的方法。</param>
+        /// <returns>若条件不成立，则返回方法的返回值，否则返回当前对象。</returns>
         public static T IfNot<T>(this T obj, Predicate<T> predicate, Func<T, T> func)
         {
             return predicate(obj) == false ? func(obj) : obj;
         }
 
+        /// <summary>
+        /// 根据条件，执行方法。
+        /// </summary>
+        /// <typeparam name="T">当前对象的类型。</typeparam>
+        /// <param name="obj">当前对象。</param>
+        /// <param name="predicate">判断条件。</param>
+        /// <param name="trueAction">条件成立时执行的方法。</param>
+        /// <param name="falseAction">条件不成立时执行的方法。</param>
+        /// <returns>当前对象。</returns>
         public static T IfElse<T>(this T obj, Predicate<T> predicate, Action<T> trueAction, Action<T> falseAction)
         {
             if (predicate(obj) == true)
@@ -109,6 +134,15 @@ namespace System
             return obj;
         }
 
+        /// <summary>
+        /// 根据条件，执行方法。
+        /// </summary>
+        /// <typeparam name="T">当前对象的类型。</typeparam>
+        /// <param name="obj">当前对象。</param>
+        /// <param name="predicate">判断条件。</param>
+        /// <param name="trueFunc">条件成立时执行的方法。</param>
+        /// <param name="falseFunc">条件不成立时执行的方法。</param>
+        /// <returns>方法的返回值。</returns>
         public static T IfElse<T>(this T obj, Predicate<T> predicate, Func<T, T> trueFunc, Func<T, T> falseFunc)
         {
             return predicate(obj) == true ? trueFunc(obj) : falseFunc(obj);
