@@ -54,8 +54,6 @@
     <Compile Include="Config\IsolatedStorageConfigHelper.cs" />
     <Compile Include="Config\XmlConfigHelper.cs" />
     <Compile Include="DataBaseOld\SqlHelper.cs" />
-    <Compile Include="DataBaseOld\SqlHelper.DataRowToEntity.cs" />
-    <Compile Include="DataBaseOld\SqlHelper.DataTableToEntities.cs" />
     <Compile Include="DataBaseOld\SqlHelper.ExecuteNonQuery.cs" />
     <Compile Include="DataBaseOld\SqlHelper.ExecuteReader.cs" />
     <Compile Include="DataBaseOld\SqlHelper.ExecuteScalar.cs" />
@@ -171,6 +169,9 @@
     <Compile Include="Serialization\XMLSerializerHelper.cs" />
     <Compile Include="System\CharExtension.cs" />
     <Compile Include="System\Collections\Generic\IDictionaryExtension.cs" />
+    <Compile Include="System\Data\Common\DbProviderFactoryExtension.cs" />
+    <Compile Include="System\Data\DataRowExtension.cs" />
+    <Compile Include="System\Data\DataTableExtension.cs" />
     <Compile Include="System\Data\IDataRecordExtension.cs" />
     <Compile Include="System\Linq\EnumerableExtension.cs" />
     <Compile Include="System\ObjectExtension.cs" />
@@ -180,6 +181,7 @@
     <Compile Include="System\Runtime\CompilerServices\CallerMemberNameAttribute.cs" />
     <Compile Include="System\StringExtension.cs" />
     <Compile Include="System\TypeExtension.cs" />
+    <Compile Include="System\Web\HttpCookieHelper.cs" />
     <Compile Include="Threading\Action\ThreadHelper.Action.cs" />
     <Compile Include="Threading\Action\ThreadHelperPackage.Action.cs" />
     <Compile Include="Threading\Action\ThreadHelperProcess.Action.cs" />
@@ -193,10 +195,7 @@
     <Compile Include="Web\HttpHelper.ObjectToRequestData.cs" />
     <Compile Include="Web\HttpHelper.Post.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DataBaseOld\ORM\" />
-    <Folder Include="DataBase\ORM\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Compile Include="Serialization\Json\Serialize\JsonSerializer.Guid.cs" />
   </ItemGroup>
