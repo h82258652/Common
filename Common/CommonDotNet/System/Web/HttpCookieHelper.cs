@@ -12,6 +12,11 @@ namespace System.Web
     /// </summary>
     public static partial class HttpCookieHelper
     {
+        /// <summary>
+        /// 移除指定名称的 cookie。
+        /// </summary>
+        /// <param name="name">cookie 的名称。</param>
+        /// <returns>是否成功移除 cookie。</returns>
         public static bool Remove(string name)
         {
             HttpContext context = HttpContext.Current;
@@ -29,6 +34,10 @@ namespace System.Web
             return true;
         }
 
+        /// <summary>
+        /// 移除所有 cookie。
+        /// </summary>
+        /// <returns>是否成功移除所有 cookie。</returns>
         public static bool RemoveAll()
         {
             HttpContext context = HttpContext.Current;
@@ -46,6 +55,11 @@ namespace System.Web
             return true;
         }
 
+        /// <summary>
+        /// 获取 cookie 的值。
+        /// </summary>
+        /// <param name="name">cookie 的名称。</param>
+        /// <returns>cookie 的值。若获取失败，则返回 null。</returns>
         public static string Get(string name)
         {
             HttpContext context = HttpContext.Current;
@@ -61,11 +75,24 @@ namespace System.Web
             return cookie.Value;
         }
 
+        /// <summary>
+        /// 设置指定 cookie 的值。
+        /// </summary>
+        /// <param name="name">cookie 的名称。</param>
+        /// <param name="value">cookie 的值。</param>
+        /// <returns>是否成功设置 cookie 的值。</returns>
         public static bool Set(string name, string value)
         {
             return Set(name, value, DateTime.MaxValue);
         }
 
+        /// <summary>
+        /// 设置指定 cookie 的值。
+        /// </summary>
+        /// <param name="name">cookie 的名称。</param>
+        /// <param name="value">cookie 的值。</param>
+        /// <param name="expires">cookie 的到期时间。</param>
+        /// <returns>是否成功设置 cookie 的值。</returns>
         public static bool Set(string name, string value, DateTime expires)
         {
             HttpContext context = HttpContext.Current;
