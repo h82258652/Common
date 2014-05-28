@@ -21,6 +21,7 @@ namespace Common.System.Web
             {
                 throw new ArgumentNullException("response");
             }
+            response.ContentType = "text/json";
             response.Write(JsonHelper.SerializeToJson(obj));
         }
     }
