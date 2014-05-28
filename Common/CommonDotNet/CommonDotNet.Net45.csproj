@@ -179,6 +179,7 @@
     <Compile Include="System\StringExtension.cs" />
     <Compile Include="System\TypeExtension.cs" />
     <Compile Include="System\Web\HttpCookieHelper.cs" />
+    <Compile Include="System\Web\HttpResponseExtension.cs" />
     <Compile Include="Threading\Action\ThreadHelper.Action.cs" />
     <Compile Include="Threading\Action\ThreadHelperPackage.Action.cs" />
     <Compile Include="Threading\Action\ThreadHelperProcess.Action.cs" />
