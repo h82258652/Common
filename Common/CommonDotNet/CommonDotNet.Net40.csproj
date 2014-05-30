@@ -176,6 +176,7 @@
     <Compile Include="System\Int32Extension.cs" />
     <Compile Include="System\Int64Extension.cs" />
     <Compile Include="System\Linq\EnumerableExtension.cs" />
+    <Compile Include="System\MathExtension.cs" />
     <Compile Include="System\ObjectExtension.cs" />
     <Compile Include="System\RandomExtension.cs" />
     <Compile Include="System\Runtime\CompilerServices\CallerFilePathAttribute.cs" />
