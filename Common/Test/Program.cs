@@ -39,6 +39,11 @@ namespace Test
     {
         public static void Main(string[] args)
         {
+            for (int i = 0; i < 10; i++)
+            {
+                var temp = System.MathExtension.Fibonacci(i);
+                Console.WriteLine(temp);
+            }
             Console.ReadKey();
         }
     }

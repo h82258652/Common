@@ -76,5 +76,26 @@ namespace System
                 }
             }
         }
+
+        /// <summary>
+        /// 获取斐波那契数列的第 n 项。
+        /// </summary>
+        /// <param name="n">第几项，从 1 开始。</param>
+        /// <returns>斐波那契数列的第 n 项。</returns>
+        /// <exception cref="System.ArgumentOutOfRangeException"><c>n</c> 小于 1。</exception>
+        public static int Fibonacci(int n)
+        {
+            if (n < 1)
+            {
+                throw new ArgumentOutOfRangeException("n", n, "n 必须大于 0。");
+            }
+            int a = 0, b = 1, i = n;
+            for (; i > 0; i--)
+            {
+                b += a;// 等价于b=b+a  
+                a = b - a;
+            }
+            return a;
+        }
     }
 }
