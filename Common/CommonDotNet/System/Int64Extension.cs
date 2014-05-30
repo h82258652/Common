@@ -24,7 +24,7 @@ namespace System
             }
             if ((num & 1) == 0)
             {
-                // 等价于 num % 2==0
+                // 等价于 num % 2==0。
                 return false;
             }
             for (long temp = 3; temp < Math.Sqrt(num); temp += 2)
