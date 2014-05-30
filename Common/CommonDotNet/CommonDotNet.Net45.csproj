@@ -78,6 +78,9 @@
     <Compile Include="Security\MD5Helper.cs" />
     <Compile Include="Security\RSAHelper.cs" />
     <Compile Include="Security\SHA1Helper.cs" />
+    <Compile Include="Security\SHA256Helper.cs" />
+    <Compile Include="Security\SHA386Helper.cs" />
+    <Compile Include="Security\SHA512Helper.cs" />
     <Compile Include="Serialization\BinarySerializeHelper.cs" />
     <Compile Include="Serialization\Json\Deserialize\JsonDeserializeException.cs" />
     <Compile Include="Serialization\Json\Deserialize\JsonDeserializer.Array.cs" />
