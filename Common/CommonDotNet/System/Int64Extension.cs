@@ -22,14 +22,19 @@ namespace System
             {
                 return false;
             }
-            for (long temp = 2; temp < Math.Sqrt(num); temp++)
+            if ((num & 1) == 0)
+            {
+                // 等价于 num % 2==0
+                return false;
+            }
+            for (long temp = 3; temp < Math.Sqrt(num); temp += 2)
             {
                 if (num % temp == 0)
                 {
-                    return true;
+                    return false;
                 }
             }
-            return false;
+            return true;
         }
     }
 }
