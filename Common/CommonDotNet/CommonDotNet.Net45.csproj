@@ -170,6 +170,8 @@
     <Compile Include="System\Data\DataRowExtension.cs" />
     <Compile Include="System\Data\DataTableExtension.cs" />
     <Compile Include="System\Data\IDataRecordExtension.cs" />
+    <Compile Include="System\Int32Extension.cs" />
+    <Compile Include="System\Int64Extension.cs" />
     <Compile Include="System\Linq\EnumerableExtension.cs" />
     <Compile Include="System\ObjectExtension.cs" />
     <Compile Include="System\RandomExtension.cs" />

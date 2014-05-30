@@ -173,6 +173,8 @@
     <Compile Include="System\Data\DataRowExtension.cs" />
     <Compile Include="System\Data\DataTableExtension.cs" />
     <Compile Include="System\Data\IDataRecordExtension.cs" />
+    <Compile Include="System\Int32Extension.cs" />
+    <Compile Include="System\Int64Extension.cs" />
     <Compile Include="System\Linq\EnumerableExtension.cs" />
     <Compile Include="System\ObjectExtension.cs" />
     <Compile Include="System\RandomExtension.cs" />
@@ -182,6 +184,7 @@
     <Compile Include="System\StringExtension.cs" />
     <Compile Include="System\TypeExtension.cs" />
     <Compile Include="System\Web\HttpCookieHelper.cs" />
+    <Compile Include="System\Web\HttpResponseExtension.cs" />
     <Compile Include="Threading\Action\ThreadHelper.Action.cs" />
     <Compile Include="Threading\Action\ThreadHelperPackage.Action.cs" />
     <Compile Include="Threading\Action\ThreadHelperProcess.Action.cs" />

@@ -2,7 +2,7 @@
 using System.Web;
 using Common.Serialization.Json;
 
-namespace Common.System.Web
+namespace System.Web
 {
     /// <summary>
     /// HttpResponse 扩展类。
