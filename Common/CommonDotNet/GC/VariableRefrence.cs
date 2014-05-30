@@ -41,6 +41,7 @@ namespace Common.GC
         {
             if (obj.GetType().IsValueType == false && object.Equals(obj, default(T)) == true)
             {
+                // 引用类型，且值为 null。
                 return;
             }
             else

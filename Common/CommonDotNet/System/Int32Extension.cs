@@ -20,5 +20,15 @@ namespace System
         {
             return Int64Extension.IsPrime(num);
         }
+
+        /// <summary>
+        /// 获取当前 32 位有符号整数的 16 进制形式。
+        /// </summary>
+        /// <param name="num">32 位有符号整数。</param>
+        /// <returns>16 进制形式。</returns>
+        public static string ToHex(this int num)
+        {
+            return num.ToString("X");
+        }
     }
 }
