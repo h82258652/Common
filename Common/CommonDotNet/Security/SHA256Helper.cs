@@ -22,11 +22,11 @@ namespace Common.Security
             {
                 throw new FileNotFoundException("文件不存在！", filePath);
             }
-            using (SHA256CryptoServiceProvider sha1Csp = new SHA256CryptoServiceProvider())
+            using (SHA256CryptoServiceProvider sha256Csp = new SHA256CryptoServiceProvider())
             {
                 using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
-                    byte[] bytes = sha1Csp.ComputeHash(fs);
+                    byte[] bytes = sha256Csp.ComputeHash(fs);
                     StringBuilder sb = new StringBuilder(40);
                     foreach (var temp in bytes)
                     {
@@ -50,9 +50,9 @@ namespace Common.Security
             {
                 throw new ArgumentNullException("input", "input 不能为空。");
             }
-            using (SHA256CryptoServiceProvider sha1Csp = new SHA256CryptoServiceProvider())
+            using (SHA256CryptoServiceProvider sha256Csp = new SHA256CryptoServiceProvider())
             {
-                byte[] bytes = sha1Csp.ComputeHash(Encoding.UTF8.GetBytes(prefix + input));
+                byte[] bytes = sha256Csp.ComputeHash(Encoding.UTF8.GetBytes(prefix + input));
                 StringBuilder sb = new StringBuilder(40);
                 foreach (var temp in bytes)
                 {

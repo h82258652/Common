@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Security.Cryptography;
+using System.Text;
 
 namespace Common.Security
 {
@@ -45,7 +46,11 @@ namespace Common.Security
                 throw new ArgumentNullException("input", "input不能为空。");
             }
             prefix = prefix ?? string.Empty;
-            return HashHelper.GetStringHash(input + prefix, new MD5CryptoServiceProvider());
+            using (var md5Csp = new MD5CryptoServiceProvider())
+            {
+                byte[] bytes = md5Csp.ComputeHash(Encoding.UTF8.GetBytes(input));
+                return BitConverter.ToString(bytes).Replace("-", string.Empty);
+            }
         }
     }
 }
