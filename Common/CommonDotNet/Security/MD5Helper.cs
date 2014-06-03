@@ -43,14 +43,10 @@ namespace Common.Security
         {
             if (input == null)
             {
-                throw new ArgumentNullException("input不能为空。");
+                throw new ArgumentNullException("input", "input不能为空。");
             }
             prefix = prefix ?? string.Empty;
-            using (MD5CryptoServiceProvider md5Csp = new MD5CryptoServiceProvider())
-            {
-                byte[] bytes = md5Csp.ComputeHash(Encoding.UTF8.GetBytes(prefix + input));
-                return BitConverter.ToString(bytes).Replace("-", string.Empty);
-            }
+            return HashHelper.GetStringHash(input + prefix, new MD5CryptoServiceProvider());
         }
     }
 }

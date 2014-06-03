@@ -51,7 +51,7 @@ namespace Common.Security
         {
             if (input == null)
             {
-                throw new ArgumentNullException("input 不能为空。");
+                throw new ArgumentNullException("input", "input 不能为空。");
             }
             using (SHA256CryptoServiceProvider sha1Csp = new SHA256CryptoServiceProvider())
             {

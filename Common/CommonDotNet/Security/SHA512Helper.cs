@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Common.Security
 {
-    class SHA512Helper
+    public static partial class SHA512Helper
     {
     }
 }

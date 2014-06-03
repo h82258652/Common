@@ -52,11 +52,11 @@ namespace Common.Security
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value 不能为 null。");
+                throw new ArgumentNullException("value", "value 不能为 null。");
             }
             if (key == null)
             {
-                throw new ArgumentNullException("key 不能为 null。");
+                throw new ArgumentNullException("key", "key 不能为 null。");
             }
             CspParameters cspp = new CspParameters()
             {

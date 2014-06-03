@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Common.Security
 {
-    class SHA386Helper
+    public static partial class SHA386Helper
     {
     }
 }
