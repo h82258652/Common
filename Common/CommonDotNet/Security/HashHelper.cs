@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Common.Security
 {
@@ -13,7 +10,7 @@ namespace Common.Security
         {
             if (input == null)
             {
-                throw new ArgumentNullException("input不能为空。");
+                throw new ArgumentNullException("input", "input不能为空。");
             }
             using (hashAlgorithm)
             {
