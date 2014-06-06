@@ -7,18 +7,13 @@ namespace System
     /// </summary>
     public static partial class RandomExtension
     {
-        private static readonly Random _rand;
-
-        static RandomExtension()
-        {
-            _rand = new Random();
-        }
+        private static readonly Random _rand = new Random();
 
         /// <summary>
         /// 返回随机真假。
         /// </summary>
         /// <returns>真或假。</returns>
-        public static bool NextBool()
+        public static bool NextBoolean()
         {
             return _rand.Next(2) == 0;
         }
@@ -524,6 +519,7 @@ namespace System
         /// <param name="maxValue">返回的随机数的上界（随机数不能取该上界值）。 maxValue 必须大于或等于 minValue。</param>
         /// <returns>一个大于等于 minValue 且小于 maxValue 的 SByte，即：返回的值范围包括 minValue 但不包括 maxValue。 如果 minValue 等于 maxValue，则返回 minValue。</returns>
         /// <exception cref="System.ArgumentOutOfRangeException"><c>maxValue</c> 小于 <c>minValue</c>。</exception>
+        [CLSCompliant(false)]
         public static sbyte NextSByte(sbyte minValue, sbyte maxValue)
         {
             return (sbyte)_rand.Next(minValue, maxValue);
@@ -588,6 +584,7 @@ namespace System
         /// 返回非负随机数。
         /// </summary>
         /// <returns>大于等于零且小于 MaxValue 的 32 位无符号整数。</returns>
+        [CLSCompliant(false)]
         public static uint NextUInt()
         {
             return (uint)_rand.Next(int.MinValue, int.MaxValue) - Convert.ToUInt32(int.MinValue);
@@ -599,15 +596,12 @@ namespace System
         /// <param name="maxValue">要生成的随机数的上限（随机数不能取该上限值）。 maxValue 必须大于或等于零。</param>
         /// <returns>大于等于零且小于 maxValue 的 32 位无符号整数，即：返回值的范围通常包括零但不包括 maxValue。 不过，如果 maxValue 等于零，则返回 maxValue。</returns>
         /// <exception cref="System.ArgumentOutOfRangeException"><c>maxValue</c> 小于 0。</exception>
+        [CLSCompliant(false)]
         public static uint NextUInt(uint maxValue)
         {
             if (maxValue == 0)
             {
                 return maxValue;
-            }
-            if (maxValue < 0)
-            {
-                throw new ArgumentOutOfRangeException("“maxValue”必须大于 0。", "maxValue");
             }
             return (uint)_rand.Next(int.MinValue, (int)(maxValue + Convert.ToUInt32(int.MinValue))) - Convert.ToUInt32(int.MinValue);
         }
@@ -627,7 +621,7 @@ namespace System
             }
             if (minValue > maxValue)
             {
-                throw new ArgumentOutOfRangeException("“minValue”不能大于 maxValue。", "minValue");
+                throw new ArgumentOutOfRangeException("minValue", "“minValue”不能大于 maxValue。");
             }
             return (uint)_rand.Next((int)(minValue + Convert.ToUInt32(int.MaxValue)), (int)(maxValue + Convert.ToUInt32(int.MinValue))) - Convert.ToUInt32(int.MinValue);
         }
@@ -723,15 +717,12 @@ namespace System
         /// <param name="maxValue">要生成的随机数的上限（随机数不能取该上限值）。 maxValue 必须大于或等于零。</param>
         /// <returns>大于等于零且小于 maxValue 的 16 位无符号长整数，即：返回值的范围通常包括零但不包括 maxValue。 不过，如果 maxValue 等于零，则返回 maxValue。</returns>
         /// <exception cref="System.ArgumentOutOfRangeException"><c>maxValue</c> 小于 0。</exception>
+        [CLSCompliant(false)]
         public static ushort NextUShort(ushort maxValue)
         {
             if (maxValue == 0)
             {
                 return maxValue;
-            }
-            if (maxValue < 0)
-            {
-                throw new ArgumentOutOfRangeException("“maxValue”必须大于 0。", "maxValue");
             }
             ushort us;
             byte[] buffer = new byte[2];
@@ -750,6 +741,7 @@ namespace System
         /// <param name="maxValue">返回的随机数的上界（随机数不能取该上界值）。 maxValue 必须大于或等于 minValue。</param>
         /// <returns>一个大于等于 minValue 且小于 maxValue 的 16 位无符号长整数，即：返回的值范围包括 minValue 但不包括 maxValue。 如果 minValue 等于 maxValue，则返回 minValue。</returns>
         /// <exception cref="System.ArgumentOutOfRangeException"><c>maxValue</c> 小于 <c>minValue</c>。</exception>
+        [CLSCompliant(false)]
         public static ushort NextUShort(ushort minValue, ushort maxValue)
         {
             if (minValue == maxValue)

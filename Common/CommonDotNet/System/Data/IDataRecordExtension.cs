@@ -12,9 +12,14 @@ namespace System.Data
         /// <param name="record">DataRecord 实例。</param>
         /// <param name="name">要查找的字段的名称。</param>
         /// <returns>列的值。</returns>
+        /// <exception cref="System.ArgumentNullException"><c>record</c> 为 null。</exception>
         /// <exception cref="System.IndexOutOfRangeException">不存在该名称的字段。</exception>
         public static bool GetBoolean(this IDataRecord record, string name)
         {
+            if (record == null)
+            {
+                throw new ArgumentNullException("record");
+            }
             return record.GetBoolean(record.GetOrdinal(name));
         }
 
@@ -24,9 +29,14 @@ namespace System.Data
         /// <param name="record">DataRecord 实例。</param>
         /// <param name="name">要查找的字段的名称。</param>
         /// <returns>指定列的 8 位无符号整数值。</returns>
+        /// <exception cref="System.ArgumentNullException"><c>record</c> 为 null。</exception>
         /// <exception cref="System.IndexOutOfRangeException">不存在该名称的字段。</exception>
         public static byte GetByte(this IDataRecord record, string name)
         {
+            if (record == null)
+            {
+                throw new ArgumentNullException("record");
+            }
             return record.GetByte(record.GetOrdinal(name));
         }
 
@@ -36,9 +46,14 @@ namespace System.Data
         /// <param name="record">DataRecord 实例。</param>
         /// <param name="name">要查找的字段的名称。</param>
         /// <returns>指定列的字符值。</returns>
+        /// <exception cref="System.ArgumentNullException"><c>record</c> 为 null。</exception>
         /// <exception cref="System.IndexOutOfRangeException">不存在该名称的字段。</exception>
         public static char GetChar(this IDataRecord record, string name)
         {
+            if (record == null)
+            {
+                throw new ArgumentNullException("record");
+            }
             return record.GetChar(record.GetOrdinal(name));
         }
 
@@ -121,7 +136,7 @@ namespace System.Data
         /// <param name="name">要查找的字段的名称。</param>
         /// <returns>指定字段的单精度浮点数。</returns>
         /// <exception cref="System.IndexOutOfRangeException">不存在该名称的字段。</exception>
-        public static float GetFloat(this IDataRecord record, string name)
+        public static float GetSingle(this IDataRecord record, string name)
         {
             return record.GetFloat(record.GetOrdinal(name));
         }

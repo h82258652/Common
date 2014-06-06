@@ -8,22 +8,17 @@ namespace Common.Serialization
     /// </summary>
     public static partial class BinarySerializeHelper
     {
-        private static readonly BinaryFormatter _bf;
-
-        static BinarySerializeHelper()
-        {
-            _bf = new BinaryFormatter();
-        }
+        private static readonly BinaryFormatter _bf = new BinaryFormatter();
 
         /// <summary>
         /// 将指定的字节数组转换为 T 类型的对象。
         /// </summary>
         /// <typeparam name="T">所生成对象的类型。</typeparam>
-        /// <param name="bytes">要进行反序列化的字节数组。</param>
+        /// <param name="value">要进行反序列化的字节数组。</param>
         /// <returns>反序列化的对象。</returns>
-        public static T Deserialize<T>(byte[] bytes)
+        public static T Deserialize<T>(byte[] value)
         {
-            using (MemoryStream ms = new MemoryStream(bytes))
+            using (MemoryStream ms = new MemoryStream(value))
             {
                 return (T)_bf.Deserialize(ms);
             }

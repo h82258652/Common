@@ -3,6 +3,10 @@ namespace Common.Threading
 {
     internal class ThreadHelperProcess<TResult>
     {
+        private ThreadHelperProcess()
+        {
+        }
+
         internal static void Process(object obj)
         {
             ThreadHelperPackage<TResult> package = (ThreadHelperPackage<TResult>)obj;

@@ -10,7 +10,7 @@ namespace Common.Serialization.Json
     {
         private object DeserializeToClass(string input, Type type)
         {
-            if (input.StartsWith("{") == true && input.EndsWith("}") == true)
+            if (input.StartsWith("{", StringComparison.Ordinal) == true && input.EndsWith("}", StringComparison.Ordinal) == true)
             {
                 string source = input;
                 input = input.Substring(1, input.Length - 2);
@@ -20,7 +20,7 @@ namespace Common.Serialization.Json
                     string key;
                     string value;
                     JsonHelper.ItemSpliter(temp, out key, out value);
-                    if (key.StartsWith("\"") == true && key.EndsWith("\"") == true)
+                    if (key.StartsWith("\"", StringComparison.Ordinal) == true && key.EndsWith("\"", StringComparison.Ordinal) == true)
                     {
                         key = key.Substring(1, key.Length - 2);
                     }

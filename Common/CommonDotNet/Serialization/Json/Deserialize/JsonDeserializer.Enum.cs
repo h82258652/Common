@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace Common.Serialization.Json
 {
@@ -26,7 +27,7 @@ namespace Common.Serialization.Json
                 int i;
                 if (int.TryParse(input, out i) == true)
                 {
-                    return (Enum)Enum.Parse(type, i.ToString(), false);
+                    return (Enum)Enum.Parse(type, i.ToString(CultureInfo.InvariantCulture), false);
                 }
                 else
                 {

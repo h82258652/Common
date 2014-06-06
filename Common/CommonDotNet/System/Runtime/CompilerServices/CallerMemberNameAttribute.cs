@@ -6,7 +6,7 @@ namespace System.Runtime.CompilerServices
     /// 允许您获取该方法的调用者方法或属性名称。（需在 Visual Studio 2012 以上使用。）
     /// </summary>
     [AttributeUsage(AttributeTargets.Parameter, AllowMultiple = false, Inherited = false)]
-    public class CallerMemberNameAttribute : Attribute
+    public sealed class CallerMemberNameAttribute : Attribute
     {
     }
 #endif

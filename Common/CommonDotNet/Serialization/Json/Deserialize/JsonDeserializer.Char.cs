@@ -7,7 +7,7 @@ namespace Common.Serialization.Json
     {
         private char DeserializeToChar(string input, Type type)
         {
-            if (input.StartsWith("\"") == true && input.EndsWith("\"") == true)
+            if (input.StartsWith("\"", StringComparison.Ordinal) == true && input.EndsWith("\"", StringComparison.Ordinal) == true)
             {
                 string source = input;
                 input = input.Substring(1, input.Length - 2);
@@ -35,7 +35,7 @@ namespace Common.Serialization.Json
                 {
                     return '\t';
                 }
-                else if (input.StartsWith("\\u") == true)
+                else if (input.StartsWith("\\u", StringComparison.Ordinal) == true)
                 {
                     input = input.Substring(2);
                     if (input.Length == 4)

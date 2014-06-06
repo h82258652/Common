@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -217,6 +217,7 @@ namespace System
         /// <param name="value">转换的字符串。</param>
         /// <param name="failureValue">无法转换时返回的默认值。</param>
         /// <returns>成功则返回相应的 16 位无符号整数，失败则返回指定的默认值。</returns>
+        [CLSCompliant(false)]
         public static ushort AsUInt16(this string value, ushort failureValue)
         {
             ushort us;
@@ -236,6 +237,7 @@ namespace System
         /// <param name="value">转换的字符串。</param>
         /// <param name="failureValue">无法转换时返回的默认值。</param>
         /// <returns>成功则返回相应的 32 位无符号整数，失败则返回指定的默认值。</returns>
+        [CLSCompliant(false)]
         public static uint AsUInt32(this string value, uint failureValue)
         {
             uint ui;
@@ -302,7 +304,11 @@ namespace System
         /// <exception cref="System.ArgumentNullException"><c>value</c> 为 null。</exception>
         public static bool Contains(this string value, string comparisonValue, StringComparison comparisonType)
         {
-            if (value == string.Empty)
+            if (value == null)
+            {
+                throw new ArgumentNullException("value");
+            }
+            if (string.IsNullOrEmpty(value) == true)
             {
                 return true;
             }
@@ -417,6 +423,7 @@ namespace System
         /// <param name="parameters">一个对象数组，其中包含零个或多个要设置格式的对象。</param>
         /// <returns>format 的一个副本，其中格式项已替换为 args 中相应对象的字符串表示形式。</returns>
         /// <exception cref="System.ArgumentNullException"><c>value</c> 为 null。</exception>
+        [SuppressMessage("Microsoft.Globalization", "CA1305")]
         public static string Format(this string value, params object[] parameters)
         {
             return string.Format(value, parameters);
@@ -645,7 +652,7 @@ namespace System
         /// <param name="newValue">要替换出现的所有 oldValue 的字符串。</param>
         /// <param name="comparisonType">指定搜索规则的枚举值之一。</param>
         /// <returns>等效于当前字符串（除了 oldValue 的所有实例都已替换为 newValue 外）的字符串。</returns>
-        /// <exception cref="System.NullReferenceException"><c>value</c> 为 null。</exception>
+        /// <exception cref="System.ArgumentNullException"><c>value</c> 为 null。</exception>
         /// <exception cref="System.ArgumentNullException"><c>oldValue</c> 为 null。</exception>
         /// <exception cref="System.ArgumentException"><c>oldValue</c> 是空字符串 ("")。</exception>
         public static string Replace(this string value, string oldValue, string newValue,
@@ -653,7 +660,7 @@ namespace System
         {
             if (value == null)
             {
-                throw new NullReferenceException("未将对象引用设置到对象的实例。");
+                throw new ArgumentNullException("value", "未将对象引用设置到对象的实例。");
             }
             if (oldValue == null)
             {
@@ -748,7 +755,7 @@ namespace System
         {
             if (value == null)
             {
-                return value;
+                return null;
             }
             if (string.IsNullOrEmpty(oldValue) == true)
             {
@@ -874,7 +881,7 @@ namespace System
         }
 
         /// <summary>
-        /// 将当前字符串转换为半角
+        /// 将当前字符串转换为半角。
         /// </summary>
         /// <param name="value">需要转换的字符串。</param>
         /// <returns>转换后的字符串。</returns>
@@ -905,7 +912,7 @@ namespace System
         }
 
         /// <summary>
-        /// 将当前字符串转换为全角
+        /// 将当前字符串转换为全角。
         /// </summary>
         /// <param name="value">需要转换的字符串。</param>
         /// <returns>转换后的字符串。</returns>
@@ -933,6 +940,55 @@ namespace System
                 }
             }
             return sb.ToString();
+        }
+
+        public static string TrimSafely(this string value)
+        {
+            if (string.IsNullOrEmpty(value) == true)
+            {
+                return value;
+            }
+            else
+            {
+                return value.Trim();
+            }
+        }
+
+        public static string TrimSafely(this string value, params char[] trimChars)
+        {
+            if (string.IsNullOrEmpty(value) == true)
+            {
+                return value;
+            }
+            else
+            {
+                return value.Trim(trimChars);
+            }
+        }
+
+        [SuppressMessage("","")]
+        public static string TrimStartSafely(this string value, params char[] trimChars)
+        {
+            if (string.IsNullOrEmpty(value) == true)
+            {
+                return value;
+            }
+            else
+            {
+                return value.TrimStart(trimChars);
+            }
+        }
+
+        public static string TrimEndSafely(this string value, params char[] trimChars)
+        {
+            if (string.IsNullOrEmpty(value) == true)
+            {
+                return value;
+            }
+            else
+            {
+                return value.TrimEnd(trimChars);
+            }
         }
     }
 }

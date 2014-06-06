@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Globalization;
 
 namespace Common.Serialization.Json
 {
@@ -15,7 +16,7 @@ namespace Common.Serialization.Json
                     }
                 case Json.DateTimeFormat.Default:
                     {
-                        return "\"" + dateTime.ToString("yyyy-MM-ddTHH:mm:ss.FFFFFFFK") + "\"";
+                        return "\"" + dateTime.ToString("yyyy-MM-ddTHH:mm:ss.FFFFFFFK", CultureInfo.InvariantCulture) + "\"";
                     }
                 case Json.DateTimeFormat.Function:
                     {

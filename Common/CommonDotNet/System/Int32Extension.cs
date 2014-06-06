@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,7 +29,7 @@ namespace System
         /// <returns>16 进制形式。</returns>
         public static string ToHex(this int num)
         {
-            return num.ToString("X");
+            return num.ToString("X", CultureInfo.InvariantCulture);
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -19,7 +20,10 @@ namespace Common.DataBase
         {
             using (IDataReader reader = ExecuteSqlReader(sql, parameters))
             {
-                DataTable table = new DataTable();
+                DataTable table = new DataTable()
+                {
+                    Locale = CultureInfo.InvariantCulture
+                };
                 table.Load(reader);
                 return table;
             }

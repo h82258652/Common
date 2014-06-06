@@ -39,12 +39,53 @@ namespace Test
     {
         public static void Main(string[] args)
         {
-            for (int i = 0; i < 10; i++)
-            {
-                var temp = System.MathExtension.Fibonacci(i);
-                Console.WriteLine(temp);
-            }
+            string s = null;
+            var s2 = s.Trim();
             Console.ReadKey();
+        }
+    }
+
+    public class XX
+    {
+        public int A;
+        public string B;
+    }
+
+    public struct YY
+    {
+        public int C;
+        public string D;
+    }
+
+    public class EmptyInstanceFactory
+    {
+        public static object Create(Type type)
+        {
+            //if (type == typeof(int))
+            //{
+            //    return 0;
+            //}
+            if (type == typeof(string))
+            {
+                return string.Empty;
+            }
+            var emptyInstance = FormatterServices.GetUninitializedObject(type);
+            PropertyInfo[] properties = type.GetProperties(BindingFlags.Instance | BindingFlags.Public);
+            foreach (var property in properties)
+            {
+                property.SetValue(emptyInstance, EmptyInstanceFactory.Create(property.PropertyType), null);
+            }
+            FieldInfo[] fields = type.GetFields(BindingFlags.Instance | BindingFlags.Public);
+            foreach (var field in fields)
+            {
+                field.SetValue(emptyInstance, EmptyInstanceFactory.Create(field.FieldType));
+            }
+            return emptyInstance;
+        }
+
+        public static T Create<T>()
+        {
+            return (T)Create(typeof(T));
         }
     }
 }

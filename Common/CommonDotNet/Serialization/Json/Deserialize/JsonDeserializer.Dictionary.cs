@@ -7,7 +7,7 @@ namespace Common.Serialization.Json
     {
         private IDictionary DeserializeToDictionary(string input, Type type)
         {
-            if (input.StartsWith("{") == true && input.EndsWith("}") == true)
+            if (input.StartsWith("{", StringComparison.Ordinal) == true && input.EndsWith("}", StringComparison.Ordinal) == true)
             {
                 string source = input;
                 input = input.Substring(1, input.Length - 2);

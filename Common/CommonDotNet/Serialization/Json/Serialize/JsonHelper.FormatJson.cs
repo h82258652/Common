@@ -22,6 +22,11 @@ namespace Common.Serialization.Json
                 throw new ArgumentOutOfRangeException("json", "JSON 格式化缩进空格数不能小于0。");
             }
 
+            if (string.IsNullOrEmpty(json) == true)
+            {
+                return json;
+            }
+
             if (SerializeIndentationWhiteSpaceCount == 0 && SerializeWapp == false)
             {
                 return json;

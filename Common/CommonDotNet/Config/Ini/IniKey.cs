@@ -14,7 +14,7 @@ namespace Common.Config
             {
                 var temp = this.Text.Split('=');
                 temp[0] = value;
-                this.Text = string.Join("=", temp);
+                this.Text = string.Join(new string('=', 1), temp);
             }
         }
 

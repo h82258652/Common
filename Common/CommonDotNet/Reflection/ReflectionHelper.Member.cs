@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 
 namespace Common.Reflection
 {
@@ -11,11 +12,11 @@ namespace Common.Reflection
         public static string GetCallerMemberName()
         {
             string name = new StackTrace(true).GetFrame(2).GetMethod().Name;
-            if (name.StartsWith("get_") == true)
+            if (name.StartsWith("get_", StringComparison.Ordinal) == true)
             {
                 return name.Substring("get_".Length);
             }
-            if (name.StartsWith("set_") == true)
+            if (name.StartsWith("set_", StringComparison.Ordinal) == true)
             {
                 return name.Substring("set_".Length);
             }

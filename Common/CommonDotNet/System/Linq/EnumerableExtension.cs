@@ -30,7 +30,7 @@ namespace System.Linq
         /// <param name="comparer">字符串比较的方式。</param>
         /// <returns>一个 System.Collections.Generic.IEnumerable&lt;TSource&gt;，包含源序列中的非重复元素。</returns>
         /// <exception cref="System.ArgumentNullException"><c>source</c> 为 null。</exception>
-        public static IEnumerable<TSource> Distinct<TSource>(this IEnumerable<TSource> source, Func<TSource, string> keySelector, StringComparer comparer)
+        public static IEnumerable<TSource> Distinct<TSource>(this IEnumerable<TSource> source, Func<TSource, string> keySelector, IEqualityComparer<string> comparer)
         {
             return source.Distinct(new ElementEqualityComparer<TSource, string>(keySelector, comparer));
         }

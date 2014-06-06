@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 
 namespace Common.Config
@@ -16,7 +17,7 @@ namespace Common.Config
                 string line;
                 while ((line = sr.ReadLine()) != null)
                 {
-                    if (line.StartsWith(";") == true)
+                    if (line.StartsWith(";",StringComparison.Ordinal) == true)
                     {
                         IniComment iniComment = new IniComment()
                         {
@@ -32,7 +33,7 @@ namespace Common.Config
                             lastSection.Nodes.Add(iniComment);
                         }
                     }
-                    else if (line.StartsWith("[") == true && line.EndsWith("]") == true)
+                    else if (line.StartsWith("[", StringComparison.Ordinal) == true && line.EndsWith("]", StringComparison.Ordinal) == true)
                     {
                         IniSection iniSection = new IniSection()
                         {

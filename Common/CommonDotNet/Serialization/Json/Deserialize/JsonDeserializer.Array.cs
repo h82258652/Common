@@ -7,7 +7,7 @@ namespace Common.Serialization.Json
     {
         private Array DeserializeToArray(string input, Type type)
         {
-            if (input.StartsWith("[") == true && input.EndsWith("]") == true)
+            if (input.StartsWith("[", StringComparison.Ordinal) == true && input.EndsWith("]", StringComparison.Ordinal) == true)
             {
                 input = input.Substring(1, input.Length - 2).Trim();
                 // 获取元素类型。

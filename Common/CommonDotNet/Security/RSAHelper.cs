@@ -36,7 +36,7 @@ namespace Common.Security
                 PersistKeyInCsp = true
             };
             string[] decryptArray = value.Split('-');
-            byte[] decryptByteArray = Array.ConvertAll(decryptArray, (s => Convert.ToByte(byte.Parse(s, NumberStyles.HexNumber))));
+            byte[] decryptByteArray = Array.ConvertAll(decryptArray, (s => Convert.ToByte(byte.Parse(s, NumberStyles.HexNumber, CultureInfo.InvariantCulture))));
             byte[] bytes = rsa.Decrypt(decryptByteArray, true);
             return Encoding.UTF8.GetString(bytes);
         }

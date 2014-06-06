@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace Common.Config
 {
     internal class IniComment : IniNode
@@ -23,7 +25,7 @@ namespace Common.Config
             }
             set
             {
-                if (value.StartsWith(";") == false)
+                if (value.StartsWith(";", StringComparison.Ordinal) == false)
                 {
                     value = ';' + value;
                 }

@@ -28,11 +28,11 @@ namespace Common.Config
             }
             set
             {
-                if (value.StartsWith("[") == false)
+                if (value.StartsWith("[", StringComparison.Ordinal) == false)
                 {
                     value = '[' + value;
                 }
-                if (value.EndsWith("]") == false)
+                if (value.EndsWith("]", StringComparison.Ordinal) == false)
                 {
                     value = value + ']';
                 }

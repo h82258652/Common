@@ -11,7 +11,6 @@ namespace Common.Serialization.Json
         {
             if (input.StartsWith("{") == true && input.EndsWith("}") == true)
             {
-                string source = input;
                 input = input.Substring(1, input.Length - 2);
                 ExpandoObject expandoObject = new ExpandoObject();
                 IDictionary<string, object> dictionary = expandoObject;

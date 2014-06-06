@@ -35,7 +35,7 @@ namespace Common.Serialization.Json
                     return typeof(string);
                 }
             }
-            else if (json.StartsWith("{") == true && json.EndsWith("}") == true)
+            else if (json.StartsWith("{", StringComparison.Ordinal) == true && json.EndsWith("}", StringComparison.Ordinal) == true)
             {
                 return typeof(object);
             }

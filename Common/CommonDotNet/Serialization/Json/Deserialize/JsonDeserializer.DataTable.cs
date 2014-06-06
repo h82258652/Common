@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 
 namespace Common.Serialization.Json
 {
@@ -9,15 +10,18 @@ namespace Common.Serialization.Json
         private DataTable DeserializeToDataTable(string input, Type type)
         {
             input = input.Trim();
-            if (input.StartsWith("[") == true && input.EndsWith("]") == true)
+            if (input.StartsWith("[", StringComparison.Ordinal) == true && input.EndsWith("]", StringComparison.Ordinal) == true)
             {
-                var rows = JsonHelper.ItemReader(input.Substring(1,input.Length-2));
-                DataTable table = new DataTable();
+                var rows = JsonHelper.ItemReader(input.Substring(1, input.Length - 2));
+                DataTable table = new DataTable()
+                {
+                    Locale = CultureInfo.InvariantCulture
+                };
                 foreach (var row in rows)
                 {
                     var temp = row.Trim();
                     List<object> values = new List<object>();
-                    foreach (var column in JsonHelper.ItemReader(temp.Substring(1,temp.Length-2)))
+                    foreach (var column in JsonHelper.ItemReader(temp.Substring(1, temp.Length - 2)))
                     {
                         string columnName;
                         string value;
