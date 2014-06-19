@@ -1,5 +1,8 @@
 ﻿
 using System.ComponentModel;
+using System.IO;
+using System.Linq.Expressions;
+using System.Reflection;
 
 namespace System
 {
@@ -146,6 +149,221 @@ namespace System
         public static T IfElse<T>(this T obj, Predicate<T> predicate, Func<T, T> trueFunc, Func<T, T> falseFunc)
         {
             return predicate(obj) == true ? trueFunc(obj) : falseFunc(obj);
+        }
+
+        /// <summary>
+        /// 获取字段或属性的名称。
+        /// </summary>
+        /// <typeparam name="T">当前对象的类型。</typeparam>
+        /// <param name="obj">当前对象。</param>
+        /// <param name="lambdaExpression">访问字段或属性表达式。</param>
+        /// <returns>字段或属性的名称。</returns>
+        public static string MemberName<T>(this T obj, Expression<Func<T, object>> lambdaExpression)
+        {
+            return GetNameFromExpression(lambdaExpression);
+        }
+
+        /// <summary>
+        /// 获取无返回值方法的名称。
+        /// </summary>
+        /// <typeparam name="T">当前对象的类型。</typeparam>
+        /// <param name="obj">当前对象。</param>
+        /// <param name="lambdaExpression">访问方法表达式。</param>
+        /// <returns>方法的名称。</returns>
+        public static string MemberName<T>(this T obj, Expression<Func<T, Action>> lambdaExpression)
+        {
+            return GetNameFromExpression(lambdaExpression);
+        }
+
+        /// <summary>
+        /// 获取无返回值方法的名称。
+        /// </summary>
+        /// <typeparam name="T">当前对象的类型。</typeparam>
+        /// <typeparam name="T1">方法第一个参数的类型。</typeparam>
+        /// <param name="obj">当前对象。</param>
+        /// <param name="lambdaExpression">访问方法表达式。</param>
+        /// <returns>方法的名称。</returns>
+        public static string MemberName<T, T1>(this T obj, Expression<Func<T, Action<T1>>> lambdaExpression)
+        {
+            return GetNameFromExpression(lambdaExpression);
+        }
+
+        /// <summary>
+        /// 获取无返回值方法的名称。
+        /// </summary>
+        /// <typeparam name="T">当前对象的类型。</typeparam>
+        /// <typeparam name="T1">方法第一个参数的类型。</typeparam>
+        /// <typeparam name="T2">方法第二个参数的类型。</typeparam>
+        /// <param name="obj">当前对象。</param>
+        /// <param name="lambdaExpression">访问方法表达式。</param>
+        /// <returns>方法的名称。</returns>
+        public static string MemberName<T, T1, T2>(this T obj, Expression<Func<T, Action<T1, T2>>> lambdaExpression)
+        {
+            return GetNameFromExpression(lambdaExpression);
+        }
+
+        /// <summary>
+        /// 获取无返回值方法的名称。
+        /// </summary>
+        /// <typeparam name="T">当前对象的类型。</typeparam>
+        /// <typeparam name="T1">方法第一个参数的类型。</typeparam>
+        /// <typeparam name="T2">方法第二个参数的类型。</typeparam>
+        /// <typeparam name="T3">方法第三个参数的类型。</typeparam>
+        /// <param name="obj">当前对象。</param>
+        /// <param name="lambdaExpression">访问方法表达式。</param>
+        /// <returns>方法的名称。</returns>
+        public static string MemberName<T, T1, T2, T3>(this T obj, Expression<Func<T, Action<T1, T2, T3>>> lambdaExpression)
+        {
+            return GetNameFromExpression(lambdaExpression);
+        }
+
+        /// <summary>
+        /// 获取无返回值方法的名称。
+        /// </summary>
+        /// <typeparam name="T">当前对象的类型。</typeparam>
+        /// <typeparam name="T1">方法第一个参数的类型。</typeparam>
+        /// <typeparam name="T2">方法第二个参数的类型。</typeparam>
+        /// <typeparam name="T3">方法第三个参数的类型。</typeparam>
+        /// <typeparam name="T4">方法第四个参数的类型。</typeparam>
+        /// <param name="obj">当前对象。</param>
+        /// <param name="lambdaExpression">访问方法表达式。</param>
+        /// <returns>方法的名称。</returns>
+        public static string MemberName<T, T1, T2, T3, T4>(this T obj, Expression<Func<T, Action<T1, T2, T3, T4>>> lambdaExpression)
+        {
+            return GetNameFromExpression(lambdaExpression);
+        }
+
+        /// <summary>
+        /// 获取有返回值方法的名称。
+        /// </summary>
+        /// <typeparam name="T">当前对象的类型。</typeparam>
+        /// <typeparam name="TResult">方法的返回值类型。</typeparam>
+        /// <param name="obj">当前对象。</param>
+        /// <param name="lambdaExpression">访问方法表达式。</param>
+        /// <returns>方法的名称。</returns>
+        public static string MemberName<T, TResult>(this T obj, Expression<Func<T, Func<TResult>>> lambdaExpression)
+        {
+            return GetNameFromExpression(lambdaExpression);
+        }
+
+        /// <summary>
+        /// 获取有返回值方法的名称。
+        /// </summary>
+        /// <typeparam name="T">当前对象的类型。</typeparam>
+        /// <typeparam name="T1">方法第一个参数的类型。</typeparam>
+        /// <typeparam name="TResult">方法的返回值类型。</typeparam>
+        /// <param name="obj">当前对象。</param>
+        /// <param name="lambdaExpression">访问方法表达式。</param>
+        /// <returns>方法的名称。</returns>
+        public static string MemberName<T, T1, TResult>(this T obj, Expression<Func<T, Func<T1, TResult>>> lambdaExpression)
+        {
+            return GetNameFromExpression(lambdaExpression);
+        }
+
+        /// <summary>
+        /// 获取有返回值方法的名称。
+        /// </summary>
+        /// <typeparam name="T">当前对象的类型。</typeparam>
+        /// <typeparam name="T1">方法第一个参数的类型。</typeparam>
+        /// <typeparam name="T2">方法第二个参数的类型。</typeparam>
+        /// <typeparam name="TResult">方法的返回值类型。</typeparam>
+        /// <param name="obj">当前对象。</param>
+        /// <param name="lambdaExpression">访问方法表达式。</param>
+        /// <returns>方法的名称。</returns>
+        public static string MemberName<T, T1, T2, TResult>(this T obj, Expression<Func<T, Func<T1, T2, TResult>>> lambdaExpression)
+        {
+            return GetNameFromExpression(lambdaExpression);
+        }
+
+        /// <summary>
+        /// 获取有返回值方法的名称。
+        /// </summary>
+        /// <typeparam name="T">当前对象的类型。</typeparam>
+        /// <typeparam name="T1">方法第一个参数的类型。</typeparam>
+        /// <typeparam name="T2">方法第二个参数的类型。</typeparam>
+        /// <typeparam name="T3">方法第三个参数的类型。</typeparam>
+        /// <typeparam name="TResult">方法的返回值类型。</typeparam>
+        /// <param name="obj">当前对象。</param>
+        /// <param name="lambdaExpression">访问方法表达式。</param>
+        /// <returns>方法的名称。</returns>
+        public static string MemberName<T, T1, T2, T3, TResult>(this T obj, Expression<Func<T, Func<T1, T2, T3, TResult>>> lambdaExpression)
+        {
+            return GetNameFromExpression(lambdaExpression);
+        }
+
+        /// <summary>
+        /// 获取有返回值方法的名称。
+        /// </summary>
+        /// <typeparam name="T">当前对象的类型。</typeparam>
+        /// <typeparam name="T1">方法第一个参数的类型。</typeparam>
+        /// <typeparam name="T2">方法第二个参数的类型。</typeparam>
+        /// <typeparam name="T3">方法第三个参数的类型。</typeparam>
+        /// <typeparam name="T4">方法第四个参数的类型。</typeparam>
+        /// <typeparam name="TResult">方法的返回值类型。</typeparam>
+        /// <param name="obj">当前对象。</param>
+        /// <param name="lambdaExpression">访问方法表达式。</param>
+        /// <returns>方法的名称。</returns>
+        public static string MemberName<T, T1, T2, T3, T4, TResult>(this T obj, Expression<Func<T, Func<T1, T2, T3, T4, TResult>>> lambdaExpression)
+        {
+            return GetNameFromExpression(lambdaExpression);
+        }
+
+        private static string GetNameFromExpression(LambdaExpression lambdaExpression)
+        {
+            Expression expressionBody = lambdaExpression.Body;
+            {
+                UnaryExpression unaryExpression = expressionBody as UnaryExpression;
+                if (unaryExpression != null)
+                {
+                    MemberExpression memberExpression = unaryExpression.Operand as MemberExpression;
+                    if (memberExpression != null)
+                    {
+                        return memberExpression.Member.Name;
+                    }
+                    MethodCallExpression methodCallExpression = unaryExpression.Operand as MethodCallExpression;
+                    if (methodCallExpression != null)
+                    {
+                        ConstantExpression constantExpression = methodCallExpression.Object as ConstantExpression;
+                        if (constantExpression != null)
+                        {
+                            MethodInfo methodInfo = constantExpression.Value as MethodInfo;
+                            if (methodInfo != null)
+                            {
+                                return methodInfo.Name;
+                            }
+                            else
+                            {
+                                throw new Exception(lambdaExpression.ToString());
+                            }
+                        }
+                        ParameterExpression parameterExpression = methodCallExpression.Object as ParameterExpression;
+                        if (parameterExpression != null)
+                        {
+                            // 索引器访问。
+                            return string.Empty;
+                        }
+                        else
+                        {
+                            throw new Exception(lambdaExpression.ToString());
+                        }
+                    }
+                }
+            }
+            {
+                MemberExpression memberExpression = expressionBody as MemberExpression;
+                if (memberExpression != null)
+                {
+                    return memberExpression.Member.Name;
+                }
+            }
+            {
+                MethodCallExpression methodCallExpression = expressionBody as MethodCallExpression;
+                if (methodCallExpression != null)
+                {
+                    return methodCallExpression.Method.Name;
+                }
+            }
+            throw new Exception(lambdaExpression.ToString());
         }
     }
 }

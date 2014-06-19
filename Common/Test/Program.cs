@@ -39,10 +39,12 @@ namespace Test
     {
         public static void Main(string[] args)
         {
-            DateTime dt = DateTime.Now;
-            JavaScriptSerializer jss = new JavaScriptSerializer();
-            string s = jss.Serialize(dt);
-            Console.WriteLine(s);
+            var x = Type.GetTypeCode(typeof(int));
+            var y = Type.GetTypeCode(typeof(double));
+            TypeCode z = Type.GetTypeCode(typeof (Uri));
+            Console.WriteLine(x);
+            Console.WriteLine(y);
+            Console.WriteLine((int)z);
             Console.ReadKey();
         }
     }
