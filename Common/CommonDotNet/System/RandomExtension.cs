@@ -817,7 +817,7 @@ namespace System
         {
             if (length <= 0)
             {
-                throw new ArgumentOutOfRangeException("length 不能小于等于0。");
+                throw new ArgumentOutOfRangeException("length", length, "length 不能小于等于0。");
             }
             StringBuilder sb = new StringBuilder(length);
             for (int i = 0; i < length; i++)
@@ -826,5 +826,7 @@ namespace System
             }
             return sb.ToString();
         }
+
+#warning NextDateTime should build.
     }
 }

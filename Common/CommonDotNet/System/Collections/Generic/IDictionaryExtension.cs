@@ -100,5 +100,22 @@ namespace System.Collections.Generic
             }
             return true;
         }
+
+        /// <summary>
+        /// 指示当前字典是否为空。
+        /// </summary>
+        /// <typeparam name="TKey">键的类型。</typeparam>
+        /// <typeparam name="TValue">值的类型。</typeparam>
+        /// <param name="dict">字典。</param>
+        /// <returns>元素个数为 0，则返回真，否则返回假。</returns>
+        /// <exception cref="System.ArgumentNullException"><c>dict</c> 为 null。</exception>
+        public static bool IsEmpty<TKey, TValue>(this IDictionary<TKey, TValue> dict)
+        {
+            if (dict == null)
+            {
+                throw new ArgumentNullException("dict");
+            }
+            return dict.Count == 0;
+        }
     }
 }
