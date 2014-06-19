@@ -28,7 +28,7 @@ namespace Common.Serialization.Json
                         }
                     case '\f':
                         {
-                            sb.Append("\\\f");
+                            sb.Append("\\f");
                             break;
                         }
                     case '\n':

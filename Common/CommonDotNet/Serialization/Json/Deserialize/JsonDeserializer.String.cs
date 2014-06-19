@@ -24,7 +24,7 @@ namespace Common.Serialization.Json
                         {
                             sb.Append("\"");
                         }
-                        if (input[i + 1] == '\\')
+                        else if (input[i + 1] == '\\')
                         {
                             sb.Append("\\");
                         }
