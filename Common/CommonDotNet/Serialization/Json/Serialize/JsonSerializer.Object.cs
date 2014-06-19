@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.ComponentModel;
 using System.Data;
 using System.Dynamic;
 using System.Numerics;
@@ -12,7 +13,59 @@ namespace Common.Serialization.Json
         internal string SerializeObject(object obj)
         {
             this.CurrentStackLevel++;
-            string json;
+            string json /*= string.Empty*/;
+
+#warning building new version.
+            //if (obj == null)
+            //{
+            //    #region null
+            //    json = "null";
+            //    #endregion
+
+            //    this.CurrentStackLevel--;
+            //    return json;
+            //}
+            //else
+            //{
+            //    Type type = obj.GetType();
+            //    TypeCode typeCode = Type.GetTypeCode(type);
+            //    switch (typeCode)
+            //    {
+            //        case TypeCode.Object:
+            //            {
+            //                if (1 == 1)
+            //                {
+            //                }
+            //                else
+            //                {
+            //                    json = SerializeClass(obj);
+            //                }
+            //                break;
+            //            }
+            //        case TypeCode.DBNull:
+            //            {
+            //                json = "";
+            //                break;
+            //            }
+            //        case TypeCode.Boolean:
+            //            {
+            //                json = SerializeBoolean((bool)obj);
+            //                break;
+            //            }
+            //        case TypeCode.Char:
+            //            {
+            //                json = SerializeChar((char)obj);
+            //                break;
+            //            }
+            //        default:
+            //            {
+            //                throw new InvalidEnumArgumentException("obj", (int)typeCode, typeof(TypeCode));
+            //            }
+            //    }
+            //}
+
+            //this.CurrentStackLevel--;
+            //return json;
 
             #region null
             if (obj == null)
@@ -119,7 +172,7 @@ namespace Common.Serialization.Json
             #region DataTable
             else if (obj is DataTable)
             {
-                json = SerializeDataTable((DataTable) obj);
+                json = SerializeDataTable((DataTable)obj);
             }
             #endregion
             #region DateTime
