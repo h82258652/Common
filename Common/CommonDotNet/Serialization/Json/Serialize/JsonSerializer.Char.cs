@@ -7,6 +7,10 @@ namespace Common.Serialization.Json
         {
             switch (c)
             {
+                case '\"':
+                    {
+                        return "\"\\\"\"";
+                    }
                 case '\\':
                     {
                         return "\"\\\\\"";

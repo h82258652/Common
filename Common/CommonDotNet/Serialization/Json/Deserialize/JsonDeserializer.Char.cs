@@ -11,7 +11,11 @@ namespace Common.Serialization.Json
             {
                 string source = input;
                 input = input.Substring(1, input.Length - 2);
-                if (input == "\\\\")
+                if (input == "\\\"")
+                {
+                    return '\"';
+                }
+                else if (input == "\\\\")
                 {
                     return '\\';
                 }

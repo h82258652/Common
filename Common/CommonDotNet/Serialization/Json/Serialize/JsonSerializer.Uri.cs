@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 
 namespace Common.Serialization.Json
 {
@@ -6,7 +7,7 @@ namespace Common.Serialization.Json
     {
         private string SerializeUri(Uri uri)
         {
-            return "\"" + uri.ToString() + "\"";
+            return "\"" + uri.GetComponents(UriComponents.SerializationInfoString, UriFormat.UriEscaped) + "\"";
         }
     }
 }

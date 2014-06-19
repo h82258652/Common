@@ -39,8 +39,10 @@ namespace Test
     {
         public static void Main(string[] args)
         {
-            string s = null;
-            var s2 = s.Trim();
+            DateTime dt = DateTime.Now;
+            JavaScriptSerializer jss = new JavaScriptSerializer();
+            string s = jss.Serialize(dt);
+            Console.WriteLine(s);
             Console.ReadKey();
         }
     }

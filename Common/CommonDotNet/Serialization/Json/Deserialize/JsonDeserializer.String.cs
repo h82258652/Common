@@ -5,7 +5,7 @@ namespace Common.Serialization.Json
 {
     internal partial class JsonDeserializer
     {
-        private string DeserializeToString(string input,Type type)
+        private string DeserializeToString(string input, Type type)
         {
             if (input.StartsWith("\"") && input.EndsWith("\""))
             {
@@ -19,6 +19,10 @@ namespace Common.Serialization.Json
                         if (i + 1 == length)
                         {
                             throw new JsonDeserializeException(source, type);
+                        }
+                        if (input[i + 1] == '\"')
+                        {
+                            sb.Append("\"");
                         }
                         if (input[i + 1] == '\\')
                         {

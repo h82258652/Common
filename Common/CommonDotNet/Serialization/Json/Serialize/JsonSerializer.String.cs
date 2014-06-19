@@ -11,6 +11,11 @@ namespace Common.Serialization.Json
             {
                 switch (c)
                 {
+                    case '\"':
+                        {
+                            sb.Append("\\\"");
+                            break;
+                        }
                     case '\\':
                         {
                             sb.Append("\\\\");
