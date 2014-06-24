@@ -39,57 +39,31 @@ namespace Test
     {
         public static void Main(string[] args)
         {
-            var x = Type.GetTypeCode(typeof(int));
-            var y = Type.GetTypeCode(typeof(double));
-            TypeCode z = Type.GetTypeCode(typeof (Uri));
-            Console.WriteLine(x);
-            Console.WriteLine(y);
-            Console.WriteLine((int)z);
+            Console.WriteLine(RandomHelper.NextEnum(typeof(StringComparison)));
+            Console.WriteLine(RandomHelper.NextEnum(typeof(StringComparison)));
+            Console.WriteLine(RandomHelper.NextEnum(typeof(StringComparison)));
+            Console.WriteLine(RandomHelper.NextEnum(typeof(StringComparison)));
+            Console.WriteLine(RandomHelper.NextEnum(typeof(StringComparison)));
+            Console.WriteLine(RandomHelper.NextEnum(typeof(StringComparison)));
+            Console.WriteLine(RandomHelper.NextEnum(typeof(StringComparison)));
+            Console.WriteLine(RandomHelper.NextEnum(typeof(StringComparison)));
             Console.ReadKey();
         }
     }
 
-    public class XX
+    class RandomEx : Random
     {
-        public int A;
-        public string B;
-    }
+        private static readonly RandomEx rex = new RandomEx();
 
-    public struct YY
-    {
-        public int C;
-        public string D;
-    }
-
-    public class EmptyInstanceFactory
-    {
-        public static object Create(Type type)
+        public static int NextInt()
         {
-            //if (type == typeof(int))
-            //{
-            //    return 0;
-            //}
-            if (type == typeof(string))
-            {
-                return string.Empty;
-            }
-            var emptyInstance = FormatterServices.GetUninitializedObject(type);
-            PropertyInfo[] properties = type.GetProperties(BindingFlags.Instance | BindingFlags.Public);
-            foreach (var property in properties)
-            {
-                property.SetValue(emptyInstance, EmptyInstanceFactory.Create(property.PropertyType), null);
-            }
-            FieldInfo[] fields = type.GetFields(BindingFlags.Instance | BindingFlags.Public);
-            foreach (var field in fields)
-            {
-                field.SetValue(emptyInstance, EmptyInstanceFactory.Create(field.FieldType));
-            }
-            return emptyInstance;
+            return rex.Next();
         }
 
-        public static T Create<T>()
+        public static double NextDouble()
         {
-            return (T)Create(typeof(T));
+            rex.Sample();
+            return 0;
         }
     }
 }

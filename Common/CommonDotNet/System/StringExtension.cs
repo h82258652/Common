@@ -966,7 +966,7 @@ namespace System
             }
         }
 
-        [SuppressMessage("","")]
+        [SuppressMessage("", "")]
         public static string TrimStartSafely(this string value, params char[] trimChars)
         {
             if (string.IsNullOrEmpty(value) == true)
@@ -989,6 +989,31 @@ namespace System
             {
                 return value.TrimEnd(trimChars);
             }
+        }
+
+        public static string SwapCase(this string value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                return value;
+            }
+            var sb = new StringBuilder(value.Length);
+            foreach (var c in value)
+            {
+                if (char.IsUpper(c))
+                {
+                    sb.Append(char.ToLower(c));
+                }
+                else if (char.IsLower(c))
+                {
+                    sb.Append(char.ToUpper(c));
+                }
+                else
+                {
+                    sb.Append(c);
+                }
+            }
+            return sb.ToString();
         }
     }
 }
