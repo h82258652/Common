@@ -39,31 +39,20 @@ namespace Test
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine(RandomHelper.NextEnum(typeof(StringComparison)));
-            Console.WriteLine(RandomHelper.NextEnum(typeof(StringComparison)));
-            Console.WriteLine(RandomHelper.NextEnum(typeof(StringComparison)));
-            Console.WriteLine(RandomHelper.NextEnum(typeof(StringComparison)));
-            Console.WriteLine(RandomHelper.NextEnum(typeof(StringComparison)));
-            Console.WriteLine(RandomHelper.NextEnum(typeof(StringComparison)));
-            Console.WriteLine(RandomHelper.NextEnum(typeof(StringComparison)));
-            Console.WriteLine(RandomHelper.NextEnum(typeof(StringComparison)));
+            Console.WriteLine(typeof(IA).IsAssignableFrom(typeof(B)));
+            Console.WriteLine(typeof(B).IsAssignableFrom(typeof(IA)));
             Console.ReadKey();
         }
     }
 
-    class RandomEx : Random
+
+    interface IA
     {
-        private static readonly RandomEx rex = new RandomEx();
 
-        public static int NextInt()
-        {
-            return rex.Next();
-        }
+    }
 
-        public static double NextDouble()
-        {
-            rex.Sample();
-            return 0;
-        }
+    class B : IA
+    {
+
     }
 }
