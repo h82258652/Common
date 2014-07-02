@@ -9,14 +9,10 @@ namespace System
         /// <typeparam name="T">可枚举类型。</typeparam>
         /// <returns>其中一个枚举值。</returns>
         /// <exception cref="System.InvalidOperationException"><c>T</c> 不是枚举类型。</exception>
+        [CLSCompliant(false)]
         public static T NextEnum<T>() where T : struct,  IComparable, IFormattable, IConvertible
         {
-            var type = typeof (T);
-            if (type.IsEnum == false)
-            {
-                throw new InvalidOperationException(type.Name + "不是可枚举类型。");
-            }
-            return (T)(object)NextEnum(type);
+            return Rand.NextEnum<T>();
         }
 
         /// <summary>
@@ -28,17 +24,7 @@ namespace System
         /// <exception cref="System.InvalidOperationException"><c>type</c> 不是枚举类型。</exception>
         public static Enum NextEnum(Type type)
         {
-            if (type == null)
-            {
-                throw new ArgumentNullException("type", "随机的枚举类型不能为空。");
-            }
-            if (type.IsEnum == false)
-            {
-                throw new InvalidOperationException(type.Name + " 不是可枚举类型。");
-            }
-            var array = Enum.GetValues(type);
-            var index = Rand.Next(array.GetLowerBound(0), array.GetUpperBound(0) + 1);
-            return (Enum)array.GetValue(index);
+            return Rand.NextEnum(type);
         }
     }
 }

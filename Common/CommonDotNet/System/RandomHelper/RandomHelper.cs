@@ -2,10 +2,10 @@
 namespace System
 {
     /// <summary>
-    /// Random 扩展类。
+    /// Random 帮助类。
     /// </summary>
     public static partial class RandomHelper
     {
-        private static readonly Random Rand = new Random();
+        private static readonly RandomExtension Rand = new RandomExtension();
     }
 }

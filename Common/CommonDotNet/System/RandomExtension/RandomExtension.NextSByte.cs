@@ -1,16 +1,16 @@
 ﻿
 namespace System
 {
-    public static partial class RandomHelper
+    public partial class RandomExtension
     {
         /// <summary>
         /// 返回非负随机数。
         /// </summary>
         /// <returns>返回一个非负随机的 SByte。</returns>
         [CLSCompliant(false)]
-        public static sbyte NextSByte()
+        public sbyte NextSByte()
         {
-            return Rand.NextSByte();
+            return (sbyte)Next(sbyte.MaxValue);
         }
 
         /// <summary>
@@ -19,9 +19,16 @@ namespace System
         /// <param name="containNegative">是否包含负数。</param>
         /// <returns>返回一个随机的 SByte。</returns>
         [CLSCompliant(false)]
-        public static sbyte NextSByte(bool containNegative)
+        public sbyte NextSByte(bool containNegative)
         {
-            return Rand.NextSByte(containNegative);
+            if (containNegative)
+            {
+                return (sbyte)Next(sbyte.MinValue, sbyte.MaxValue);
+            }
+            else
+            {
+                return NextSByte();
+            }
         }
 
         /// <summary>
@@ -31,9 +38,13 @@ namespace System
         /// <returns>大于等于零且小于 maxValue 的 SByte，即：返回值的范围通常包括零但不包括 maxValue。不过，如果 maxValue 等于零，则返回 maxValue。</returns>
         /// <exception cref="System.ArgumentOutOfRangeException"><c>maxValue</c> 小于 0。</exception>
         [CLSCompliant(false)]
-        public static sbyte NextSByte(sbyte maxValue)
+        public sbyte NextSByte(sbyte maxValue)
         {
-            return Rand.NextSByte(maxValue);
+            if (maxValue < 0)
+            {
+                throw new ArgumentOutOfRangeException("maxValue", "maxValue 必须大于或等于零。");
+            }
+            return (sbyte)Next(maxValue);
         }
 
         /// <summary>
@@ -44,9 +55,13 @@ namespace System
         /// <returns>一个大于等于 minValue 且小于 maxValue 的 SByte，即：返回的值范围包括 minValue 但不包括 maxValue。如果 minValue 等于 maxValue，则返回 minValue。</returns>
         /// <exception cref="System.ArgumentOutOfRangeException"><c>minValue</c> 大于 <c>maxValue</c>。</exception>
         [CLSCompliant(false)]
-        public static sbyte NextSByte(sbyte minValue, sbyte maxValue)
+        public sbyte NextSByte(sbyte minValue, sbyte maxValue)
         {
-            return Rand.NextSByte(minValue, maxValue);
+            if (minValue > maxValue)
+            {
+                throw new ArgumentOutOfRangeException("minValue", "“minValue”不能大于 maxValue。");
+            }
+            return (sbyte)Next(minValue, maxValue);
         }
     }
 }

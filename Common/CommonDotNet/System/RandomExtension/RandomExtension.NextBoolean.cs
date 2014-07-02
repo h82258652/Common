@@ -1,15 +1,15 @@
 ﻿
 namespace System
 {
-    public static partial class RandomHelper
+    public partial class RandomExtension
     {
         /// <summary>
         /// 返回随机真假。
         /// </summary>
         /// <returns>真或假。</returns>
-        public static bool NextBoolean()
+        public bool NextBoolean()
         {
-            return Rand.NextBoolean();
+            return Next(2) == 0;
         }
     }
 }

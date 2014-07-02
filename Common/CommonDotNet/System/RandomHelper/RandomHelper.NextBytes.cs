@@ -10,23 +10,7 @@ namespace System
         /// <exception cref="System.ArgumentNullException"><c>buffer</c> 为 null。</exception>
         public static void NextBytes(byte[] buffer)
         {
-            if (buffer == null)
-            {
-                throw new ArgumentNullException("buffer", "值不能为 null。");
-            }
             Rand.NextBytes(buffer);
-        }
-
-        /// <summary>
-        /// 用随机数填充指定字节数组的元素。
-        /// </summary>
-        /// <param name="buffer">包含随机数的字节数组。</param>
-        public static void NextBytesSafely(byte[] buffer)
-        {
-            if (buffer != null)
-            {
-                Rand.NextBytes(buffer);
-            }
         }
 
         /// <summary>
@@ -37,13 +21,7 @@ namespace System
         /// <exception cref="System.ArgumentOutOfRangeException"><c>length</c> 小于 0。</exception>
         public static byte[] NextBytes(int length)
         {
-            if (length < 0)
-            {
-                throw new ArgumentOutOfRangeException("length", "返回随机数组的长度不能小于零。");
-            }
-            var buffer = new byte[length];
-            Rand.NextBytes(buffer);
-            return buffer;
+            return Rand.NextBytes(length);
         }
     }
 }
